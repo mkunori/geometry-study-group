@@ -521,7 +521,7 @@ $$
 
 ### .NETでは行ベクトル方式を使う
 
-`System.Numerics.Matrix3x2` と `Matrix4x4` は行ベクトル方式で、ベクトルを左に置く $p'_{row}=p_{row}M_{row}$ という規約を使う。同じ幾何変換を表すには、数学で導いた行列を転置した配置になる。回転→移動は $p_{row}R_{row}T_{row}$ で、合成行列は $R_{row}T_{row}$ となる。規約は [Matrix3x2の公式資料](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.matrix3x2?view=net-10.0) と [Matrix4x4の公式資料](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.matrix4x4?view=net-10.0) のRemarksを参照。
+`System.Numerics.Matrix3x2` と `Matrix4x4` は行ベクトル方式で、ベクトルを左に置く $p_{row}'=p_{row}M_{row}$ という規約を使う。同じ幾何変換を表すには、数学で導いた行列を転置した配置になる。回転→移動は $p_{row}R_{row}T_{row}$ で、合成行列は $R_{row}T_{row}$ となる。規約は [Matrix3x2の公式資料](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.matrix3x2?view=net-10.0) と [Matrix4x4の公式資料](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.matrix4x4?view=net-10.0) のRemarksを参照。
 
 | 項目 | 本文の列ベクトル方式 | .NETの行ベクトル方式 |
 | --- | --- | --- |
