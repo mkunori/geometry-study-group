@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540" role="img" aria-labelledby="title desc">
+  <title id="title">4×4の構造：3本の基底と、移動列と、wの保持</title>
+  <desc id="desc">2Dの3×3と3Dの4×4を比較。左上は線形変換、右端の上部は移動、最下行はwを保持する。</desc>
+  <defs>
+    <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#1565c0" />
+    </marker>
+    <marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#ba4b00" />
+    </marker>
+    <marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7b3294" />
+    </marker>
+    <marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#58677c" />
+    </marker>
+  </defs>
+  <rect width="1100" height="100%" fill="white" />
+  <g font-family="Yu Gothic, Meiryo, sans-serif" font-size="18" fill="#172b4d">
+    <text x="30" y="38" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">4×4の構造：3本の基底と、移動列と、wの保持</text>
+    <text x="80" y="105" fill="#172b4d" font-size="23" text-anchor="start" font-weight="700">2D：(x, y, w)</text>
+    <rect x="80" y="145" width="144" height="144" rx="5" fill="#fff0e3" stroke="none" />
+    <rect x="224" y="145" width="72" height="144" rx="5" fill="#f3e8fa" stroke="none" />
+    <rect x="80" y="289" width="216" height="72" rx="5" fill="#edf1f6" stroke="none" />
+    <text x="116" y="189" fill="#172b4d" font-size="22" text-anchor="middle">a</text>
+    <text x="188" y="189" fill="#172b4d" font-size="22" text-anchor="middle">b</text>
+    <text x="260" y="189" fill="#172b4d" font-size="22" text-anchor="middle">tₓ</text>
+    <text x="116" y="261" fill="#172b4d" font-size="22" text-anchor="middle">c</text>
+    <text x="188" y="261" fill="#172b4d" font-size="22" text-anchor="middle">d</text>
+    <text x="260" y="261" fill="#172b4d" font-size="22" text-anchor="middle">tᵧ</text>
+    <text x="116" y="333" fill="#172b4d" font-size="22" text-anchor="middle">0</text>
+    <text x="188" y="333" fill="#172b4d" font-size="22" text-anchor="middle">0</text>
+    <text x="260" y="333" fill="#172b4d" font-size="22" text-anchor="middle">1</text>
+    <path d="M 80 145 H 72 V 361 H 80" fill="none" stroke="#172b4d" stroke-width="2" />
+    <path d="M 296 145 H 304 V 361 H 296" fill="none" stroke="#172b4d" stroke-width="2" />
+    <text x="460" y="105" fill="#172b4d" font-size="23" text-anchor="start" font-weight="700">3D：(x, y, z, w)</text>
+    <rect x="460" y="135" width="210" height="210" rx="5" fill="#fff0e3" stroke="none" />
+    <rect x="670" y="135" width="70" height="210" rx="5" fill="#f3e8fa" stroke="none" />
+    <rect x="460" y="345" width="280" height="70" rx="5" fill="#edf1f6" stroke="none" />
+    <text x="495" y="178" fill="#172b4d" font-size="22" text-anchor="middle">r₁₁</text>
+    <text x="565" y="178" fill="#172b4d" font-size="22" text-anchor="middle">r₁₂</text>
+    <text x="635" y="178" fill="#172b4d" font-size="22" text-anchor="middle">r₁₃</text>
+    <text x="705" y="178" fill="#172b4d" font-size="22" text-anchor="middle">tₓ</text>
+    <text x="495" y="248" fill="#172b4d" font-size="22" text-anchor="middle">r₂₁</text>
+    <text x="565" y="248" fill="#172b4d" font-size="22" text-anchor="middle">r₂₂</text>
+    <text x="635" y="248" fill="#172b4d" font-size="22" text-anchor="middle">r₂₃</text>
+    <text x="705" y="248" fill="#172b4d" font-size="22" text-anchor="middle">tᵧ</text>
+    <text x="495" y="318" fill="#172b4d" font-size="22" text-anchor="middle">r₃₁</text>
+    <text x="565" y="318" fill="#172b4d" font-size="22" text-anchor="middle">r₃₂</text>
+    <text x="635" y="318" fill="#172b4d" font-size="22" text-anchor="middle">r₃₃</text>
+    <text x="705" y="318" fill="#172b4d" font-size="22" text-anchor="middle">t<tspan baseline-shift="sub" font-size="16">z</tspan>
+    </text>
+    <text x="495" y="388" fill="#172b4d" font-size="22" text-anchor="middle">0</text>
+    <text x="565" y="388" fill="#172b4d" font-size="22" text-anchor="middle">0</text>
+    <text x="635" y="388" fill="#172b4d" font-size="22" text-anchor="middle">0</text>
+    <text x="705" y="388" fill="#172b4d" font-size="22" text-anchor="middle">1</text>
+    <path d="M 460 135 H 452 V 415 H 460" fill="none" stroke="#172b4d" stroke-width="2" />
+    <path d="M 740 135 H 748 V 415 H 740" fill="none" stroke="#172b4d" stroke-width="2" />
+    <text x="790" y="180" fill="#ba4b00" font-size="21" text-anchor="start">橙：左上3×3</text>
+    <text x="790" y="214" fill="#172b4d" font-size="19" text-anchor="start">3本の基底の変換先</text>
+    <text x="790" y="276" fill="#7b3294" font-size="21" text-anchor="start">紫：移動量</text>
+    <text x="790" y="310" fill="#172b4d" font-size="19" text-anchor="start">点には加算、方向には0</text>
+    <text x="790" y="370" fill="#58677c" font-size="21" text-anchor="start">灰：w′ = w</text>
+    <text x="50" y="466" fill="#172b4d" font-size="23" text-anchor="start">2D：2成分 + w → 3×3　　3D：3成分 + w → 4×4</text>
+    <text x="50" y="509" fill="#172b4d" font-size="20" text-anchor="start">最下行 [0, 0, 0, 1] が、点 w=1 と方向 w=0 を次の変換へ引き継ぐ。</text>
+  </g>
+</svg>

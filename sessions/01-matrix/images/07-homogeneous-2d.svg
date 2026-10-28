@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="470" viewBox="0 0 1100 470" role="img" aria-labelledby="title desc">
+<title id="title">1成分増やして、定数の足し算を積に入れる</title>
+<desc id="desc">左の2×2線形行列から、右端の移動列と最後の行を追加した3×3同次行列へ拡張する。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1565c0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#ba4b00"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#7b3294"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#58677c"/></marker>
+</defs>
+<rect width="1100" height="100%" fill="white"/>
+<g font-family="Yu Gothic, Meiryo, sans-serif" font-size="18" fill="#172b4d">
+<text x="30" y="38" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">1成分増やして、定数の足し算を積に入れる</text>
+<rect x="90" y="145" width="150" height="150" rx="5" fill="#fff0e3" stroke="none"/>
+<text x="127.5" y="190.5" fill="#172b4d" font-size="22" text-anchor="middle">a</text>
+<text x="202.5" y="190.5" fill="#172b4d" font-size="22" text-anchor="middle">b</text>
+<text x="127.5" y="265.5" fill="#172b4d" font-size="22" text-anchor="middle">c</text>
+<text x="202.5" y="265.5" fill="#172b4d" font-size="22" text-anchor="middle">d</text>
+<path d="M 90 145 H 82 V 295 H 90" fill="none" stroke="#172b4d" stroke-width="2"/>
+<path d="M 240 145 H 248 V 295 H 240" fill="none" stroke="#172b4d" stroke-width="2"/>
+<text x="85" y="112" fill="#172b4d" font-size="22" text-anchor="start" font-weight="700">2×2：線形変換</text>
+<line x1="300" y1="220" x2="425" y2="220" stroke="#58677c" stroke-width="2" marker-end="url(#gray)"/>
+<text x="295" y="180" fill="#172b4d" font-size="20" text-anchor="start">wを追加</text>
+<rect x="485" y="120" width="140" height="140" rx="5" fill="#fff0e3" stroke="none"/>
+<rect x="625" y="120" width="70" height="140" rx="5" fill="#f3e8fa" stroke="none"/>
+<rect x="485" y="260" width="210" height="70" rx="5" fill="#edf1f6" stroke="none"/>
+<text x="520" y="163" fill="#172b4d" font-size="22" text-anchor="middle">a</text>
+<text x="590" y="163" fill="#172b4d" font-size="22" text-anchor="middle">b</text>
+<text x="660" y="163" fill="#172b4d" font-size="22" text-anchor="middle">tₓ</text>
+<text x="520" y="233" fill="#172b4d" font-size="22" text-anchor="middle">c</text>
+<text x="590" y="233" fill="#172b4d" font-size="22" text-anchor="middle">d</text>
+<text x="660" y="233" fill="#172b4d" font-size="22" text-anchor="middle">tᵧ</text>
+<text x="520" y="303" fill="#172b4d" font-size="22" text-anchor="middle">0</text>
+<text x="590" y="303" fill="#172b4d" font-size="22" text-anchor="middle">0</text>
+<text x="660" y="303" fill="#172b4d" font-size="22" text-anchor="middle">1</text>
+<path d="M 485 120 H 477 V 330 H 485" fill="none" stroke="#172b4d" stroke-width="2"/>
+<path d="M 695 120 H 703 V 330 H 695" fill="none" stroke="#172b4d" stroke-width="2"/>
+<text x="480" y="90" fill="#172b4d" font-size="22" text-anchor="start" font-weight="700">3×3：アフィン変換</text>
+<text x="765" y="150" fill="#172b4d" font-size="22" text-anchor="start">x′ = ax + by + tₓw</text>
+<text x="765" y="210" fill="#172b4d" font-size="22" text-anchor="start">y′ = cx + dy + tᵧw</text>
+<text x="765" y="270" fill="#172b4d" font-size="22" text-anchor="start">w′ = w</text>
+<text x="60" y="380" fill="#172b4d" font-size="20" text-anchor="start">橙：線形変換　　紫：移動量　　灰：同次成分の保持</text>
+<text x="60" y="430" fill="#172b4d" font-size="21" text-anchor="start">点は w=1 → 移動量を足す　／　方向は w=0 → 移動量を足さない</text>
+</g>
+</svg>
