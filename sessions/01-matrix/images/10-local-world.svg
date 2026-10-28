@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="550" viewBox="0 0 1100 550" role="img" aria-labelledby="title desc">
+  <title id="title">ローカル座標の基底と原点を、ワールドで表す</title>
+  <desc id="desc">3D右手系を斜めに投影した模式図。Z軸90度回転後の原点は(10,0,3)。ローカル点(2,1,0)はワールド点(9,2,3)。</desc>
+  <defs>
+    <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#1565c0" />
+    </marker>
+    <marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#ba4b00" />
+    </marker>
+    <marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7b3294" />
+    </marker>
+    <marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#58677c" />
+    </marker>
+  </defs>
+  <rect width="1100" height="100%" fill="white" />
+  <g font-family="Yu Gothic, Meiryo, sans-serif" font-size="18" fill="#172b4d">
+    <text x="30" y="38" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">ローカル座標の基底と原点を、ワールドで表す</text>
+    <line x1="145" y1="460" x2="297" y2="400" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+    <text x="309" y="405" fill="#1565c0" font-size="18" text-anchor="start">Xw</text>
+    <line x1="145" y1="460" x2="73" y2="403" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+    <text x="38" y="403" fill="#1565c0" font-size="18" text-anchor="start">Yw</text>
+    <line x1="145" y1="460" x2="145" y2="334" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+    <text x="120" y="324" fill="#1565c0" font-size="18" text-anchor="start">Zw</text>
+    <text x="45" y="488" fill="#1565c0" font-size="18" text-anchor="start">Ow=(0,0,0)</text>
+    <line x1="145" y1="460" x2="525" y2="184" stroke="#7b3294" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#purple)" />
+    <line x1="525" y1="184" x2="477" y2="146" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+    <text x="485" y="138" fill="#ba4b00" font-size="18" text-anchor="start">Xlocal</text>
+    <line x1="525" y1="184" x2="449" y2="214" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+    <text x="377" y="217" fill="#ba4b00" font-size="18" text-anchor="start">Ylocal</text>
+    <line x1="525" y1="184" x2="525" y2="100" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+    <text x="535" y="92" fill="#ba4b00" font-size="18" text-anchor="start">Zlocal</text>
+    <line x1="525" y1="184" x2="477" y2="146" stroke="#ba4b00" stroke-width="2" stroke-dasharray="6 5" />
+    <line x1="477" y1="146" x2="439" y2="161" stroke="#ba4b00" stroke-width="2" stroke-dasharray="6 5" />
+    <circle cx="439" cy="161" r="5" fill="#ba4b00" />
+    <text x="421" y="146" fill="#ba4b00" font-size="22" text-anchor="start" font-weight="700">P</text>
+    <circle cx="525" cy="184" r="5" fill="#7b3294" />
+    <text x="550" y="190" fill="#7b3294" font-size="18" text-anchor="start">Olocal=(10,0,3)</text>
+    <text x="655" y="145" fill="#172b4d" font-size="21" text-anchor="start" font-weight="700">Z軸周り +90° → 移動 (10,0,3)</text>
+    <text x="655" y="220" fill="#172b4d" font-size="21" text-anchor="start">ローカルX → ワールド+Y</text>
+    <text x="655" y="266" fill="#172b4d" font-size="21" text-anchor="start">ローカルY → ワールド−X</text>
+    <text x="655" y="312" fill="#172b4d" font-size="21" text-anchor="start">ローカルZ → ワールド+Z</text>
+    <text x="655" y="390" fill="#172b4d" font-size="22" text-anchor="start">P：ローカル (2,1,0)</text>
+    <text x="655" y="435" fill="#ba4b00" font-size="22" text-anchor="start">→ ワールド (9,2,3)</text>
+    <text x="40" y="520" fill="#172b4d" font-size="17" text-anchor="start">青：ワールド座標軸　　橙：配置後のローカル座標軸　　紫：原点の移動（斜投影の模式図）</text>
+  </g>
+</svg>

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520" role="img" aria-labelledby="title desc">
+  <title id="title">行列の列は、基底ベクトルの変換先</title>
+  <desc id="desc">A=[[2,1],[1,2]]。e1は(2,1)、e2は(1,2)へ。p=(2,1)は2Ae1+Ae2=(5,4)となる。</desc>
+  <defs>
+    <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#1565c0" />
+    </marker>
+    <marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#ba4b00" />
+    </marker>
+    <marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7b3294" />
+    </marker>
+    <marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#58677c" />
+    </marker>
+  </defs>
+  <rect width="1100" height="100%" fill="white" />
+  <g font-family="Yu Gothic, Meiryo, sans-serif" font-size="18" fill="#172b4d">
+    <text x="30" y="38" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">行列の列は、基底ベクトルの変換先</text>
+    <line x1="95" y1="390" x2="95" y2="120" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="185" y1="390" x2="185" y2="120" stroke="#e4eaf2" stroke-width="1" />
+    <text x="185" y="412" fill="#58677c" font-size="14" text-anchor="middle">1</text>
+    <line x1="275" y1="390" x2="275" y2="120" stroke="#e4eaf2" stroke-width="1" />
+    <text x="275" y="412" fill="#58677c" font-size="14" text-anchor="middle">2</text>
+    <line x1="95" y1="390" x2="275" y2="390" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="95" y1="300" x2="275" y2="300" stroke="#e4eaf2" stroke-width="1" />
+    <text x="83" y="305" fill="#58677c" font-size="14" text-anchor="end">1</text>
+    <line x1="95" y1="210" x2="275" y2="210" stroke="#e4eaf2" stroke-width="1" />
+    <text x="83" y="215" fill="#58677c" font-size="14" text-anchor="end">2</text>
+    <line x1="95" y1="120" x2="275" y2="120" stroke="#e4eaf2" stroke-width="1" />
+    <text x="83" y="125" fill="#58677c" font-size="14" text-anchor="end">3</text>
+    <line x1="95" y1="390" x2="293" y2="390" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <line x1="95" y1="390" x2="95" y2="102" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <text x="306.5" y="397.2" fill="#172b4d" font-size="16" text-anchor="start">X</text>
+    <text x="105.8" y="116" fill="#172b4d" font-size="16" text-anchor="start">Y</text>
+    <text x="87" y="412" fill="#172b4d" font-size="14" text-anchor="end">O</text>
+    <line x1="95" y1="390" x2="185" y2="390" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+    <line x1="95" y1="390" x2="95" y2="300" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+    <circle cx="275" cy="300" r="4.5" fill="#1565c0" data-coordinate="2,1" />
+    <text x="283" y="288" fill="#1565c0" font-size="17" text-anchor="start">p=(2,1)</text>
+    <text x="50" y="92" fill="#172b4d" font-size="18" text-anchor="start" font-weight="700">変換前：p = 2e₁ + e₂</text>
+    <text x="180" y="435" fill="#1565c0" font-size="18" text-anchor="start">e₁</text>
+    <text x="105" y="285" fill="#1565c0" font-size="18" text-anchor="start">e₂</text>
+    <text x="350" y="230" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">A</text>
+    <line x1="340" y1="255" x2="440" y2="255" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+    <line x1="565" y1="390" x2="565" y2="130" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="630" y1="390" x2="630" y2="130" stroke="#e4eaf2" stroke-width="1" />
+    <text x="630" y="412" fill="#58677c" font-size="14" text-anchor="middle">1</text>
+    <line x1="695" y1="390" x2="695" y2="130" stroke="#e4eaf2" stroke-width="1" />
+    <text x="695" y="412" fill="#58677c" font-size="14" text-anchor="middle">2</text>
+    <line x1="760" y1="390" x2="760" y2="130" stroke="#e4eaf2" stroke-width="1" />
+    <text x="760" y="412" fill="#58677c" font-size="14" text-anchor="middle">3</text>
+    <line x1="825" y1="390" x2="825" y2="130" stroke="#e4eaf2" stroke-width="1" />
+    <text x="825" y="412" fill="#58677c" font-size="14" text-anchor="middle">4</text>
+    <line x1="890" y1="390" x2="890" y2="130" stroke="#e4eaf2" stroke-width="1" />
+    <text x="890" y="412" fill="#58677c" font-size="14" text-anchor="middle">5</text>
+    <line x1="955" y1="390" x2="955" y2="130" stroke="#e4eaf2" stroke-width="1" />
+    <text x="955" y="412" fill="#58677c" font-size="14" text-anchor="middle">6</text>
+    <line x1="565" y1="390" x2="955" y2="390" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="565" y1="325" x2="955" y2="325" stroke="#e4eaf2" stroke-width="1" />
+    <text x="553" y="330" fill="#58677c" font-size="14" text-anchor="end">1</text>
+    <line x1="565" y1="260" x2="955" y2="260" stroke="#e4eaf2" stroke-width="1" />
+    <text x="553" y="265" fill="#58677c" font-size="14" text-anchor="end">2</text>
+    <line x1="565" y1="195" x2="955" y2="195" stroke="#e4eaf2" stroke-width="1" />
+    <text x="553" y="200" fill="#58677c" font-size="14" text-anchor="end">3</text>
+    <line x1="565" y1="130" x2="955" y2="130" stroke="#e4eaf2" stroke-width="1" />
+    <text x="553" y="135" fill="#58677c" font-size="14" text-anchor="end">4</text>
+    <line x1="565" y1="390" x2="968" y2="390" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <line x1="565" y1="390" x2="565" y2="117" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <text x="977.75" y="395.2" fill="#172b4d" font-size="16" text-anchor="start">X</text>
+    <text x="572.8" y="111.8" fill="#172b4d" font-size="16" text-anchor="start">Y</text>
+    <text x="557" y="412" fill="#172b4d" font-size="14" text-anchor="end">O</text>
+    <line x1="565" y1="390" x2="695" y2="325" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+    <line x1="565" y1="390" x2="630" y2="260" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+    <line x1="565" y1="390" x2="825" y2="260" stroke="#ba4b00" stroke-width="3" stroke-dasharray="6 5" marker-end="url(#orange)" />
+    <line x1="825" y1="260" x2="890" y2="130" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+    <circle cx="695" cy="325" r="4.5" fill="#ba4b00" data-coordinate="2,1" />
+    <text x="705" y="348" fill="#ba4b00" font-size="17" text-anchor="start">Ae₁=(2,1)</text>
+    <circle cx="630" cy="260" r="4.5" fill="#ba4b00" data-coordinate="1,2" />
+    <text x="635" y="248" fill="#ba4b00" font-size="17" text-anchor="start">Ae₂=(1,2)</text>
+    <circle cx="890" cy="130" r="4.5" fill="#ba4b00" data-coordinate="5,4" />
+    <text x="900" y="120" fill="#ba4b00" font-size="17" text-anchor="start">Ap=(5,4)</text>
+    <text x="530" y="92" fill="#172b4d" font-size="18" text-anchor="start" font-weight="700">変換後：Ap = 2Ae₁ + Ae₂</text>
+    <text x="35" y="466" fill="#172b4d" font-size="19" text-anchor="start">第1列：(2,1)　　第2列：(1,2)　　→　2×(2,1) + 1×(1,2) = (5,4)</text>
+    <text x="35" y="500" fill="#172b4d" font-size="18" text-anchor="start">掛け算で確認：x′ = 2×2 + 1×1 = 5、 y′ = 1×2 + 2×1 = 4</text>
+  </g>
+</svg>

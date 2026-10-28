@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="545" viewBox="0 0 1100 545" role="img" aria-labelledby="title desc">
+  <title id="title">回転→移動と、移動→回転は、結果が違う</title>
+  <desc id="desc">固定した原点周りの90度回転とX方向+3の平行移動。点(1,0)は前者で(3,1)、後者で(0,4)になる。</desc>
+  <defs>
+    <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#1565c0" />
+    </marker>
+    <marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#ba4b00" />
+    </marker>
+    <marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7b3294" />
+    </marker>
+    <marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#58677c" />
+    </marker>
+  </defs>
+  <rect width="1100" height="100%" fill="white" />
+  <g font-family="Yu Gothic, Meiryo, sans-serif" font-size="18" fill="#172b4d">
+    <text x="30" y="38" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">回転→移動と、移動→回転は、結果が違う</text>
+    <text x="45" y="91" fill="#172b4d" font-size="23" text-anchor="start" font-weight="700">回転 → 移動：TRp</text>
+    <line x1="57" y1="473" x2="57" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="57" y="432" fill="#58677c" font-size="14" text-anchor="middle">-1</text>
+    <line x1="120" y1="473" x2="120" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="183" y1="473" x2="183" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="183" y="432" fill="#58677c" font-size="14" text-anchor="middle">1</text>
+    <line x1="246" y1="473" x2="246" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="246" y="432" fill="#58677c" font-size="14" text-anchor="middle">2</text>
+    <line x1="309" y1="473" x2="309" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="309" y="432" fill="#58677c" font-size="14" text-anchor="middle">3</text>
+    <line x1="372" y1="473" x2="372" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="372" y="432" fill="#58677c" font-size="14" text-anchor="middle">4</text>
+    <line x1="435" y1="473" x2="435" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="435" y="432" fill="#58677c" font-size="14" text-anchor="middle">5</text>
+    <line x1="57" y1="473" x2="435" y2="473" stroke="#e4eaf2" stroke-width="1" />
+    <text x="108" y="478" fill="#58677c" font-size="14" text-anchor="end">-1</text>
+    <line x1="57" y1="410" x2="435" y2="410" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="57" y1="347" x2="435" y2="347" stroke="#e4eaf2" stroke-width="1" />
+    <text x="108" y="352" fill="#58677c" font-size="14" text-anchor="end">1</text>
+    <line x1="57" y1="284" x2="435" y2="284" stroke="#e4eaf2" stroke-width="1" />
+    <text x="108" y="289" fill="#58677c" font-size="14" text-anchor="end">2</text>
+    <line x1="57" y1="221" x2="435" y2="221" stroke="#e4eaf2" stroke-width="1" />
+    <text x="108" y="226" fill="#58677c" font-size="14" text-anchor="end">3</text>
+    <line x1="57" y1="158" x2="435" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="108" y="163" fill="#58677c" font-size="14" text-anchor="end">4</text>
+    <line x1="57" y1="410" x2="447.6" y2="410" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <line x1="120" y1="473" x2="120" y2="145.4" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <text x="457.05" y="415.04" fill="#172b4d" font-size="16" text-anchor="start">X</text>
+    <text x="127.56" y="140.36" fill="#172b4d" font-size="16" text-anchor="start">Y</text>
+    <text x="112" y="432" fill="#172b4d" font-size="14" text-anchor="end">O</text>
+    <circle cx="183" cy="410" r="4.5" fill="#1565c0" data-coordinate="1,0" />
+    <text x="193" y="465" fill="#1565c0" font-size="17" text-anchor="start">p=(1,0)</text>
+    <path d="M 183 410 A 63 63 0 0 0 120 347" fill="none" stroke="#ba4b00" stroke-width="2" marker-end="url(#orange)" />
+    <line x1="120" y1="347" x2="309" y2="347" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+    <circle cx="120" cy="347" r="4.5" fill="#ba4b00" data-coordinate="0,1" />
+    <text x="110" y="335" fill="#ba4b00" font-size="17" text-anchor="end">(0,1)</text>
+    <circle cx="309" cy="347" r="4.5" fill="#ba4b00" data-coordinate="3,1" />
+    <text x="319" y="335" fill="#ba4b00" font-size="17" text-anchor="start">(3,1)</text>
+    <text x="155" y="285" fill="#7b3294" font-size="20" text-anchor="start">+3</text>
+    <text x="600" y="91" fill="#172b4d" font-size="23" text-anchor="start" font-weight="700">移動 → 回転：RTp</text>
+    <line x1="612" y1="473" x2="612" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="612" y="432" fill="#58677c" font-size="14" text-anchor="middle">-1</text>
+    <line x1="675" y1="473" x2="675" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="738" y1="473" x2="738" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="738" y="432" fill="#58677c" font-size="14" text-anchor="middle">1</text>
+    <line x1="801" y1="473" x2="801" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="801" y="432" fill="#58677c" font-size="14" text-anchor="middle">2</text>
+    <line x1="864" y1="473" x2="864" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="864" y="432" fill="#58677c" font-size="14" text-anchor="middle">3</text>
+    <line x1="927" y1="473" x2="927" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="927" y="432" fill="#58677c" font-size="14" text-anchor="middle">4</text>
+    <line x1="990" y1="473" x2="990" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="990" y="432" fill="#58677c" font-size="14" text-anchor="middle">5</text>
+    <line x1="612" y1="473" x2="990" y2="473" stroke="#e4eaf2" stroke-width="1" />
+    <text x="663" y="478" fill="#58677c" font-size="14" text-anchor="end">-1</text>
+    <line x1="612" y1="410" x2="990" y2="410" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="612" y1="347" x2="990" y2="347" stroke="#e4eaf2" stroke-width="1" />
+    <text x="663" y="352" fill="#58677c" font-size="14" text-anchor="end">1</text>
+    <line x1="612" y1="284" x2="990" y2="284" stroke="#e4eaf2" stroke-width="1" />
+    <text x="663" y="289" fill="#58677c" font-size="14" text-anchor="end">2</text>
+    <line x1="612" y1="221" x2="990" y2="221" stroke="#e4eaf2" stroke-width="1" />
+    <text x="663" y="226" fill="#58677c" font-size="14" text-anchor="end">3</text>
+    <line x1="612" y1="158" x2="990" y2="158" stroke="#e4eaf2" stroke-width="1" />
+    <text x="663" y="163" fill="#58677c" font-size="14" text-anchor="end">4</text>
+    <line x1="612" y1="410" x2="1002.6" y2="410" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <line x1="675" y1="473" x2="675" y2="145.4" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <text x="1012.05" y="415.04" fill="#172b4d" font-size="16" text-anchor="start">X</text>
+    <text x="682.56" y="140.36" fill="#172b4d" font-size="16" text-anchor="start">Y</text>
+    <text x="667" y="432" fill="#172b4d" font-size="14" text-anchor="end">O</text>
+    <circle cx="738" cy="410" r="4.5" fill="#1565c0" data-coordinate="1,0" />
+    <text x="748" y="465" fill="#1565c0" font-size="17" text-anchor="start">p=(1,0)</text>
+    <line x1="738" y1="410" x2="927" y2="410" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+    <path d="M 927 410 A 252 252 0 0 0 675 158" fill="none" stroke="#ba4b00" stroke-width="2" marker-end="url(#orange)" />
+    <circle cx="927" cy="410" r="4.5" fill="#ba4b00" data-coordinate="4,0" />
+    <text x="927" y="465" fill="#ba4b00" font-size="17" text-anchor="start">(4,0)</text>
+    <circle cx="675" cy="158" r="4.5" fill="#ba4b00" data-coordinate="0,4" />
+    <text x="715" y="140" fill="#ba4b00" font-size="17" text-anchor="start">(0,4)</text>
+    <text x="845" y="221" fill="#ba4b00" font-size="20" text-anchor="start">+90°</text>
+    <text x="40" y="515" fill="#172b4d" font-size="18" text-anchor="start">青：出発点　　橙：回転・変換後の点　　紫：X方向+3の移動　／　列ベクトルは右から作用</text>
+  </g>
+</svg>

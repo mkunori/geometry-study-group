@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="490" viewBox="0 0 1100 490" role="img" aria-labelledby="title desc">
+  <title id="title">回転した2本の基底を、行列の列に並べる</title>
+  <desc id="desc">標準基底を30度反時計回りに回すと、e1は(cosθ,sinθ)、e2は(-sinθ,cosθ)へ。2本は直角のまま。</desc>
+  <defs>
+    <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#1565c0" />
+    </marker>
+    <marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#ba4b00" />
+    </marker>
+    <marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7b3294" />
+    </marker>
+    <marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#58677c" />
+    </marker>
+  </defs>
+  <rect width="1100" height="100%" fill="white" />
+  <g font-family="Yu Gothic, Meiryo, sans-serif" font-size="18" fill="#172b4d">
+    <text x="30" y="38" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">回転した2本の基底を、行列の列に並べる</text>
+    <line x1="130" y1="325" x2="130" y2="150" stroke="#e4eaf2" stroke-width="1" />
+    <text x="130" y="347" fill="#58677c" font-size="14" text-anchor="middle">-1</text>
+    <line x1="305" y1="325" x2="305" y2="150" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="480" y1="325" x2="480" y2="150" stroke="#e4eaf2" stroke-width="1" />
+    <text x="480" y="347" fill="#58677c" font-size="14" text-anchor="middle">1</text>
+    <line x1="130" y1="325" x2="480" y2="325" stroke="#e4eaf2" stroke-width="1" />
+    <line x1="130" y1="150" x2="480" y2="150" stroke="#e4eaf2" stroke-width="1" />
+    <text x="293" y="155" fill="#58677c" font-size="14" text-anchor="end">1</text>
+    <line x1="130" y1="325" x2="515" y2="325" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <line x1="305" y1="325" x2="305" y2="115" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)" />
+    <text x="541.25" y="339" fill="#172b4d" font-size="16" text-anchor="start">X</text>
+    <text x="326" y="101" fill="#172b4d" font-size="16" text-anchor="start">Y</text>
+    <text x="297" y="347" fill="#172b4d" font-size="14" text-anchor="end">O</text>
+    <line x1="305" y1="325" x2="480" y2="325" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+    <line x1="305" y1="325" x2="305" y2="150" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+    <line x1="305" y1="325" x2="456.554" y2="237.5" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+    <line x1="305" y1="325" x2="217.5" y2="173.446" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+    <circle cx="456.554" cy="237.5" r="4.5" fill="#ba4b00" data-coordinate="0.866025,0.5" />
+    <text x="466.554" y="237.5" fill="#ba4b00" font-size="17" text-anchor="start">Re₁</text>
+    <circle cx="217.5" cy="173.446" r="4.5" fill="#ba4b00" data-coordinate="-0.5,0.866025" />
+    <text x="207.5" y="163.446" fill="#ba4b00" font-size="17" text-anchor="end">Re₂</text>
+    <text x="505" y="362" fill="#1565c0" font-size="18" text-anchor="start">e₁</text>
+    <text x="315" y="139" fill="#1565c0" font-size="18" text-anchor="start">e₂</text>
+    <path d="M 380.25 325 A 75.25 75.25 0 0 0 370.168 287.375" fill="none" stroke="#ba4b00" stroke-width="2" marker-end="url(#orange)" />
+    <path d="M 305 220 A 105 105 0 0 0 252.5 234.067" fill="none" stroke="#ba4b00" stroke-width="2" marker-end="url(#orange)" />
+    <text x="392" y="300" fill="#ba4b00" font-size="18" text-anchor="start">θ</text>
+    <text x="265" y="214" fill="#ba4b00" font-size="18" text-anchor="start">θ</text>
+    <polyline points="327.733,311.875 314.608,289.142 291.875,302.267" fill="none" stroke="#ba4b00" stroke-width="1.5" />
+    <text x="595" y="145" fill="#172b4d" font-size="21" text-anchor="start">第1列 = Re₁ = (cosθ, sinθ)</text>
+    <text x="595" y="202" fill="#172b4d" font-size="21" text-anchor="start">第2列 = Re₂ = (−sinθ, cosθ)</text>
+    <text x="595" y="279" fill="#172b4d" font-size="24" text-anchor="start">R(θ) =</text>
+    <rect x="730" y="240" width="220" height="220" rx="5" fill="#fff0e3" stroke="none" />
+    <text x="785" y="303" fill="#172b4d" font-size="23" text-anchor="middle">cosθ</text>
+    <text x="895" y="303" fill="#172b4d" font-size="23" text-anchor="middle">−sinθ</text>
+    <text x="785" y="413" fill="#172b4d" font-size="23" text-anchor="middle">sinθ</text>
+    <text x="895" y="413" fill="#172b4d" font-size="23" text-anchor="middle">cosθ</text>
+    <path d="M 730 240 H 722 V 460 H 730" fill="none" stroke="#172b4d" stroke-width="2" />
+    <path d="M 950 240 H 958 V 460 H 950" fill="none" stroke="#172b4d" stroke-width="2" />
+    <text x="35" y="440" fill="#172b4d" font-size="18" text-anchor="start">青：元の基底　　橙：回転後の基底　　作図角度 θ = 30°</text>
+  </g>
+</svg>

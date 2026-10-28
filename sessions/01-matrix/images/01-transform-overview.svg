@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="450" viewBox="0 0 1100 450" role="img" aria-labelledby="title desc">
+<title id="title">同じ変換を、すべての頂点へ</title>
+<desc id="desc">青の三角形A(0,0),B(2,0),C(0,1)から独立に3つの変換を行う。橙は変換後。</desc>
+<defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#1565c0"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#ba4b00"/></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#7b3294"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#58677c"/></marker>
+</defs>
+<rect width="1100" height="100%" fill="white"/>
+<g font-family="Yu Gothic, Meiryo, sans-serif" font-size="18" fill="#172b4d">
+<text x="30" y="38" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">同じ変換を、すべての頂点へ</text>
+<text x="30" y="87" fill="#172b4d" font-size="18" text-anchor="start" font-weight="700">原点周りの90°回転</text>
+<line x1="55" y1="355" x2="55" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="55" y="332" fill="#58677c" font-size="14" text-anchor="middle">-1</text>
+<line x1="100" y1="355" x2="100" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<line x1="145" y1="355" x2="145" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="145" y="332" fill="#58677c" font-size="14" text-anchor="middle">1</text>
+<line x1="190" y1="355" x2="190" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="190" y="332" fill="#58677c" font-size="14" text-anchor="middle">2</text>
+<line x1="235" y1="355" x2="235" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="235" y="332" fill="#58677c" font-size="14" text-anchor="middle">3</text>
+<line x1="280" y1="355" x2="280" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="280" y="332" fill="#58677c" font-size="14" text-anchor="middle">4</text>
+<line x1="55" y1="355" x2="280" y2="355" stroke="#e4eaf2" stroke-width="1"/>
+<text x="88" y="360" fill="#58677c" font-size="14" text-anchor="end">-1</text>
+<line x1="55" y1="310" x2="280" y2="310" stroke="#e4eaf2" stroke-width="1"/>
+<line x1="55" y1="265" x2="280" y2="265" stroke="#e4eaf2" stroke-width="1"/>
+<text x="88" y="270" fill="#58677c" font-size="14" text-anchor="end">1</text>
+<line x1="55" y1="220" x2="280" y2="220" stroke="#e4eaf2" stroke-width="1"/>
+<text x="88" y="225" fill="#58677c" font-size="14" text-anchor="end">2</text>
+<line x1="55" y1="175" x2="280" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="88" y="180" fill="#58677c" font-size="14" text-anchor="end">3</text>
+<line x1="55" y1="310" x2="289" y2="310" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)"/>
+<line x1="100" y1="355" x2="100" y2="166" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)"/>
+<text x="295.75" y="313.6" fill="#172b4d" font-size="16" text-anchor="start">X</text>
+<text x="105.4" y="162.4" fill="#172b4d" font-size="16" text-anchor="start">Y</text>
+<text x="92" y="332" fill="#172b4d" font-size="14" text-anchor="end">O</text>
+<polygon points="100,310 190,310 100,265" stroke="#1565c0" stroke-width="2.5" fill="#1565c0" fill-opacity="0.08" stroke-dasharray="6 5"/>
+<polygon points="100,310 100,220 55,310" stroke="#ba4b00" stroke-width="2.5" fill="#ba4b00" fill-opacity="0.08"/>
+<circle cx="100" cy="310" r="4.5" fill="#1565c0" data-coordinate="0,0"/>
+<text x="110" y="331" fill="#1565c0" font-size="17" text-anchor="start">A</text>
+<circle cx="190" cy="310" r="4.5" fill="#1565c0" data-coordinate="2,0"/>
+<text x="200" y="331" fill="#1565c0" font-size="17" text-anchor="start">B</text>
+<circle cx="100" cy="265" r="4.5" fill="#1565c0" data-coordinate="0,1"/>
+<text x="110" y="286" fill="#1565c0" font-size="17" text-anchor="start">C</text>
+<circle cx="100" cy="310" r="4.5" fill="#ba4b00" data-coordinate="0,0"/>
+<text x="90" y="300" fill="#ba4b00" font-size="17" text-anchor="end">A′</text>
+<circle cx="100" cy="220" r="4.5" fill="#ba4b00" data-coordinate="0,2"/>
+<text x="90" y="210" fill="#ba4b00" font-size="17" text-anchor="end">B′</text>
+<circle cx="55" cy="310" r="4.5" fill="#ba4b00" data-coordinate="-1,0"/>
+<text x="45" y="300" fill="#ba4b00" font-size="17" text-anchor="end">C′</text>
+<text x="30" y="395" fill="#172b4d" font-size="18" text-anchor="start">(x, y) → (−y, x)</text>
+<text x="390" y="87" fill="#172b4d" font-size="18" text-anchor="start" font-weight="700">平行移動 (+2, +1)</text>
+<line x1="415" y1="355" x2="415" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="415" y="332" fill="#58677c" font-size="14" text-anchor="middle">-1</text>
+<line x1="460" y1="355" x2="460" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<line x1="505" y1="355" x2="505" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="505" y="332" fill="#58677c" font-size="14" text-anchor="middle">1</text>
+<line x1="550" y1="355" x2="550" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="550" y="332" fill="#58677c" font-size="14" text-anchor="middle">2</text>
+<line x1="595" y1="355" x2="595" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="595" y="332" fill="#58677c" font-size="14" text-anchor="middle">3</text>
+<line x1="640" y1="355" x2="640" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="640" y="332" fill="#58677c" font-size="14" text-anchor="middle">4</text>
+<line x1="415" y1="355" x2="640" y2="355" stroke="#e4eaf2" stroke-width="1"/>
+<text x="448" y="360" fill="#58677c" font-size="14" text-anchor="end">-1</text>
+<line x1="415" y1="310" x2="640" y2="310" stroke="#e4eaf2" stroke-width="1"/>
+<line x1="415" y1="265" x2="640" y2="265" stroke="#e4eaf2" stroke-width="1"/>
+<text x="448" y="270" fill="#58677c" font-size="14" text-anchor="end">1</text>
+<line x1="415" y1="220" x2="640" y2="220" stroke="#e4eaf2" stroke-width="1"/>
+<text x="448" y="225" fill="#58677c" font-size="14" text-anchor="end">2</text>
+<line x1="415" y1="175" x2="640" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="448" y="180" fill="#58677c" font-size="14" text-anchor="end">3</text>
+<line x1="415" y1="310" x2="649" y2="310" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)"/>
+<line x1="460" y1="355" x2="460" y2="166" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)"/>
+<text x="655.75" y="313.6" fill="#172b4d" font-size="16" text-anchor="start">X</text>
+<text x="465.4" y="162.4" fill="#172b4d" font-size="16" text-anchor="start">Y</text>
+<text x="452" y="332" fill="#172b4d" font-size="14" text-anchor="end">O</text>
+<polygon points="460,310 550,310 460,265" stroke="#1565c0" stroke-width="2.5" fill="#1565c0" fill-opacity="0.08" stroke-dasharray="6 5"/>
+<polygon points="550,265 640,265 550,220" stroke="#ba4b00" stroke-width="2.5" fill="#ba4b00" fill-opacity="0.08"/>
+<circle cx="460" cy="310" r="4.5" fill="#1565c0" data-coordinate="0,0"/>
+<text x="470" y="331" fill="#1565c0" font-size="17" text-anchor="start">A</text>
+<circle cx="550" cy="310" r="4.5" fill="#1565c0" data-coordinate="2,0"/>
+<text x="560" y="331" fill="#1565c0" font-size="17" text-anchor="start">B</text>
+<circle cx="460" cy="265" r="4.5" fill="#1565c0" data-coordinate="0,1"/>
+<text x="470" y="286" fill="#1565c0" font-size="17" text-anchor="start">C</text>
+<circle cx="550" cy="265" r="4.5" fill="#ba4b00" data-coordinate="2,1"/>
+<text x="540" y="255" fill="#ba4b00" font-size="17" text-anchor="end">A′</text>
+<circle cx="640" cy="265" r="4.5" fill="#ba4b00" data-coordinate="4,1"/>
+<text x="630" y="255" fill="#ba4b00" font-size="17" text-anchor="end">B′</text>
+<circle cx="550" cy="220" r="4.5" fill="#ba4b00" data-coordinate="2,2"/>
+<text x="540" y="210" fill="#ba4b00" font-size="17" text-anchor="end">C′</text>
+<text x="390" y="395" fill="#172b4d" font-size="18" text-anchor="start">(x, y) → (x+2, y+1)</text>
+<text x="750" y="87" fill="#172b4d" font-size="18" text-anchor="start" font-weight="700">原点を中心に2倍拡大</text>
+<line x1="775" y1="355" x2="775" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="775" y="332" fill="#58677c" font-size="14" text-anchor="middle">-1</text>
+<line x1="820" y1="355" x2="820" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<line x1="865" y1="355" x2="865" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="865" y="332" fill="#58677c" font-size="14" text-anchor="middle">1</text>
+<line x1="910" y1="355" x2="910" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="910" y="332" fill="#58677c" font-size="14" text-anchor="middle">2</text>
+<line x1="955" y1="355" x2="955" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="955" y="332" fill="#58677c" font-size="14" text-anchor="middle">3</text>
+<line x1="1000" y1="355" x2="1000" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="1000" y="332" fill="#58677c" font-size="14" text-anchor="middle">4</text>
+<line x1="775" y1="355" x2="1000" y2="355" stroke="#e4eaf2" stroke-width="1"/>
+<text x="808" y="360" fill="#58677c" font-size="14" text-anchor="end">-1</text>
+<line x1="775" y1="310" x2="1000" y2="310" stroke="#e4eaf2" stroke-width="1"/>
+<line x1="775" y1="265" x2="1000" y2="265" stroke="#e4eaf2" stroke-width="1"/>
+<text x="808" y="270" fill="#58677c" font-size="14" text-anchor="end">1</text>
+<line x1="775" y1="220" x2="1000" y2="220" stroke="#e4eaf2" stroke-width="1"/>
+<text x="808" y="225" fill="#58677c" font-size="14" text-anchor="end">2</text>
+<line x1="775" y1="175" x2="1000" y2="175" stroke="#e4eaf2" stroke-width="1"/>
+<text x="808" y="180" fill="#58677c" font-size="14" text-anchor="end">3</text>
+<line x1="775" y1="310" x2="1009" y2="310" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)"/>
+<line x1="820" y1="355" x2="820" y2="166" stroke="#58677c" stroke-width="1.5" marker-end="url(#gray)"/>
+<text x="1015.75" y="313.6" fill="#172b4d" font-size="16" text-anchor="start">X</text>
+<text x="825.4" y="162.4" fill="#172b4d" font-size="16" text-anchor="start">Y</text>
+<text x="812" y="332" fill="#172b4d" font-size="14" text-anchor="end">O</text>
+<polygon points="820,310 910,310 820,265" stroke="#1565c0" stroke-width="2.5" fill="#1565c0" fill-opacity="0.08" stroke-dasharray="6 5"/>
+<polygon points="820,310 1000,310 820,220" stroke="#ba4b00" stroke-width="2.5" fill="#ba4b00" fill-opacity="0.08"/>
+<circle cx="820" cy="310" r="4.5" fill="#1565c0" data-coordinate="0,0"/>
+<text x="830" y="331" fill="#1565c0" font-size="17" text-anchor="start">A</text>
+<circle cx="910" cy="310" r="4.5" fill="#1565c0" data-coordinate="2,0"/>
+<text x="920" y="331" fill="#1565c0" font-size="17" text-anchor="start">B</text>
+<circle cx="820" cy="265" r="4.5" fill="#1565c0" data-coordinate="0,1"/>
+<text x="830" y="286" fill="#1565c0" font-size="17" text-anchor="start">C</text>
+<circle cx="820" cy="310" r="4.5" fill="#ba4b00" data-coordinate="0,0"/>
+<text x="810" y="300" fill="#ba4b00" font-size="17" text-anchor="end">A′</text>
+<circle cx="1000" cy="310" r="4.5" fill="#ba4b00" data-coordinate="4,0"/>
+<text x="990" y="300" fill="#ba4b00" font-size="17" text-anchor="end">B′</text>
+<circle cx="820" cy="220" r="4.5" fill="#ba4b00" data-coordinate="0,2"/>
+<text x="810" y="210" fill="#ba4b00" font-size="17" text-anchor="end">C′</text>
+<text x="750" y="395" fill="#172b4d" font-size="18" text-anchor="start">(x, y) → (2x, 2y)</text>
+<text x="30" y="433" fill="#172b4d" font-size="16" text-anchor="start">青・破線：変換前　　橙・実線：変換後　／　各パネルは元の図形から独立に変換</text>
+</g>
+</svg>
