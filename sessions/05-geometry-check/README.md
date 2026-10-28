@@ -1,18 +1,16 @@
 # 第5回：なぜ図形の内外や干渉を判定できるのか？
 
-仮テーマです。今後のフィードバックによって変更する可能性があります。
-
-本編45分、質疑応答を含めて60分以内を予定しています。現在は教材のひな形と保管先の案内のみを用意しています。
+テーマはフィードバックによって変更する可能性がある。
 
 ## 教材への案内
 
 | 教材 | 状態 |
 | --- | --- |
-| [詳細解説](explanation.md) | TODO：本文未作成 |
-| [Marp用スライド原稿](slides.md) | TODO：スライド未作成 |
-| [SVG図解の保管先](images/README.md) | TODO：図解未作成（案内のみ） |
-| [.NET・C#実装例の保管先](examples/README.md) | TODO：実装例未作成（案内のみ） |
-| [発表用PDFの保管先](output/README.md) | TODO：PDF未作成（案内のみ） |
+| [詳細解説](explanation.md) | 準備中 |
+| [Marp用スライド原稿](slides.md) | 準備中 |
+| [SVG図解の保管先](images/README.md) | 準備中 |
+| [.NET・C#実装例の保管先](examples/README.md) | 準備中 |
+| [発表用PDFの保管先](output/README.md) | 準備中 |
 
 ## 今後の準備
 
