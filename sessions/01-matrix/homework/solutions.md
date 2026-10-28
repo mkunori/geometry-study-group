@@ -7,19 +7,50 @@
 ### 答えと計算過程
 
 $$
-Rp=\begin{bmatrix}0&-1\\1&0\end{bmatrix}\begin{bmatrix}2\\1\end{bmatrix}
-=\begin{bmatrix}0\cdot2-1\cdot1\\1\cdot2+0\cdot1\end{bmatrix}
-=\begin{bmatrix}-1\\2\end{bmatrix}.
+\begin{aligned}
+Rp &= \begin{bmatrix}
+0 & -1 \\
+1 & 0
+\end{bmatrix}\begin{bmatrix}
+2 \\
+1
+\end{bmatrix} \\
+&= \begin{bmatrix}
+0\cdot2-1\cdot1 \\
+1\cdot2+0\cdot1
+\end{bmatrix} \\
+&= \begin{bmatrix}
+-1 \\
+2
+\end{bmatrix}.
+\end{aligned}
 $$
 
 $$
-Re_1=\begin{bmatrix}0\\1\end{bmatrix},\qquad
-Re_2=\begin{bmatrix}-1\\0\end{bmatrix}.
+\begin{aligned}
+Re_1 &= \begin{bmatrix}
+0 \\
+1
+\end{bmatrix} \\
+Re_2 &= \begin{bmatrix}
+-1 \\
+0
+\end{bmatrix}.
+\end{aligned}
 $$
 
 ### 考え方と幾何学的な理由
 
-第1列は右向きの単位ベクトルが上へ、第2列は上向きの単位ベクトルが左へ移ることを示す。両方とも原点周りの90°反時計回りの回転である。$p=2e_1+e_2$ なので、回転後は $2Re_1+Re_2=2(0,1)+(-1,0)=(-1,2)$ になる。
+第1列は右向きの単位ベクトルが上へ、第2列は上向きの単位ベクトルが左へ移ることを示す。両方とも原点周りの90°反時計回りの回転である。 $p=2e_1+e_2$ なので、回転後は
+
+$$
+\begin{aligned}
+2Re_1+Re_2 &= 2(0,1)+(-1,0) \\
+&= (-1,2)
+\end{aligned}
+$$
+
+になる。
 
 ![点2,1が原点周りに90度反時計回りに回り、-1,2に移る図](../images/05-point-rotation.svg)
 
@@ -33,28 +64,58 @@ $$
 ### 答えと計算過程
 
 $$
-T=\begin{bmatrix}1&0&3\\0&1&-2\\0&0&1\end{bmatrix}.
+T=\begin{bmatrix}
+1 & 0 & 3 \\
+0 & 1 & -2 \\
+0 & 0 & 1
+\end{bmatrix}.
 $$
 
 点では、
 
 $$
-T\begin{bmatrix}2\\1\\1\end{bmatrix}
-=\begin{bmatrix}2+3\cdot1\\1-2\cdot1\\1\end{bmatrix}
-=\begin{bmatrix}5\\-1\\1\end{bmatrix}.
+\begin{aligned}
+T\begin{bmatrix}
+2 \\
+1 \\
+1
+\end{bmatrix} &= \begin{bmatrix}
+2+3\cdot1 \\
+1-2\cdot1 \\
+1
+\end{bmatrix} \\
+&= \begin{bmatrix}
+5 \\
+-1 \\
+1
+\end{bmatrix}.
+\end{aligned}
 $$
 
 方向では、
 
 $$
-T\begin{bmatrix}2\\1\\0\end{bmatrix}
-=\begin{bmatrix}2+3\cdot0\\1-2\cdot0\\0\end{bmatrix}
-=\begin{bmatrix}2\\1\\0\end{bmatrix}.
+\begin{aligned}
+T\begin{bmatrix}
+2 \\
+1 \\
+0
+\end{bmatrix} &= \begin{bmatrix}
+2+3\cdot0 \\
+1-2\cdot0 \\
+0
+\end{bmatrix} \\
+&= \begin{bmatrix}
+2 \\
+1 \\
+0
+\end{bmatrix}.
+\end{aligned}
 $$
 
 ### 考え方と幾何学的な理由
 
-点には $w=1$ が付くので、右端の移動列がそのまま加わる。方向は2点の差であり、2点に同じ移動を加えても差は変わらない。$w=0$ によって移動列の寄与をゼロにすることで、この性質を表す。
+点には $w=1$ が付くので、右端の移動列がそのまま加わる。方向は2点の差であり、2点に同じ移動を加えても差は変わらない。 $w=0$ によって移動列の寄与をゼロにすることで、この性質を表す。
 
 どんな2×2行列 $A$ でも $A(0,0)=(0,0)$ だが、この平行移動は原点を $(3,-2)$ に動かす。従って2×2の線形変換では表せず、定数を足すための成分が必要になる。
 
@@ -71,22 +132,78 @@ $$
 ### 答えと計算過程
 
 $$
-R=\begin{bmatrix}0&-1&0\\1&0&0\\0&0&1\end{bmatrix},\qquad
-T=\begin{bmatrix}1&0&3\\0&1&0\\0&0&1\end{bmatrix}.
+\begin{aligned}
+R &= \begin{bmatrix}
+0 & -1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix} \\
+T &= \begin{bmatrix}
+1 & 0 & 3 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}.
+\end{aligned}
 $$
 
-回転→移動は $(1,0)\to(0,1)\to(3,1)$。移動→回転は $(1,0)\to(4,0)\to(0,4)$ となる。
+回転→移動は $(1,0)\to(0,1)\to(3,1)$ 。移動→回転は $(1,0)\to(4,0)\to(0,4)$ となる。
 
-行列積は左の各行と右の各列を掛けて足す。例えば $(TR)_{13}=1\cdot0+0\cdot0+3\cdot1=3$、$(RT)_{23}=1\cdot3+0\cdot0+0\cdot1=3$ である。全成分を計算すると、
-
-$$
-TR=\begin{bmatrix}0&-1&3\\1&0&0\\0&0&1\end{bmatrix},\qquad
-RT=\begin{bmatrix}0&-1&0\\1&0&3\\0&0&1\end{bmatrix}.
-$$
+行列積は左の各行と右の各列を掛けて足す。例えば
 
 $$
-(TR)\begin{bmatrix}1\\0\\1\end{bmatrix}=\begin{bmatrix}3\\1\\1\end{bmatrix},\qquad
-(RT)\begin{bmatrix}1\\0\\1\end{bmatrix}=\begin{bmatrix}0\\4\\1\end{bmatrix}.
+\begin{aligned}
+(TR)_{13} &= 1\cdot0+0\cdot0+3\cdot1 \\
+&= 3
+\end{aligned}
+$$
+
+、
+
+$$
+\begin{aligned}
+(RT)_{23} &= 1\cdot3+0\cdot0+0\cdot1 \\
+&= 3
+\end{aligned}
+$$
+
+である。全成分を計算すると、
+
+$$
+\begin{aligned}
+TR &= \begin{bmatrix}
+0 & -1 & 3 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix} \\
+RT &= \begin{bmatrix}
+0 & -1 & 0 \\
+1 & 0 & 3 \\
+0 & 0 & 1
+\end{bmatrix}.
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+(TR)\begin{bmatrix}
+1 \\
+0 \\
+1
+\end{bmatrix} &= \begin{bmatrix}
+3 \\
+1 \\
+1
+\end{bmatrix} \\
+(RT)\begin{bmatrix}
+1 \\
+0 \\
+1
+\end{bmatrix} &= \begin{bmatrix}
+0 \\
+4 \\
+1
+\end{bmatrix}.
+\end{aligned}
 $$
 
 ### 考え方と幾何学的な理由
@@ -110,16 +227,41 @@ $T(Rp)$ は「まず $Rp$ を求め、それに $T$ を適用する」という�
 点は $w=1$ として、
 
 $$
-M\begin{bmatrix}2\\1\\0\\1\end{bmatrix}
-=\begin{bmatrix}0\cdot2-1\cdot1+0\cdot0+10\cdot1\\1\cdot2+0\cdot1+0\cdot0+0\cdot1\\0\cdot2+0\cdot1+1\cdot0+3\cdot1\\1\end{bmatrix}
-=\begin{bmatrix}9\\2\\3\\1\end{bmatrix}.
+\begin{aligned}
+M\begin{bmatrix}
+2 \\
+1 \\
+0 \\
+1
+\end{bmatrix} &= \begin{bmatrix}
+0\cdot2-1\cdot1+0\cdot0+10\cdot1 \\
+1\cdot2+0\cdot1+0\cdot0+0\cdot1 \\
+0\cdot2+0\cdot1+1\cdot0+3\cdot1 \\
+1
+\end{bmatrix} \\
+&= \begin{bmatrix}
+9 \\
+2 \\
+3 \\
+1
+\end{bmatrix}.
+\end{aligned}
 $$
 
-従ってワールド座標は $(9,2,3)$。方向は $w=0$ として、
+従ってワールド座標は $(9,2,3)$ 。方向は $w=0$ として、
 
 $$
-M\begin{bmatrix}2\\1\\0\\0\end{bmatrix}
-=\begin{bmatrix}-1\\2\\0\\0\end{bmatrix}.
+M\begin{bmatrix}
+2 \\
+1 \\
+0 \\
+0
+\end{bmatrix} =\begin{bmatrix}
+-1 \\
+2 \\
+0 \\
+0
+\end{bmatrix}.
 $$
 
 ### 考え方と幾何学的な理由
@@ -132,7 +274,17 @@ $$
 | 右端上3成分 $(10,0,3)$ | ローカル原点のワールド座標 |
 | 最下行 $[0,0,0,1]$ | $w$ を保ち、点と方向の区別を維持する |
 
-点では $2(0,1,0)+1(-1,0,0)+0(0,0,1)+(10,0,3)=(9,2,3)$ と読める。方向は同じ基底の組み合わせを使うが、原点の配置は足さないので $(-1,2,0)$ になる。方向は平行移動では変わらないが、回転では向きが変わる。
+点では、
+
+$$
+\begin{aligned}
+&2(0,1,0)+1(-1,0,0) \\
+&\quad +0(0,0,1)+(10,0,3) \\
+&= (9,2,3)
+\end{aligned}
+$$
+
+と読める。方向は同じ基底の組み合わせを使うが、原点の配置は足さないので $(-1,2,0)$ になる。方向は平行移動では変わらないが、回転では向きが変わる。
 
 ![ワールドとローカルの3D座標軸、およびローカル点2,1,0の配置を示す図](../images/10-local-world.svg)
 
@@ -140,6 +292,6 @@ $$
 
 - $t=(10,0,3)$ も回してから足す。この行列は「回転してから、この移動量を足す」配置である。
 - 方向を変換しても $(2,1,0)$ のままだと考える。平行移動は効かないが、左上3×3による回転は効く。
-- 最下行を不要と考える。$w$ の維持が、次の同次変換でも点と方向を正しく扱うために必要になる。
+- 最下行を不要と考える。 $w$ の維持が、次の同次変換でも点と方向を正しく扱うために必要になる。
 
 [問題ページへ](problems.md) ／ [宿題トップへ戻る](README.md) ／ [セッションのトップへ戻る](../README.md)
