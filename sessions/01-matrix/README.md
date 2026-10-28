@@ -11,6 +11,7 @@
 | [SVG図解の保管先](images/README.md) | 準備中 |
 | [.NET・C#実装例の保管先](examples/README.md) | 準備中 |
 | [発表用PDFの保管先](output/README.md) | 準備中 |
+| [復習用の宿題](homework/README.md) | 準備中 |
 
 ## 今後の準備
 
