@@ -15,5 +15,3 @@
 | 3 | [なぜ直線や平面の交点を計算できるのか？](sessions/03-intersection/README.md) | 準備中 |
 | 4 | [なぜ2Dの図形から3Dモデルを作れるのか？](sessions/04-modeling/README.md) | 準備中 |
 | 5 | [なぜ図形の内外や干渉を判定できるのか？](sessions/05-geometry-check/README.md) | 準備中 |
-
-[全5回の初期カリキュラム](docs/curriculum.md) ／ [資料制作ルール](AGENTS.md)
