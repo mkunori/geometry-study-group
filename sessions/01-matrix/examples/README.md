@@ -56,6 +56,16 @@ dotnet run
 
 実行すると6題材を順に表示し、各成分を期待値と自動比較する。全チェック成功時は終了コード0、不一致や非有限値の検出時は `FAIL` を表示して終了コード1になる。ビルド生成物の `bin/`・`obj/` と、Visual Studioのローカル設定 `.vs/`・`*.csproj.user` はGit管理しない。
 
+## PRでの自動チェック
+
+[Check C# Examples](../../../.github/workflows/check-csharp-examples.yml) が、C#コード・プロジェクト・ソリューション・ビルド設定・ワークフロー自身の変更を、PR時とmainへのpush時に検証する。READMEなどMarkdownだけの変更では起動しない。
+
+.NET 10 SDKで `.sln` を復元・Releaseビルドし、このプロジェクトを実行する。終了コードが0で、`[OK]` が43件、最後の成功メッセージも揃っていれば成功する。チェック数を変える場合は、各チェックの内容をレビューしたうえで、ワークフローの `EXPECTED_CHECKS` とこの案内・出力例も同じPRで更新する。
+
+PRのChecks、または **Actions → Check C# Examples → 対象の実行 → MatrixExamples (Release)** で結果を確認できる。失敗時は `Restore solution`・`Build solution (Release)`・`Run MatrixExamples and verify all 43 checks` の該当ログを開く。数値の不一致なら `FAIL` の題材名・成分・実値・期待値・許容誤差を確認する。
+
+このCIは読み取り専用で、[PDF生成・自動コミット](../../../docs/pdf-automation.md) とは別に動く。対象は完成済みの第1回だけ。別の回を追加するときは、ワークフローの対象パスと、その回のソリューション・プロジェクト・期待チェック数を指定したジョブを明示的に追加する。
+
 ## ファイルと読む順序
 
 | ファイル | 内容 |
