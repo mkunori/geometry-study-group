@@ -90,7 +90,9 @@ jobs:
             await page.goto('chrome://sandbox');
             const status = await page.evaluate(() => document.body.innerText);
             console.log(status);
-            assert.match(status, /Namespace sandbox\s+Yes/);
+            assert.match(status, /Layer 1 Sandbox\s+Namespace/);
+            assert.match(status, /PID namespaces\s+Yes/);
+            assert.match(status, /Network namespaces\s+Yes/);
             assert.match(status, /Seccomp-BPF sandbox\s+Yes/);
           } finally {
             await browser.close();
