@@ -64,6 +64,39 @@ jobs:
           appendFileSync(process.env.GITHUB_ENV, `PDF_BROWSER_PATH=${browser.executablePath}\n`);
           JS
 
+      - name: Allow Chrome user namespaces with a scoped AppArmor profile
+        shell: bash
+        run: |
+          # Ubuntu 24.04 restricts user namespaces for binaries without a profile.
+          # Allow only this installed Chrome, retaining Chrome's own sandbox.
+          sudo tee /etc/apparmor.d/geometry-pdf-chrome > /dev/null <<EOF
+          abi <abi/4.0>,
+          include <tunables/global>
+          profile geometry-pdf-chrome "$PDF_BROWSER_PATH" flags=(unconfined) {
+            userns,
+          }
+          EOF
+          sudo apparmor_parser -r /etc/apparmor.d/geometry-pdf-chrome
+
+      - name: Verify Chrome sandbox
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import puppeteer from 'puppeteer-core';
+          const browser = await puppeteer.launch({ executablePath: process.env.PDF_BROWSER_PATH, headless: true });
+          try {
+            const page = await browser.newPage();
+            await page.goto('chrome://sandbox');
+            const status = await page.evaluate(() => document.body.innerText);
+            console.log(status);
+            assert.match(status, /Namespace sandbox\s+Yes/);
+            assert.match(status, /Seccomp-BPF sandbox\s+Yes/);
+          } finally {
+            await browser.close();
+          }
+          JS
+
       - name: Generate published explanation PDFs
         run: npm run pdf:published -- --browser-path "$PDF_BROWSER_PATH"
 

@@ -51,6 +51,16 @@ npm run pdf:published
 
 OS・日本語フォント・ブラウザーによって改ページや描画が変わるため、初回の自動実行でWindows製の既存PDFが更新される場合がある。フォントパッケージやrunnerの更新でも実質的な差分が生じ得る。その場合は生成された全ページを確認する。ページ数は環境によって変わり得る。
 
+## UbuntuのChromeサンドボックス
+
+Ubuntu 24.04ではAppArmorが未許可の実行ファイルによるuser namespaceの作成を制限する。runnerの一時ディレクトリに取得したChrome for Testingは、通常のChromeインストール先に付く許可の対象外で、`No usable sandbox!` により起動に失敗する場合がある。
+
+ワークフローでは、取得したChromeの**完全な実行ファイルパスだけ**に `userns` を許可する、root所有のAppArmorプロファイルを一時runner内に作成・読み込みする。`flags=(unconfined)` はAppArmor側の追加のファイル制限を課さずにuser namespaceを許可するための指定であり、Chrome自身のサンドボックスを無効にする指定ではない。実行前に `chrome://sandbox` でNamespace sandboxとSeccomp-BPF sandboxが有効か検証し、不成立ならPDF生成・コミットへ進まない。
+
+`--no-sandbox`、setuidヘルパーの追加、システム全体のuser namespace制限の解除は行わない。この設定は信頼済みmain専用のGitHub-hostedジョブ内だけに適用し、ローカルWindowsの起動設定は変更しない。対象パスの実行ファイルを置き換えられるコードも同じ許可を得るため、未信頼のPRをこのジョブで実行しないこと。GitHub側に新しいSecretや権限設定は不要で、runnerの `sudo` と `apparmor_parser` を使う。
+
+AppArmorの読み込みで失敗した場合はそのステップのログを確認する。サンドボックスを無効にして処理を続行するフォールバックは用意しない。[Chromiumの解説と個別プロファイルの方式](https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md) および [PuppeteerのUbuntu向け注意事項](https://pptr.dev/troubleshooting#issues-with-apparmor-on-ubuntu) を参照する。
+
 ## GitHub側で確認する設定
 
 1. **Settings → Actions → General** でActionsを許可する。組織ポリシーがある場合は公式の `actions/checkout`、`actions/setup-node` が許可されているか確認する。
