@@ -1,7 +1,16 @@
-# 発表用PDFの保管先
+# 詳細解説PDFの保管先
 
-TODO：発表用PDFを作成し、このディレクトリに保存する。現在はPDF未作成で、生成環境も未構築。
+TODO：[詳細解説Markdown](../explanation.md) の本文を完成させ、同じ内容のA4縦PDFを `explanation.pdf` に生成する。現在はPDF未生成。
 
-TODO：PDFを追加したら、この案内と各回のREADMEに実ファイルへのリンクを記載する。生成環境の構築時に生成手順も記載する。
+本文原本は `explanation.md` とし、数式・表・SVG図解・補足を省略せずPDFに含める。PDFを別の原稿として編集しない。
+
+[共通の生成手順と必要環境](../../01-matrix/output/README.md) を確認し、本文完成後にリポジトリのルートで実行する。
+
+```sh
+npm ci
+npm run pdf -- sessions/05-geometry-check/explanation.md sessions/05-geometry-check/output/explanation.pdf
+```
+
+TODO：生成後は全ページの表示と本文の一致を確認し、この案内と各回のREADMEに実ファイルへの閲覧・ダウンロードリンクを追加する。生成したPDFもコミットする。
 
 [この回のトップへ戻る](../README.md)

@@ -6,11 +6,10 @@
 
 | 教材 | 状態 |
 | --- | --- |
-| [詳細解説](explanation.md) | 作成済み（本編45分＋復習用補足） |
-| [Marp用スライド原稿](slides.md) | 作成済み（19枚、本編45分＋質疑応答15分） |
+| [詳細解説（Markdown）](explanation.md) | 作成済み（本編45分＋復習用補足） |
+| [詳細解説（PDF）](output/explanation.pdf) | 作成済み（全文、A4縦・13ページ） |
 | [SVG図解の保管先](images/README.md) | 作成済み（11点） |
 | [.NET・C#実装例の保管先](examples/README.md) | 準備中 |
-| [発表用PDF](output/slides.pdf) | 作成済み（19ページ、16:9） |
 | [復習用の宿題](homework/README.md) | 作成済み（基本3問＋発展1問、解答・解説付き） |
 
 PDFの再生成方法は [出力先の案内](output/README.md) を参照。
