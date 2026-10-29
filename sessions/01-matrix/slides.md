@@ -93,8 +93,7 @@ c & d
 x \\
 y
 \end{bmatrix}
-=
-\begin{bmatrix}
+=\begin{bmatrix}
 ax+by \\
 cx+dy
 \end{bmatrix}
@@ -238,8 +237,7 @@ $$
 2 \\
 1
 \end{bmatrix}
-=
-\begin{bmatrix}
+=\begin{bmatrix}
 -1 \\
 2
 \end{bmatrix}
