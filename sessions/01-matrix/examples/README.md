@@ -4,11 +4,35 @@
 
 先に列ベクトル方式の式を `double` で計算し、続けて.NETの行ベクトル方式のAPIで確かめる。点・方向・基底・合成順序が数値にどう現れるかを確認できる。
 
-## 必要環境と実行方法
+## 必要環境
 
 - **.NET 10 SDK**（対象フレームワーク：`net10.0`）。ランタイムだけではビルドできない。
-- Windows・Linux・macOSのコンソールから実行できる。AutoCAD、GUI、追加NuGetパッケージは不要。
+- Visual Studioで使う場合は **Visual Studio 2026（18.0以上、Windows）**。Visual Studio Installerで「.NETデスクトップ開発」ワークロードと.NET 10 SDKを導入する。SDKは使用するVisual Studioに同梱される.NET 10 SDKを基本とする。[対応バージョンの公式資料](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio) も参照できる。
+- CLIではWindows・Linux・macOSのコンソールから実行できる。AutoCAD、GUI、追加NuGetパッケージは不要。
 - 入力はソース内の固定値で、引数や標準入力は使わない。
+
+## Visual Studioで開いて実行する
+
+1. リポジトリを取得し、Visual Studioの「プロジェクトやソリューションを開く」から [MatrixExamples.sln](MatrixExamples.sln) を開く。`.sln` と `.csproj` はこの `examples/` に並んでいる。
+2. ソリューションエクスプローラーに `MatrixExamples` プロジェクトが表示されることを確認する。プロジェクトを右クリックして「スタートアッププロジェクトに設定」を選び、実行対象を `MatrixExamples` にする。
+3. ツールバーの構成を **Debug**、プラットフォームを **Any CPU** にする。
+4. **Ctrl+Shift+B**（ソリューションのビルド）でビルドする。SDKが見つからない場合は、上記のVisual StudioとSDKの導入状態を確認する。
+5. **Ctrl+F5** でデバッグなし実行、**F5** でデバッグ実行する。6題材が順に表示され、最後に「すべての 43 チェックに成功しました。」と表示される。
+
+### ブレークポイントで行列の計算を追う
+
+1. ソリューションエクスプローラーで [Program.cs](Program.cs) を開き、`MatrixAndBasis` 内の `var p = ColumnMath.Multiply2(a, (2, 1));` の行にカーソルを置いて **F9** でブレークポイントを設定する。
+2. **F5** で実行し、その行で停止したら「ローカル」や「ウォッチ」で `a[0, 0]`・`a[0, 1]` などの入力を見る。
+3. **F11**（ステップイン）で [ColumnMath.cs](ColumnMath.cs) の `Multiply2` に入り、行列引数 `m` とベクトル引数 `p` を確認する。例えば `m[0, 0] * p.X + m[0, 1] * p.Y` が `2*2 + 1*1 = 5` に対応する。
+4. **Shift+F11**（ステップアウト）で呼び出し元へ戻り、必要に応じて **F10**（ステップオーバー）で進める。戻り値を受け取った後の `p.X=5`・`p.Y=4`、続いて `e1`・`e2` の値を確認する。
+
+点と方向の違いを調べる場合は、`Homogeneous2D` の `var point = ...` と `var direction = ...` にブレークポイントを置く。`Transform2` に入り、`p.W` が1または0になることと移動量に掛かる項を確認する。呼び出し元では `point=(5,-1,1)`、`direction=(2,1,0)` を比較できる。
+
+### コンソールがすぐ閉じる場合
+
+結果を読む場合はまず **Ctrl+F5** で実行する。F5で終了前に確認したい場合は、`Program.cs` の `try` の最後にある成功メッセージの `Console.WriteLine`（`return 0` の直前）にブレークポイントを置く。起動元のターミナルに結果を残すには、次のCLI手順を使う。学習コードに待機用の `ReadKey` 等を追加する必要はない。
+
+## CLIで実行する
 
 リポジトリのルートから実行する。
 
@@ -17,18 +41,26 @@ dotnet build sessions/01-matrix/examples/MatrixExamples.csproj --configuration R
 dotnet run --project sessions/01-matrix/examples/MatrixExamples.csproj --configuration Release
 ```
 
+ソリューションからDebug／Releaseをビルドする場合は、次のように指定する。
+
+```sh
+dotnet build sessions/01-matrix/examples/MatrixExamples.sln --configuration Debug
+dotnet build sessions/01-matrix/examples/MatrixExamples.sln --configuration Release
+```
+
 このディレクトリで実行する場合は、次のコマンドだけで動く。
 
 ```sh
 dotnet run
 ```
 
-実行すると6題材を順に表示し、各成分を期待値と自動比較する。全チェック成功時は終了コード0、不一致や非有限値の検出時は `FAIL` を表示して終了コード1になる。ビルド生成物の `bin/`・`obj/` はGit管理しない。
+実行すると6題材を順に表示し、各成分を期待値と自動比較する。全チェック成功時は終了コード0、不一致や非有限値の検出時は `FAIL` を表示して終了コード1になる。ビルド生成物の `bin/`・`obj/` と、Visual Studioのローカル設定 `.vs/`・`*.csproj.user` はGit管理しない。
 
 ## ファイルと読む順序
 
 | ファイル | 内容 |
 | --- | --- |
+| [MatrixExamples.sln](MatrixExamples.sln) | Visual Studioで開く入口。既存のコンソールプロジェクト1件を登録 |
 | [Program.cs](Program.cs) | 6題材の入力、API呼び出し、期待値、自動チェック |
 | [ColumnMath.cs](ColumnMath.cs) | 列ベクトル方式の掛け算と.NETの配置への変換 |
 | [MatrixExamples.csproj](MatrixExamples.csproj) | .NET 10のコンソールプロジェクト設定 |
