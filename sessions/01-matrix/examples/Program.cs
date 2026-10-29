@@ -31,7 +31,7 @@ void MatrixAndBasis()
     var p = ColumnMath.Multiply2(a, (2, 1)); // (2*2 + 1*1, 1*2 + 2*1)
     var e1 = ColumnMath.Multiply2(a, (1, 0));
     var e2 = ColumnMath.Multiply2(a, (0, 1));
-    Check("Ap", [p.X, p.Y], [6, 4]);
+    Check("Ap", [p.X, p.Y], [5, 4]);
     Check("Ae1 = 第1列", [e1.X, e1.Y], [2, 1]);
     Check("Ae2 = 第2列", [e2.X, e2.Y], [1, 2]);
     Check("2Ae1 + Ae2 = Ap", [2 * e1.X + e2.X, 2 * e1.Y + e2.Y], [p.X, p.Y]);
