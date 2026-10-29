@@ -9,7 +9,7 @@
 | [詳細解説（Markdown）](explanation.md) | 作成済み（復習用補足付き） |
 | [詳細解説（PDF）](output/explanation.pdf) | 作成済み（全文、A4縦・ページ番号付き） |
 | [SVG図解の保管先](images/README.md) | 作成済み（11点） |
-| [.NET・C#実装例の保管先](examples/README.md) | 準備中 |
+| [.NET・C#実装例](examples/README.md) | 作成済み（6題材、手実装とSystem.Numericsの比較・自動チェック付き） |
 | [復習用の宿題](homework/README.md) | 作成済み（基本3問＋発展1問、解答・解説付き） |
 
 PDFの再生成方法は [出力先の案内](output/README.md) を参照。
@@ -17,9 +17,5 @@ PDFの再生成方法は [出力先の案内](output/README.md) を参照。
 到達目標：4×4の同次変換行列がなぜその構造になっているのか、各部分の意味を自分の言葉で説明できること。
 
 数学の説明は列ベクトル方式で統一し、.NETの行ベクトル方式との違いも解説する。
-
-## 今後の準備
-
-- TODO：.NET・C#実装例と実行手順を用意する。
 
 [勉強会トップへ戻る](../../README.md)
