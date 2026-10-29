@@ -7,7 +7,7 @@
 | 教材 | 状態 |
 | --- | --- |
 | [詳細解説（Markdown）](explanation.md) | 作成済み（本編45分＋復習用補足） |
-| [詳細解説（PDF）](output/explanation.pdf) | 作成済み（全文、A4縦・13ページ） |
+| [詳細解説（PDF）](output/explanation.pdf) | 作成済み（全文、A4縦・ページ番号付き） |
 | [SVG図解の保管先](images/README.md) | 作成済み（11点） |
 | [.NET・C#実装例の保管先](examples/README.md) | 準備中 |
 | [復習用の宿題](homework/README.md) | 作成済み（基本3問＋発展1問、解答・解説付き） |

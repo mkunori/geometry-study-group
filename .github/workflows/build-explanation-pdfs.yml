@@ -1,0 +1,71 @@
+name: Build Explanation PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sessions/**/explanation.md'
+      - 'sessions/**/images/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/build-explanation-pdfs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: explanation-pdfs-main
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - name: Check out latest main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24.21.0'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Test PDF automation
+        run: npm run test:pdf
+
+      - name: Install Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk fonts-liberation
+          fc-match 'Noto Sans CJK JP'
+
+      - name: Install locked Chrome for Testing
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import { appendFileSync } from 'node:fs';
+          import { join } from 'node:path';
+          import { install, Browser } from '@puppeteer/browsers';
+          import { PUPPETEER_REVISIONS } from 'puppeteer-core';
+          const browser = await install({ browser: Browser.CHROME,
+            buildId: PUPPETEER_REVISIONS.chrome, cacheDir: join(process.env.RUNNER_TEMP, 'browsers') });
+          console.log(`Chrome for Testing: ${browser.buildId}`);
+          appendFileSync(process.env.GITHUB_ENV, `PDF_BROWSER_PATH=${browser.executablePath}\n`);
+          JS
+
+      - name: Generate published explanation PDFs
+        run: npm run pdf:published -- --browser-path "$PDF_BROWSER_PATH"
+
+      - name: Commit changed PDFs only
+        run: node scripts/commit-explanation-pdfs.mjs

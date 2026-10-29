@@ -6,6 +6,8 @@
 
 各回の本文原本は `explanation.md` とし、同じ内容をA4縦の `output/explanation.pdf` にして残す。完成した教材のMarkdownとPDFは各回のREADMEから案内する。
 
+本文とSVGをmainへ反映すると、公開対象のPDFをGitHub Actionsが自動更新する。[自動生成・手動実行の案内](docs/pdf-automation.md) を参照。
+
 ## 各回の資料
 
 テーマは今後のフィードバックによって内容や順序を変更する可能性がある。

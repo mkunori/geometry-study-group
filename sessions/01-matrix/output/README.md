@@ -2,7 +2,7 @@
 
 [PDFを開く](explanation.pdf) ／ [ダウンロード](explanation.pdf?raw=true)
 
-A4縦・13ページ。[詳細解説Markdown](../explanation.md) の章立て・文章・表・数式・SVG11点・末尾の補足を含む全文PDF。本文は選択・検索できる。PDFはリポジトリに保存し、GitHubで直接閲覧・ダウンロードできる。
+A4縦・ページ番号付き。[詳細解説Markdown](../explanation.md) の章立て・文章・表・数式・SVG11点・末尾の補足を含む全文PDF。本文は選択・検索できる。PDFはリポジトリに保存し、GitHubで直接閲覧・ダウンロードできる。
 
 ## 本文原本と生成物
 
@@ -11,6 +11,8 @@ A4縦・13ページ。[詳細解説Markdown](../explanation.md) の章立て・�
 - 生成物：このディレクトリの `explanation.pdf`
 
 更新はMarkdownと参照するSVGに行い、PDFを再生成する。PDFを別の原稿として編集したり、本文を要約した別版を作ったりしない。
+
+通常は本文とSVGをmainへマージした後、GitHub Actionsが公開対象のPDFを自動生成・コミットする。[自動生成・手動実行・新しい回の追加方法](../../../docs/pdf-automation.md) を参照。以下はローカルで表示確認するための手順。
 
 ## 必要環境
 
@@ -58,6 +60,8 @@ npm run pdf:01 -- --browser-path "C:\Program Files (x86)\Microsoft\Edge\Applicat
 | KaTeX | 0.17.0 | `bmatrix`・`aligned` を含む数式の描画 |
 | github-slugger | 2.0.0 | 見出しのアンカーID |
 | puppeteer-core | 24.43.1 | インストール済みブラウザーの印刷機能でA4 PDFを生成 |
+| @puppeteer/browsers | 2.13.2 | Actionsで固定バージョンのChrome for Testingを導入 |
+| pdf-lib | 1.17.1 | 自動更新時の比較で日時・内部識別子のみの差分を抑制 |
 
 [package.json](../../../package.json) と [package-lock.json](../../../package-lock.json) で依存を固定している。依存変更後は `npm ci` を実行する。
 
@@ -69,8 +73,8 @@ Markdownの相対リンクと画像パスは原本のまま維持する。生成
 - 全ページを画像化して目視確認し、日本語・2×2/3×3/4×4の行列・図の欠け、横方向のはみ出し、重なり、不自然な改ページがないこと。
 - 数式が生TeXになっておらず、行列・図・表が途中で分断されていないこと。
 - 本文を選択・検索でき、教材リンクとページ番号が機能すること。
-- Markdownや図解を更新したら、生成PDFも同じPRに含めてコミットすること。
+- Markdownや図解を更新したら、上記の表示確認を行い、main反映後の自動生成結果も確認すること。ローカルで確認したPDFを同じPRに含めてもよい。
 
-生成日時などのメタデータは再生成のたびに変わる。紙面を揃える場合は原稿・依存に加え、OS・ブラウザー・フォントも揃える。
+直接生成では日時などのメタデータが毎回変わるが、公開対象の自動更新では比較時にこの差分を抑制する。紙面・ページ数を揃える場合は原稿・依存に加え、OS・ブラウザー・フォントも揃える。
 
 [この回のトップへ戻る](../README.md)
