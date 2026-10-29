@@ -14,7 +14,7 @@
 
 | 回 | テーマ | 状態 |
 | --- | --- | --- |
-| 1 | [なぜ行列で図形を変換できるのか？](sessions/01-matrix/README.md) | 準備中 |
+| 1 | [なぜ行列で図形を変換できるのか？](sessions/01-matrix/README.md) | 公開中 |
 | 2 | [なぜ内積・外積で角度や方向がわかるのか？](sessions/02-vector/README.md) | 準備中 |
 | 3 | [なぜ直線や平面の交点を計算できるのか？](sessions/03-intersection/README.md) | 準備中 |
 | 4 | [なぜ2Dの図形から3Dモデルを作れるのか？](sessions/04-modeling/README.md) | 準備中 |
