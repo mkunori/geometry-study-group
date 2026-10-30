@@ -48,7 +48,7 @@ internal static class Program
         double dot = VectorMath.Dot2(a, b);
         double lengthA = VectorMath.Length2(a);
         double lengthB = VectorMath.Length2(b);
-        Check("a・b", [dot], [7]);
+        Check("a・b", [dot], [6]);
         Check("長さ |a|,|b|", [lengthA, lengthB], [5, 2]);
         Check("cosθ", [dot / (lengthA * lengthB)], [3.0 / 5]);
         CheckCondition("非ゼロの2本の角度を定義できる", VectorMath.TryAngle2(a, b, out double radians));
