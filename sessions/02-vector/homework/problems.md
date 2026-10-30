@@ -33,7 +33,7 @@ $a=(3,4)$ 、 $b=(2,0)$ 、 $c=(4,-3)$ とする。
 1. 次の式で正射影 $q$ を求める。係数を計算してから、 $b$ に掛ける。
 
 $$
-q=\mathrm{proj}_b a=\frac{a\cdot b}{b\cdot b}\,b.
+q=\mathrm{proj}_b a=\frac{a\cdot b}{b\cdot b} b.
 $$
 
 2. 残りのベクトル $r=a-q$ を求め、 $r\cdot b$ を計算して $r$ と $b$ が垂直なことを確認する。

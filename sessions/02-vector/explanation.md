@@ -139,7 +139,7 @@ $$
 
 $$
 \mathrm{proj}_b a
-=\frac{a\cdot b}{b\cdot b}\,b.
+=\frac{a\cdot b}{b\cdot b} b.
 $$
 
 分母は $\|b\|^2$ であり、単に $a\cdot b$ を $b$ に掛けるのではない。単位ベクトル $\hat b=b/\|b\|$ を使うなら、向き付きの射影長は $a\cdot\hat b=\|a\|\cos\theta$ 、射影ベクトルはその長さに $\hat b$ を掛けたものになる。内積が負なら、射影は $b$ と逆向きになる。

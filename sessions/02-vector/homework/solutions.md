@@ -187,8 +187,8 @@ $$
 $$
 \begin{aligned}
 \mathrm{proj}_{kb}a
-&=\frac{k(a\cdot b)}{k^2(b\cdot b)}\,kb \\
-&=\frac{a\cdot b}{b\cdot b}\,b
+&=\frac{k(a\cdot b)}{k^2(b\cdot b)} kb \\
+&=\frac{a\cdot b}{b\cdot b} b
 \end{aligned}
 $$
 
