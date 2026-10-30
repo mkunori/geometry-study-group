@@ -2,7 +2,11 @@ using System.Globalization;
 using System.Numerics;
 using System.Text;
 
+// 本文の列方式 p' = Mp を手実装し、同じ変換を.NETの行方式 p_row' = p_row M_row で確かめる。
+// X軸は右、Y軸は上、2Dの正回転は原点周りに反時計回り。
+// 3Dは右手系で、Z軸の正回転は+Z側から原点を見た反時計回りとする。
 Console.OutputEncoding = Encoding.UTF8;
+// 小さな固定入力に対する絶対誤差の上限。floatを使う.NET APIはdoubleの手実装より広く取る。
 const double DoubleTolerance = 1e-12;
 const double FloatTolerance = 1e-5;
 int checks = 0;
@@ -26,6 +30,8 @@ catch (InvalidOperationException error)
 
 void MatrixAndBasis()
 {
+    // 解説②「行列の掛け算と基底ベクトル」：各列が基底の変換先になり、
+    // p = 2e1 + e2 の変換が Ap = 2Ae1 + Ae2 になることを確かめる。
     Console.WriteLine("1. 行列×ベクトルと基底（解説②）");
     double[,] a = { { 2, 1 }, { 1, 2 } };
     var p = ColumnMath.Multiply2(a, (2, 1)); // (2*2 + 1*1, 1*2 + 2*1)
@@ -37,6 +43,7 @@ void MatrixAndBasis()
     Check("2Ae1 + Ae2 = Ap", [2 * e1.X + e2.X, 2 * e1.Y + e2.Y], [p.X, p.Y]);
 
     // .NETでは転置した配置を使う。引数順は M11,M12,M21,M22,M31,M32。
+    // この対称行列だけでは転置の違いが見えないため、題材6の非対称行列でも確認する。
     var row = new Matrix3x2(2, 1, 1, 2, 0, 0);
     var api = Vector2.Transform(new Vector2(2, 1), row);
     Check(".NETのAp", [api.X, api.Y], [5, 4], FloatTolerance);
@@ -44,6 +51,8 @@ void MatrixAndBasis()
 
 void Rotation2D()
 {
+    // 解説③・基本問題1：90°回転での点と基底の行き先を確認し、
+    // 任意角度でも「回転後の基底を列に置く」式が使え、長さを保つことを確かめる。
     Console.WriteLine("\n2. 2D回転（解説③／基本問題1）");
     double[,] exact90 = { { 0, -1 }, { 1, 0 } };
     var p = ColumnMath.Multiply2(exact90, (2, 1));
@@ -59,6 +68,7 @@ void Rotation2D()
     double degrees = 30;
     double radians = degrees * Math.PI / 180;
     var rotated = ColumnMath.Multiply2(ColumnMath.Rotation2(radians), (2, 1));
+    // cos30°=√3/2、sin30°=1/2 を x'=cx-sy、y'=sx+cy に代入した独立の期待値。
     double expectedX = Math.Sqrt(3) - 0.5;
     double expectedY = 1 + Math.Sqrt(3) / 2;
     Check("30度の点", [rotated.X, rotated.Y], [expectedX, expectedY]);
@@ -76,6 +86,8 @@ void Rotation2D()
 
 void Homogeneous2D()
 {
+    // 解説④・基本問題2：同じ移動行列でも、点 w=1 は移動し、方向 w=0 は移動しない。
+    // 同次成分を含む手実装と、点・方向を別APIで扱う.NETの結果を対応させる。
     Console.WriteLine("\n3. 同次座標と平行移動（解説④／基本問題2）");
     double[,] t = { { 1, 0, 3 }, { 0, 1, -2 }, { 0, 0, 1 } };
     var point = ColumnMath.Transform2(t, (2, 1, 1));
@@ -88,15 +100,19 @@ void Homogeneous2D()
 
     var row = ColumnMath.ToRow3x2(t);
     var apiPoint = Vector2.Transform(new Vector2(2, 1), row);
-    // TransformNormalは移動を足さず、線形部分だけを掛ける。
+    // TransformNormalは移動を足さず、線形部分だけを掛けるので、本教材では方向の変換に使う。
+    // 一般の法線は非一様スケールなどで逆転置による変換が必要となり、方向と同じ扱いにはできない。
     var apiDirection = Vector2.TransformNormal(new Vector2(2, 1), row);
     Check(".NETの点", [apiPoint.X, apiPoint.Y], [point.X, point.Y], FloatTolerance);
     Check(".NETの方向", [apiDirection.X, apiDirection.Y], [direction.X, direction.Y], FloatTolerance);
+    // 列方式の移動列は、転置した.NETの配置では最下行の M31,M32 に対応する。
     Check(".NETの移動成分 M31,M32", [row.M31, row.M32], [3, -2], FloatTolerance);
 }
 
 void LocalToWorld3D()
 {
+    // 解説⑤・発展問題：ローカル基底の行き先が左上3×3の各列、ワールドでの原点が移動列。
+    // Z軸90°回転後の平行移動を点と方向で比較し、同じ配置を.NETでも再現する。
     Console.WriteLine("\n4. 3Dのローカル→ワールド（解説⑤／発展問題）");
     double[,] m =
     {
@@ -105,6 +121,7 @@ void LocalToWorld3D()
         { 0, 0, 1, 3 },
         { 0, 0, 0, 1 }
     };
+    // ワールドの点は 2×第1列 + 第2列 + 移動列 = (9,2,3,1)。方向は移動列を加えない。
     var point = ColumnMath.Transform3(m, (2, 1, 0, 1));
     var direction = ColumnMath.Transform3(m, (2, 1, 0, 0));
     Check("ワールドの点", [point.X, point.Y, point.Z, point.W], [9, 2, 3, 1]);
@@ -112,9 +129,11 @@ void LocalToWorld3D()
 
     var row = ColumnMath.ToRow4x4(m);
     var apiPoint = Vector3.Transform(new Vector3(2, 1, 0), row);
+    // ここもTransformNormalを方向ベクトルの変換に使う（一般の法線変換とは区別する）。
     var apiDirection = Vector3.TransformNormal(new Vector3(2, 1, 0), row);
     Check(".NETのワールド点", [apiPoint.X, apiPoint.Y, apiPoint.Z], [9, 2, 3], FloatTolerance);
     Check(".NETのワールド方向", [apiDirection.X, apiDirection.Y, apiDirection.Z], [-1, 2, 0], FloatTolerance);
+    // 4×4でも転置により移動列が移り、.NETでは M41,M42,M43 が移動成分になる。
     Check(".NETの移動成分 M41,M42,M43", [row.M41, row.M42, row.M43], [10, 0, 3], FloatTolerance);
 
     // 列方式の T*R に対応する.NETの合成は Rrow*Trow。
@@ -127,6 +146,8 @@ void LocalToWorld3D()
 
 void CompositionOrder()
 {
+    // 解説⑥・基本問題3：回転→移動と移動→回転の途中の点・最後の点を比較する。
+    // 合成行列の全成分と逐次適用の一致も調べ、掛ける順序が結果を変える理由を追う。
     Console.WriteLine("\n5. 合成の順序（解説⑥／基本問題3）");
     double[,] r = { { 0, -1, 0 }, { 1, 0, 0 }, { 0, 0, 1 } };
     double[,] t = { { 1, 0, 3 }, { 0, 1, 0 }, { 0, 0, 1 } };
@@ -139,6 +160,7 @@ void CompositionOrder()
     Check("移動の直後", [afterTranslation.X, afterTranslation.Y], [4, 0]);
     Check("移動→回転", [moveThenRotate.X, moveThenRotate.Y], [0, 4]);
 
+    // 列方式では右から作用するので、TRp = T(Rp)、RTp = R(Tp)。移動列の違いにも注目する。
     var tr = ColumnMath.Multiply3(t, r);
     var rt = ColumnMath.Multiply3(r, t);
     Check("TRの全成分", tr.Cast<double>().ToArray(), [0, -1, 3, 1, 0, 0, 0, 0, 1]);
@@ -148,6 +170,7 @@ void CompositionOrder()
     Check("TRp = T(Rp)", [byTr.X, byTr.Y, byTr.W], [rotateThenMove.X, rotateThenMove.Y, 1]);
     Check("RTp = R(Tp)", [byRt.X, byRt.Y, byRt.W], [moveThenRotate.X, moveThenRotate.Y, 1]);
 
+    // (TR)の転置 = Rの転置 × Tの転置。.NETの行方式では左から回転→移動の順に掛ける。
     var rowR = Matrix3x2.CreateRotation(MathF.PI / 2);
     var rowT = Matrix3x2.CreateTranslation(3, 0);
     var apiTr = Vector2.Transform(new Vector2(1, 0), rowR * rowT);
@@ -158,6 +181,8 @@ void CompositionOrder()
 
 void NumericsAndPrecision()
 {
+    // 解説⑥「.NETでは行ベクトル方式を使う」・補足「.NETの配置を成分で読む」：
+    // 非対称行列で転置配置を区別し、doubleとfloatでは三角関数の残差や許容誤差が異なることを確かめる。
     Console.WriteLine("\n6. .NETの転置配置と精度（解説⑥・補足）");
     // 非対称な係数で、行と列を取り違えていないことを確認する。
     double[,] column = { { 2, -1, 5 }, { 3, 4, -2 }, { 0, 0, 1 } };
@@ -176,11 +201,12 @@ void NumericsAndPrecision()
 
 void Check(string label, double[] actual, double[] expected, double tolerance = DoubleTolerance)
 {
+    // 表示用に丸める前の値で各成分の絶対誤差を比較する。入力の桁や大きさを変える場合は許容誤差も見直す。
     if (actual.Length != expected.Length)
         throw new InvalidOperationException($"{label}: 成分数が一致しません。");
     for (int i = 0; i < actual.Length; i++)
     {
-        // NaNは通常の大小比較をすり抜けるため、有限値であることも確認する。
+        // NaNとの大小比較はfalseになり、Infinity同士の差もNaNになるため、実値・期待値の有限性を先に確認する。
         if (!double.IsFinite(actual[i]) || !double.IsFinite(expected[i]) || Math.Abs(actual[i] - expected[i]) > tolerance)
             throw new InvalidOperationException($"{label}[{i}]: actual={Format(actual)}, expected={Format(expected)}, tolerance={tolerance}");
     }
