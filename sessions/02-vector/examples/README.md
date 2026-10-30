@@ -130,9 +130,15 @@ dotnet run
 
 比較は未丸めの値で行う。通常の数値表示は不変カルチャーの有効数字9桁（G9）、角度の度表示は小数6桁（F6）、微小残差はG17で表示する。表示文字列や丸めた期待値では判定しない。残差の末尾は実行環境で異なる場合がある。
 
-## 自動チェックと今後の準備
+## 自動チェックとCI
 
-自動チェックは実行ごとに73件行う。`[OK]` は数値比較と条件確認をそれぞれ1件として数え、最後の成功要約と終了コードを確認する。現時点で第2回はGitHub Actionsの実行対象外で、[Issue #31](https://github.com/mkunori/geometry-study-group/issues/31) で専用CIを追加する。第1回の43チェックとCIは独立している。
+自動チェックは実行ごとに73件行う。`[OK]` は数値比較と条件確認をそれぞれ1件として数える。[Check Vector Examples](../../../.github/workflows/check-vector-examples.yml) が第2回のC#コード・プロジェクト・ソリューション・ビルド設定・ワークフロー自身の変更を、PR時とmainへのpush時に検証する。Markdownだけの変更では起動しない。
+
+.NET 10 SDKで `.sln` を復元・Releaseビルドし、このプロジェクトを実行する。終了コード0、実際の `[OK]` が73件、最後の「すべての 73 チェックに成功しました。」が揃っていれば成功する。チェック件数を変更するときは内容をレビューし、ワークフローの `EXPECTED_CHECKS` と、このREADMEの件数・出力例を同じPRで更新する。
+
+PRのChecks、または **Actions → Check Vector Examples → 対象の実行 → VectorExamples (Release)** で確認できる。失敗時は `Restore solution`・`Build solution (Release)`・`Run VectorExamples and verify all 73 checks` の該当ログを開く。`FAIL` があればラベル・成分番号・実値・期待値・許容誤差、件数や成功要約の不一致なら `::error::` のメッセージを確認する。
+
+このCIは `contents: read` の読み取り専用で、Secretや書き込み権限を要求しない。第1回の43チェックとCI、PDFの生成・自動コミットとは独立している。Visual StudioのF5／Ctrl+F5／F9／F11はCIでは検証できないため、上記の手順でローカル確認する。
 
 TODO：教材の内容レビューと、Visual StudioのGUIでF5／Ctrl+F5／F9／F11を使った最終確認を行う。第2回全体は準備中で、PDF公開設定は別の後続作業で扱う。
 
