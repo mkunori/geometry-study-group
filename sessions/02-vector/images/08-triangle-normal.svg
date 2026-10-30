@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="660" viewBox="0 0 1000 660" role="img" aria-labelledby="title desc">
+<title id="title">三角形の法線：頂点順序と退化を区別する</title><desc id="desc">右手系の斜投影。A=(1,1,0)、B=(4,1,0)、C=(3,3,0)。ABCでは外積(0,0,6)、単位法線+Z。ACBでは外積(0,0,-6)、単位法線−Z。同一直線上の3点からは単位法線を作れない。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="660" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">三角形の法線：頂点順序と退化を区別する</text>
+<text x="30" y="77" fill="#172b4d" font-size="22" text-anchor="start">A=(1,1,0)、B=(4,1,0)、C=(3,3,0)：XY平面（斜投影）</text>
+<text x="40" y="130" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">A → B → C：+Z</text>
+<polygon points="100,325 280,271 160,217" fill="#f0e9f5" stroke="#58677c" stroke-width="2" />
+<line x1="100" y1="325" x2="280" y2="271" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<line x1="100" y1="325" x2="160" y2="217" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<line x1="280" y1="271" x2="160" y2="217" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<circle cx="100" cy="325" r="5" fill="#172b4d" />
+<text x="75" y="347" fill="#172b4d" font-size="24" text-anchor="start">A</text>
+<circle cx="280" cy="271" r="5" fill="#172b4d" />
+<text x="295" y="276" fill="#172b4d" font-size="24" text-anchor="start">B</text>
+<circle cx="160" cy="217" r="5" fill="#172b4d" />
+<text x="140" y="199" fill="#172b4d" font-size="24" text-anchor="start">C</text>
+<line x1="180" y1="271" x2="180" y2="176" stroke="#7b3294" stroke-width="5" marker-end="url(#purple)" />
+<text x="200" y="166" fill="#7b3294" font-size="23" text-anchor="start">n=(0,0,1)</text>
+<text x="40" y="420" fill="#172b4d" font-size="24" text-anchor="start">面積3、|外積|=6</text>
+<text x="520" y="130" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">A → C → B：−Z</text>
+<polygon points="580,325 760,271 640,217" fill="#f0e9f5" stroke="#58677c" stroke-width="2" />
+<line x1="580" y1="325" x2="760" y2="271" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<line x1="580" y1="325" x2="640" y2="217" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<line x1="640" y1="217" x2="760" y2="271" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<circle cx="580" cy="325" r="5" fill="#172b4d" />
+<text x="555" y="347" fill="#172b4d" font-size="24" text-anchor="start">A</text>
+<circle cx="760" cy="271" r="5" fill="#172b4d" />
+<text x="775" y="276" fill="#172b4d" font-size="24" text-anchor="start">B</text>
+<circle cx="640" cy="217" r="5" fill="#172b4d" />
+<text x="620" y="199" fill="#172b4d" font-size="24" text-anchor="start">C</text>
+<line x1="660" y1="271" x2="660" y2="366" stroke="#7b3294" stroke-width="5" marker-end="url(#purple)" />
+<text x="680" y="375" fill="#7b3294" font-size="23" text-anchor="start">n=(0,0,−1)</text>
+<text x="520" y="420" fill="#172b4d" font-size="24" text-anchor="start">面積3、|外積|=6</text>
+<line x1="30" y1="452" x2="970" y2="452" stroke="#58677c" stroke-width="1" />
+<text x="35" y="495" fill="#172b4d" font-size="24" text-anchor="start" font-weight="700">退化：A=(1,1)、C″=(2,1)、B=(4,1)</text>
+<line x1="85" y1="565" x2="445" y2="565" stroke="#58677c" stroke-width="2" />
+<circle cx="85" cy="565" r="5" fill="#172b4d" />
+<text x="75" y="597" fill="#172b4d" font-size="24" text-anchor="start">A</text>
+<circle cx="205" cy="565" r="5" fill="#172b4d" />
+<text x="190" y="597" fill="#172b4d" font-size="24" text-anchor="start">C″</text>
+<circle cx="445" cy="565" r="5" fill="#172b4d" />
+<text x="435" y="597" fill="#172b4d" font-size="24" text-anchor="start">B</text>
+<line x1="85" y1="565" x2="205" y2="565" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<line x1="85" y1="550" x2="445" y2="550" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<text x="550" y="550" fill="#7b3294" font-size="25" text-anchor="start">外積0、面積0</text>
+<text x="550" y="600" fill="#172b4d" font-size="24" text-anchor="start">単位法線は定義できない</text>
+</g></svg>

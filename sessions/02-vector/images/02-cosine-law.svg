@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+<title id="title">内積のcosは、同じ三角形の2つの式から</title><desc id="desc">OからPへa=(3,4)、OからQへb=(2,0)。QからPへの差a-b=(1,4)は長さ√17。OPとOQのなす角θに余弦定理を使う。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="560" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">内積のcosは、同じ三角形の2つの式から</text>
+<polygon points="125,430 255,430 320,170" fill="#f0f5fb" stroke="#58677c" stroke-width="2" />
+<line x1="125" y1="430" x2="455" y2="430" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<line x1="125" y1="430" x2="125" y2="100" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<text x="467" y="438" fill="#172b4d" font-size="22" text-anchor="start">X</text>
+<text x="105" y="88" fill="#172b4d" font-size="22" text-anchor="start">Y</text>
+<text x="99" y="458" fill="#172b4d" font-size="22" text-anchor="start">O</text>
+<line x1="125" y1="430" x2="320" y2="170" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<line x1="125" y1="430" x2="255" y2="430" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<line x1="255" y1="430" x2="320" y2="170" stroke="#7b3294" stroke-width="4" marker-end="url(#purple)" />
+<circle cx="320" cy="170" r="5" fill="#1565c0" data-coordinate="3,4" />
+<text x="265" y="150" fill="#1565c0" font-size="24" text-anchor="start">P：a=(3,4)</text>
+<circle cx="255" cy="430" r="5" fill="#ba4b00" data-coordinate="2,0" />
+<text x="230" y="470" fill="#ba4b00" font-size="24" text-anchor="start">Q：b=(2,0)</text>
+<text x="130" y="275" fill="#1565c0" font-size="24" text-anchor="start">|a|=5</text>
+<text x="350" y="295" fill="#7b3294" font-size="22" text-anchor="start">|a−b|=√17</text>
+<path d="M180 430 A55 55 0 0 0 158 386" fill="none" stroke="#58677c" stroke-width="2" />
+<text x="185" y="398" fill="#172b4d" font-size="24" text-anchor="start">θ</text>
+<text x="170" y="454" fill="#ba4b00" font-size="22" text-anchor="start">|b|=2</text>
+<text x="560" y="145" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">成分で展開</text>
+<text x="560" y="197" fill="#172b4d" font-size="24" text-anchor="start">|a−b|² = 1²+4² = 17</text>
+<text x="560" y="270" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">余弦定理でも同じ17</text>
+<text x="560" y="322" fill="#172b4d" font-size="24" text-anchor="start">17 = 25+4−2×5×2 cosθ</text>
+<text x="560" y="395" fill="#7b3294" font-size="26" text-anchor="start">cosθ = 12/20 = 3/5</text>
+<text x="560" y="470" fill="#172b4d" font-size="23" text-anchor="start">差はQからPへ向かう</text>
+</g></svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+<title id="title">3D外積の向き：右手系のXY平面から+Zへ</title><desc id="desc">右手系を斜投影。u=(2,0,0)、v=(0,3,0)。平行四辺形の頂点はO、u、u+v、v。外積は(0,0,6)で+Zを向く。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="560" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">3D外積の向き：右手系のXY平面から+Zへ</text>
+<polygon points="305,425 435,377 321,296 191,344" fill="#f0e9f5" stroke="#58677c" stroke-width="2" />
+<line x1="305" y1="425" x2="500" y2="353" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<text x="510" y="345" fill="#172b4d" font-size="23" text-anchor="start">X</text>
+<line x1="305" y1="425" x2="153" y2="317" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<text x="140" y="295" fill="#172b4d" font-size="23" text-anchor="start">Y</text>
+<line x1="305" y1="425" x2="305" y2="159" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<text x="315" y="151" fill="#172b4d" font-size="23" text-anchor="start">Z</text>
+<line x1="305" y1="425" x2="435" y2="377" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<line x1="305" y1="425" x2="191" y2="344" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<line x1="305" y1="425" x2="305" y2="197" stroke="#7b3294" stroke-width="5" marker-end="url(#purple)" />
+<circle cx="435" cy="377" r="5" fill="#1565c0" data-coordinate="2,0,0" />
+<text x="447" y="395" fill="#1565c0" font-size="24" text-anchor="start">u=(2,0,0)</text>
+<circle cx="191" cy="344" r="5" fill="#ba4b00" data-coordinate="0,3,0" />
+<text x="45" y="365" fill="#ba4b00" font-size="24" text-anchor="start">v=(0,3,0)</text>
+<text x="323" y="258" fill="#7b3294" font-size="26" text-anchor="start">u×v</text>
+<text x="323" y="298" fill="#7b3294" font-size="24" text-anchor="start">(0,0,6)</text>
+<text x="268" y="460" fill="#172b4d" font-size="23" text-anchor="start">O</text>
+<text x="610" y="155" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">eₓ×eᵧ = e<tspan baseline-shift="sub" font-size="20">z</tspan></text>
+<text x="610" y="225" fill="#7b3294" font-size="26" text-anchor="start">u×v = 2×3 e<tspan baseline-shift="sub" font-size="19">z</tspan></text>
+<text x="610" y="295" fill="#172b4d" font-size="24" text-anchor="start">両辺に垂直な+Z方向</text>
+<text x="610" y="365" fill="#172b4d" font-size="24" text-anchor="start">XY平面の面積は6</text>
+<text x="610" y="435" fill="#172b4d" font-size="24" text-anchor="start">右手の指：u → v</text>
+<text x="30" y="530" fill="#172b4d" font-size="22" text-anchor="start">右手系の斜投影。紙面の見かけの角度・長さは測らず、座標を読む。</text>
+</g></svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+<title id="title">外積の大きさ：底辺×高さが面積になる</title><desc id="desc">左は一般の鋭角の模式図で、底辺|u|、斜辺|v|、高さ|v|sinθ。右は共有例u=(2,0)、v=(0,3)で平行四辺形面積6、対角線で分けた三角形面積3。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="560" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">外積の大きさ：底辺×高さが面積になる</text>
+<text x="40" y="105" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">一般の鋭角（模式図）</text>
+<text x="555" y="105" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">共有例：θ=90°</text>
+<polygon points="65,395 305,395 409,235 169,235" fill="#f0e9f5" stroke="#58677c" stroke-width="2" />
+<line x1="65" y1="395" x2="305" y2="395" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<line x1="65" y1="395" x2="169" y2="235" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<line x1="169" y1="235" x2="169" y2="395" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="169" y1="395" x2="182" y2="395" stroke="#58677c" stroke-width="2" />
+<line x1="182" y1="395" x2="182" y2="382" stroke="#58677c" stroke-width="2" />
+<line x1="182" y1="382" x2="169" y2="382" stroke="#58677c" stroke-width="2" />
+<text x="82" y="290" fill="#ba4b00" font-size="24" text-anchor="start">|v|</text>
+<text x="156" y="428" fill="#1565c0" font-size="24" text-anchor="start">底辺 |u|</text>
+<text x="210" y="308" fill="#7b3294" font-size="22" text-anchor="start">高さ |v|sinθ</text>
+<path d="M110 395 A45 45 0 0 0 89.5 357.3" fill="none" stroke="#58677c" stroke-width="2" />
+<text x="120" y="373" fill="#172b4d" font-size="22" text-anchor="start">θ</text>
+<line x1="495" y1="125" x2="495" y2="470" stroke="#58677c" stroke-width="1" />
+<polygon points="600,425 740,425 740,215 600,215" fill="#f0e9f5" stroke="#58677c" stroke-width="2" />
+<polygon points="600,425 740,425 600,215" fill="#e4edf8" stroke="#1565c0" stroke-width="2" />
+<line x1="740" y1="425" x2="600" y2="215" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="600" y1="425" x2="740" y2="425" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<line x1="600" y1="425" x2="600" y2="215" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<text x="651" y="460" fill="#1565c0" font-size="24" text-anchor="start">2</text>
+<text x="565" y="320" fill="#ba4b00" font-size="24" text-anchor="start">3</text>
+<text x="775" y="275" fill="#7b3294" font-size="23" text-anchor="start">平行四辺形6</text>
+<text x="775" y="330" fill="#172b4d" font-size="23" text-anchor="start">三角形3</text>
+<text x="620" y="350" fill="#1565c0" font-size="23" text-anchor="start">面積3</text>
+<text x="40" y="515" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">面積 = |u||v|sinθ</text>
+<text x="555" y="515" fill="#172b4d" font-size="23" text-anchor="start">長方形も平行四辺形の一種</text>
+</g></svg>
