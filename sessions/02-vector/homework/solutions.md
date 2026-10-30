@@ -186,7 +186,7 @@ $$
 
 $$
 \begin{aligned}
-\operatorname{proj}_{kb}a
+\mathrm{proj}_{kb}a
 &=\frac{k(a\cdot b)}{k^2(b\cdot b)}\,kb \\
 &=\frac{a\cdot b}{b\cdot b}\,b
 \end{aligned}
@@ -225,7 +225,7 @@ $$
 
 $$
 \begin{aligned}
-\operatorname{cross2}(u,v)
+\mathrm{cross2}(u,v)
 &=u_xv_y-u_yv_x \\
 &=3\times2-0\times2=6.
 \end{aligned}
@@ -282,8 +282,8 @@ $$
 
 $$
 \begin{aligned}
-\operatorname{cross2}(u,C'-A)&=3\times(-2)-0\times2=-6, \\
-\operatorname{cross2}(u,C''-A)&=3\times0-0\times1=0.
+\mathrm{cross2}(u,C'-A)&=3\times(-2)-0\times2=-6, \\
+\mathrm{cross2}(u,C''-A)&=3\times0-0\times1=0.
 \end{aligned}
 $$
 
