@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+<title id="title">媒介変数：同じ式でも範囲で図形が変わる</title><desc id="desc">X右・Y上。P=(0,0)、r=(4,4)、L(t)=P+trを3つの範囲で比較。t=1/2は(2,2)、t=1は(4,4)。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="560" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">媒介変数：同じ式でも範囲で図形が変わる</text>
+<text x="30" y="108" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">無限直線</text>
+<text x="30" y="158" fill="#7b3294" font-size="24" text-anchor="start">tはすべての実数</text>
+<line x1="48" y1="442" x2="272" y2="218" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="48" y1="442" x2="272" y2="218" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" marker-start="url(#blue)" />
+<circle cx="90" cy="400" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="90,400" data-scale="35" />
+<text x="105" y="445" fill="#1565c0" font-size="24" text-anchor="start">P=(0,0)</text>
+<circle cx="160" cy="330" r="5" fill="#7b3294" data-coordinate="2,2" data-origin="90,400" data-scale="35" />
+<text x="125" y="308" fill="#7b3294" font-size="24" text-anchor="start">t=1/2</text>
+<circle cx="230" cy="260" r="5" fill="#1565c0" data-coordinate="4,4" data-origin="90,400" data-scale="35" />
+<text x="230" y="240" fill="#1565c0" font-size="24" text-anchor="start">t=1</text>
+<text x="145" y="378" fill="#7b3294" font-size="22" text-anchor="start">(2,2)</text>
+<line x1="326" y1="85" x2="326" y2="490" stroke="#58677c" stroke-width="1" />
+<text x="363" y="108" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">半直線</text>
+<text x="363" y="158" fill="#7b3294" font-size="24" text-anchor="start">t ≥ 0</text>
+<line x1="381" y1="442" x2="605" y2="218" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="423" y1="400" x2="605" y2="218" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<circle cx="423" cy="400" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="423,400" data-scale="35" />
+<text x="438" y="445" fill="#1565c0" font-size="24" text-anchor="start">P=(0,0)</text>
+<circle cx="493" cy="330" r="5" fill="#7b3294" data-coordinate="2,2" data-origin="423,400" data-scale="35" />
+<text x="458" y="308" fill="#7b3294" font-size="24" text-anchor="start">t=1/2</text>
+<circle cx="563" cy="260" r="5" fill="#1565c0" data-coordinate="4,4" data-origin="423,400" data-scale="35" />
+<text x="563" y="240" fill="#1565c0" font-size="24" text-anchor="start">t=1</text>
+<text x="478" y="378" fill="#7b3294" font-size="22" text-anchor="start">(2,2)</text>
+<line x1="659" y1="85" x2="659" y2="490" stroke="#58677c" stroke-width="1" />
+<text x="696" y="108" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">閉線分</text>
+<text x="696" y="158" fill="#7b3294" font-size="24" text-anchor="start">0 ≤ t ≤ 1</text>
+<line x1="714" y1="442" x2="938" y2="218" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="756" y1="400" x2="896" y2="260" stroke="#1565c0" stroke-width="5" />
+<circle cx="756" cy="400" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="756,400" data-scale="35" />
+<text x="771" y="445" fill="#1565c0" font-size="24" text-anchor="start">P=(0,0)</text>
+<circle cx="826" cy="330" r="5" fill="#7b3294" data-coordinate="2,2" data-origin="756,400" data-scale="35" />
+<text x="791" y="308" fill="#7b3294" font-size="24" text-anchor="start">t=1/2</text>
+<circle cx="896" cy="260" r="5" fill="#1565c0" data-coordinate="4,4" data-origin="756,400" data-scale="35" />
+<text x="896" y="240" fill="#1565c0" font-size="24" text-anchor="start">t=1</text>
+<text x="811" y="378" fill="#7b3294" font-size="22" text-anchor="start">(2,2)</text>
+<text x="30" y="530" fill="#172b4d" font-size="22" text-anchor="start">方向r=(4,4)は共通。灰の破線は、半直線・線分では範囲に含まれない延長。</text>
+</g></svg>

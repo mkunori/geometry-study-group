@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+<title id="title">同一直線の線分：共通のt区間を調べる</title><desc id="desc">第1線分はP=(0,0)から(4,0)。第2線分は、左が(5,0)から(7,0)でなし、中央が(4,0)から(6,0)で端点、右が(2,0)から(6,0)で区間(2,0)から(4,0)。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="560" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">同一直線の線分：共通のt区間を調べる</text>
+<text x="25" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">離れた区間</text>
+<line x1="20" y1="285" x2="310" y2="285" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="30" y1="285" x2="174" y2="285" stroke="#1565c0" stroke-width="8" />
+<line x1="210" y1="285" x2="282" y2="285" stroke="#ba4b00" stroke-width="4" />
+<circle cx="30" cy="285" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="30,285" data-scale="36" />
+<text x="25" y="320" fill="#1565c0" font-size="24" text-anchor="start">0</text>
+<circle cx="174" cy="285" r="5" fill="#1565c0" data-coordinate="4,0" data-origin="30,285" data-scale="36" />
+<text x="169" y="350" fill="#1565c0" font-size="24" text-anchor="start">4</text>
+<circle cx="210" cy="285" r="5" fill="#ba4b00" data-coordinate="5,0" data-origin="30,285" data-scale="36" />
+<text x="205" y="262" fill="#ba4b00" font-size="24" text-anchor="start">5</text>
+<circle cx="282" cy="285" r="5" fill="#ba4b00" data-coordinate="7,0" data-origin="30,285" data-scale="36" />
+<text x="277" y="262" fill="#ba4b00" font-size="24" text-anchor="start">7</text>
+<text x="25" y="390" fill="#172b4d" font-size="22" text-anchor="start">第1のt区間：[0,1]</text>
+<text x="25" y="435" fill="#172b4d" font-size="22" text-anchor="start">第2：[5/4,7/4]</text>
+<text x="25" y="500" fill="#7b3294" font-size="24" text-anchor="start">共有点なし</text>
+<line x1="326" y1="85" x2="326" y2="520" stroke="#58677c" stroke-width="1" />
+<text x="358" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">端点だけ</text>
+<line x1="353" y1="285" x2="643" y2="285" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="363" y1="285" x2="507" y2="285" stroke="#1565c0" stroke-width="8" />
+<line x1="507" y1="285" x2="579" y2="285" stroke="#ba4b00" stroke-width="4" />
+<circle cx="507" cy="285" r="5" fill="#7b3294" />
+<circle cx="363" cy="285" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="363,285" data-scale="36" />
+<text x="358" y="320" fill="#1565c0" font-size="24" text-anchor="start">0</text>
+<circle cx="507" cy="285" r="5" fill="#1565c0" data-coordinate="4,0" data-origin="363,285" data-scale="36" />
+<text x="502" y="350" fill="#1565c0" font-size="24" text-anchor="start">4</text>
+<circle cx="507" cy="285" r="5" fill="#ba4b00" data-coordinate="4,0" data-origin="363,285" data-scale="36" />
+<text x="502" y="262" fill="#ba4b00" font-size="24" text-anchor="start">4</text>
+<circle cx="579" cy="285" r="5" fill="#ba4b00" data-coordinate="6,0" data-origin="363,285" data-scale="36" />
+<text x="574" y="262" fill="#ba4b00" font-size="24" text-anchor="start">6</text>
+<text x="358" y="390" fill="#172b4d" font-size="22" text-anchor="start">第1のt区間：[0,1]</text>
+<text x="358" y="435" fill="#172b4d" font-size="22" text-anchor="start">第2：[1,3/2]</text>
+<text x="358" y="500" fill="#7b3294" font-size="24" text-anchor="start">(4,0) の1点</text>
+<line x1="659" y1="85" x2="659" y2="520" stroke="#58677c" stroke-width="1" />
+<text x="691" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">区間が重なる</text>
+<line x1="686" y1="285" x2="976" y2="285" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="696" y1="285" x2="840" y2="285" stroke="#1565c0" stroke-width="8" />
+<line x1="768" y1="285" x2="912" y2="285" stroke="#ba4b00" stroke-width="4" />
+<line x1="768" y1="285" x2="840" y2="285" stroke="#7b3294" stroke-width="10" />
+<circle cx="696" cy="285" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="696,285" data-scale="36" />
+<text x="691" y="320" fill="#1565c0" font-size="24" text-anchor="start">0</text>
+<circle cx="840" cy="285" r="5" fill="#1565c0" data-coordinate="4,0" data-origin="696,285" data-scale="36" />
+<text x="835" y="350" fill="#1565c0" font-size="24" text-anchor="start">4</text>
+<circle cx="768" cy="285" r="5" fill="#ba4b00" data-coordinate="2,0" data-origin="696,285" data-scale="36" />
+<text x="763" y="262" fill="#ba4b00" font-size="24" text-anchor="start">2</text>
+<circle cx="912" cy="285" r="5" fill="#ba4b00" data-coordinate="6,0" data-origin="696,285" data-scale="36" />
+<text x="907" y="262" fill="#ba4b00" font-size="24" text-anchor="start">6</text>
+<text x="691" y="390" fill="#172b4d" font-size="22" text-anchor="start">第1のt区間：[0,1]</text>
+<text x="691" y="435" fill="#172b4d" font-size="22" text-anchor="start">第2：[1/2,3/2]</text>
+<text x="691" y="500" fill="#7b3294" font-size="24" text-anchor="start">(2,0) 〜 (4,0)</text>
+<text x="30" y="545" fill="#172b4d" font-size="22" text-anchor="start">図中の0・2・4・5・6・7はX座標。Y座標はすべて0。</text>
+</g></svg>

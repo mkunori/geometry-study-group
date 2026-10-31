@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<title id="title">外積で係数を取り出す：符号付き面積の比</title><desc id="desc">P=(0,0)、r=(4,4)、s=(4,-4)、w=Q-P=(0,4)。r×s=-32、w×s=-16、w×r=-16。各外積は2Dのスカラー値。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="650" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">外積で係数を取り出す：符号付き面積の比</text>
+<text x="25" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">r × s = -32</text>
+<polygon points="40,365 136,269 232,365 136,461" fill="#ece5f3" stroke="#58677c" stroke-width="2" />
+<line x1="40" y1="365" x2="136" y2="269" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<line x1="40" y1="365" x2="136" y2="461" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<circle cx="40" cy="365" r="5" fill="#172b4d" />
+<text x="30" y="395" fill="#172b4d" font-size="24" text-anchor="start">O</text>
+<circle cx="136" cy="269" r="5" fill="#1565c0" data-coordinate="4,4" data-origin="40,365" data-scale="24" />
+<text x="148" y="257" fill="#1565c0" font-size="24" text-anchor="start">r=(4,4)</text>
+<circle cx="136" cy="461" r="5" fill="#ba4b00" data-coordinate="4,-4" data-origin="40,365" data-scale="24" />
+<text x="148" y="489" fill="#ba4b00" font-size="24" text-anchor="start">s=(4,-4)</text>
+<text x="25" y="545" fill="#7b3294" font-size="24" text-anchor="start">符号付き面積 -32</text>
+<line x1="326" y1="85" x2="326" y2="535" stroke="#58677c" stroke-width="1" />
+<text x="358" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">w × s = -16</text>
+<polygon points="373,365 373,269 469,365 469,461" fill="#ece5f3" stroke="#58677c" stroke-width="2" />
+<line x1="373" y1="365" x2="373" y2="269" stroke="#7b3294" stroke-width="4" marker-end="url(#purple)" />
+<line x1="373" y1="365" x2="469" y2="461" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<circle cx="373" cy="365" r="5" fill="#172b4d" />
+<text x="363" y="395" fill="#172b4d" font-size="24" text-anchor="start">O</text>
+<circle cx="373" cy="269" r="5" fill="#7b3294" data-coordinate="0,4" data-origin="373,365" data-scale="24" />
+<text x="385" y="257" fill="#7b3294" font-size="24" text-anchor="start">w=(0,4)</text>
+<circle cx="469" cy="461" r="5" fill="#ba4b00" data-coordinate="4,-4" data-origin="373,365" data-scale="24" />
+<text x="481" y="489" fill="#ba4b00" font-size="24" text-anchor="start">s=(4,-4)</text>
+<text x="358" y="545" fill="#7b3294" font-size="24" text-anchor="start">符号付き面積 -16</text>
+<line x1="659" y1="85" x2="659" y2="535" stroke="#58677c" stroke-width="1" />
+<text x="691" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">w × r = -16</text>
+<polygon points="706,365 706,269 802,173 802,269" fill="#ece5f3" stroke="#58677c" stroke-width="2" />
+<line x1="706" y1="365" x2="706" y2="269" stroke="#7b3294" stroke-width="4" marker-end="url(#purple)" />
+<line x1="706" y1="365" x2="802" y2="269" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<circle cx="706" cy="365" r="5" fill="#172b4d" />
+<text x="696" y="395" fill="#172b4d" font-size="24" text-anchor="start">O</text>
+<circle cx="706" cy="269" r="5" fill="#7b3294" data-coordinate="0,4" data-origin="706,365" data-scale="24" />
+<text x="718" y="257" fill="#7b3294" font-size="24" text-anchor="start">w=(0,4)</text>
+<circle cx="802" cy="269" r="5" fill="#1565c0" data-coordinate="4,4" data-origin="706,365" data-scale="24" />
+<text x="814" y="297" fill="#1565c0" font-size="24" text-anchor="start">r=(4,4)</text>
+<text x="691" y="545" fill="#7b3294" font-size="24" text-anchor="start">符号付き面積 -16</text>
+<text x="35" y="590" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">t = (−16)/(−32) = 1/2</text>
+<text x="520" y="590" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">u = (−16)/(−32) = 1/2</text>
+</g></svg>

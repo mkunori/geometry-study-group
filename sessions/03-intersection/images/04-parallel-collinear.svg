@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+<title id="title">分母0を分ける：平行で別の直線か、同一直線か</title><desc id="desc">固定例B。P=(0,0)、r=(4,0)、s=(2,0)。左はQ=(0,2)でずれとの外積-8。右はQ=(1,0)で外積0となり同一直線。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="560" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">分母0を分ける：平行で別の直線か、同一直線か</text>
+<text x="30" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">平行：Q=(0,2)</text>
+<line x1="30" y1="330" x2="455" y2="330" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="30" y1="180" x2="455" y2="180" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="65" y1="330" x2="65" y2="180" stroke="#7b3294" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="65" y1="330" x2="365" y2="330" stroke="#1565c0" stroke-width="6" marker-end="url(#blue)" />
+<line x1="65" y1="180" x2="215" y2="180" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<circle cx="65" cy="330" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="65,330" data-scale="75" />
+<text x="65" y="368" fill="#1565c0" font-size="24" text-anchor="start">P</text>
+<circle cx="65" cy="180" r="5" fill="#ba4b00" data-coordinate="0,2" data-origin="65,330" data-scale="75" />
+<text x="65" y="158" fill="#ba4b00" font-size="24" text-anchor="start">Q</text>
+<text x="315" y="365" fill="#1565c0" font-size="22" text-anchor="start">r=(4,0)</text>
+<text x="145" y="160" fill="#ba4b00" font-size="22" text-anchor="start">s=(2,0)</text>
+<text x="30" y="430" fill="#172b4d" font-size="23" text-anchor="start">D=0、cross2(Q−P,r)=−8</text>
+<text x="30" y="490" fill="#7b3294" font-size="26" text-anchor="start">共有点なし</text>
+<text x="530" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">一致：Q=(1,0)</text>
+<line x1="530" y1="330" x2="955" y2="330" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="565" y1="330" x2="865" y2="330" stroke="#1565c0" stroke-width="6" marker-end="url(#blue)" />
+<line x1="640" y1="330" x2="790" y2="330" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<circle cx="565" cy="330" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="565,330" data-scale="75" />
+<text x="565" y="368" fill="#1565c0" font-size="24" text-anchor="start">P</text>
+<circle cx="640" cy="330" r="5" fill="#ba4b00" data-coordinate="1,0" data-origin="565,330" data-scale="75" />
+<text x="640" y="308" fill="#ba4b00" font-size="24" text-anchor="start">Q</text>
+<text x="815" y="365" fill="#1565c0" font-size="22" text-anchor="start">r=(4,0)</text>
+<text x="645" y="270" fill="#ba4b00" font-size="22" text-anchor="start">s=(2,0)</text>
+<text x="530" y="430" fill="#172b4d" font-size="23" text-anchor="start">D=0、cross2(Q−P,r)=0</text>
+<text x="530" y="490" fill="#7b3294" font-size="26" text-anchor="start">無限直線全体が共通</text>
+<line x1="495" y1="85" x2="495" y2="515" stroke="#58677c" stroke-width="1" />
+</g></svg>
