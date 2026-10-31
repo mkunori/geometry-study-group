@@ -68,7 +68,7 @@ internal static class Program
         V2 p = (0, 0), r = (4, 4), q = (0, 4), s = (4, -4);
         var w = Sub2(q, p);
         double denominator = Cross2(r, s), numeratorT = Cross2(w, s), numeratorU = Cross2(w, r);
-        Check("A: 分母・分子T・分子U", [denominator, numeratorT, numeratorU], [-31, -16, -16]);
+        Check("A: 分母・分子T・分子U", [denominator, numeratorT, numeratorU], [-32, -16, -16]);
         var result = LineLine2(p, r, q, s);
         Kind2("A: 唯一の交点", result, IntersectionKind.Point);
         Check("A: t/u/交点", [result.T!.Value, result.U!.Value, result.Point!.Value.X, result.Point.Value.Y], [.5, .5, 2, 2]);
