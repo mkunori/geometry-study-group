@@ -1,0 +1,76 @@
+name: Check Intersection Examples
+
+on:
+  pull_request:
+    paths:
+      - 'sessions/03-intersection/examples/**/*.cs'
+      - 'sessions/03-intersection/examples/**/*.csproj'
+      - 'sessions/03-intersection/examples/**/*.sln'
+      - 'sessions/03-intersection/examples/**/*.props'
+      - 'sessions/03-intersection/examples/**/*.targets'
+      - 'global.json'
+      - 'Directory.Build.*'
+      - '.github/workflows/check-intersection-examples.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'sessions/03-intersection/examples/**/*.cs'
+      - 'sessions/03-intersection/examples/**/*.csproj'
+      - 'sessions/03-intersection/examples/**/*.sln'
+      - 'sessions/03-intersection/examples/**/*.props'
+      - 'sessions/03-intersection/examples/**/*.targets'
+      - 'global.json'
+      - 'Directory.Build.*'
+      - '.github/workflows/check-intersection-examples.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: intersection-examples-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  intersection-examples:
+    name: IntersectionExamples (Release)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      SOLUTION: sessions/03-intersection/examples/IntersectionExamples.sln
+      PROJECT: sessions/03-intersection/examples/IntersectionExamples.csproj
+      EXPECTED_CHECKS: '155'
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+      DOTNET_NOLOGO: '1'
+    steps:
+      - name: Check out PR or push revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up .NET 10 SDK
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: '10.0.401'
+
+      - name: Restore solution
+        run: dotnet restore "$SOLUTION"
+
+      - name: Build solution (Release)
+        run: dotnet build "$SOLUTION" --configuration Release --no-restore
+
+      - name: Run IntersectionExamples and verify all 155 checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          output="$RUNNER_TEMP/intersection-examples.log"
+          dotnet run --project "$PROJECT" --configuration Release --no-build | tee "$output"
+          passed_checks=$(grep -cE '^[[:space:]]*\[OK\] ' "$output" || true)
+          if [[ "$passed_checks" -ne "$EXPECTED_CHECKS" ]]; then
+            echo "::error::Expected $EXPECTED_CHECKS successful checks, got $passed_checks. Review any intentional change to the checks."
+            exit 1
+          fi
+          if ! grep -Fq "すべての $EXPECTED_CHECKS チェックに成功しました。" "$output"; then
+            echo "::error::The expected success summary was not printed."
+            exit 1
+          fi
+          echo "Verified all $EXPECTED_CHECKS checks."

@@ -138,10 +138,18 @@ Kindを確認してから対応するフィールドを使う。`Point=null` を
 
 `1+1e-13` の差はdoubleには残るがfloatへ丸めると消え、外積値が変わる。floatからdoubleへ戻しても失われた差は復元できない。比較は表示前の値で行い、表示は通常G9、微小な分母はG17とする。
 
-## 自動チェックの確認と今後の作業
+## 自動チェックとCI
 
 実行時の155チェックは、数値・残差・分類と値の有無・範囲の各検証呼び出しを1件として数える。題材内の入力反復もそれぞれ数える。7題材の件数8／9／34／10／18／20／56、実際の `[OK]` 155件、最後の成功要約、終了コード0が揃うことを確認する。`Check` は実値と期待値の両方の有限性を確認し、NaN比較やInfinityの差による見逃しを避ける。
 
-TODO：教材レビューとVisual StudioのGUIでのF5／Ctrl+F5／F9／F11の最終確認を行う。第3回専用のGitHub Actions CIは後続Issueで追加する。現時点ではローカルでビルド・実行し、チェック数を変更するときは題材の内容とこのREADMEの件数・出力例を同時にレビューする。PDF生成・公開は後続作業で、第3回全体は準備中を維持する。
+[Check Intersection Examples](../../../.github/workflows/check-intersection-examples.yml) は、第3回のC#コード（`.cs`）・プロジェクト（`.csproj`）・ソリューション（`.sln`）・ビルド設定（`.props`／`.targets`）、ルート共通設定の `global.json`／`Directory.Build.*`、ワークフロー自身の変更を、PR時とmainへのpush時に検証する。Markdownだけの変更では起動しない。
+
+Ubuntu 24.04・.NET SDK 10.0.401でソリューションをrestoreし、Releaseビルドして実行する。終了コード0、実際の `[OK]` 155件、期待する成功要約の3点を確認する。途中で失敗した場合も実行コマンドの失敗を伝播する。チェック数を変える場合は題材の内容をレビューし、ワークフローの `EXPECTED_CHECKS` と、このREADMEの件数・出力例を同じPRで更新する。
+
+PRのChecks、または **Actions → Check Intersection Examples → 対象の実行 → IntersectionExamples (Release)** で確認できる。失敗時は `Restore solution`・`Build solution (Release)`・`Run IntersectionExamples and verify all 155 checks` の該当ログを開く。`FAIL` のラベルから式・分類・実値・期待値・許容誤差を確認する。件数や成功要約の不一致は `::error::` で表示する。
+
+CIの権限は `contents: read` のみで、PAT・Secret・書き込み権限は不要。チェックアウトした認証情報を保持せず、ソースやPDFの自動コミットも行わない。第1回43件・第2回73件の専用CI、PDF生成とは独立している。
+
+TODO：教材レビューとVisual StudioのGUIでのF5／Ctrl+F5／F9／F11の最終確認を行う。GUIのデバッグ操作はこのCIでは検証できないため、上の手順でローカル確認する。PDF生成・公開は後続作業で、第3回全体は準備中を維持する。
 
 [この回のトップへ戻る](../README.md)
