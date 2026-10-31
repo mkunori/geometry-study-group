@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+<title id="title">分母0の直線×平面：位置によって結果が違う</title><desc id="desc">固定例Dの例外。平面z=2、n=(0,0,6)、方向d=(1,0,0)。左はP=(1,2,0)で交点なし、右はP=(1,2,2)で直線全体が平面内にある。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="600" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">分母0の直線×平面：位置によって結果が違う</text>
+<text x="30" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">平行で離れる</text>
+<polygon points="188.75,410.5 383.75,345.5 270,274 75,339" fill="#e5eef9" stroke="#58677c" stroke-width="2" fill-opacity=".72" />
+<line x1="147.8" y1="405.3" x2="323.3" y2="346.8" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" marker-start="url(#blue)" />
+<line x1="198.5" y1="388.4" x2="198.5" y2="341.6" stroke="#7b3294" stroke-width="2" stroke-dasharray="7 6" />
+<circle cx="198.5" cy="388.4" r="5" fill="#1565c0" data-coordinate="1,2,0" />
+<text x="40" y="420" fill="#1565c0" font-size="24" text-anchor="start">P=(1,2,0)</text>
+<text x="260" y="250" fill="#1565c0" font-size="22" text-anchor="start">d=(1,0,0)</text>
+<text x="30" y="180" fill="#172b4d" font-size="23" text-anchor="start">平面 z=2</text>
+<text x="30" y="475" fill="#172b4d" font-size="24" text-anchor="start">分母0、分子12</text>
+<text x="30" y="530" fill="#7b3294" font-size="26" text-anchor="start">共有点なし</text>
+<text x="530" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">平面内の直線</text>
+<polygon points="688.75,410.5 883.75,345.5 770,274 575,339" fill="#e5eef9" stroke="#58677c" stroke-width="2" fill-opacity=".72" />
+<line x1="647.8" y1="358.5" x2="823.3" y2="300" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" marker-start="url(#blue)" />
+<circle cx="698.5" cy="341.6" r="5" fill="#1565c0" data-coordinate="1,2,2" />
+<text x="540" y="420" fill="#1565c0" font-size="24" text-anchor="start">P=(1,2,2)</text>
+<text x="760" y="250" fill="#1565c0" font-size="22" text-anchor="start">d=(1,0,0)</text>
+<text x="530" y="180" fill="#172b4d" font-size="23" text-anchor="start">平面 z=2</text>
+<text x="530" y="475" fill="#172b4d" font-size="24" text-anchor="start">分母0、分子0</text>
+<text x="530" y="530" fill="#7b3294" font-size="26" text-anchor="start">直線全体が共通</text>
+<line x1="495" y1="85" x2="495" y2="555" stroke="#58677c" stroke-width="1" />
+</g></svg>
