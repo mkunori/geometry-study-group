@@ -150,6 +150,6 @@ PRのChecks、または **Actions → Check Intersection Examples → 対象の�
 
 CIの権限は `contents: read` のみで、PAT・Secret・書き込み権限は不要。チェックアウトした認証情報を保持せず、ソースやPDFの自動コミットも行わない。第1回43件・第2回73件の専用CI、PDF生成とは独立している。
 
-TODO：教材レビューとVisual StudioのGUIでのF5／Ctrl+F5／F9／F11の最終確認を行う。GUIのデバッグ操作はこのCIでは検証できないため、上の手順でローカル確認する。PDF生成・公開は後続作業で、第3回全体は準備中を維持する。
+TODO：教材レビューとVisual StudioのGUIでのF5／Ctrl+F5／F9／F11の最終確認を行う。GUIのデバッグ操作はこのCIでは検証できないため、上の手順でローカル確認する。[詳細解説のPDF下書き](../output/README.md) も通読に利用できる。公開承認は後続作業で、第3回全体は準備中を維持する。
 
 [この回のトップへ戻る](../README.md)
