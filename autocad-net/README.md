@@ -2,7 +2,7 @@
 
 **公式資料とAPI仕様を静的に照合した参考コード／AutoCAD実機未検証。ビルド・NETLOAD・コマンド実行は未実施。** Windows版AutoCAD 2026 Update 1.2（2026.1.2）以降／.NET 10／Visual Studio 2026を対象にする。Update 1.1以前の.NET 8版やAutoCAD 2027向けへ読み替えない。
 
-数学教材で学ぶ点・変位・座標系を、AutoCADの図面DBへ接続する入口。[数学教材のC#コンソール](../sessions/05-geometry-check/examples/README.md) とは独立した **1ソリューション・1 Class Library** で、各章のコードは同じプロジェクト内のファイルとコマンド名で分ける。00共通の2コマンド、[第1回の行列・座標変換](samples/01-matrix/README.md) と [第2回の内積・外積・法線](samples/02-vector/README.md) の各3コマンドを用意している。
+数学教材で学ぶ点・変位・座標系を、AutoCADの図面DBへ接続する入口。[数学教材のC#コンソール](../sessions/05-geometry-check/examples/README.md) とは独立した **1ソリューション・1 Class Library** で、各章のコードは同じプロジェクト内のファイルとコマンド名で分ける。00共通の2コマンド、[第1回の行列・座標変換](samples/01-matrix/README.md)、[第2回の内積・外積・法線](samples/02-vector/README.md)、[第3回の線分・平面との交差](samples/03-intersection/README.md) の各3コマンドを用意している。
 
 ## 読む順序とファイル
 
@@ -36,7 +36,7 @@ AutoCADがない場合は、セットアップの前提と参考資料を読み�
 | [00-common](samples/00-common/README.md) | コマンド・図面DB・Transaction | 参考コード作成、ビルド・実機未検証 |
 | [01-matrix](samples/01-matrix/README.md) | [第1回：座標・変換](../sessions/01-matrix/explanation.md) | 参考コード作成、ビルド・実機未検証 |
 | [02-vector](samples/02-vector/README.md) | [第2回：内積・外積](../sessions/02-vector/explanation.md) | 参考コード作成、ビルド・実機未検証 |
-| [03-intersection](samples/03-intersection/README.md) | [第3回：交点](../sessions/03-intersection/explanation.md) | TODO：章別コードは後続Issue |
+| [03-intersection](samples/03-intersection/README.md) | [第3回：交点](../sessions/03-intersection/explanation.md) | 参考コード作成、ビルド・実機未検証 |
 | [04-modeling](samples/04-modeling/README.md) | [第4回：モデル](../sessions/04-modeling/explanation.md) | TODO：章別コードは後続Issue |
 | [05-geometry-check](samples/05-geometry-check/README.md) | [第5回：内外・干渉](../sessions/05-geometry-check/explanation.md) | TODO：章別コードは後続Issue |
 
