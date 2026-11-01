@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<title id="title">固定例B：同じ長方形断面を、X方向へ長さ5進める</title><desc id="desc">N=+Y、B=+Z、T=+X。始端X=0と終端X=5、Y=-1から1、Z=-0.5から0.5。8頂点の番号は始端0〜3、終端4〜7。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="650" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">固定例B：同じ長方形断面を、X方向へ長さ5進める</text>
+<polygon points="307.75,426 192.25,353.4 687.25,188.4 802.75,261" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="192.25,353.4 192.25,294 687.25,129 687.25,188.4" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="192.25,294 307.75,366.6 802.75,201.6 687.25,129" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="307.75,366.6 307.75,426 802.75,261 802.75,201.6" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="307.75,426 192.25,353.4 192.25,294 307.75,366.6" fill="#e5eef9" fill-opacity=".65" stroke="#1565c0" stroke-width="2" />
+<polygon points="802.75,261 687.25,188.4 687.25,129 802.75,201.6" fill="#f9e9db" fill-opacity=".65" stroke="#ba4b00" stroke-width="2" />
+<line x1="307.75" y1="426" x2="802.75" y2="261" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="192.25" y1="353.4" x2="687.25" y2="188.4" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="192.25" y1="294" x2="687.25" y2="129" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="307.75" y1="366.6" x2="802.75" y2="201.6" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<circle cx="307.75" cy="426" r="5" fill="#1565c0" data-coordinate="0,-1,-0.5" data-origin="250,360" data-scale="1.65" data-projection="p3" />
+<text x="319.75" y="456" fill="#1565c0" font-size="24" text-anchor="start">0</text>
+<circle cx="192.25" cy="353.4" r="5" fill="#1565c0" data-coordinate="0,1,-0.5" data-origin="250,360" data-scale="1.65" data-projection="p3" />
+<text x="167.25" y="388.4" fill="#1565c0" font-size="24" text-anchor="start">1</text>
+<circle cx="192.25" cy="294" r="5" fill="#1565c0" data-coordinate="0,1,0.5" data-origin="250,360" data-scale="1.65" data-projection="p3" />
+<text x="167.25" y="276" fill="#1565c0" font-size="24" text-anchor="start">2</text>
+<circle cx="307.75" cy="366.6" r="5" fill="#1565c0" data-coordinate="0,-1,0.5" data-origin="250,360" data-scale="1.65" data-projection="p3" />
+<text x="319.75" y="348.6" fill="#1565c0" font-size="24" text-anchor="start">3</text>
+<circle cx="802.75" cy="261" r="5" fill="#ba4b00" data-coordinate="5,-1,-0.5" data-origin="250,360" data-scale="1.65" data-projection="p3" />
+<text x="814.75" y="291" fill="#ba4b00" font-size="24" text-anchor="start">4</text>
+<circle cx="687.25" cy="188.4" r="5" fill="#ba4b00" data-coordinate="5,1,-0.5" data-origin="250,360" data-scale="1.65" data-projection="p3" />
+<text x="662.25" y="223.4" fill="#ba4b00" font-size="24" text-anchor="start">5</text>
+<circle cx="687.25" cy="129" r="5" fill="#ba4b00" data-coordinate="5,1,0.5" data-origin="250,360" data-scale="1.65" data-projection="p3" />
+<text x="662.25" y="111" fill="#ba4b00" font-size="24" text-anchor="start">6</text>
+<circle cx="802.75" cy="201.6" r="5" fill="#ba4b00" data-coordinate="5,-1,0.5" data-origin="250,360" data-scale="1.65" data-projection="p3" />
+<text x="814.75" y="183.6" fill="#ba4b00" font-size="24" text-anchor="start">7</text>
+<line x1="250" y1="478.8" x2="745" y2="313.8" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="450" y="470" fill="#7b3294" font-size="26" text-anchor="start">T=+X、L=5</text>
+<text x="40" y="112" fill="#1565c0" font-size="26" text-anchor="start" font-weight="700">始端：X=0</text>
+<text x="790" y="112" fill="#ba4b00" font-size="26" text-anchor="start" font-weight="700">終端：X=5</text>
+<text x="40" y="505" fill="#172b4d" font-size="22" text-anchor="start">(Y,Z) の輪郭： (−1,−0.5) → (1,−0.5) → (1,0.5) → (−1,0.5)</text>
+<text x="40" y="555" fill="#172b4d" font-size="23" text-anchor="start">幅2（N方向）・高さ1（B方向）。終端では同じY,ZでX=5。</text>
+<text x="40" y="610" fill="#172b4d" font-size="22" text-anchor="start">斜投影：紙面の見かけの長さ・角度ではなく、座標を読む。</text>
+</g></svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="title desc">
+<title id="title">キャップ：始端は−T、終端は+Tへ向ける</title><desc id="desc">両端とも+X側から原点方向に見る。横軸+Y、縦軸+Z。始端の三角形(0,2,1)は時計回りで-X、終端(4,5,6)は反時計回りで+Xを向く。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="640" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">キャップ：始端は−T、終端は+Tへ向ける</text>
+<polygon points="140,365 360,365 360,255 140,255" fill="#e5eef9" fill-opacity=".65" stroke="#1565c0" stroke-width="2" />
+<line x1="140" y1="365" x2="360" y2="255" stroke="#1565c0" stroke-width="2" stroke-dasharray="7 6" />
+<circle cx="140" cy="365" r="5" fill="#1565c0" />
+<text x="120" y="400" fill="#1565c0" font-size="24" text-anchor="start">0</text>
+<circle cx="360" cy="365" r="5" fill="#1565c0" />
+<text x="370" y="400" fill="#1565c0" font-size="24" text-anchor="start">1</text>
+<circle cx="360" cy="255" r="5" fill="#1565c0" />
+<text x="370" y="237" fill="#1565c0" font-size="24" text-anchor="start">2</text>
+<circle cx="140" cy="255" r="5" fill="#1565c0" />
+<text x="120" y="237" fill="#1565c0" font-size="24" text-anchor="start">3</text>
+<line x1="195" y1="337.5" x2="283" y2="293.5" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<line x1="360" y1="282.5" x2="360" y2="326.5" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<line x1="305" y1="365" x2="217" y2="365" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<text x="50" y="112" fill="#1565c0" font-size="26" text-anchor="start" font-weight="700">始端 X=0</text>
+<text x="50" y="175" fill="#172b4d" font-size="22" text-anchor="start">+X側から見る（共通の視点）</text>
+<text x="50" y="445" fill="#172b4d" font-size="24" text-anchor="start">(0,2,1)、(0,3,2)</text>
+<text x="40" y="500" fill="#1565c0" font-size="24" text-anchor="start">外積 (−2,0,0) → −X</text>
+<polygon points="640,365 860,365 860,255 640,255" fill="#f9e9db" fill-opacity=".65" stroke="#ba4b00" stroke-width="2" />
+<line x1="640" y1="365" x2="860" y2="255" stroke="#ba4b00" stroke-width="2" stroke-dasharray="7 6" />
+<circle cx="640" cy="365" r="5" fill="#ba4b00" />
+<text x="620" y="400" fill="#ba4b00" font-size="24" text-anchor="start">4</text>
+<circle cx="860" cy="365" r="5" fill="#ba4b00" />
+<text x="870" y="400" fill="#ba4b00" font-size="24" text-anchor="start">5</text>
+<circle cx="860" cy="255" r="5" fill="#ba4b00" />
+<text x="870" y="237" fill="#ba4b00" font-size="24" text-anchor="start">6</text>
+<circle cx="640" cy="255" r="5" fill="#ba4b00" />
+<text x="620" y="237" fill="#ba4b00" font-size="24" text-anchor="start">7</text>
+<line x1="695" y1="365" x2="783" y2="365" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<line x1="860" y1="337.5" x2="860" y2="293.5" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<line x1="805" y1="282.5" x2="717" y2="326.5" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<text x="550" y="112" fill="#ba4b00" font-size="26" text-anchor="start" font-weight="700">終端 X=5</text>
+<text x="550" y="175" fill="#172b4d" font-size="22" text-anchor="start">+X側から見る（共通の視点）</text>
+<text x="550" y="445" fill="#172b4d" font-size="24" text-anchor="start">(4,5,6)、(4,6,7)</text>
+<text x="540" y="500" fill="#ba4b00" font-size="24" text-anchor="start">外積 (2,0,0) → +X</text>
+<line x1="500" y1="85" x2="500" y2="525" stroke="#58677c" stroke-width="1" />
+<text x="35" y="565" fill="#172b4d" font-size="22" text-anchor="start">両図とも右が+Y（N）、上が+Z（B）。+Xは紙面の手前、−Xは奥。</text>
+<text x="35" y="610" fill="#172b4d" font-size="22" text-anchor="start">始端は時計回り、終端は反時計回り。点の位置が同じでも順序で表裏が変わる。</text>
+</g></svg>

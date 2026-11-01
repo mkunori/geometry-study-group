@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="title desc">
+<title id="title">スイープの注意：接線だけでは姿勢も干渉も決まらない</title><desc id="desc">左は同じ接線Tを紙面手前へ向けた2つの断面姿勢。右は幅を持つ形状が近接する区間で干渉し得る概念図。固定例Cの完成形状を表してはいない。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="640" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">スイープの注意：接線だけでは姿勢も干渉も決まらない</text>
+<text x="35" y="110" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">同じTでも断面は回せる</text>
+<polygon points="150,350 350,350 350,250 150,250" fill="#e5eef9" fill-opacity=".3" stroke="#1565c0" stroke-width="2" />
+<line x1="250" y1="300" x2="415" y2="300" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<line x1="250" y1="300" x2="250" y2="155" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<polygon points="214.645,406.066 356.066,264.645 285.355,193.934 143.934,335.355" fill="#f9e9db" fill-opacity=".3" stroke="#ba4b00" stroke-width="2" />
+<line x1="250" y1="300" x2="366.673" y2="183.327" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<line x1="250" y1="300" x2="147.47" y2="197.47" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<text x="425" y="310" fill="#1565c0" font-size="24" text-anchor="start">N</text>
+<text x="265" y="140" fill="#1565c0" font-size="24" text-anchor="start">B</text>
+<text x="380" y="180" fill="#ba4b00" font-size="24" text-anchor="start">Nφ</text>
+<text x="110" y="180" fill="#ba4b00" font-size="24" text-anchor="start">Bφ</text>
+<circle cx="250" cy="300" r="5" fill="#7b3294" />
+<text x="185" y="465" fill="#7b3294" font-size="24" text-anchor="start">T：手前</text>
+<text x="535" y="110" fill="#172b4d" font-size="25" text-anchor="start" font-weight="700">近接する経路：干渉の可能性</text>
+<rect x="590" y="225" width="330" height="90" fill="#ba4b00" fill-opacity=".17" />
+<rect x="590" y="285" width="330" height="90" fill="#ba4b00" fill-opacity=".17" />
+<line x1="590" y1="270" x2="920" y2="270" stroke="#58677c" stroke-width="3" marker-end="url(#gray)" />
+<line x1="920" y1="270" x2="920" y2="330" stroke="#58677c" stroke-width="3" />
+<line x1="920" y1="330" x2="590" y2="330" stroke="#58677c" stroke-width="3" marker-end="url(#gray)" />
+<polygon points="590,285 920,285 920,315 590,315" fill="#ece5f3" fill-opacity=".8" stroke="#7b3294" stroke-width="2" />
+<text x="585" y="225" fill="#ba4b00" font-size="23" text-anchor="start">幅を持たせた領域</text>
+<text x="620" y="400" fill="#7b3294" font-size="23" text-anchor="start">紫：重なる領域</text>
+<text x="40" y="530" fill="#172b4d" font-size="22" text-anchor="start">直交単位基底でも、隣接断面の向きの連続性と面の自己交差は別に調べる。</text>
+<text x="40" y="590" fill="#172b4d" font-size="22" text-anchor="start">模式図：角の処理や輸送フレームの汎用アルゴリズムは発展課題。</text>
+</g></svg>

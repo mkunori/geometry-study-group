@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+<title id="title">側面：対応する辺をつなぎ、対角線で2枚に分ける</title><desc id="desc">固定例BのZ=-0.5の側面。三角形(0,1,5)と(0,5,4)を同じ向きで接続する。外積は両方(0,0,-10)となる。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="600" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">側面：対応する辺をつなぎ、対角線で2枚に分ける</text>
+<polygon points="299.5,408 180.5,333.2 690.5,163.2" fill="#e5eef9" fill-opacity=".65" stroke="#1565c0" stroke-width="2" />
+<polygon points="299.5,408 690.5,163.2 809.5,238" fill="#f9e9db" fill-opacity=".65" stroke="#ba4b00" stroke-width="2" />
+<line x1="299.5" y1="408" x2="690.5" y2="163.2" stroke="#7b3294" stroke-width="3" stroke-dasharray="7 6" />
+<circle cx="299.5" cy="408" r="5" fill="#172b4d" data-coordinate="0,-1,-0.5" data-origin="240,340" data-scale="1.7" data-projection="p3" />
+<text x="309.5" y="448" fill="#172b4d" font-size="24" text-anchor="start">0</text>
+<circle cx="180.5" cy="333.2" r="5" fill="#172b4d" data-coordinate="0,1,-0.5" data-origin="240,340" data-scale="1.7" data-projection="p3" />
+<text x="155.5" y="368.2" fill="#172b4d" font-size="24" text-anchor="start">1</text>
+<circle cx="690.5" cy="163.2" r="5" fill="#172b4d" data-coordinate="5,1,-0.5" data-origin="240,340" data-scale="1.7" data-projection="p3" />
+<text x="665.5" y="145.2" fill="#172b4d" font-size="24" text-anchor="start">5</text>
+<circle cx="809.5" cy="238" r="5" fill="#172b4d" data-coordinate="5,-1,-0.5" data-origin="240,340" data-scale="1.7" data-projection="p3" />
+<text x="819.5" y="220" fill="#172b4d" font-size="24" text-anchor="start">4</text>
+<line x1="299.5" y1="408" x2="180.5" y2="333.2" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<text x="50" y="145" fill="#1565c0" font-size="24" text-anchor="start">辺 0 → 1</text>
+<text x="330" y="265" fill="#1565c0" font-size="25" text-anchor="start">(0,1,5)</text>
+<text x="535" y="230" fill="#ba4b00" font-size="25" text-anchor="start">(0,5,4)</text>
+<line x1="495" y1="285.6" x2="495" y2="400.6" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="470" y="385" fill="#7b3294" font-size="25" text-anchor="start">外側 −Z</text>
+<text x="40" y="460" fill="#172b4d" font-size="25" text-anchor="start">e=(0,2,0)、L T=(5,0,0)</text>
+<text x="40" y="510" fill="#7b3294" font-size="26" text-anchor="start">e × (e+L T) = (0,0,−10)</text>
+<text x="40" y="565" fill="#172b4d" font-size="22" text-anchor="start">対角線0–5は同じ面内の共有辺。2枚は逆向きにこの辺をたどる。</text>
+</g></svg>
