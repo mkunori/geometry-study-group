@@ -10,6 +10,7 @@
 | [詳細解説（PDF）](output/explanation.pdf) | 作成済み（全文、A4縦・ページ番号付き） |
 | [SVG図解の保管先](images/README.md) | 作成済み（11点） |
 | [.NET・C#実装例](examples/README.md) | 作成済み（6題材、手実装とSystem.Numericsの比較・自動チェック付き） |
+| [AutoCAD専用：行列・座標変換](../../autocad-net/samples/01-matrix/README.md) | 参考コード（実機未検証・ビルド未検証） |
 | [復習用の宿題](homework/README.md) | 作成済み（基本3問＋発展1問、解答・解説付き） |
 
 PDFの再生成方法は [出力先の案内](output/README.md) を参照。
