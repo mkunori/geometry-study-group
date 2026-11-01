@@ -140,6 +140,6 @@ Ubuntu 24.04・.NET SDK 10.0.401で `GeometryCheckExamples.sln` をrestoreし、
 
 権限は `contents: read` のみで、チェックアウトの認証情報を保持せず、PAT・Secret・書き込み権限は不要。push・自動コミット・PDF生成を行わない。第1〜4回の専用CIとPDF自動生成から独立したワークフローである。AutoCAD API参考コードは別ディレクトリで管理する別Issue #54の範囲で、このCIではビルド・実行しない。AutoCAD実機・ライセンス・SDK DLLも不要。
 
-TODO：教材の通読レビューとVisual StudioのGUIデバッグ操作を確認する。F5／Ctrl+F5／F9／F11はこのCIでは検証できないため、上記のローカル手順で確認する。PDFと公開承認は後続作業で、第5回は準備中を維持する。AutoCAD 2026＋.NET 10の参考コードはこのコンソールへ組み込まない。
+TODO：教材の通読レビューとVisual StudioのGUIデバッグ操作を確認する。F5／Ctrl+F5／F9／F11はこのCIでは検証できないため、上記のローカル手順で確認する。[詳細解説のPDF下書き](../output/README.md) も通読に利用できる。公開承認は後続作業で、第5回は準備中を維持する。AutoCAD 2026＋.NET 10の参考コードはこのコンソールへ組み込まない。
 
 [この回のトップへ戻る](../README.md)
