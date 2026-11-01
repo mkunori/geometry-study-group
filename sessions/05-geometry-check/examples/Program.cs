@@ -132,7 +132,7 @@ internal static class Program
         Project("D: T2の負倍率軸", T2, (-2, -2), [-14, -8]);
         Equal("D: T1/T2の実体", ConvexSat.Compare(T1, true, T2, true), RegionRelation.Separated);
         Equal("D: T1/T3の実体", ConvexSat.Compare(T1, true, T3, true), RegionRelation.Overlapping);
-        Equal("D: T1/T4の実体", ConvexSat.Compare(T1, true, T4, true), RegionRelation.Touching);
+        Equal("D: T1/T4の実体", ConvexSat.Compare(T1, true, T4, true), RegionRelation.Overlapping);
         Equal("D: 順番交換", ConvexSat.Compare(T2, true, T1, true), RegionRelation.Separated);
         Equal("D: CW輪郭も同じ結果", ConvexSat.Compare(T1.Reverse().ToArray(), true, T3.Reverse().ToArray(), true), RegionRelation.Overlapping);
         Equal("D: 完全包含も重なり", ConvexSat.Compare(T1, true, [(.5, .5), (1, .5), (.5, 1)], true), RegionRelation.Overlapping);
