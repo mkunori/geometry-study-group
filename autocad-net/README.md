@@ -2,7 +2,7 @@
 
 **公式資料とAPI仕様を静的に照合した参考コード／AutoCAD実機未検証。ビルド・NETLOAD・コマンド実行は未実施。** Windows版AutoCAD 2026 Update 1.2（2026.1.2）以降／.NET 10／Visual Studio 2026を対象にする。Update 1.1以前の.NET 8版やAutoCAD 2027向けへ読み替えない。
 
-数学教材で学ぶ点・変位・座標系を、AutoCADの図面DBへ接続する入口。[数学教材のC#コンソール](../sessions/05-geometry-check/examples/README.md) とは独立した **1ソリューション・1 Class Library** で、各章のコードは同じプロジェクト内のファイルとコマンド名で分ける。00共通の2コマンドと、下の章別索引にある第1〜4回の各3コマンドを用意している。
+数学教材で学ぶ点・変位・座標系を、AutoCADの図面DBへ接続する入口。[数学教材のC#コンソール](../sessions/05-geometry-check/examples/README.md) とは独立した **1ソリューション・1 Class Library** で、各章のコードは同じプロジェクト内のファイルとコマンド名で分ける。00共通の2コマンドと、下の章別索引にある第1〜5回の各3コマンドを用意している。
 
 ## 読む順序とファイル
 
@@ -38,7 +38,7 @@ AutoCADがない場合は、セットアップの前提と参考資料を読み�
 | [02-vector](samples/02-vector/README.md) | [第2回：内積・外積](../sessions/02-vector/explanation.md) | 参考コード作成、ビルド・実機未検証 |
 | [03-intersection](samples/03-intersection/README.md) | [第3回：交点](../sessions/03-intersection/explanation.md) | 参考コード作成、ビルド・実機未検証 |
 | [04-modeling](samples/04-modeling/README.md) | [第4回：モデル](../sessions/04-modeling/explanation.md) | 参考コード作成、ビルド・実機未検証 |
-| [05-geometry-check](samples/05-geometry-check/README.md) | [第5回：内外・干渉](../sessions/05-geometry-check/explanation.md) | TODO：章別コードは後続Issue |
+| [05-geometry-check](samples/05-geometry-check/README.md) | [第5回：内外・干渉](../sessions/05-geometry-check/explanation.md) | 参考コード作成、ビルド・実機未検証 |
 
 ## 追加・管理のルール
 
@@ -48,6 +48,6 @@ AutoCADがない場合は、セットアップの前提と参考資料を読み�
 - AutoCAD 2026の公式資料でAPIを静的照合し、未確認の部分はTODO／注記にする。**ビルド・ロード・実行を自動検証しない。GitHub Actions・自動テスト・既存CIへの統合も追加しない。**
 - `sessions/` のAutoCAD不要C#教材とそのCI、PDF公開状態・自動生成対象は維持する。本ディレクトリはそれらのプロジェクトから参照しない。
 
-TODO：利用者が対象の製品・更新版・参照DLLを用意した場合のビルド／ロード／期待動作は未確認。本Issueの完了条件は静的・文書上の整合性までとし、実機確認を要求しない。章別実装はこの共通基盤のmainへのマージ後、別Issue・別PRで行う。
+TODO：利用者が対象の製品・更新版・参照DLLを用意した場合のビルド／ロード／期待動作は未確認。参考コードの確認範囲は静的・文書上の整合性までとし、実機確認を要求しない。章別コードの追加・変更も、別Issue・別PRで行う。
 
 [勉強会トップへ戻る](../README.md)
