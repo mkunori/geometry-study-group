@@ -124,12 +124,22 @@ L字の頂点順は `(0,0),(4,0),(4,1),(1,1),(1,4),(0,4)` 。2DはX右・Y上、
 
 検出できない丸めや桁落ちもあるため、全ての数値的な不確かさをInvalidへ変換できるわけではない。許容差による境界帯、判定保留の状態、誤差評価や頑健な述語、スケール調整は用途に応じた別設計になる。近境界の入力、非有限・退化・非対応入力を、無条件に正常なOutside／Separatedとして扱わない。
 
-## チェック件数と今後の作業
+## 自動チェックとCI
 
 実際に成功した `Equal` ／ `Numbers` の呼び出しを各1件と数える。配列の全成分比較は1件、反復の各呼び出しは別件。数値比較器が不一致・非有限値を拒否する検査も含め、25／35／30／37／20／31／76の合計254件。実際の `[OK]` 254行、成功要約、終了コード0を照合する。期待値は本文・宿題と独立検算をもとに記載し、分類本体の出力からは生成しない。
 
-このIssueでは専用GitHub Actionsを追加しない。後続Issueで第5回専用CIを作成するときは、この7題材の件数と成功要約を確認する。第1〜4回のソース・CIや自動PDF生成には変更を加えない。
+[Check Geometry Examples](../../../.github/workflows/check-geometry-examples.yml) は、第5回のC#コード（`.cs`）・プロジェクト（`.csproj`）・ソリューション（`.sln`）・ビルド設定（`.props`／`.targets`）、ルートの `global.json`／`Directory.Build.props`／`Directory.Build.targets`、ワークフロー自身の変更を、PR時とmainへのpush時に検証する。`examples/` 内のサブディレクトリも対象で、Markdownだけの変更では起動しない。
 
-TODO：教材の通読レビューとVisual StudioのGUIデバッグ操作を確認する。PDFと専用CI、公開承認は後続作業で、第5回は準備中を維持する。AutoCAD 2026＋.NET 10の参考コードは別Issue #54の範囲とし、このコンソールへ組み込まない。
+Ubuntu 24.04・.NET SDK 10.0.401で `GeometryCheckExamples.sln` をrestoreし、Releaseビルドして `GeometryCheckExamples.csproj` を実行する。プログラムの終了コード0、実際の `[OK]` 254行、完全一致する成功要約の3点を確認する。`set -euo pipefail` により、ログを `tee` で表示・保存している途中の実行失敗も伝播する。チェック内容を変更するときは、件数だけでなく各題材の判定内容もレビューし、このREADMEの件数・出力例とワークフローの `EXPECTED_CHECKS` を同じPRで更新する。
+
+結果は [Actions → Check Geometry Examples](https://github.com/mkunori/geometry-study-group/actions/workflows/check-geometry-examples.yml)、またはPRのChecksから開く。**対象の実行 → GeometryCheckExamples (Release)** の `Restore solution`・`Build solution (Release)`・`Run GeometryCheckExamples and verify all 254 checks` のログを確認する。
+
+正常時には、三角形P／E／OのInside／Boundary／Outside、レイの境界先行・半開規則、2D AABBとSATのSeparated／Touching／Overlapping、3Dの面・辺・点接触、退化・入力不正のInvalidが別々のラベルで表示されることを確認する。最後は `すべての 254 チェックに成功しました。` と `Verified all 254 checks.` が揃う。
+
+失敗時は `FAIL` のラベルから実値・期待値を確認する。例えばT1／T4は点接触なのでTouchingを期待し、Overlappingに誤るとその設問で失敗する。数値比較は成分番号・許容誤差も表示する。件数や成功要約が一致しない場合は `::error::` を確認する。
+
+権限は `contents: read` のみで、チェックアウトの認証情報を保持せず、PAT・Secret・書き込み権限は不要。push・自動コミット・PDF生成を行わない。第1〜4回の専用CIとPDF自動生成から独立したワークフローである。AutoCAD API参考コードは別ディレクトリで管理する別Issue #54の範囲で、このCIではビルド・実行しない。AutoCAD実機・ライセンス・SDK DLLも不要。
+
+TODO：教材の通読レビューとVisual StudioのGUIデバッグ操作を確認する。F5／Ctrl+F5／F9／F11はこのCIでは検証できないため、上記のローカル手順で確認する。PDFと公開承認は後続作業で、第5回は準備中を維持する。AutoCAD 2026＋.NET 10の参考コードはこのコンソールへ組み込まない。
 
 [この回のトップへ戻る](../README.md)
