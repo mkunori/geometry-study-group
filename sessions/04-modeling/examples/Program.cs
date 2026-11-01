@@ -136,7 +136,7 @@ internal static class Program
         int edges = mesh.Triangles.SelectMany(f => new[] { (f.A, f.B), (f.B, f.C), (f.C, f.A) })
             .Select(e => (Math.Min(e.Item1, e.Item2), Math.Max(e.Item1, e.Item2))).Distinct().Count();
         Check("B: 対角線も含む辺数", [edges], [18]);
-        Check("B: 符号付き体積", [SignedVolume(mesh)], [11]);
+        Check("B: 符号付き体積", [SignedVolume(mesh)], [10]);
         double surfaceArea = mesh.Triangles.Sum(f => AnalyzeTriangle(mesh.Vertices, f).Area);
         Check("B: 表面積は体積と別", [surfaceArea], [34]);
         Mesh translated = mesh with { Vertices = mesh.Vertices.Select(p => Add(p, (10, 20, 30))).ToArray() };
