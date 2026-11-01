@@ -164,7 +164,8 @@ aとの内積は -3+12-9=0、bとの内積は -12+30-18=0。`CrossAndArea` は�
 A=(1,1,0)、B=(4,1,0)、C=(3,3,0) の位置をそのまま外積せず、共通の始点Aから辺を作る。`a.GetVectorTo(b)` がB-A、`a.GetVectorTo(c)` がC-Aに対応する。
 
 $$
-\mathbf{AB}\times\mathbf{AC} =
+\begin{aligned}
+\mathbf{AB}\times\mathbf{AC} &=
 \begin{bmatrix}
 3 \\
 0 \\
@@ -175,13 +176,14 @@ $$
 2 \\
 2 \\
 0
-\end{bmatrix}
-=
+\end{bmatrix} \\
+&=
 \begin{bmatrix}
 0 \\
 0 \\
 6
 \end{bmatrix}
+\end{aligned}
 $$
 
 3Dの外積からZ成分だけを取り出したスカラーが、2Dの $u_xv_y-u_yv_x$ に対応する。X右・Y上で+6なので、CはA→Bの左側。符号付き三角形面積は+3、通常の面積は3。画面でYを下向きに取る座標では符号の解釈を反転する必要があり、画面上の見た目だけで判定しない。
@@ -189,13 +191,15 @@ $$
 面の向きとしては、外積をその長さで割って単位法線を得る。
 
 $$
-\mathbf{n} = \frac{\mathbf{AB}\times\mathbf{AC}}{\lVert\mathbf{AB}\times\mathbf{AC}\rVert}
-=
+\begin{aligned}
+\mathbf{n} &= \frac{\mathbf{AB}\times\mathbf{AC}}{\lVert\mathbf{AB}\times\mathbf{AC}\rVert} \\
+&=
 \begin{bmatrix}
 0 \\
 0 \\
 1
 \end{bmatrix}
+\end{aligned}
 $$
 
 BとCを交換すると外積は (0,0,-6)、単位法線は (0,0,-1)。`WriteTriangleNormal` はABC・ACBそれぞれの単位法線とその長さ1を表示する。頂点から面法線を作る例であり、既存法線の非一様スケールに対する変換ではない。
