@@ -1,0 +1,8 @@
+/AutoCadGeometrySamples.local.props
+/sdk/
+/references/
+*.dll
+*.pdb
+*.chm
+*.lib
+*.exp

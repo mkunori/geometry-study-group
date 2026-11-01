@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <PlatformTarget>x64</PlatformTarget>
+    <Platforms>x64</Platforms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <!-- PC固有の参照先は、このGit管理外ファイルだけに記入する。 -->
+  <Import Project="$(MSBuildThisFileDirectory)AutoCadGeometrySamples.local.props"
+          Condition="Exists('$(MSBuildThisFileDirectory)AutoCadGeometrySamples.local.props')" />
+
+  <ItemGroup>
+    <Compile Include="samples/**/*.cs" />
+    <Reference Include="AcCoreMgd">
+      <HintPath>$(AutoCADManagedDir)/AcCoreMgd.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="AcDbMgd">
+      <HintPath>$(AutoCADManagedDir)/AcDbMgd.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="AcMgd">
+      <HintPath>$(AutoCADManagedDir)/AcMgd.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- 存在の確認だけを行う。対象製品・更新版との一致はsetup.mdに従い利用者が確認する。 -->
+  <Target Name="CheckAutoCADManagedReferences" BeforeTargets="ResolveAssemblyReferences"
+          Condition="'$(DesignTimeBuild)' != 'true'">
+    <Error Condition="'$(AutoCADManagedDir)' == ''"
+           Text="AutoCADManagedDirが未設定です。AutoCadGeometrySamples.local.props.exampleをAutoCadGeometrySamples.local.propsへコピーし、AutoCAD 2026 Update 1.2以降に一致するDLLのディレクトリを設定してください。docs/setup.mdを参照してください。" />
+    <Error Condition="'$(AutoCADManagedDir)' != '' And !Exists('$(AutoCADManagedDir)/AcCoreMgd.dll')"
+           Text="AcCoreMgd.dllが参照先にありません。AutoCADManagedDirと対象製品の更新版を確認してください。" />
+    <Error Condition="'$(AutoCADManagedDir)' != '' And !Exists('$(AutoCADManagedDir)/AcDbMgd.dll')"
+           Text="AcDbMgd.dllが参照先にありません。AutoCADManagedDirと対象製品の更新版を確認してください。" />
+    <Error Condition="'$(AutoCADManagedDir)' != '' And !Exists('$(AutoCADManagedDir)/AcMgd.dll')"
+           Text="AcMgd.dllが参照先にありません。AutoCADManagedDirと対象製品の更新版を確認してください。" />
+  </Target>
+</Project>

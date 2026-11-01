@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <!-- このファイルをAutoCadGeometrySamples.local.propsへコピーする。 -->
+    <!-- 対象AutoCAD 2026 Update 1.2以降と一致する3 DLLのディレクトリを、コピー先だけに記入する。 -->
+    <!-- SDK・DLLはリポジトリ外へ置く。実パスをこのテンプレートへ記入してコミットしない。 -->
+    <AutoCADManagedDir></AutoCADManagedDir>
+  </PropertyGroup>
+</Project>
