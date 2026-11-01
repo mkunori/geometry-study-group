@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="660" viewBox="0 0 1000 660" role="img" aria-labelledby="title desc">
+<title id="title">固定例E：6面の外向き法線と、内側の半空間</title><desc id="desc">K=[0,2]³。各面の外向き法線±X、±Y、±Zと、内部I=(1,1,1)、境界E=(2,1,1)、外部O=(3,1,1)。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="660" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">固定例E：6面の外向き法線と、内側の半空間</text>
+<polygon points="300,420 492,356 380,285.6 188,349.6" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="300,266.4 492,202.4 380,132 188,196" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="300,420 492,356 492,202.4 300,266.4" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="188,349.6 380,285.6 380,132 188,196" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<line x1="300" y1="420" x2="300" y2="266.4" stroke="#1565c0" stroke-width="2" />
+<line x1="188" y1="349.6" x2="188" y2="196" stroke="#1565c0" stroke-width="2" />
+<line x1="492" y1="356" x2="492" y2="202.4" stroke="#1565c0" stroke-width="2" />
+<line x1="380" y1="285.6" x2="380" y2="132" stroke="#1565c0" stroke-width="2" />
+<line x1="244" y1="308" x2="148" y2="340" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="95" y="382" fill="#7b3294" font-size="24" text-anchor="start">−X</text>
+<line x1="436" y1="244" x2="532" y2="212" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="550" y="255" fill="#7b3294" font-size="24" text-anchor="start">+X</text>
+<line x1="396" y1="311.2" x2="452" y2="346.4" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="465" y="390" fill="#7b3294" font-size="24" text-anchor="start">−Y</text>
+<line x1="284" y1="240.8" x2="228" y2="205.6" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="100" y="190" fill="#7b3294" font-size="24" text-anchor="start">+Y</text>
+<line x1="340" y1="352.8" x2="340" y2="429.6" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="355" y="445" fill="#7b3294" font-size="24" text-anchor="start">−Z</text>
+<line x1="340" y1="199.2" x2="340" y2="122.4" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="355" y="105" fill="#7b3294" font-size="24" text-anchor="start">+Z</text>
+<circle cx="340" cy="276" r="5" fill="#1565c0" data-coordinate="1,1,1" data-origin="300,420" data-scale="1.6" data-projection="p3" />
+<text x="318" y="296" fill="#1565c0" font-size="24" text-anchor="start">I</text>
+<circle cx="436" cy="244" r="5" fill="#ba4b00" data-coordinate="2,1,1" data-origin="300,420" data-scale="1.6" data-projection="p3" />
+<text x="451" y="276" fill="#ba4b00" font-size="24" text-anchor="start">E</text>
+<circle cx="532" cy="212" r="5" fill="#ba4b00" data-coordinate="3,1,1" data-origin="300,420" data-scale="1.6" data-projection="p3" />
+<line x1="532" y1="212" x2="565" y2="145" stroke="#ba4b00" stroke-width="1" />
+<text x="570" y="145" fill="#ba4b00" font-size="24" text-anchor="start">O</text>
+<text x="635" y="210" fill="#1565c0" font-size="23" text-anchor="start">I=(1,1,1)：内部</text>
+<text x="635" y="280" fill="#ba4b00" font-size="23" text-anchor="start">E=(2,1,1)：境界</text>
+<text x="635" y="350" fill="#ba4b00" font-size="23" text-anchor="start">O=(3,1,1)：外部</text>
+<text x="35" y="525" fill="#172b4d" font-size="22" text-anchor="start">全6面で内積が負なら内部。全て0以下で等号があれば境界。正があれば外部。</text>
+<text x="35" y="580" fill="#172b4d" font-size="23" text-anchor="start">外向きnに対する条件は n・(P−F) ≤ 0。正しく囲む凸閉形状に限る。</text>
+<text x="35" y="630" fill="#172b4d" font-size="22" text-anchor="start">右手系の斜投影。面法線の符号は座標と面の位置で確かめる。</text>
+</g></svg>

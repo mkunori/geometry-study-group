@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="title desc">
+<title id="title">固定例B：L字の内部と、AABB内の外部点</title><desc id="desc">L字輪郭の面積は7、AABBは[0,4]×[0,4]。IとHは内部、Nは欠けた外部、Dは辺上、Vは頂点上。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="640" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">固定例B：L字の内部と、AABB内の外部点</text>
+<polygon points="100,465 420,465 420,145 100,145" fill="none" fill-opacity="1" stroke="#58677c" stroke-width="2" />
+<polygon points="100,465 420,465 420,385 180,385 180,145 100,145" fill="#e5eef9" fill-opacity=".30" stroke="#1565c0" stroke-width="2" />
+<circle cx="140" cy="305" r="5" fill="#7b3294" data-coordinate="0.5,2" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="115" y="293" fill="#7b3294" font-size="24" text-anchor="start">I</text>
+<circle cx="260" cy="305" r="5" fill="#ba4b00" data-coordinate="2,2" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="272" y="293" fill="#ba4b00" font-size="24" text-anchor="start">N</text>
+<circle cx="180" cy="305" r="5" fill="#7b3294" data-coordinate="1,2" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="192" y="293" fill="#7b3294" font-size="24" text-anchor="start">D</text>
+<circle cx="180" cy="385" r="5" fill="#7b3294" data-coordinate="1,1" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="192" y="415" fill="#7b3294" font-size="24" text-anchor="start">V</text>
+<circle cx="340" cy="425" r="5" fill="#7b3294" data-coordinate="3,0.5" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="352" y="425" fill="#7b3294" font-size="24" text-anchor="start">H</text>
+<circle cx="100" cy="465" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="35" y="500" fill="#1565c0" font-size="24" text-anchor="start">(0,0)</text>
+<circle cx="420" cy="465" r="5" fill="#1565c0" data-coordinate="4,0" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="400" y="500" fill="#1565c0" font-size="24" text-anchor="start">(4,0)</text>
+<circle cx="420" cy="385" r="5" fill="#1565c0" data-coordinate="4,1" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="432" y="373" fill="#1565c0" font-size="24" text-anchor="start">(4,1)</text>
+<circle cx="180" cy="145" r="5" fill="#1565c0" data-coordinate="1,4" data-origin="100,465" data-scale="80" data-projection="p2" />
+<text x="190" y="133" fill="#1565c0" font-size="24" text-anchor="start">(1,4)</text>
+<text x="540" y="125" fill="#58677c" font-size="25" text-anchor="start">AABB=[0,4]×[0,4]</text>
+<text x="540" y="195" fill="#7b3294" font-size="24" text-anchor="start">I=(0.5,2)：内部</text>
+<text x="540" y="255" fill="#ba4b00" font-size="24" text-anchor="start">N=(2,2)：外部</text>
+<text x="540" y="315" fill="#7b3294" font-size="24" text-anchor="start">D=(1,2)：辺上</text>
+<text x="540" y="375" fill="#7b3294" font-size="24" text-anchor="start">V=(1,1)：頂点上</text>
+<text x="540" y="435" fill="#7b3294" font-size="24" text-anchor="start">H=(3,0.5)：内部</text>
+<text x="35" y="565" fill="#172b4d" font-size="22" text-anchor="start">灰の包含箱には欠けた部分も入る。Hは、くぼみの辺の右側でも内部。</text>
+<text x="35" y="610" fill="#172b4d" font-size="22" text-anchor="start">輪郭は単純・閉・穴なし。境界の点は、レイを数える前に分類する。</text>
+</g></svg>
