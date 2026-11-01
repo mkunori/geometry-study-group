@@ -21,12 +21,12 @@ PDFだけの更新は起動対象に含めない。加えて、標準の `GITHUB
 
 ## 公開対象と新しい回の追加
 
-[scripts/pdf-sessions.json](../scripts/pdf-sessions.json) が公開対象の明示的な一覧。現在は `01-matrix` だけを指定している。第2〜5回はTODOのひな形なので生成しない。
+[scripts/pdf-sessions.json](../scripts/pdf-sessions.json) が公開対象の明示的な一覧。現在は第1〜5回の `01-matrix`・`02-vector`・`03-intersection`・`04-modeling`・`05-geometry-check` を指定している。トップページで第2〜5回が「準備中」であっても、教材ファイルの公開とPDF自動更新は有効。「準備中」は内容の最終レビュー・正式使用の準備状態を意味し、PDF自動更新対象外を意味しない。
 
 本文・SVGの制作と表示確認が済んだ回を追加する際は、次の手順を使う。
 
 1. `sessions/<回>/explanation.md` と必要なSVGを完成させる。
-2. 一覧に `02-vector` のようなディレクトリ名を追加する。入力は `sessions/<回>/explanation.md`、出力は `sessions/<回>/output/explanation.pdf` に自動対応する。
+2. 一覧に新しい回のディレクトリ名を追加する（第1〜5回はすでに登録済み）。入力は `sessions/<回>/explanation.md`、出力は `sessions/<回>/output/explanation.pdf` に自動対応する。
 3. ローカルで次のコマンドを実行し、全ページの日本語・数式・図解・リンクを確認する。
 4. PRをmainにマージすると、自動生成・コミットされる。PDFが存在することを確認してから、その回のREADMEと `output/README.md` に閲覧リンクを追加する。ローカルで確認したPDFを同じPRに含めることもできる。
 
