@@ -24,6 +24,7 @@
 | [PDF下書き（レビュー待ち）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) | 全文を収録したA4縦の下書き。手動更新 |
 | [SVG図解の目次](images/README.md) | 下書き作成・レビュー待ち（10点） |
 | [.NET・C#実装例](examples/README.md) | 下書き作成・レビュー待ち（7題材・153チェック） |
+| [AutoCAD専用：断面・押し出し・直線スイープ](../../autocad-net/samples/04-modeling/README.md) | 参考コード（実機未検証・ビルド未検証） |
 | [復習用の宿題](homework/README.md) | 下書き作成・レビュー待ち（基本3問＋発展1問） |
 
 ## 今後の準備
