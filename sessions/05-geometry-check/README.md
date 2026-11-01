@@ -25,6 +25,7 @@
 | [詳細解説（PDF下書き）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) | A4縦・全ページ確認済み、レビュー待ち。自動更新対象外 |
 | [SVG図解の目次](images/README.md) | 下書き作成・レビュー待ち（10点） |
 | [.NET・C#実装例](examples/README.md) | 下書き作成・レビュー待ち（.NET 10、従来形式.sln、7題材・254チェック） |
+| [AutoCAD専用：包囲箱・交点・ソリッド干渉](../../autocad-net/samples/05-geometry-check/README.md) | 参考コード（実機未検証・ビルド未検証） |
 | [C#自動チェック（CI）](../../.github/workflows/check-geometry-examples.yml) | PR・mainへのpush時に対象変更のReleaseビルドと254チェックを検証 |
 | [復習用の宿題](homework/README.md) | 下書き作成・レビュー待ち（基本3問＋発展1問、全20設問と途中計算付き解答） |
 
