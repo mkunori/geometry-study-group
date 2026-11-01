@@ -67,12 +67,12 @@ N\times B=\begin{bmatrix}
 $$
 
 $$
-\|N\|=\sqrt{0^2+1^2+0^2}=1,\qquad
-\|B\|=\sqrt{0^2+0^2+1^2}=1.
+\lVert N\rVert=\sqrt{0^2+1^2+0^2}=1,\qquad
+\lVert B\rVert=\sqrt{0^2+0^2+1^2}=1.
 $$
 
 $$
-\|T\|=\sqrt{1^2+0^2+0^2}=1,\qquad
+\lVert T\rVert=\sqrt{1^2+0^2+0^2}=1,\qquad
 T\cdot N=T\cdot B=0.
 $$
 
@@ -80,8 +80,8 @@ $$
 
 $$
 \begin{aligned}
-\|aN+bB\|^2
-&=a^2\|N\|^2+2ab(N\cdot B)+b^2\|B\|^2 \\
+\lVert aN+bB\rVert^2
+&=a^2\lVert N\rVert^2+2ab(N\cdot B)+b^2\lVert B\rVert^2 \\
 &=a^2+b^2.
 \end{aligned}
 $$
