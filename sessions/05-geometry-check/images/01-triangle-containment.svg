@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="630" viewBox="0 0 1000 630" role="img" aria-labelledby="title desc">
+<title id="title">固定例A：辺の外積で内部・境界・外部を分ける</title><desc id="desc">CCW三角形A=(0,0)、B=(4,0)、C=(0,3)。内部P=(1,1)のAB・BC・CAへの外積は4・5・3。E=(2,0)は境界、O=(3,2)は外部。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="630" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">固定例A：辺の外積で内部・境界・外部を分ける</text>
+<line x1="105" y1="465" x2="500" y2="465" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<line x1="105" y1="465" x2="105" y2="145" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<text x="508" y="473" fill="#58677c" font-size="22" text-anchor="start">X</text>
+<text x="83" y="137" fill="#58677c" font-size="22" text-anchor="start">Y</text>
+<polygon points="105,465 445,465 105,210" fill="#e5eef9" fill-opacity=".30" stroke="#1565c0" stroke-width="2" />
+<line x1="105" y1="465" x2="309" y2="465" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<line x1="445" y1="465" x2="241" y2="312" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<line x1="105" y1="210" x2="105" y2="363" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<circle cx="105" cy="465" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="105,465" data-scale="85" data-projection="p2" />
+<text x="40" y="507" fill="#1565c0" font-size="24" text-anchor="start">A=(0,0)</text>
+<circle cx="445" cy="465" r="5" fill="#1565c0" data-coordinate="4,0" data-origin="105,465" data-scale="85" data-projection="p2" />
+<text x="375" y="507" fill="#1565c0" font-size="24" text-anchor="start">B=(4,0)</text>
+<circle cx="105" cy="210" r="5" fill="#1565c0" data-coordinate="0,3" data-origin="105,465" data-scale="85" data-projection="p2" />
+<text x="117" y="190" fill="#1565c0" font-size="24" text-anchor="start">C=(0,3)</text>
+<circle cx="190" cy="380" r="5" fill="#7b3294" data-coordinate="1,1" data-origin="105,465" data-scale="85" data-projection="p2" />
+<text x="202" y="366" fill="#7b3294" font-size="24" text-anchor="start">P</text>
+<circle cx="275" cy="465" r="5" fill="#ba4b00" data-coordinate="2,0" data-origin="105,465" data-scale="85" data-projection="p2" />
+<text x="285" y="450" fill="#ba4b00" font-size="24" text-anchor="start">E</text>
+<circle cx="360" cy="295" r="5" fill="#ba4b00" data-coordinate="3,2" data-origin="105,465" data-scale="85" data-projection="p2" />
+<text x="372" y="283" fill="#ba4b00" font-size="24" text-anchor="start">O</text>
+<text x="555" y="150" fill="#7b3294" font-size="25" text-anchor="start" font-weight="700">P=(1,1) → Inside</text>
+<text x="555" y="210" fill="#172b4d" font-size="24" text-anchor="start">AB=4、BC=5、CA=3</text>
+<text x="555" y="290" fill="#ba4b00" font-size="24" text-anchor="start">E=(2,0) → Boundary</text>
+<text x="555" y="345" fill="#172b4d" font-size="24" text-anchor="start">AB=0、線分上</text>
+<text x="555" y="420" fill="#ba4b00" font-size="24" text-anchor="start">O=(3,2) → Outside</text>
+<text x="555" y="475" fill="#172b4d" font-size="23" text-anchor="start">AB=8、BC=−5、CA=9</text>
+<text x="35" y="575" fill="#172b4d" font-size="22" text-anchor="start">三角形の向きはCCW。面積は12/2=6。境界には有限な辺の範囲も必要。</text>
+</g></svg>

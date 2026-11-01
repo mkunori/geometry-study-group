@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<title id="title">固定例C：AABBの離隔・接触・正の面積を分ける</title><desc id="desc">A=[0,2]×[0,2]。B=[2,4]×[1,3]は線分接触、C=[2.1,4]×[1,3]は0.1離隔、D=[1,3]×[1,3]は面積1の重なり。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="650" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">固定例C：AABBの離隔・接触・正の面積を分ける</text>
+<text x="25" y="112" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">AとB</text>
+<polygon points="40,390 150,390 150,280 40,280" fill="#e5eef9" fill-opacity=".55" stroke="#1565c0" stroke-width="2" />
+<polygon points="150,335 260,335 260,225 150,225" fill="#f9e9db" fill-opacity=".55" stroke="#ba4b00" stroke-width="2" />
+<text x="55" y="370" fill="#1565c0" font-size="24" text-anchor="start">A</text>
+<text x="180" y="250" fill="#ba4b00" font-size="24" text-anchor="start">B</text>
+<line x1="150" y1="335" x2="150" y2="280" stroke="#7b3294" stroke-width="7" />
+<text x="25" y="455" fill="#172b4d" font-size="22" text-anchor="start">δx=0、δy=1</text>
+<text x="25" y="515" fill="#7b3294" font-size="24" text-anchor="start" font-weight="700">Touching</text>
+<text x="25" y="570" fill="#172b4d" font-size="21" text-anchor="start">共有線分、面積0</text>
+<circle cx="40" cy="390" r="5" fill="#172b4d" data-coordinate="0,0" data-origin="40,390" data-scale="55" data-projection="p2" />
+<circle cx="150" cy="280" r="5" fill="#172b4d" data-coordinate="2,2" data-origin="40,390" data-scale="55" data-projection="p2" />
+<circle cx="150" cy="335" r="5" fill="#172b4d" data-coordinate="2,1" data-origin="40,390" data-scale="55" data-projection="p2" />
+<circle cx="260" cy="225" r="5" fill="#172b4d" data-coordinate="4,3" data-origin="40,390" data-scale="55" data-projection="p2" />
+<line x1="326" y1="85" x2="326" y2="595" stroke="#58677c" stroke-width="1" />
+<text x="358" y="112" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">AとC</text>
+<polygon points="373,390 483,390 483,280 373,280" fill="#e5eef9" fill-opacity=".55" stroke="#1565c0" stroke-width="2" />
+<polygon points="488.5,335 593,335 593,225 488.5,225" fill="#f9e9db" fill-opacity=".55" stroke="#ba4b00" stroke-width="2" />
+<text x="388" y="370" fill="#1565c0" font-size="24" text-anchor="start">A</text>
+<text x="513" y="250" fill="#ba4b00" font-size="24" text-anchor="start">C</text>
+<text x="368" y="185" fill="#ba4b00" font-size="22" text-anchor="start">Xの隙間0.1</text>
+<text x="358" y="455" fill="#172b4d" font-size="22" text-anchor="start">δx=−0.1、δy=1</text>
+<text x="358" y="515" fill="#7b3294" font-size="24" text-anchor="start" font-weight="700">Separated</text>
+<text x="358" y="570" fill="#172b4d" font-size="21" text-anchor="start">共通点なし</text>
+<circle cx="373" cy="390" r="5" fill="#172b4d" data-coordinate="0,0" data-origin="373,390" data-scale="55" data-projection="p2" />
+<circle cx="483" cy="280" r="5" fill="#172b4d" data-coordinate="2,2" data-origin="373,390" data-scale="55" data-projection="p2" />
+<circle cx="488.5" cy="335" r="5" fill="#172b4d" data-coordinate="2.1,1" data-origin="373,390" data-scale="55" data-projection="p2" />
+<circle cx="593" cy="225" r="5" fill="#172b4d" data-coordinate="4,3" data-origin="373,390" data-scale="55" data-projection="p2" />
+<line x1="659" y1="85" x2="659" y2="595" stroke="#58677c" stroke-width="1" />
+<text x="691" y="112" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">AとD</text>
+<polygon points="706,390 816,390 816,280 706,280" fill="#e5eef9" fill-opacity=".55" stroke="#1565c0" stroke-width="2" />
+<polygon points="761,335 871,335 871,225 761,225" fill="#f9e9db" fill-opacity=".55" stroke="#ba4b00" stroke-width="2" />
+<text x="721" y="370" fill="#1565c0" font-size="24" text-anchor="start">A</text>
+<text x="846" y="250" fill="#ba4b00" font-size="24" text-anchor="start">D</text>
+<polygon points="761,335 816,335 816,280 761,280" fill="#ece5f3" fill-opacity=".9" stroke="#7b3294" stroke-width="2" />
+<text x="691" y="455" fill="#172b4d" font-size="22" text-anchor="start">δx=1、δy=1</text>
+<text x="691" y="515" fill="#7b3294" font-size="24" text-anchor="start" font-weight="700">Overlapping</text>
+<text x="691" y="570" fill="#172b4d" font-size="21" text-anchor="start">共通[1,2]²、面積1</text>
+<circle cx="706" cy="390" r="5" fill="#172b4d" data-coordinate="0,0" data-origin="706,390" data-scale="55" data-projection="p2" />
+<circle cx="816" cy="280" r="5" fill="#172b4d" data-coordinate="2,2" data-origin="706,390" data-scale="55" data-projection="p2" />
+<circle cx="761" cy="335" r="5" fill="#172b4d" data-coordinate="1,1" data-origin="706,390" data-scale="55" data-projection="p2" />
+<circle cx="871" cy="225" r="5" fill="#172b4d" data-coordinate="3,3" data-origin="706,390" data-scale="55" data-projection="p2" />
+<text x="35" y="625" fill="#172b4d" font-size="21" text-anchor="start">元の箱は正の幅を持つ。1軸でも共通幅が負なら分離。全軸が正なら箱は重なる。</text>
+</g></svg>

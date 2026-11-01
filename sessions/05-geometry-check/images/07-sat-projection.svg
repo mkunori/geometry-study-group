@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+<title id="title">SATの射影：n=(1,1)でq=x+yを並べる</title><desc id="desc">T1の内積は0,3,3で区間[0,3]、T2は4,7,7で区間[4,7]。最大3と最小4の間に隙間がある。横軸qはX軸ではない。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="620" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">SATの射影：n=(1,1)でq=x+yを並べる</text>
+<text x="35" y="110" fill="#1565c0" font-size="25" text-anchor="start">T1：内積 0, 3, 3</text>
+<text x="530" y="110" fill="#ba4b00" font-size="25" text-anchor="start">T2：内積 4, 7, 7</text>
+<line x1="90" y1="210" x2="420" y2="210" stroke="#1565c0" stroke-width="8" />
+<circle cx="90" cy="210" r="6" fill="#1565c0" data-q="0" data-q-origin="90" data-q-scale="110" />
+<text x="90" y="190" fill="#1565c0" font-size="25" text-anchor="middle">0</text>
+<circle cx="420" cy="210" r="6" fill="#1565c0" data-q="3" data-q-origin="90" data-q-scale="110" />
+<text x="420" y="190" fill="#1565c0" font-size="25" text-anchor="middle">3</text>
+<line x1="530" y1="300" x2="860" y2="300" stroke="#ba4b00" stroke-width="8" />
+<circle cx="530" cy="300" r="6" fill="#ba4b00" data-q="4" data-q-origin="90" data-q-scale="110" />
+<text x="530" y="280" fill="#ba4b00" font-size="25" text-anchor="middle">4</text>
+<circle cx="860" cy="300" r="6" fill="#ba4b00" data-q="7" data-q-origin="90" data-q-scale="110" />
+<text x="860" y="280" fill="#ba4b00" font-size="25" text-anchor="middle">7</text>
+<line x1="65" y1="365" x2="915" y2="365" stroke="#58677c" stroke-width="2" marker-end="url(#gray)" />
+<text x="930" y="375" fill="#58677c" font-size="24" text-anchor="start">q</text>
+<line x1="90" y1="357" x2="90" y2="373" stroke="#58677c" stroke-width="2" />
+<text x="90" y="410" fill="#58677c" font-size="22" text-anchor="middle">0</text>
+<line x1="200" y1="357" x2="200" y2="373" stroke="#58677c" stroke-width="2" />
+<text x="200" y="410" fill="#58677c" font-size="22" text-anchor="middle">1</text>
+<line x1="310" y1="357" x2="310" y2="373" stroke="#58677c" stroke-width="2" />
+<text x="310" y="410" fill="#58677c" font-size="22" text-anchor="middle">2</text>
+<line x1="420" y1="357" x2="420" y2="373" stroke="#58677c" stroke-width="2" />
+<text x="420" y="410" fill="#58677c" font-size="22" text-anchor="middle">3</text>
+<line x1="530" y1="357" x2="530" y2="373" stroke="#58677c" stroke-width="2" />
+<text x="530" y="410" fill="#58677c" font-size="22" text-anchor="middle">4</text>
+<line x1="640" y1="357" x2="640" y2="373" stroke="#58677c" stroke-width="2" />
+<text x="640" y="410" fill="#58677c" font-size="22" text-anchor="middle">5</text>
+<line x1="750" y1="357" x2="750" y2="373" stroke="#58677c" stroke-width="2" />
+<text x="750" y="410" fill="#58677c" font-size="22" text-anchor="middle">6</text>
+<line x1="860" y1="357" x2="860" y2="373" stroke="#58677c" stroke-width="2" />
+<text x="860" y="410" fill="#58677c" font-size="22" text-anchor="middle">7</text>
+<line x1="420" y1="230" x2="420" y2="350" stroke="#7b3294" stroke-width="1" stroke-dasharray="7 6" />
+<line x1="530" y1="320" x2="530" y2="350" stroke="#7b3294" stroke-width="1" stroke-dasharray="7 6" />
+<text x="340" y="475" fill="#7b3294" font-size="27" text-anchor="start" font-weight="700">3 &lt; 4：共通区間なし</text>
+<text x="35" y="545" fill="#172b4d" font-size="23" text-anchor="start">nは非単位軸。距離座標はq/√2だが、分離の結果は変わらない。</text>
+<text x="35" y="590" fill="#172b4d" font-size="22" text-anchor="start">1軸で分離すれば終了。重なる場合は、両図形の全辺の法線方向を調べる。</text>
+</g></svg>

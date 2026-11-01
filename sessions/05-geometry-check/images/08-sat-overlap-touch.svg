@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+<title id="title">同じT1に対して、面積の重なりと点接触を比較する</title><desc id="desc">T1とT3=(1,1),(4,1),(1,4)は(1,1),(2,1),(1,2)の三角形で面積1/2を共有。T4=(3,0),(5,0),(3,2)とは点(3,0)だけが共通。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="650" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">同じT1に対して、面積の重なりと点接触を比較する</text>
+<text x="25" y="110" fill="#172b4d" font-size="27" text-anchor="start" font-weight="700">T1とT3</text>
+<polygon points="80,440 275,440 80,245" fill="#e5eef9" fill-opacity=".30" stroke="#1565c0" stroke-width="2" />
+<polygon points="145,375 340,375 145,180" fill="#f9e9db" fill-opacity=".30" stroke="#ba4b00" stroke-width="2" />
+<text x="100" y="420" fill="#1565c0" font-size="24" text-anchor="start">T1</text>
+<polygon points="145,375 210,375 145,310" fill="#ece5f3" fill-opacity=".95" stroke="#7b3294" stroke-width="2" />
+<text x="235" y="300" fill="#ba4b00" font-size="24" text-anchor="start">T3</text>
+<circle cx="145" cy="375" r="5" fill="#7b3294" data-coordinate="1,1" data-origin="80,440" data-scale="65" data-projection="p2" />
+<circle cx="210" cy="375" r="5" fill="#7b3294" data-coordinate="2,1" data-origin="80,440" data-scale="65" data-projection="p2" />
+<circle cx="145" cy="310" r="5" fill="#7b3294" data-coordinate="1,2" data-origin="80,440" data-scale="65" data-projection="p2" />
+<text x="30" y="520" fill="#7b3294" font-size="23" text-anchor="start" font-weight="700">Overlapping：共有面積1/2</text>
+<circle cx="145" cy="375" r="5" fill="#ba4b00" data-coordinate="1,1" data-origin="80,440" data-scale="65" data-projection="p2" />
+<circle cx="340" cy="375" r="5" fill="#ba4b00" data-coordinate="4,1" data-origin="80,440" data-scale="65" data-projection="p2" />
+<circle cx="145" cy="180" r="5" fill="#ba4b00" data-coordinate="1,4" data-origin="80,440" data-scale="65" data-projection="p2" />
+<text x="525" y="110" fill="#172b4d" font-size="27" text-anchor="start" font-weight="700">T1とT4</text>
+<polygon points="580,440 775,440 580,245" fill="#e5eef9" fill-opacity=".30" stroke="#1565c0" stroke-width="2" />
+<polygon points="775,440 905,440 775,310" fill="#f9e9db" fill-opacity=".30" stroke="#ba4b00" stroke-width="2" />
+<text x="600" y="420" fill="#1565c0" font-size="24" text-anchor="start">T1</text>
+<circle cx="775" cy="440" r="5" fill="#7b3294" data-coordinate="3,0" data-origin="580,440" data-scale="65" data-projection="p2" />
+<text x="750" y="475" fill="#7b3294" font-size="24" text-anchor="start">(3,0)</text>
+<text x="825" y="390" fill="#ba4b00" font-size="24" text-anchor="start">T4</text>
+<text x="530" y="520" fill="#7b3294" font-size="23" text-anchor="start" font-weight="700">Touching：点(3,0)だけ</text>
+<circle cx="775" cy="440" r="5" fill="#ba4b00" data-coordinate="3,0" data-origin="580,440" data-scale="65" data-projection="p2" />
+<circle cx="905" cy="440" r="5" fill="#ba4b00" data-coordinate="5,0" data-origin="580,440" data-scale="65" data-projection="p2" />
+<circle cx="775" cy="310" r="5" fill="#ba4b00" data-coordinate="3,2" data-origin="580,440" data-scale="65" data-projection="p2" />
+<circle cx="775" cy="440" r="5" fill="#7b3294" data-coordinate="3,0" data-origin="580,440" data-scale="65" data-projection="p2" />
+<line x1="500" y1="85" x2="500" y2="550" stroke="#58677c" stroke-width="1" />
+<text x="35" y="600" fill="#172b4d" font-size="22" text-anchor="start">正の射影幅は共有面積そのものではない。等端点があって分離がなければ接触。</text>
+</g></svg>

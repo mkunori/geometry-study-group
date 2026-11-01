@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="680" viewBox="0 0 1000 680" role="img" aria-labelledby="title desc">
+<title id="title">箱どうし：共有体積1と、面接触・共有体積0</title><desc id="desc">左はK=[0,2]³とK2=[1,3]³が[1,2]³で共有体積1。右はK3=[2,3]×[1,2]×[1,2]とx=2の面で接触。共有面積1、体積0。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="680" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">箱どうし：共有体積1と、面接触・共有体積0</text>
+<text x="30" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">KとK2</text>
+<polygon points="170,410 284,372 217.5,330.2 103.5,368.2" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="170,318.8 284,280.8 217.5,239 103.5,277" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="170,410 284,372 284,280.8 170,318.8" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="103.5,368.2 217.5,330.2 217.5,239 103.5,277" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<line x1="170" y1="410" x2="170" y2="318.8" stroke="#1565c0" stroke-width="2" />
+<line x1="103.5" y1="368.2" x2="103.5" y2="277" stroke="#1565c0" stroke-width="2" />
+<line x1="284" y1="372" x2="284" y2="280.8" stroke="#1565c0" stroke-width="2" />
+<line x1="217.5" y1="330.2" x2="217.5" y2="239" stroke="#1565c0" stroke-width="2" />
+<polygon points="193.75,324.5 307.75,286.5 241.25,244.7 127.25,282.7" fill="#f9e9db" fill-opacity=".2" stroke="#ba4b00" stroke-width="2" />
+<polygon points="193.75,233.3 307.75,195.3 241.25,153.5 127.25,191.5" fill="#f9e9db" fill-opacity=".2" stroke="#ba4b00" stroke-width="2" />
+<polygon points="193.75,324.5 307.75,286.5 307.75,195.3 193.75,233.3" fill="#f9e9db" fill-opacity=".2" stroke="#ba4b00" stroke-width="2" />
+<polygon points="127.25,282.7 241.25,244.7 241.25,153.5 127.25,191.5" fill="#f9e9db" fill-opacity=".2" stroke="#ba4b00" stroke-width="2" />
+<line x1="193.75" y1="324.5" x2="193.75" y2="233.3" stroke="#ba4b00" stroke-width="2" />
+<line x1="127.25" y1="282.7" x2="127.25" y2="191.5" stroke="#ba4b00" stroke-width="2" />
+<line x1="307.75" y1="286.5" x2="307.75" y2="195.3" stroke="#ba4b00" stroke-width="2" />
+<line x1="241.25" y1="244.7" x2="241.25" y2="153.5" stroke="#ba4b00" stroke-width="2" />
+<text x="45" y="440" fill="#1565c0" font-size="24" text-anchor="start">K</text>
+<text x="345" y="265" fill="#ba4b00" font-size="24" text-anchor="start">K2</text>
+<polygon points="193.75,324.5 250.75,305.5 217.5,284.6 160.5,303.6" fill="#ece5f3" fill-opacity=".75" stroke="#7b3294" stroke-width="2" />
+<polygon points="193.75,278.9 250.75,259.9 217.5,239 160.5,258" fill="#ece5f3" fill-opacity=".75" stroke="#7b3294" stroke-width="2" />
+<polygon points="193.75,324.5 250.75,305.5 250.75,259.9 193.75,278.9" fill="#ece5f3" fill-opacity=".75" stroke="#7b3294" stroke-width="2" />
+<polygon points="160.5,303.6 217.5,284.6 217.5,239 160.5,258" fill="#ece5f3" fill-opacity=".75" stroke="#7b3294" stroke-width="2" />
+<line x1="193.75" y1="324.5" x2="193.75" y2="278.9" stroke="#7b3294" stroke-width="2" />
+<line x1="160.5" y1="303.6" x2="160.5" y2="258" stroke="#7b3294" stroke-width="2" />
+<line x1="250.75" y1="305.5" x2="250.75" y2="259.9" stroke="#7b3294" stroke-width="2" />
+<line x1="217.5" y1="284.6" x2="217.5" y2="239" stroke="#7b3294" stroke-width="2" />
+<text x="30" y="510" fill="#7b3294" font-size="24" text-anchor="start" font-weight="700">共有[1,2]³：体積1</text>
+<text x="530" y="110" fill="#172b4d" font-size="26" text-anchor="start" font-weight="700">KとK3</text>
+<polygon points="670,410 784,372 717.5,330.2 603.5,368.2" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="670,318.8 784,280.8 717.5,239 603.5,277" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="670,410 784,372 784,280.8 670,318.8" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<polygon points="603.5,368.2 717.5,330.2 717.5,239 603.5,277" fill="#e5eef9" fill-opacity=".2" stroke="#1565c0" stroke-width="2" />
+<line x1="670" y1="410" x2="670" y2="318.8" stroke="#1565c0" stroke-width="2" />
+<line x1="603.5" y1="368.2" x2="603.5" y2="277" stroke="#1565c0" stroke-width="2" />
+<line x1="784" y1="372" x2="784" y2="280.8" stroke="#1565c0" stroke-width="2" />
+<line x1="717.5" y1="330.2" x2="717.5" y2="239" stroke="#1565c0" stroke-width="2" />
+<polygon points="750.75,305.5 807.75,286.5 774.5,265.6 717.5,284.6" fill="#f9e9db" fill-opacity=".2" stroke="#ba4b00" stroke-width="2" />
+<polygon points="750.75,259.9 807.75,240.9 774.5,220 717.5,239" fill="#f9e9db" fill-opacity=".2" stroke="#ba4b00" stroke-width="2" />
+<polygon points="750.75,305.5 807.75,286.5 807.75,240.9 750.75,259.9" fill="#f9e9db" fill-opacity=".2" stroke="#ba4b00" stroke-width="2" />
+<polygon points="717.5,284.6 774.5,265.6 774.5,220 717.5,239" fill="#f9e9db" fill-opacity=".2" stroke="#ba4b00" stroke-width="2" />
+<line x1="750.75" y1="305.5" x2="750.75" y2="259.9" stroke="#ba4b00" stroke-width="2" />
+<line x1="717.5" y1="284.6" x2="717.5" y2="239" stroke="#ba4b00" stroke-width="2" />
+<line x1="807.75" y1="286.5" x2="807.75" y2="240.9" stroke="#ba4b00" stroke-width="2" />
+<line x1="774.5" y1="265.6" x2="774.5" y2="220" stroke="#ba4b00" stroke-width="2" />
+<text x="545" y="440" fill="#1565c0" font-size="24" text-anchor="start">K</text>
+<text x="845" y="265" fill="#ba4b00" font-size="24" text-anchor="start">K3</text>
+<polygon points="750.75,305.5 717.5,284.6 717.5,239 750.75,259.9" fill="#ece5f3" fill-opacity=".9" stroke="#7b3294" stroke-width="2" />
+<text x="530" y="510" fill="#7b3294" font-size="23" text-anchor="start" font-weight="700">面x=2：面積1、体積0</text>
+<line x1="500" y1="85" x2="500" y2="550" stroke="#58677c" stroke-width="1" />
+<text x="35" y="595" fill="#172b4d" font-size="22" text-anchor="start">これは箱そのものの判定。一般形状ではAABBの重なりは候補にとどまる。</text>
+<text x="35" y="645" fill="#172b4d" font-size="23" text-anchor="start">Broad phase（箱で候補抽出） → Narrow phase（実体の条件）</text>
+</g></svg>

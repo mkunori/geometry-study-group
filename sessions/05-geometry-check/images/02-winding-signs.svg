@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="title desc">
+<title id="title">輪郭の順序を逆にすると、対応する外積の符号も逆になる</title><desc id="desc">同じ三角形をABCとACBの順で見る。P=(1,1)に対しAB・BC・CAは4・5・3、AC・CB・BAは-3・-5・-4。面積の大きさは6。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="640" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">輪郭の順序を逆にすると、対応する外積の符号も逆になる</text>
+<text x="30" y="115" fill="#1565c0" font-size="26" text-anchor="start" font-weight="700">ABC：反時計回り</text>
+<polygon points="110,380 358,380 110,194" fill="#e5eef9" fill-opacity=".30" stroke="#1565c0" stroke-width="2" />
+<line x1="110" y1="380" x2="258.8" y2="380" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<line x1="358" y1="380" x2="209.2" y2="268.4" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<line x1="110" y1="194" x2="110" y2="305.6" stroke="#1565c0" stroke-width="3" marker-end="url(#blue)" />
+<circle cx="110" cy="380" r="5" fill="#1565c0" data-coordinate="0,0" data-origin="110,380" data-scale="62" data-projection="p2" />
+<text x="85" y="410" fill="#1565c0" font-size="24" text-anchor="start">A</text>
+<circle cx="358" cy="380" r="5" fill="#1565c0" data-coordinate="4,0" data-origin="110,380" data-scale="62" data-projection="p2" />
+<text x="368" y="410" fill="#1565c0" font-size="24" text-anchor="start">B</text>
+<circle cx="110" cy="194" r="5" fill="#1565c0" data-coordinate="0,3" data-origin="110,380" data-scale="62" data-projection="p2" />
+<text x="85" y="179" fill="#1565c0" font-size="24" text-anchor="start">C</text>
+<circle cx="172" cy="318" r="5" fill="#7b3294" data-coordinate="1,1" data-origin="110,380" data-scale="62" data-projection="p2" />
+<text x="184" y="306" fill="#7b3294" font-size="24" text-anchor="start">P</text>
+<text x="25" y="455" fill="#172b4d" font-size="22" text-anchor="start">AB / BC / CA = 4 / 5 / 3</text>
+<text x="25" y="515" fill="#1565c0" font-size="24" text-anchor="start">向きの外積 12、面積 6</text>
+<text x="530" y="115" fill="#ba4b00" font-size="26" text-anchor="start" font-weight="700">ACB：時計回り</text>
+<polygon points="610,380 610,194 858,380" fill="#f9e9db" fill-opacity=".30" stroke="#ba4b00" stroke-width="2" />
+<line x1="610" y1="380" x2="610" y2="268.4" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<line x1="610" y1="194" x2="758.8" y2="305.6" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<line x1="858" y1="380" x2="709.2" y2="380" stroke="#ba4b00" stroke-width="3" marker-end="url(#orange)" />
+<circle cx="610" cy="380" r="5" fill="#ba4b00" data-coordinate="0,0" data-origin="610,380" data-scale="62" data-projection="p2" />
+<text x="585" y="410" fill="#ba4b00" font-size="24" text-anchor="start">A</text>
+<circle cx="858" cy="380" r="5" fill="#ba4b00" data-coordinate="4,0" data-origin="610,380" data-scale="62" data-projection="p2" />
+<text x="868" y="410" fill="#ba4b00" font-size="24" text-anchor="start">B</text>
+<circle cx="610" cy="194" r="5" fill="#ba4b00" data-coordinate="0,3" data-origin="610,380" data-scale="62" data-projection="p2" />
+<text x="585" y="179" fill="#ba4b00" font-size="24" text-anchor="start">C</text>
+<circle cx="672" cy="318" r="5" fill="#7b3294" data-coordinate="1,1" data-origin="610,380" data-scale="62" data-projection="p2" />
+<text x="684" y="306" fill="#7b3294" font-size="24" text-anchor="start">P</text>
+<text x="525" y="455" fill="#172b4d" font-size="22" text-anchor="start">AC / CB / BA = −3 / −5 / −4</text>
+<text x="525" y="515" fill="#ba4b00" font-size="24" text-anchor="start">向きの外積 -12、面積 6</text>
+<line x1="500" y1="85" x2="500" y2="545" stroke="#58677c" stroke-width="1" />
+<text x="35" y="600" fill="#172b4d" font-size="22" text-anchor="start">辺の列挙順も変わる。CCWの「全て正」を時計回りへそのまま使わない。</text>
+</g></svg>
