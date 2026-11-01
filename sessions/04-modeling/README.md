@@ -18,21 +18,13 @@
 
 ## 教材への案内
 
-| 教材 | 状態 |
-| --- | --- |
-| [詳細解説（Markdown）](explanation.md) | 下書き作成・レビュー待ち |
-| [詳細解説PDF（自動更新）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) | mainへの反映後にGitHub Actionsで自動更新（内容レビュー待ち） |
-| [SVG図解の目次](images/README.md) | 下書き作成・レビュー待ち（10点） |
-| [.NET・C#実装例](examples/README.md) | 下書き作成・レビュー待ち（7題材・153チェック） |
-| [AutoCAD専用：断面・押し出し・直線スイープ](../../autocad-net/samples/04-modeling/README.md) | 参考コード（実機未検証・ビルド未検証） |
-| [復習用の宿題](homework/README.md) | 下書き作成・レビュー待ち（基本3問＋発展1問） |
-
-## 今後の準備
-
-- TODO：詳細解説の導出・固定例A〜D・SVG図解を通読レビューする。
-- TODO：宿題の計算・理由・図解と詳細解説の対応をレビューする。
-- TODO：C#の固定入力・生成結果・Visual Studioでのデバッグ手順をレビューする。
-- TODO：利用者がMarkdown・PDFを通読し、固定値・接続・図の向きを確認して承認する。原本の修正をmainへマージした後に、自動更新されたPDFを確認する。
-- 第4回はPDF自動更新対象。トップページの「準備中」を維持し、正式承認と勉強会での使用判断は別途行う。
+| 教材 |
+| --- |
+| [詳細解説（Markdown）](explanation.md) |
+| [詳細解説PDF（自動更新）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) |
+| [SVG図解の目次](images/README.md) |
+| [.NET・C#実装例](examples/README.md) |
+| [AutoCAD専用：断面・押し出し・直線スイープ](../../autocad-net/samples/04-modeling/README.md) |
+| [復習用の宿題](homework/README.md) |
 
 [勉強会トップへ戻る](../../README.md)

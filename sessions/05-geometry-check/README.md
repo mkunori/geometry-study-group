@@ -19,22 +19,14 @@
 
 ## 教材への案内
 
-| 教材 | 状態 |
-| --- | --- |
-| [詳細解説（Markdown）](explanation.md) | 下書き作成・レビュー待ち |
-| [詳細解説PDF（自動更新）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) | mainへの反映後にGitHub Actionsで自動更新（内容レビュー待ち） |
-| [SVG図解の目次](images/README.md) | 下書き作成・レビュー待ち（10点） |
-| [.NET・C#実装例](examples/README.md) | 下書き作成・レビュー待ち（.NET 10、従来形式.sln、7題材・254チェック） |
-| [AutoCAD専用：包囲箱・交点・ソリッド干渉](../../autocad-net/samples/05-geometry-check/README.md) | 参考コード（実機未検証・ビルド未検証） |
-| [C#自動チェック（CI）](../../.github/workflows/check-geometry-examples.yml) | PR・mainへのpush時に対象変更のReleaseビルドと254チェックを検証 |
-| [復習用の宿題](homework/README.md) | 下書き作成・レビュー待ち（基本3問＋発展1問、全20設問と途中計算付き解答） |
-
-## 今後の準備
-
-- 固定例A〜Eを本文・SVG・宿題・C#で独立検算し、内外・境界・離隔・接触・正の面積／体積の重なりを照合した。
-- TODO：利用者がPDF下書きと本文を全文通読し、図の向き・境界の規約・適用範囲、宿題の途中計算をレビューする。
-- TODO：C#実装例の分類・入力制約・デバッグ手順を通読レビューし、Visual StudioのGUI操作を確認する。
-- Markdown／SVGを修正した場合、mainへのマージ後にPDF自動更新ワークフローと生成結果を確認する。全ページの表示確認も行う。
-- 第5回はPDF自動更新対象。トップページの「準備中」を維持し、正式承認と勉強会での使用判断は別途行う。
+| 教材 |
+| --- |
+| [詳細解説（Markdown）](explanation.md) |
+| [詳細解説PDF（自動更新）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) |
+| [SVG図解の目次](images/README.md) |
+| [.NET・C#実装例](examples/README.md) |
+| [AutoCAD専用：包囲箱・交点・ソリッド干渉](../../autocad-net/samples/05-geometry-check/README.md) |
+| [C#自動チェック（CI）](../../.github/workflows/check-geometry-examples.yml) |
+| [復習用の宿題](homework/README.md) |
 
 [勉強会トップへ戻る](../../README.md)

@@ -60,6 +60,5 @@
 
 参考コードはAutoCADの例外をEditorへ表示し、Transactionと新規Lineはusingで後始末する。例外を発生させた実験やロールバックの実機確認は行っていない。Commit後の後処理の失敗まで巻き戻るとは説明しない。
 
-TODO：利用者の実際のDLL・製品更新版との整合、Visual Studioでのビルド、NETLOAD、コマンド登録、メッセージ・Line追加・例外時の図面状態は未確認。この参考教材の確認範囲は静的照合までとし、これらの実機確認・自動テストは完了条件に含めない。
 
 [参考コードトップへ戻る](../README.md) ／ [セットアップ](setup.md) ／ [総合レビュー](review.md) ／ [共通コード](../samples/00-common/CommonCommands.cs)
