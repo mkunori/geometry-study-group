@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+<title id="title">固定例A：Cを起点に、2Nと−Bを足す</title><desc id="desc">C=(10,20,30)を基準とした変位の斜投影。2Nで(10,22,30)、-Bでp=(10,22,29)へ進む。世界原点からの距離は省略。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="600" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">固定例A：Cを起点に、2Nと−Bを足す</text>
+<polygon points="335,330 160,220 160,310 335,420" fill="#e5eef9" fill-opacity=".35" stroke="#1565c0" stroke-width="2" />
+<line x1="335" y1="330" x2="160" y2="220" stroke="#1565c0" stroke-width="4" marker-end="url(#blue)" />
+<line x1="160" y1="220" x2="160" y2="310" stroke="#ba4b00" stroke-width="4" marker-end="url(#orange)" />
+<circle cx="335" cy="330" r="5" fill="#172b4d" data-coordinate="0,0,0" data-origin="335,330" data-scale="2.5" data-projection="p3" />
+<text x="355" y="380" fill="#172b4d" font-size="24" text-anchor="start">C=(10,20,30)</text>
+<circle cx="160" cy="220" r="5" fill="#1565c0" data-coordinate="0,2,0" data-origin="335,330" data-scale="2.5" data-projection="p3" />
+<text x="30" y="195" fill="#1565c0" font-size="24" text-anchor="start">C+2N=(10,22,30)</text>
+<circle cx="160" cy="310" r="5" fill="#7b3294" data-coordinate="0,2,-1" data-origin="335,330" data-scale="2.5" data-projection="p3" />
+<text x="50" y="360" fill="#7b3294" font-size="24" text-anchor="start">p=(10,22,29)</text>
+<text x="220" y="245" fill="#1565c0" font-size="24" text-anchor="start">2N</text>
+<text x="60" y="315" fill="#ba4b00" font-size="24" text-anchor="start">−B</text>
+<line x1="105" y1="310" x2="145" y2="275" stroke="#ba4b00" stroke-width="2" />
+<line x1="335" y1="330" x2="515" y2="270" stroke="#7b3294" stroke-width="3" marker-end="url(#purple)" />
+<text x="420" y="260" fill="#7b3294" font-size="24" text-anchor="start">T=+X</text>
+<text x="565" y="155" fill="#172b4d" font-size="23" text-anchor="start">N=(0,1,0)、B=(0,0,1)</text>
+<text x="565" y="225" fill="#172b4d" font-size="24" text-anchor="start">局所点 (u,v)=(2,−1)</text>
+<text x="565" y="295" fill="#172b4d" font-size="27" text-anchor="start" font-weight="700">p = C + 2N − B</text>
+<text x="565" y="365" fill="#7b3294" font-size="24" text-anchor="start">世界座標 (10,22,29)</text>
+<text x="565" y="435" fill="#172b4d" font-size="24" text-anchor="start">断面は x=10 の平面</text>
+<text x="30" y="555" fill="#172b4d" font-size="22" text-anchor="start">Cまわりの変位を描く。世界原点からCまでの距離は省略している。</text>
+</g></svg>

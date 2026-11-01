@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="630" viewBox="0 0 1000 630" role="img" aria-labelledby="title desc">
+<title id="title">閉じた境界と体積：断面積2 × 長さ5 = 10</title><desc id="desc">左は両端をキャップで閉じた直柱で頂点8、三角形12。右は側面だけで両端が開いた表面。表面の面積と内部の体積を区別する。</desc><defs>
+<marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1565c0" /></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#ba4b00" /></marker>
+<marker id="purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#7b3294" /></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#58677c" /></marker>
+</defs><rect width="1000" height="630" fill="white" /><g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" fill="#172b4d">
+<text x="30" y="42" fill="#172b4d" font-size="28" text-anchor="start" font-weight="700">閉じた境界と体積：断面積2 × 長さ5 = 10</text>
+<polygon points="193.25,333 126.75,291.2 411.75,196.2 478.25,238" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="126.75,291.2 126.75,257 411.75,162 411.75,196.2" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="126.75,257 193.25,298.8 478.25,203.8 411.75,162" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="193.25,298.8 193.25,333 478.25,238 478.25,203.8" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="193.25,333 126.75,291.2 126.75,257 193.25,298.8" fill="#e5eef9" fill-opacity=".65" stroke="#1565c0" stroke-width="2" />
+<polygon points="478.25,238 411.75,196.2 411.75,162 478.25,203.8" fill="#f9e9db" fill-opacity=".65" stroke="#ba4b00" stroke-width="2" />
+<line x1="193.25" y1="333" x2="478.25" y2="238" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="126.75" y1="291.2" x2="411.75" y2="196.2" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="126.75" y1="257" x2="411.75" y2="162" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="193.25" y1="298.8" x2="478.25" y2="203.8" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<text x="50" y="112" fill="#1565c0" font-size="26" text-anchor="start" font-weight="700">閉じた境界</text>
+<text x="40" y="385" fill="#172b4d" font-size="25" text-anchor="start">8頂点／12三角形</text>
+<text x="40" y="435" fill="#172b4d" font-size="24" text-anchor="start">幅2 × 高さ1 = 断面積2</text>
+<polygon points="703.25,333 636.75,291.2 921.75,196.2 988.25,238" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="636.75,291.2 636.75,257 921.75,162 921.75,196.2" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="636.75,257 703.25,298.8 988.25,203.8 921.75,162" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<polygon points="703.25,298.8 703.25,333 988.25,238 988.25,203.8" fill="#e5eef9" fill-opacity=".28" stroke="#1565c0" stroke-width="2" />
+<line x1="703.25" y1="333" x2="988.25" y2="238" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="636.75" y1="291.2" x2="921.75" y2="196.2" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="636.75" y1="257" x2="921.75" y2="162" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<line x1="703.25" y1="298.8" x2="988.25" y2="203.8" stroke="#58677c" stroke-width="2" stroke-dasharray="7 6" />
+<text x="560" y="112" fill="#ba4b00" font-size="26" text-anchor="start" font-weight="700">端が開いた表面</text>
+<line x1="703.25" y1="333" x2="636.75" y2="291.2" stroke="#ba4b00" stroke-width="3" stroke-dasharray="7 6" />
+<line x1="636.75" y1="291.2" x2="636.75" y2="257" stroke="#ba4b00" stroke-width="3" stroke-dasharray="7 6" />
+<line x1="636.75" y1="257" x2="703.25" y2="298.8" stroke="#ba4b00" stroke-width="3" stroke-dasharray="7 6" />
+<line x1="703.25" y1="298.8" x2="703.25" y2="333" stroke="#ba4b00" stroke-width="3" stroke-dasharray="7 6" />
+<line x1="988.25" y1="238" x2="921.75" y2="196.2" stroke="#ba4b00" stroke-width="3" stroke-dasharray="7 6" />
+<line x1="921.75" y1="196.2" x2="921.75" y2="162" stroke="#ba4b00" stroke-width="3" stroke-dasharray="7 6" />
+<line x1="921.75" y1="162" x2="988.25" y2="203.8" stroke="#ba4b00" stroke-width="3" stroke-dasharray="7 6" />
+<line x1="988.25" y1="203.8" x2="988.25" y2="238" stroke="#ba4b00" stroke-width="3" stroke-dasharray="7 6" />
+<text x="570" y="385" fill="#ba4b00" font-size="24" text-anchor="start">キャップなし</text>
+<text x="40" y="495" fill="#7b3294" font-size="28" text-anchor="start" font-weight="700">閉じた直柱：V = 2 × 5 = 10</text>
+<text x="40" y="555" fill="#172b4d" font-size="22" text-anchor="start">辺の共有・向き・自己交差も確認する。穴や向きの混在は体積式で修復できない。</text>
+<text x="40" y="605" fill="#172b4d" font-size="22" text-anchor="start">右図は体積領域を囲み切っていない。紙面の透け具合は厚みではない。</text>
+</g></svg>
