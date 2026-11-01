@@ -128,10 +128,20 @@ dotnet run --project sessions/04-modeling/examples/ModelingExamples.csproj -c Re
 
 `System.Numerics` の成分は [Single（float）](https://learn.microsoft.com/en-us/dotnet/standard/numerics/) で、doubleから渡すと丸められる。題材7の `1+1e-10` の差はdoubleに残るが、floatでは消える。doubleに戻しても復元できない。許容誤差内でも元の情報が完全に保存されたとは限らない。
 
-## 検証件数と今後の確認
+## 自動チェックとCI
 
 実際に成功した `Check`／`Assert`／`Reject` の呼び出しを各1件として数える。複数成分の比較は1件、入力反復の各呼び出しは別件とする。7題材の件数8／8／9／62／7／11／48の合計153、実際の `[OK]` 153行、成功要約、終了コード0が揃うことを確認する。
 
-TODO：教材の通読レビューとVisual StudioのGUIでのデバッグ操作を確認する。専用CIは後続Issueで整備し、今回はワークフローを追加しない。C#のチェック内容を変えたら実際の件数とこのREADMEを更新し、CI導入後はその期待件数もレビューして合わせる。レビュー用PDF・公開承認も後続作業で、第4回全体は準備中を維持する。
+[Check Modeling Examples](../../../.github/workflows/check-modeling-examples.yml) は、第4回のC#コード（`.cs`）・プロジェクト（`.csproj`）・ソリューション（`.sln`）・ビルド設定（`.props`／`.targets`）、ルートの `global.json`／`Directory.Build.props`／`Directory.Build.targets`、ワークフロー自身の変更を、PR時とmainへのpush時に検証する。Markdownだけの変更では起動しない。
+
+Ubuntu 24.04・.NET SDK 10.0.401でソリューションをrestoreし、Releaseビルドして実行する。終了コード0、実際の `[OK]` 153行、期待する成功要約の3点を確認する。`set -euo pipefail` により、ログを `tee` で表示・保存している途中の実行失敗も伝播する。チェック内容を変更する場合は、題材をレビューし、このREADMEの件数・出力例とワークフローの `EXPECTED_CHECKS` を同じPRで更新する。
+
+結果は [Actions → Check Modeling Examples](https://github.com/mkunori/geometry-study-group/actions/workflows/check-modeling-examples.yml)、またはPRのChecksから開く。**対象の実行 → ModelingExamples (Release)** の `Restore solution`・`Build solution (Release)`・`Run ModelingExamples and verify all 153 checks` のログを確認する。
+
+失敗時は `FAIL` の検証ラベルから、押し出しの頂点・三角形の順序・外積・体積などの実値と期待値を追う。数値比較では成分番号と許容誤差も表示する。件数や成功要約が一致しない場合は `::error::` が表示される。正常時には全12三角形の法線・面積、辺の共有、体積10のチェックと、最後の `Verified all 153 checks.` を確認できる。
+
+権限は `contents: read` のみで、チェックアウトした認証情報を保持せず、Secret・PAT・書き込み権限は不要。ソース・OBJ・PDFの生成コミットは行わない。第1回43件・第2回73件・第3回155件の専用CI、PDF自動生成から独立したワークフローである。
+
+TODO：教材の通読レビューとVisual StudioのGUIでのデバッグ操作を確認する。F5／Ctrl+F5／F9／F11はこのCIでは検証できないため、上記のローカル手順で確認する。レビュー用PDF・公開承認も後続作業で、第4回全体は準備中を維持する。
 
 [この回のトップへ戻る](../README.md)
