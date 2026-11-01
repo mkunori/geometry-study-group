@@ -22,6 +22,5 @@ Point3dとLineはWCS座標で作り、UCS行列は使わない。mm等の物理�
 
 `CommandMethod` 名 → 現在のDocument → Database／Editor → Transaction → BlockTable → ModelSpace → Line → AppendEntity → AddNewlyCreatedDBObject → Commit → usingの後始末を追う。[公式リファレンス](../../docs/references.md) で名前空間・署名・追加順序・所有権を照合できる。
 
-TODO：ビルド・ロード・図形追加は未確認であり、動作済みとは扱わない。これらの実施は本Issueの完了条件に含めない。
 
 [参考コードトップへ戻る](../../README.md) ／ [セットアップ](../../docs/setup.md)

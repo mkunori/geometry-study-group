@@ -140,6 +140,5 @@ PRのChecks、または **Actions → Check Vector Examples → 対象の実行 
 
 このCIは `contents: read` の読み取り専用で、Secretや書き込み権限を要求しない。第1回の43チェックとCI、PDFの生成・自動コミットとは独立している。Visual StudioのF5／Ctrl+F5／F9／F11はCIでは検証できないため、上記の手順でローカル確認する。
 
-TODO：教材の内容レビューと、Visual StudioのGUIでF5／Ctrl+F5／F9／F11を使った最終確認を行う。第2回全体は準備中で、PDF公開設定は別の後続作業で扱う。
 
 [この回のトップへ戻る](../README.md)

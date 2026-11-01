@@ -183,7 +183,6 @@ GeometricExtents・IntersectWith・CheckInterferenceが、これらの三値分�
 
 数式・固定入力・数学上の期待値と、公式APIの署名・規約・所有権を静的に照合した参考コードである。実DLLの解決、ビルド、NETLOAD、コマンド登録、範囲・点・干渉フラグ、Cloneの独立性、Booleanの形・体積、例外と破棄は未確認。
 
-TODO：利用者が対象環境で手動確認する場合は、数学上の関係とAPIの出力を別に記録する。特に面接触のtrue/falseを事前に決めず、boolだけで教材の三値分類を置き換えない。SDK・Autodesk DLL・自動検証は追加せず、第5回の準備中／レビュー待ち、PDF自動生成対象外の状態を維持する。
 
 [第5回トップへ戻る](../../../sessions/05-geometry-check/README.md) ／
 [参考コードトップへ戻る](../../README.md) ／ [セットアップ](../../docs/setup.md) ／ [公式リファレンス](../../docs/references.md)

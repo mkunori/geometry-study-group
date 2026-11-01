@@ -28,7 +28,7 @@
 6. `FaceGeometry geometry = AnalyzeTriangle(...)` からF11で入り、2辺の差→外積→2倍面積による退化検査→単位化の順を確認する。ゼロの外積を単位化しないことに注目する。
 7. `ClosureAndVolume` の `HasPairedOppositeEdges` で辞書のCount・Balance、`SignedVolume` で基準点originと四面体の寄与を調べる。`StationFrames` では終点のNが−Xになること、角の左右で配置点が異なることを追う。
 
-出力を読むにはCtrl+F5を使う。F5で終了前に止める場合はMainの成功メッセージにF9を置く。GUIでのF5／Ctrl+F5／F9／F11の操作確認はTODOであり、CLIやMSBuildの成功とは区別する。
+出力を読むにはCtrl+F5を使う。F5で終了前に止める場合はMainの成功メッセージにF9を置く。GUIでのF5／Ctrl+F5／F9／F11の操作はCIで未検証であり、CLIやMSBuildの成功とは区別する。
 
 ## CLIでビルド・実行する
 
@@ -142,6 +142,5 @@ Ubuntu 24.04・.NET SDK 10.0.401でソリューションをrestoreし、Release�
 
 権限は `contents: read` のみで、チェックアウトした認証情報を保持せず、Secret・PAT・書き込み権限は不要。ソース・OBJ・PDFの生成コミットは行わない。第1回43件・第2回73件・第3回155件の専用CI、PDF自動生成から独立したワークフローである。
 
-TODO：教材の通読レビューとVisual StudioのGUIでのデバッグ操作を確認する。F5／Ctrl+F5／F9／F11はこのCIでは検証できないため、上記のローカル手順で確認する。[詳細解説のPDF下書き](../output/README.md) も通読に利用できる。公開承認は後続作業で、第4回全体は準備中を維持する。
 
 [この回のトップへ戻る](../README.md)

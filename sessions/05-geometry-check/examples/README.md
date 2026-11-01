@@ -13,7 +13,7 @@
 5. `SeparatingAxes` から `ConvexSat.Compare` に入り、両輪郭の辺からできる `axis` 、 `TryProject` のq・min・max、 `delta` を追う。軸(1,1)の説明用射影と、辺から得る符号・倍率の異なる法線が同じ結果になる理由を考える。
 6. `BoxHalfspaces` から `TryHalfspaces` に入り、各面のanchor・normal・wと内積を確認する。法線は外向きで、−X・+X・−Y・+Y・−Z・+Zの順。最後に `Locate` が正の値を0より先に検査する理由を追う。
 
-F5で終了前に止めるにはMain末尾の成功メッセージへF9を置く。GUIによるF5／Ctrl+F5／F9／F11の操作確認はTODOで、CLI・Visual Studio付属MSBuildによる検証とは区別する。
+F5で終了前に止めるにはMain末尾の成功メッセージへF9を置く。GUIによるF5／Ctrl+F5／F9／F11の操作はCIでは未検証で、CLI・Visual Studio付属MSBuildによる検証とは区別する。
 
 ## CLIのDebug／Releaseビルドと実行
 
@@ -140,6 +140,5 @@ Ubuntu 24.04・.NET SDK 10.0.401で `GeometryCheckExamples.sln` をrestoreし、
 
 権限は `contents: read` のみで、チェックアウトの認証情報を保持せず、PAT・Secret・書き込み権限は不要。push・自動コミット・PDF生成を行わない。第1〜4回の専用CIとPDF自動生成から独立したワークフローである。AutoCAD API参考コードは別ディレクトリで管理する別Issue #54の範囲で、このCIではビルド・実行しない。AutoCAD実機・ライセンス・SDK DLLも不要。
 
-TODO：教材の通読レビューとVisual StudioのGUIデバッグ操作を確認する。F5／Ctrl+F5／F9／F11はこのCIでは検証できないため、上記のローカル手順で確認する。[詳細解説のPDF下書き](../output/README.md) も通読に利用できる。公開承認は後続作業で、第5回は準備中を維持する。AutoCAD 2026＋.NET 10の参考コードはこのコンソールへ組み込まない。
 
 [この回のトップへ戻る](../README.md)

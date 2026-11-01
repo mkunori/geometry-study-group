@@ -17,21 +17,13 @@
 
 ## 教材への案内
 
-| 教材 | 状態 |
-| --- | --- |
-| [詳細解説（Markdown）](explanation.md) | 下書き作成・レビュー待ち |
-| [詳細解説PDF（自動更新）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) | mainへの反映後にGitHub Actionsで自動更新（内容レビュー待ち） |
-| [SVG図解の目次](images/README.md) | 下書き作成・レビュー待ち |
-| [.NET・C#実装例](examples/README.md) | 下書き作成・レビュー待ち（6題材・73チェック） |
-| [AutoCAD専用：内積・外積・法線](../../autocad-net/samples/02-vector/README.md) | 参考コード（実機未検証・ビルド未検証） |
-| [復習用の宿題](homework/README.md) | 下書き作成・レビュー待ち（基本3問＋発展1問） |
-
-## 今後の準備
-
-- TODO：詳細解説の導出・共有数値例・SVG図解をレビューする。
-- TODO：宿題の問題・解答と詳細解説の対応をレビューする。
-- TODO：.NET・C#実装例と教材の対応をレビューし、第2回専用CIの確認結果も参照する。
-- TODO：PDFを通読して内容をレビューする。Markdown・SVGの修正をmainへマージした後に、自動更新されたPDFの表示を確認する。
-- 教材ファイルは公開中・PDF自動更新対象。トップページの「準備中」は、利用者の内容レビューと正式承認が済むまで維持する。
+| 教材 |
+| --- |
+| [詳細解説（Markdown）](explanation.md) |
+| [詳細解説PDF（自動更新）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) |
+| [SVG図解の目次](images/README.md) |
+| [.NET・C#実装例](examples/README.md) |
+| [AutoCAD専用：内積・外積・法線](../../autocad-net/samples/02-vector/README.md) |
+| [復習用の宿題](homework/README.md) |
 
 [勉強会トップへ戻る](../../README.md)
