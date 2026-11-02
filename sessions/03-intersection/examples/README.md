@@ -1,6 +1,6 @@
 # 第3回：交点計算のC#実装例
 
-**準備中／レビュー待ち。** [詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の固定例A〜Eを、7題材・155件の実行時自動チェックで確かめる.NET 10コンソール教材。
+[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の固定例A〜Eを、7題材・155件の実行時自動チェックで確かめる.NET 10コンソール教材。
 
 `double` のタプルで成分式・交差分類を手実装し、`System.Numerics.Vector2/Vector3` の `float` の結果と比較する。入力はソース内の固定値で、引数や標準入力は使わない。AutoCADライセンス・GUI・追加NuGetパッケージは不要。第1・2回のコードには依存しない。
 

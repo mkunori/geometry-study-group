@@ -1,6 +1,6 @@
 # 第5回：内外・AABB・SATのC#実装例
 
-**準備中／レビュー待ちの下書き。** [詳細解説](../explanation.md) の固定例A〜Eと [宿題](../homework/README.md) を、独立した.NET 10コンソールで追う。7題材・全254チェック。追加NuGet、他回のプロジェクト参照、GUI、AutoCAD、DWG操作は不要。
+[詳細解説](../explanation.md) の固定例A〜Eと [宿題](../homework/README.md) を、独立した.NET 10コンソールで追う。7題材・全254チェック。追加NuGet、他回のプロジェクト参照、GUI、AutoCAD、DWG操作は不要。
 
 ## 必要環境とVisual Studioでの操作
 

@@ -2,8 +2,6 @@
 
 テーマはフィードバックによって変更する可能性がある。
 
-**教材は公開中・PDF自動更新対象（内容レビュー待ち）です。** 詳細解説・SVG図解・宿題・C#実装例とPDFを閲覧できる。トップページの第3回「準備中」は、内容の最終レビューと勉強会としての正式使用の準備状態を表し、教材ファイルの閲覧可否やPDF自動更新とは独立している。
-
 ## 到達目標
 
 - 直線・半直線・線分を、同じ媒介変数表示と異なる範囲で説明できる。
@@ -20,7 +18,7 @@
 | 教材 |
 | --- |
 | [詳細解説（Markdown）](explanation.md) |
-| [詳細解説PDF（自動更新）](output/explanation.pdf) ／ [生成・更新の案内](output/README.md) |
+| [詳細解説（PDF）](output/explanation.pdf) |
 | [SVG図解の目次](images/README.md) |
 | [.NET・C#実装例](examples/README.md) |
 | [AutoCAD専用：線分・平面との交差](../../autocad-net/samples/03-intersection/README.md) |

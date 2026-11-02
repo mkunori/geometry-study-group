@@ -1,6 +1,6 @@
 # 第2回：内積・外積のC#実装例
 
-**準備中／レビュー待ち。** [詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の共有数値例を、6題材・73件の自動チェックで確かめるコンソール教材。
+[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の共有数値例を、6題材・73件の自動チェックで確かめるコンソール教材。
 
 `double` のタプルで数式を直接計算し、`System.Numerics` の `float` の結果と比較する。入力はソース内の固定値で、引数や標準入力は使わない。AutoCAD・GUI・追加NuGetパッケージは不要。
 

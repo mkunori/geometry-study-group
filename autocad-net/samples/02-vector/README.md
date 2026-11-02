@@ -2,7 +2,7 @@
 
 **公式資料とAPI仕様を静的に照合した参考コード／AutoCAD実機未検証・ビルド未検証。** Windows版AutoCAD 2026 Update 1.2（2026.1.2）以降／.NET 10／Visual Studio 2026を対象にする。NETLOAD・コマンド実行・出力の確認は行っていない。
 
-[VectorCommands.cs](VectorCommands.cs) は共通の [Class Library](../../AutoCadGeometrySamples.csproj) 内の参考コード。対応する [数学教材の詳細解説](../../../sessions/02-vector/explanation.md)、[VectorMath.cs](../../../sessions/02-vector/examples/VectorMath.cs)、[Program.cs](../../../sessions/02-vector/examples/Program.cs) の6題材と同じ数値例を使う。数学教材の本文・実装・期待値と、準備中／レビュー待ちの公開状態は変更しない。
+[VectorCommands.cs](VectorCommands.cs) は共通の [Class Library](../../AutoCadGeometrySamples.csproj) 内の参考コード。対応する [数学教材の詳細解説](../../../sessions/02-vector/explanation.md)、[VectorMath.cs](../../../sessions/02-vector/examples/VectorMath.cs)、[Program.cs](../../../sessions/02-vector/examples/Program.cs) の6題材と同じ数値例を使う。数学教材の本文・実装・期待値は変更しない。
 
 ## 読む順序と手動実行の案内
 
