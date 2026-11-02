@@ -1,6 +1,6 @@
 # 第4回のSVG図解
 
-[詳細解説の下書き](../explanation.md) に対応する静的SVG。**準備中／レビュー待ち**で、同じ図を [レビュー用PDF下書き](../output/README.md) にも収録している。
+[詳細解説](../explanation.md) に対応する静的SVG。同じ図を [詳細解説（PDF）](../output/explanation.pdf) にも収録している。
 
 | 図 | 本文の対応箇所 | 内容 |
 | --- | --- | --- |

@@ -1,8 +1,8 @@
-# 第5回の詳細解説PDF（内容レビュー待ち）
+# 詳細解説PDF
 
 [PDFを開く](explanation.pdf) ／ [ダウンロード](explanation.pdf?raw=true)
 
-**教材PDFは公開中・自動更新対象（内容レビュー待ち）。** 利用者が全文を通読して手直しするための暫定PDFで、公開確定版ではない。[詳細解説Markdown](../explanation.md) の文章・表・数式・SVG10点・末尾の参考資料までを省略せず収録する。A4縦・ページ番号付きで、本文は選択・検索できる。
+A4縦・ページ番号付き。[詳細解説Markdown](../explanation.md) の文章・表・数式・SVG10点・末尾の参考資料までを省略せず収録している。本文は選択・検索できる。PDFはGitHubで閲覧・ダウンロードできる。
 
 ## 原本と更新方法
 
@@ -12,13 +12,11 @@
 
 PDFを別原稿として編集しない。修正はMarkdown・SVGへ行い、共通コマンドで再生成する。
 
-**第5回PDFはGitHub Actionsによる自動更新対象です。** [対象一覧](../../../scripts/pdf-sessions.json) に登録済み。mainへのMarkdown・SVG反映後は [Build Explanation PDFs](../../../.github/workflows/build-explanation-pdfs.yml) が再生成し、内容に変更のあるPDFだけをコミットする。レビューPRでPDFを手動生成して添えることもできるが、必須ではない。
-
-ルートREADMEの第5回は「準備中」を維持する。これは内容の最終レビュー・正式使用の準備状態であり、教材PDFの公開・自動更新とは別の扱い。正式承認とトップページの状態変更は後で判断する。
+本文・SVGをmainへ反映した後、GitHub ActionsがPDFを再生成し、内容に変更のあるPDFだけをコミットする。対象一覧・手動実行・更新の仕組みは [共通運用文書](../../../docs/pdf-automation.md) を参照。手動生成したPDFをPRに含めることもできる。
 
 ## 必要環境と再生成
 
-[共通の生成手順と必要環境](../../01-matrix/output/README.md) と同じNode.js 24.x・インストール済みChrome／Edge／Chromium・日本語フォントを使う。動作確認環境はWindows、Node.js 24.21.0、npm 11.19.0、Microsoft Edge 156.0.4314.50、Yu Gothic・Meiryo。
+[共通の生成手順と必要環境](../../01-matrix/output/README.md) と同じNode.js 24.x・インストール済みChrome／Edge／Chromium・日本語フォントを使う。
 
 リポジトリのルートで実行する。
 
@@ -37,11 +35,9 @@ PowerShellでは `npm.cmd` を使ってもよい。ブラウザーを自動検�
 - 固定例A〜Eの外積、境界先行のレイ計数、区間幅、内積射影、6面の外向き法線、共有面積・体積を [宿題](../homework/README.md) と [C#実装例](../examples/README.md) に照合する。C#のDebug／Release・全254チェックと専用CIの成功も確認する。
 - 原本のMarkdown・SVGをPRで更新する。mainへのマージ後にActionsの成功と生成PDFの全ページを確認する。手動生成PDFをPRに含める場合は同じ内容か照合し、生成コマンド・確認環境・表示結果を記載する。OS・ブラウザー・フォントが変わると紙面やページ数も変わりうる。
 
-今回の下書きは全15ページ。全ページを画像化して目視確認し、数式47個・SVG10点・全30見出し・末尾までの説明、PDFのリンク注釈16件（参照先12件）、本文354テキスト断片の抽出とフォント6種類の埋め込みを確認した。更新後もその時点の全ページを再確認する。
-
 末尾の短いまとめ段落には、その段落内の改ページを抑える書式を付けている。文章・数学的な内容は変えず、共通の生成スクリプトとCSSを利用する。
 
-## 通読レビューの観点
+## 学習時の確認ポイント
 
 点のInside／Boundary／Outsideと、領域どうしのSeparated／Touching／Overlappingを区別して読む。三角形の外積0だけで有限な辺上と決めないこと、逆順の符号、退化やInvalidの扱いを確認する。
 
