@@ -8,6 +8,9 @@
 | --- |
 | [詳細解説（Markdown）](explanation.md) |
 | [詳細解説（PDF）](output/explanation.pdf) |
+| [練習問題（PDF）](output/problems.pdf) |
+| [解答・解説（PDF）](output/solutions.pdf) |
+| [C#実装例の説明（PDF）](output/examples.pdf) |
 | [SVG図解の保管先](images/README.md) |
 | [.NET・C#実装例](examples/README.md) |
 | [AutoCAD専用：行列・座標変換](../../autocad-net/samples/01-matrix/README.md) |

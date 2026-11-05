@@ -1,4 +1,32 @@
-# 詳細解説PDFの自動更新
+# 配布用PDFの生成と詳細解説PDFの自動更新
+
+## 各回4種類のPDF
+
+各回の `output/` に詳細解説・練習問題・解答解説・C#実装例の説明を保存する。原本は分離したまま、すべて同じ [変換処理](../scripts/build-pdf.mjs) と印刷CSSで生成する。
+
+| Markdown原本（セッション基準） | 出力（セッション基準） |
+| --- | --- |
+| `explanation.md` | `output/explanation.pdf` |
+| `homework/problems.md` | `output/problems.pdf` |
+| `homework/solutions.md` | `output/solutions.pdf` |
+| `examples/README.md` | `output/examples.pdf` |
+
+リポジトリのルートで、対象ディレクトリを指定する。回番号や総回数には依存しない。
+
+```sh
+npm ci
+npm run pdf:session -- sessions/01-matrix
+```
+
+`sessions/01-matrix` は対象のセッションパスに置き換える。PowerShellでは `npm.cmd` でも実行できる。ブラウザーを明示する場合は `--browser-path <実行ファイル>` を追加する。
+
+4種類を一時ファイルへ生成し、すべて成功してから内容に差分のあるPDFだけを出力する。生成・比較で失敗した場合は既存PDFを置き換えず、日時だけが異なる場合も既存のバイト列を維持する。1種類だけ生成する場合は従来の `npm run pdf -- <input.md> <output.pdf>` を使い、`--html-preview <file.html>` で表示確認用HTMLを保存できる。`pdf:01` は従来どおり第1回の詳細解説だけを生成する。
+
+練習問題PDFは問題原本だけを収録し、解答を混入させない。解答PDFは小問番号・途中計算・根拠・注意点・参照SVGを原本と照合する。C#説明PDFはREADMEの環境・Visual Studio／CLIの手順・期待結果・数学との対応・検証と適用範囲を収録する。C#ソース全体やAutoCAD参考コードを別途PDF化しない。全種類ともA4縦・ページ番号付きで、本文の選択・検索、数式・SVG・表・コードブロックを維持する。表紙・版数・更新日・発行者情報は追加しない。
+
+各回のREADMEと `output/README.md` から4種類へ直接移動できる。全ページを画像化して、日本語・数式・SVG・表・コード・改ページ・文字切れを確認する。問題と解答の番号・固定値の対応、原本全文の収録、末尾の元データURL1件も確認する。
+
+**現在のActions自動更新は詳細解説PDFのみ。** 練習問題・解答・C#説明PDFを更新する場合は、原本と同じPRで上記コマンドにより再生成し、表示確認したPDFを含める。以下は詳細解説PDFの自動更新手順。
 
 本文原本は各回の `explanation.md`。通常はMarkdownと `images/` のSVGをPRで更新し、mainへマージする。`Build Explanation PDFs` が既存の変換スクリプトでPDFを生成し、変更された `output/explanation.pdf` だけを `github-actions[bot]` としてmainへコミットする。
 
@@ -40,7 +68,7 @@ npm run pdf:published
 
 ## 社内配布PDFのリンクと元データ表記
 
-原本Markdownのリンクは維持する。共通の [PDF用リンク処理](../scripts/pdf-links.mjs) が、生成時の本文だけに次のルールを適用する。詳細解説に限らず、問題・解答・C#実装例の説明にも同じ変換コマンドを使える。追加PDFの公開対象への登録は別途行う。
+原本Markdownのリンクは維持する。共通の [PDF用リンク処理](../scripts/pdf-links.mjs) が、4種類すべてのPDFの生成時に、本文だけに次のルールを適用する。
 
 - 別の教材への相対リンクは解除し、表示文字や参照案内は本文に残す。元の画像は従来どおり埋め込む。
 - GitHubとraw.githubusercontent.comへの参照先も解除する。URL自体が表示される場合は、回・教材の種類、Issue／PR番号などの読める参照に置き換える。HTMLリンクや本文・コード中のURL直書きも対象とする。

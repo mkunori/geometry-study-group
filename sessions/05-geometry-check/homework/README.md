@@ -27,4 +27,6 @@
 問題・解答は本文と同じ固定値・分類規約を使う。[C#実装例](../examples/README.md) の254チェックと [詳細解説（PDF）](../output/explanation.pdf) でも計算を確かめられる。
 
 
+印刷・オフライン閲覧用：[練習問題PDF](../output/problems.pdf) ／ [解答・解説PDF](../output/solutions.pdf)。
+
 [セッションのトップへ戻る](../README.md)
