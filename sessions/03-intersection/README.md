@@ -17,14 +17,10 @@
 
 | 教材 |
 | --- |
-| [詳細解説（Markdown）](explanation.md) |
-| [詳細解説（PDF）](output/explanation.pdf) |
-| [練習問題（PDF）](output/problems.pdf) |
-| [解答・解説（PDF）](output/solutions.pdf) |
-| [C#実装例の説明（PDF）](output/examples.pdf) |
-| [SVG図解の目次](images/README.md) |
-| [.NET・C#実装例](examples/README.md) |
-| [AutoCAD専用：線分・平面との交差](../../autocad-net/samples/03-intersection/README.md) |
-| [復習用の宿題](homework/README.md) |
+| [詳細解説](explanation.md) |
+| [練習問題](homework/problems.md) |
+| [解答・解説](homework/solutions.md) |
+| [C#実装例の説明](examples/README.md) |
+| [AutoCAD参考コード（参考情報）：線分・平面との交差](../../autocad-net/samples/03-intersection/README.md) |
 
 [勉強会トップへ戻る](../../README.md)
