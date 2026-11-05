@@ -127,7 +127,7 @@ test('session aliases, source directory junctions and output junctions are rejec
   const type = process.platform === 'win32' ? 'junction' : 'dir';
   const outside = join(folder, 'outside');
   await mkdir(outside);
-  const alias = new URL('sessions/alias/', root);
+  const alias = new URL('sessions/alias', root);
   await symlink(new URL('.', source), alias, type);
   await assert.rejects(publishedPdfs(root), /Session links/);
   await rm(alias);
