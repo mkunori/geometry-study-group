@@ -1,62 +1,11 @@
 # 第2回：内積・外積のC#実装例
 
-[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の共有数値例を、6題材・73件の自動チェックで確かめるコンソール教材。
-
-`double` のタプルで数式を直接計算し、`System.Numerics` の `float` の結果と比較する。入力はソース内の固定値で、引数や標準入力は使わない。AutoCAD・GUI・追加NuGetパッケージは不要。
-
-## 必要環境
-
-- **.NET 10 SDK**（対象フレームワーク：`net10.0`）。ランタイムだけではビルドできない。
-- Visual Studioでは **Visual Studio 2026（18.0以上、Windows）** と、Visual Studio Installerの「.NETデスクトップ開発」ワークロード・.NET 10 SDKを使う。SDKは使用するVisual Studioに対応したものを導入する。[公式の導入・対応表](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio) を参照。
-- CLIでは.NET 10 SDKを導入したWindows・Linux・macOSのコンソールから実行できる。
-
-## Visual Studioで開いて実行する
-
-1. 「プロジェクトやソリューションを開く」から [VectorExamples.sln](VectorExamples.sln) を開く。従来形式の `.sln` と `.csproj` はこのディレクトリに並んでいる。
-2. ソリューションエクスプローラーに `VectorExamples` が1件表示されることを確認する。必要なら右クリックで「スタートアッププロジェクトに設定」を選ぶ。
-3. 構成を **Debug**、プラットフォームを **Any CPU** にする。
-4. **Ctrl+Shift+B** でソリューションをビルドする。
-5. **Ctrl+F5** でデバッグなし実行、**F5** でデバッグ実行する。最後に「すべての 73 チェックに成功しました。」と表示される。
-
-### F9／F11で数式を追う
-
-1. [Program.cs](Program.cs) の `DotLengthAndAngle` にある `double dot = VectorMath.Dot2(a, b);` の行に **F9** でブレークポイントを置く。
-2. **F5** で停止し、「ローカル」や「ウォッチ」で `a.X=3`、`a.Y=4`、`b.X=2`、`b.Y=0` を確認する。
-3. **F11** で [VectorMath.cs](VectorMath.cs) の `Dot2` へ入り、`a.X * b.X + a.Y * b.Y` が `3*2 + 4*0` に対応することを確認する。
-4. **Shift+F11** で戻り、**F10** で進めて `dot=6`、長さ5と2、角度を確認する。メソッド名にカーソルを合わせると、XMLコメントの入力・戻り値・前提を読める。
-
-射影では `ProjectionAndOrthogonality` の `TryProject2` 呼び出し行へブレークポイントを移す。F11で入り、`numerator=6`、`denominator=4`、`factor=1.5`、射影 `(3,0)` を追う。射影先の長さを補正する分母に注目する。
-
-法線では `TriangleNormal3D` の `TryTriangleNormal3` 呼び出しから入り、2辺・外積・長さ6・長さによる除算を追う。後の一直線の呼び出しでは、長さ0で `false` を返し、正規化へ進まないことを確認できる。角度のクランプは `DegenerateAndPrecision` の同方向の呼び出しから `TryAngle2` に入り、`cosine` と `Math.Clamp` の行を見る。
-
-### コンソールがすぐ閉じる場合
-
-出力を読むには **Ctrl+F5** を使う。F5で終了前に止める場合は、`Main` の成功メッセージを出す `Console.WriteLine` にブレークポイントを置く。CLIから実行すれば起動元の端末に出力が残る。待機用の `ReadKey` は不要。
-
-## CLIで実行する
-
-リポジトリのルートから、次のように実行する。
-
-```sh
-dotnet build sessions/02-vector/examples/VectorExamples.sln --configuration Debug
-dotnet build sessions/02-vector/examples/VectorExamples.sln --configuration Release
-dotnet run --project sessions/02-vector/examples/VectorExamples.csproj --configuration Release --no-build
-```
-
-Debugで実行する場合は、上のrunコマンドの `Release` を `Debug` にする。この `examples/` を作業ディレクトリにした場合は、次のコマンドでビルドと実行ができる。
-
-```sh
-dotnet run
-```
-
-チェックが全件成功すると終了コード0。不一致・非有限値・期待しない成否は `FAIL` と該当ラベルを出し、終了コード1で止まる。数値の失敗では成分番号・実値・期待値・許容誤差も出す。`bin/`・`obj/`・`.vs/`・`*.csproj.user` は既存の `.gitignore` で管理対象外になる。
+[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の共有数値例で、内積・外積・射影・法線の意味を復習する。`double` の成分式と `System.Numerics` の `float` の結果を比較する。
 
 ## ファイルと読む順序
 
-| ファイル | 内容 |
+| ファイル | 数学的な役割 |
 | --- | --- |
-| [VectorExamples.sln](VectorExamples.sln) | Visual Studioで開く入口。第2回専用のプロジェクト1件 |
-| [VectorExamples.csproj](VectorExamples.csproj) | .NET 10のコンソール設定。追加パッケージなし |
 | [Program.cs](Program.cs) | Mainからの実行順、入力、.NET API、期待値、数値・成否のチェック |
 | [VectorMath.cs](VectorMath.cs) | 内積・長さ・外積の成分式と、角度・射影・単位法線のTryメソッド |
 
@@ -104,11 +53,11 @@ dotnet run
 
 ## 数式と実装を見る観点
 
-- `Dot2`・`Dot3` は対応する成分の積を足す。非ゼロ長さで割るとcosになり、`TryAngle2` はその比を `Math.Clamp` してから `Math.Acos` に渡す。[Vector2.Dotの公式資料](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector2.dot?view=net-10.0) も参照できる。
-- `TryProject2` は `(a・b)/(b・b)` を `b` に掛ける。残りの内積0を検証することで、単に係数を暗記せず垂直条件と結び付ける。
+- `Dot2`・`Dot3` は対応する成分の積を足す。題材1の `Dot2` では `a.X * b.X + a.Y * b.Y` が `3*2 + 4*0 = 6` となり、長さは5と2になる。非ゼロ長さで割るとcosになり、`TryAngle2` はその比を `Math.Clamp` してから `Math.Acos` に渡す。[Vector2.Dotの公式資料](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector2.dot?view=net-10.0) も参照できる。
+- `TryProject2` は `(a・b)/(b・b)` を `b` に掛ける。同じa/bでは `numerator=6`、`denominator=4`、`factor=1.5` となり、射影は `(3,0)`。分母の長さの2乗で射影先の大きさを補正する。残りの内積0を検証することで、単に係数を暗記せず垂直条件と結び付ける。
 - `Cross3` は右手系の基底の外積から得た3成分の差を直接書く。[Vector3.Cross](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector3.cross?view=net-10.0) と比較し、`Vector3.Dot` で直交も確認する。順序の反転で符号が変わる。
 - `Cross2` は自作の `u.X*v.Y - u.Y*v.X` で、戻り値は `double`。このコードは `Vector2.Cross` を使わず、Z成分0の `Vector3.Cross` と比較する。Y下向きに座標を表し直すと符号の解釈が反転する。
-- `TryTriangleNormal3` は頂点から2辺と外積を作り、長さで割る前に退化を検査する。既存の法線を非一様スケール等で変換する話とは区別し、逆転置による一般の法線変換は扱わない。
+- `TryTriangleNormal3` は頂点から2辺と外積を作り、長さで割る前に退化を検査する。題材5では外積の長さ6で割って単位法線を得るが、一直線なら長さ0で `false` を返し、正規化しない。既存の法線を非一様スケール等で変換する話とは区別し、逆転置による一般の法線変換は扱わない。
 
 ## 未定義・精度・許容誤差
 
@@ -130,15 +79,8 @@ dotnet run
 
 比較は未丸めの値で行う。通常の数値表示は不変カルチャーの有効数字9桁（G9）、角度の度表示は小数6桁（F6）、微小残差はG17で表示する。表示文字列や丸めた期待値では判定しない。残差の末尾は実行環境で異なる場合がある。
 
-## 自動チェックとCI
+## 検証範囲
 
-自動チェックは実行ごとに73件行う。`[OK]` は数値比較と条件確認をそれぞれ1件として数える。[Check Vector Examples](../../../.github/workflows/check-vector-examples.yml) が第2回のC#コード・プロジェクト・ソリューション・ビルド設定・ワークフロー自身の変更を、PR時とmainへのpush時に検証する。Markdownだけの変更では起動しない。
-
-.NET 10 SDKで `.sln` を復元・Releaseビルドし、このプロジェクトを実行する。終了コード0、実際の `[OK]` が73件、最後の「すべての 73 チェックに成功しました。」が揃っていれば成功する。チェック件数を変更するときは内容をレビューし、ワークフローの `EXPECTED_CHECKS` と、このREADMEの件数・出力例を同じPRで更新する。
-
-PRのChecks、または **Actions → Check Vector Examples → 対象の実行 → VectorExamples (Release)** で確認できる。失敗時は `Restore solution`・`Build solution (Release)`・`Run VectorExamples and verify all 73 checks` の該当ログを開く。`FAIL` があればラベル・成分番号・実値・期待値・許容誤差、件数や成功要約の不一致なら `::error::` のメッセージを確認する。
-
-このCIは `contents: read` の読み取り専用で、Secretや書き込み権限を要求しない。第1回の43チェックとCI、PDFの生成・自動コミットとは独立している。Visual StudioのF5／Ctrl+F5／F9／F11はCIでは検証できないため、上記の手順でローカル確認する。
-
+6題材・73件の自動チェックで、内積・長さ・角度、射影と直交、外積・面積・単位法線を照合する。数値だけでなく、ゼロ長さ・退化・非有限値を拒否する成否も確認する。これは固定入力での検算であり、任意の尺度に対する頑健な幾何判定を検証するものではない。
 
 [この回のトップへ戻る](../README.md)

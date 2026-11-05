@@ -1,83 +1,17 @@
 # 第1回：行列・座標変換のC#実装例
 
-[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の計算を実行し、手実装と `System.Numerics` の結果を比較するコンソール教材。
-
-先に列ベクトル方式の式を `double` で計算し、続けて.NETの行ベクトル方式のAPIで確かめる。点・方向・基底・合成順序が数値にどう現れるかを確認できる。
-
-## 必要環境
-
-- **.NET 10 SDK**（対象フレームワーク：`net10.0`）。ランタイムだけではビルドできない。
-- Visual Studioで使う場合は **Visual Studio 2026（18.0以上、Windows）**。Visual Studio Installerで「.NETデスクトップ開発」ワークロードと.NET 10 SDKを導入する。SDKは使用するVisual Studioに同梱される.NET 10 SDKを基本とする。[対応バージョンの公式資料](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio) も参照できる。
-- CLIではWindows・Linux・macOSのコンソールから実行できる。AutoCAD、GUI、追加NuGetパッケージは不要。
-- 入力はソース内の固定値で、引数や標準入力は使わない。
-
-## Visual Studioで開いて実行する
-
-1. リポジトリを取得し、Visual Studioの「プロジェクトやソリューションを開く」から [MatrixExamples.sln](MatrixExamples.sln) を開く。`.sln` と `.csproj` はこの `examples/` に並んでいる。
-2. ソリューションエクスプローラーに `MatrixExamples` プロジェクトが表示されることを確認する。プロジェクトを右クリックして「スタートアッププロジェクトに設定」を選び、実行対象を `MatrixExamples` にする。
-3. ツールバーの構成を **Debug**、プラットフォームを **Any CPU** にする。
-4. **Ctrl+Shift+B**（ソリューションのビルド）でビルドする。SDKが見つからない場合は、上記のVisual StudioとSDKの導入状態を確認する。
-5. **Ctrl+F5** でデバッグなし実行、**F5** でデバッグ実行する。6題材が順に表示され、最後に「すべての 43 チェックに成功しました。」と表示される。
-
-### ブレークポイントで行列の計算を追う
-
-1. ソリューションエクスプローラーで [Program.cs](Program.cs) を開き、`MatrixAndBasis` 内の `var p = ColumnMath.Multiply2(a, (2, 1));` の行にカーソルを置いて **F9** でブレークポイントを設定する。
-2. **F5** で実行し、その行で停止したら「ローカル」や「ウォッチ」で `a[0, 0]`・`a[0, 1]` などの入力を見る。
-3. **F11**（ステップイン）で [ColumnMath.cs](ColumnMath.cs) の `Multiply2` に入り、行列引数 `m` とベクトル引数 `p` を確認する。例えば `m[0, 0] * p.X + m[0, 1] * p.Y` が `2*2 + 1*1 = 5` に対応する。
-4. **Shift+F11**（ステップアウト）で呼び出し元へ戻り、必要に応じて **F10**（ステップオーバー）で進める。戻り値を受け取った後の `p.X=5`・`p.Y=4`、続いて `e1`・`e2` の値を確認する。
-
-点と方向の違いを調べる場合は、`Homogeneous2D` の `var point = ...` と `var direction = ...` にブレークポイントを置く。`Transform2` に入り、`p.W` が1または0になることと移動量に掛かる項を確認する。呼び出し元では `point=(5,-1,1)`、`direction=(2,1,0)` を比較できる。
-
-### コンソールがすぐ閉じる場合
-
-結果を読む場合はまず **Ctrl+F5** で実行する。F5で終了前に確認したい場合は、`Program.cs` の `try` の最後にある成功メッセージの `Console.WriteLine`（`return 0` の直前）にブレークポイントを置く。起動元のターミナルに結果を残すには、次のCLI手順を使う。学習コードに待機用の `ReadKey` 等を追加する必要はない。
-
-## CLIで実行する
-
-リポジトリのルートから実行する。
-
-```sh
-dotnet build sessions/01-matrix/examples/MatrixExamples.csproj --configuration Release
-dotnet run --project sessions/01-matrix/examples/MatrixExamples.csproj --configuration Release
-```
-
-ソリューションからDebug／Releaseをビルドする場合は、次のように指定する。
-
-```sh
-dotnet build sessions/01-matrix/examples/MatrixExamples.sln --configuration Debug
-dotnet build sessions/01-matrix/examples/MatrixExamples.sln --configuration Release
-```
-
-このディレクトリで実行する場合は、次のコマンドだけで動く。
-
-```sh
-dotnet run
-```
-
-実行すると6題材を順に表示し、各成分を期待値と自動比較する。全チェック成功時は終了コード0、不一致や非有限値の検出時は `FAIL` を表示して終了コード1になる。ビルド生成物の `bin/`・`obj/` と、Visual Studioのローカル設定 `.vs/`・`*.csproj.user` はGit管理しない。
-
-## PRでの自動チェック
-
-[Check C# Examples](../../../.github/workflows/check-csharp-examples.yml) が、C#コード・プロジェクト・ソリューション・ビルド設定・ワークフロー自身の変更を、PR時とmainへのpush時に検証する。READMEなどMarkdownだけの変更では起動しない。
-
-.NET 10 SDKで `.sln` を復元・Releaseビルドし、このプロジェクトを実行する。終了コードが0で、`[OK]` が43件、最後の成功メッセージも揃っていれば成功する。チェック数を変える場合は、各チェックの内容をレビューしたうえで、ワークフローの `EXPECTED_CHECKS` とこの案内・出力例も同じPRで更新する。
-
-PRのChecks、または **Actions → Check C# Examples → 対象の実行 → MatrixExamples (Release)** で結果を確認できる。失敗時は `Restore solution`・`Build solution (Release)`・`Run MatrixExamples and verify all 43 checks` の該当ログを開く。数値の不一致なら `FAIL` の題材名・成分・実値・期待値・許容誤差を確認する。
-
-このCIは読み取り専用で、[PDF生成・自動コミット](../../../docs/pdf-automation.md) とは別に動く。対象は完成済みの第1回だけ。別の回を追加するときは、ワークフローの対象パスと、その回のソリューション・プロジェクト・期待チェック数を指定したジョブを明示的に追加する。
+[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の計算を、手実装と `System.Numerics` で比較する。列ベクトル方式の `double` の式と、.NETの行ベクトル方式のAPIを通じて、点・方向・基底・合成順序を確かめる。
 
 ## ファイルと読む順序
 
-| ファイル | 内容 |
+| ファイル | 数学的な役割 |
 | --- | --- |
-| [MatrixExamples.sln](MatrixExamples.sln) | Visual Studioで開く入口。既存のコンソールプロジェクト1件を登録 |
 | [Program.cs](Program.cs) | 6題材の入力、API呼び出し、期待値、自動チェック |
 | [ColumnMath.cs](ColumnMath.cs) | 列ベクトル方式の掛け算と.NETの配置への変換 |
-| [MatrixExamples.csproj](MatrixExamples.csproj) | .NET 10のコンソールプロジェクト設定 |
 
 `Program.cs` の各題材から対応する `ColumnMath` の式を読む。手実装はこの教材の2×2・3×3・4×4に絞り、配列を `[行, 列]` で参照する。2Dの3×3は最下行が `(0,0,1)` のアフィン変換だけを扱う。透視投影や一般の行列ライブラリは対象にしない。
 
-各題材の冒頭コメントで検証意図と対応する解説・宿題を確認し、`ColumnMath` の計算式を読んでから、呼び出し元の.NET APIと `Check` の期待値へ戻る。Visual Studioではクラス名やメソッド名にカーソルを合わせると、XMLドキュメントコメントの入力・出力・前提を確認できる。
+各題材の冒頭コメントで検証意図と対応する解説・宿題を確認し、`ColumnMath` の計算式を読んでから、呼び出し元の.NET APIと `Check` の期待値へ戻る。日本語XMLコメントには入力・出力・前提を記載している。
 
 手実装と.NET APIは、基底の変換先、点と方向の `w`、転置後の移動成分、合成順序、`double` から `float` への精度の変化に注目して比較する。
 
@@ -121,7 +55,7 @@ X軸は右、Y軸は上、正の2D回転は反時計回り。3Dは右手系で�
 
 ### 掛け算・回転・同次座標
 
-`Multiply2` は行ごとの掛け算を直接書いている。第1列と第2列は、それぞれ標準基底の変換先になる。入力が $p=2e_1+e_2$ なら、出力は $2Ae_1+Ae_2$ となることも検証する。
+`Multiply2` は行ごとの掛け算を直接書いている。例えばX成分の `m[0, 0] * p.X + m[0, 1] * p.Y` は `2*2 + 1*1 = 5` に対応する。第1列と第2列は、それぞれ標準基底の変換先になる。入力が $p=2e_1+e_2$ なら、出力は $2Ae_1+Ae_2$ となることも検証する。
 
 `Rotation2` はラジアンで受け取った角度から次の行列を作る。`Program.cs` では $\theta=30^\circ$ を使い、度からラジアンへの変換も示す。0°・90°・180°・−90°・360°でも同じ式を検証する。
 
@@ -193,5 +127,9 @@ MathF.Cos(MathF.PI / 2) = -4.37113883E-08
 数値の末尾は実行環境で異なる場合がある。APIには特定の角度で値を補正する実装もあるため、すべての90°回転APIが必ず同じ残差を返すという意味ではない。
 
 `Check` は各成分の絶対誤差を比較する。この教材の小さな固定入力では、double同士に `1e-12`、floatを含む比較に `1e-5` を使う。厳密な等号や、表示時に丸めた値で判定しない。NaN・Infinityも失敗とし、期待値を外れた箇所のラベル・実値・期待値・許容誤差を表示する。入力の桁数や大きさを変える場合は許容誤差も見直す。
+
+## 検証範囲
+
+6題材・43件の自動チェックで、基底の変換、回転、点と方向、ローカル→ワールド、合成順序、転置配置を固定値と照合する。手実装と.NET APIの比較では、`double` と `float` の精度を分ける。検証はこの教材の固定入力に対するもので、任意の行列や透視投影への対応を保証しない。
 
 [この回のトップへ戻る](../README.md)

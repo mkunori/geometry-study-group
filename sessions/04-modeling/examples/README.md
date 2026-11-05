@@ -1,59 +1,16 @@
 # 第4回：断面配置・押し出し・メッシュ生成のC#実装例
 
-[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の固定例A〜Dを、7題材・153件の実行時チェックで確かめる.NET 10コンソール教材。
-
-断面の点を配置し、実際に8頂点と12三角形のインデックスを生成する。`double` のタプルで成分式を追い、配置・内積・外積・行列変換を `System.Numerics` の `float` とも照合する。外部NuGet、CADライセンス、GUI、他セッションのプロジェクトへの依存はない。入力は固定値で、引数・標準入力・ファイル出力は使わない。
-
-## 必要環境
-
-- **.NET 10 SDK**。対象は `net10.0`。ランタイムだけではビルドできない。
-- Visual Studioでは **Visual Studio 2026（18.0以上、Windows）**、「.NETデスクトップ開発」ワークロード、使用するVisual Studioに対応する.NET 10 SDKを使う。[公式の導入・対応表](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio) を参照。
-- CLIでは.NET 10 SDKを導入したWindows・Linux・macOSのコンソールから実行できる。
-
-## Visual Studioで開いて実行する
-
-1. 「プロジェクトやソリューションを開く」で [ModelingExamples.sln](ModelingExamples.sln) を開く。従来形式の `.sln` と `.csproj` が同じディレクトリにある。
-2. プロジェクトが `ModelingExamples` 1件であることを確認し、必要なら右クリックで「スタートアッププロジェクトに設定」を選ぶ。
-3. **Debug／Any CPU** を選び、**Ctrl+Shift+B** でビルドする。
-4. **Ctrl+F5** でデバッグなし実行、**F5** でデバッグ実行する。最後に「すべての 153 チェックに成功しました。」と表示される。
-5. **Release／Any CPU** に切り替えてビルド・実行する。内部の検証呼び出しはReleaseでも実行される。
-
-### F9／F11で生成過程を追う
-
-1. [Program.cs](Program.cs) の `LocalPlacement` にある `V3 point = Place(frame, (2, -1))` に **F9** でブレークポイントを置く。**F5** で停止し、ローカル／ウォッチでC・N・B・Tを確認する。
-2. **F11** で [ModelingMath.cs](ModelingMath.cs) の `Place` に入り、フレーム検証と `C+uN+vB` を追う。**Shift+F11** で戻り、pointが(10,22,29)になることを確認する。
-3. `HomogeneousMatrix` の `Matrix4x4 row = NumericsRowMatrix(column)` にF9を置き、F11で列方式の16要素から転置する箇所へ進む。第4列のCが、行方式では第4行になることを確認する。
-4. `ExtrusionVertices` の `CreateVertices` 呼び出しからF11で [MeshBuilder.cs](MeshBuilder.cs) に入り、`vertices[i]` と `vertices[i + 4]` の代入を **F10** で進める。始端X=0と終端X=5、同じY・Zの8点ができる。
-5. `FacesAndNormals` の `ExtrudeConvexQuad` 呼び出しへF9を移す。F11で `triangles.Add` の2行へ進み、i・jと、側面の順序(0,1,5)／(0,5,4)を追う。ループ後の4キャップも確認する。
-6. `FaceGeometry geometry = AnalyzeTriangle(...)` からF11で入り、2辺の差→外積→2倍面積による退化検査→単位化の順を確認する。ゼロの外積を単位化しないことに注目する。
-7. `ClosureAndVolume` の `HasPairedOppositeEdges` で辞書のCount・Balance、`SignedVolume` で基準点originと四面体の寄与を調べる。`StationFrames` では終点のNが−Xになること、角の左右で配置点が異なることを追う。
-
-出力を読むにはCtrl+F5を使う。F5で終了前に止める場合はMainの成功メッセージにF9を置く。GUIでのF5／Ctrl+F5／F9／F11の操作はCIで未検証であり、CLIやMSBuildの成功とは区別する。
-
-## CLIでビルド・実行する
-
-リポジトリのルートから実行する。
-
-```sh
-dotnet build sessions/04-modeling/examples/ModelingExamples.sln -c Debug
-dotnet run --project sessions/04-modeling/examples/ModelingExamples.csproj -c Debug --no-build
-dotnet build sessions/04-modeling/examples/ModelingExamples.sln -c Release
-dotnet run --project sessions/04-modeling/examples/ModelingExamples.csproj -c Release --no-build
-```
-
-この `examples/` を作業ディレクトリにした場合は `dotnet run` でもよい。全件成功は終了コード0。不一致・非有限な比較値・想定外の例外・拒否されない無効入力は `FAIL` を表示して終了コード1になる。数値比較の失敗ではラベル・成分番号・実値・期待値・許容誤差を表示する。
+[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の固定例A〜Dで、断面の配置から8頂点・12三角形の生成までを追う。`double` の成分式で配置・内積・外積・行列変換を計算し、`System.Numerics` の `float` とも照合する。
 
 ## ファイルと読む順序
 
-| ファイル | 内容 |
+| ファイル | 数学的な役割 |
 | --- | --- |
-| [ModelingExamples.sln](ModelingExamples.sln) | Visual Studioで開く入口。専用プロジェクト1件 |
-| [ModelingExamples.csproj](ModelingExamples.csproj) | net10.0のコンソール。追加パッケージなし |
 | [Program.cs](Program.cs) | 固定入力、独立な期待値、7題材、出力と実行時チェック |
 | [ModelingMath.cs](ModelingMath.cs) | doubleの2D／3Dタプル、フレーム、成分式、列行列、行方式への変換、符号付き断面積 |
 | [MeshBuilder.cs](MeshBuilder.cs) | 頂点・三角形・面の計算結果の型、凸四角形の押し出し、辺の接続と符号付き体積 |
 
-`Program.Main` → 固定入力 → 配置式 → 頂点配列 → 三角形配列 → 法線と面積 → 接続と体積の順に読む。メソッドにカーソルを合わせると、日本語XMLコメントで入力・結果・制約を確認できる。
+`Program.Main` → 固定入力 → 配置式 → 頂点配列 → 三角形配列 → 法線と面積 → 接続と体積の順に読む。日本語XMLコメントには入力・結果・制約を記載している。
 
 ## 題材・固定入力・期待結果
 
@@ -92,12 +49,14 @@ dotnet run --project sessions/04-modeling/examples/ModelingExamples.csproj -c Re
 
 ## 座標・頂点・面の規約
 
+`Place` はフレームを検証し、`C+uN+vB` で断面点を配置する。`CreateVertices` は `vertices[i]` に始端、`vertices[i + 4]` に終端を置くため、固定例BではX=0とX=5に同じY・Zを持つ8点ができる。
+
 - 右手系XYZ。V2は局所(u,v)、V3は世界(X,Y,Z)のdoubleタプル。点と方向を同じ型で表すため、文脈とコメントで区別する。
 - N・Bは断面内の直交単位基底、T=N×B。輪郭は **+T側から断面の原点へ見る反時計回り** とする。u右・v上の局所座標に対応する。
 - 始端i=0〜3、終端i+4=4〜7。`Vertices` は共有座標、`Triangles` は0始まりの順序付き3番号。三角形の各点は `Vertices[face.A]` などで取得する。
-- 輪郭の次をj=(i+1) mod 4として、側面は(i,j,j+4)と(i,j+4,i+4)。内部を左に見る輪郭の辺eに対し、e×Tが右側の外向きになる。
+- 輪郭の次をj=(i+1) mod 4として、側面は(i,j,j+4)と(i,j+4,i+4)。最初の側面は(0,1,5)と(0,5,4)になる。内部を左に見る輪郭の辺eに対し、e×Tが右側の外向きになる。
 - 始端キャップは(0,2,1)・(0,3,2)で−T、終端は(4,5,6)・(4,6,7)で+T。対応頂点の保存順は変えず、キャップの順序を変える。
-- 外積 `(b-a)×(c-a)` の長さは三角形面積の2倍。退化検査を終えてから単位化する。底面の外積(0,0,−10)と単位法線(0,0,−1)を混同しない。
+- `AnalyzeTriangle` は2辺の差から外積 `(b-a)×(c-a)` を求め、その長さを三角形面積の2倍として退化検査し、検査後に単位化する。底面の外積(0,0,−10)と単位法線(0,0,−1)を混同しない。
 
 列方式のdouble配列は基底N,B,Tを列に、Cを第4列に置く。断面点の局所w=0と同次成分1は別物である。`System.Numerics` は行ベクトルvMの規約なので、`NumericsRowMatrix` は **Matrix4x4.Transposeで転置してから** `Vector3.Transform`／`Vector4.Transform` に渡す。[公式の行方式の説明](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.matrix4x4?view=net-10.0#remarks) と照合できる。
 
@@ -113,7 +72,7 @@ dotnet run --project sessions/04-modeling/examples/ModelingExamples.csproj -c Re
 
 `SignedVolume` は辺の対と全三角形の非退化を検査してから、基準点oに対する符号付き四面体 `(a-o)・((b-o)×(c-o))/6` を足す。oは最初の頂点とし、大きな共通平行移動による相殺を減らす。本文の世界原点の式と、閉じた境界では同じ体積になる。教材では単純な凸直柱の検算に限り、まず断面積×法線方向の長さで10と確認する。各寄与の絶対値を足さず、全体を反転したら−10になることも確認する。
 
-メッシュは有限個の面による境界表現で、この直柱の平面は正確に表せるが、曲面は通常近似する。CADのB-repソリッドを生成・検証するものではない。経路の2フレームの配置と回転点は点の検算に限り、コーナー接続・輸送フレーム・汎用スイープ／回転体メッシュの生成は含めない。
+メッシュは有限個の面による境界表現で、この直柱の平面は正確に表せるが、曲面は通常近似する。CADのB-repソリッドを生成・検証するものではない。`StationFrames` では経路の終点でNが−Xへ変わることと、角の左右のフレームで配置点が異なることを確認する。経路の2フレームの配置と回転点は点の検算に限り、コーナー接続・輸送フレーム・汎用スイープ／回転体メッシュの生成は含めない。
 
 ## 数値精度としきい値
 
@@ -128,19 +87,8 @@ dotnet run --project sessions/04-modeling/examples/ModelingExamples.csproj -c Re
 
 `System.Numerics` の成分は [Single（float）](https://learn.microsoft.com/en-us/dotnet/standard/numerics/) で、doubleから渡すと丸められる。題材7の `1+1e-10` の差はdoubleに残るが、floatでは消える。doubleに戻しても復元できない。許容誤差内でも元の情報が完全に保存されたとは限らない。
 
-## 自動チェックとCI
+## 検証範囲
 
-実際に成功した `Check`／`Assert`／`Reject` の呼び出しを各1件として数える。複数成分の比較は1件、入力反復の各呼び出しは別件とする。7題材の件数8／8／9／62／7／11／48の合計153、実際の `[OK]` 153行、成功要約、終了コード0が揃うことを確認する。
-
-[Check Modeling Examples](../../../.github/workflows/check-modeling-examples.yml) は、第4回のC#コード（`.cs`）・プロジェクト（`.csproj`）・ソリューション（`.sln`）・ビルド設定（`.props`／`.targets`）、ルートの `global.json`／`Directory.Build.props`／`Directory.Build.targets`、ワークフロー自身の変更を、PR時とmainへのpush時に検証する。Markdownだけの変更では起動しない。
-
-Ubuntu 24.04・.NET SDK 10.0.401でソリューションをrestoreし、Releaseビルドして実行する。終了コード0、実際の `[OK]` 153行、期待する成功要約の3点を確認する。`set -euo pipefail` により、ログを `tee` で表示・保存している途中の実行失敗も伝播する。チェック内容を変更する場合は、題材をレビューし、このREADMEの件数・出力例とワークフローの `EXPECTED_CHECKS` を同じPRで更新する。
-
-結果は [Actions → Check Modeling Examples](https://github.com/mkunori/geometry-study-group/actions/workflows/check-modeling-examples.yml)、またはPRのChecksから開く。**対象の実行 → ModelingExamples (Release)** の `Restore solution`・`Build solution (Release)`・`Run ModelingExamples and verify all 153 checks` のログを確認する。
-
-失敗時は `FAIL` の検証ラベルから、押し出しの頂点・三角形の順序・外積・体積などの実値と期待値を追う。数値比較では成分番号と許容誤差も表示する。件数や成功要約が一致しない場合は `::error::` が表示される。正常時には全12三角形の法線・面積、辺の共有、体積10のチェックと、最後の `Verified all 153 checks.` を確認できる。
-
-権限は `contents: read` のみで、チェックアウトした認証情報を保持せず、Secret・PAT・書き込み権限は不要。ソース・OBJ・PDFの生成コミットは行わない。第1回43件・第2回73件・第3回155件の専用CI、PDF自動生成から独立したワークフローである。
-
+7題材・153件の自動チェックで、配置・頂点・三角形の順序・法線・面積・辺の共有・符号付き体積を固定値と照合する。全12三角形の幾何、辺の逆向き共有、体積10を別々に検査し、無効入力の拒否と全反転時の体積−10も確認する。固定例の検算であり、有効なCADソリッドや汎用メッシュの検証を保証しない。
 
 [この回のトップへ戻る](../README.md)

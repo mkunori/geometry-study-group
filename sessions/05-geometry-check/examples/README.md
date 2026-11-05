@@ -1,39 +1,11 @@
 # 第5回：内外・AABB・SATのC#実装例
 
-[詳細解説](../explanation.md) の固定例A〜Eと [宿題](../homework/README.md) を、独立した.NET 10コンソールで追う。7題材・全254チェック。追加NuGet、他回のプロジェクト参照、GUI、AutoCAD、DWG操作は不要。
-
-## 必要環境とVisual Studioでの操作
-
-対象は `net10.0` 。CLIでは.NET SDK 10、Visual Studioでは.NET 10に対応するVisual Studio 2026を使う。入力はソース内の固定値で、引数・標準入力はなく、出力はコンソールのみ。
-
-1. [GeometryCheckExamples.sln](GeometryCheckExamples.sln) を開く。従来形式の `.sln` であり、プロジェクトは1件。
-2. 構成をDebugにし、Ctrl+Shift+Bでビルドする。Ctrl+F5で全出力を読み、F5でデバッグ実行する。
-3. [Program.cs](Program.cs) の `TriangleContainment` 内でPの外積を調べる行へF9を置く。F11で `EdgeValues` → `Cross2` に入り、辺の方向と点への変位、4・5・3の符号を追う。 `InTriangle` では `area2` 、 `outside` 、 `boundary` を見る。
-4. `ConcaveRay` のRの検証から `ByRay` に入り、先に辺上判定を完了することを確認する。計数ループのa・b・t・xHitをウォッチし、上端と水平辺を除き、右向きだけを数える条件を追う。極小の同じ交点が2辺分になる例も確認する。
-5. `SeparatingAxes` から `ConvexSat.Compare` に入り、両輪郭の辺からできる `axis` 、 `TryProject` のq・min・max、 `delta` を追う。軸(1,1)の説明用射影と、辺から得る符号・倍率の異なる法線が同じ結果になる理由を考える。
-6. `BoxHalfspaces` から `TryHalfspaces` に入り、各面のanchor・normal・wと内積を確認する。法線は外向きで、−X・+X・−Y・+Y・−Z・+Zの順。最後に `Locate` が正の値を0より先に検査する理由を追う。
-
-F5で終了前に止めるにはMain末尾の成功メッセージへF9を置く。GUIによるF5／Ctrl+F5／F9／F11の操作はCIでは未検証で、CLI・Visual Studio付属MSBuildによる検証とは区別する。
-
-## CLIのDebug／Releaseビルドと実行
-
-リポジトリのルートから実行する。
-
-```sh
-dotnet build sessions/05-geometry-check/examples/GeometryCheckExamples.sln -c Debug
-dotnet run --project sessions/05-geometry-check/examples/GeometryCheckExamples.csproj -c Debug --no-build
-dotnet build sessions/05-geometry-check/examples/GeometryCheckExamples.sln -c Release
-dotnet run --project sessions/05-geometry-check/examples/GeometryCheckExamples.csproj -c Release --no-build
-```
-
-`examples/` 内からは `dotnet run` でも実行できる。全件成功時は終了コード0、不一致や想定外の例外では `FAIL` を標準エラーへ出力して終了コード1。数値の不一致にはラベル・成分番号・実値・期待値・許容誤差を表示する。
+[詳細解説](../explanation.md) の固定例A〜Eと [宿題](../homework/README.md) で、内外・接触・重なりの判定を復習する。外積・内積・射影区間の計算を、分類結果と結び付けて読む。
 
 ## ファイルと読む順序
 
-| ファイル | 内容 |
+| ファイル | 数学的な役割 |
 | --- | --- |
-| [GeometryCheckExamples.sln](GeometryCheckExamples.sln) | Visual Studioで開く入口。Debug／Release |
-| [GeometryCheckExamples.csproj](GeometryCheckExamples.csproj) | net10.0のコンソール。外部パッケージ・ビルド参照なし |
 | [Program.cs](Program.cs) | 固定入力・独立な期待値・7題材と自動チェック |
 | [GeometryMath.cs](GeometryMath.cs) | doubleの2D／3D成分、分類型、外積・内積、有限な線分の範囲 |
 | [PolygonChecks.cs](PolygonChecks.cs) | 単純閉輪郭の入力検査、三角形の左右条件、境界先行のレイ法 |
@@ -93,17 +65,17 @@ L字の頂点順は `(0,0),(4,0),(4,1),(1,1),(1,4),(0,4)` 。2DはX右・Y上、
 
 `TryValidate` は全頂点の有限性・重複、ゼロ長辺、隣接辺の折返し、非隣接辺の交差・接触、符号付き面積0を検査する。面積が非0でも自己交差する例を拒否する。検査は頂点数の2乗の処理で、教材の小さな輪郭を対象とする。
 
-`InTriangle` は3頂点限定でCW・CCWとも対応し、向きに合わせて全辺の内側条件を比較する。負の条件を0より先に扱うため、辺の延長線上をBoundaryにしない。`TryPointOnSegment` も外積0に加え、内積を0から辺長の2乗までに制限する。
+`Program.cs` の `EdgeValues` は各辺の方向と点への変位の `Cross2` を計算する。`InTriangle` は3頂点限定でCW・CCWとも対応し、向きに合わせて全辺の内側条件を比較する。負の条件を0より先に扱うため、辺の延長線上をBoundaryにしない。`TryPointOnSegment` も外積0に加え、内積を0から辺長の2乗までに制限する。
 
-`ByRay` は単純な凹多角形も受け取る。全辺のBoundary検査を先に行い、その後だけ `minY <= py && py < maxY` と `xHit > px` で計数する。水平辺は除算より前に除外する。通常の通過頂点は片側だけ、極大は0辺、極小は2辺が寄与し、同じ座標だからと交点を1つにまとめない。`RayResult.RightCrossings` はBoundary／Invalidではnullで、未計数と0回を区別する。
+`ByRay` は単純な凹多角形も受け取る。全辺のBoundary検査を先に行い、その後だけ `minY <= py && py < maxY` と `xHit > px` で計数する。辺の端点a・bから高さに対応する `t` と交点の `xHit` を求めるが、水平辺は除算より前に除外する。通常の通過頂点は片側だけ、極大は0辺、極小は2辺が寄与し、同じ座標だからと交点を1つにまとめない。`RayResult.RightCrossings` はBoundary／Invalidではnullで、未計数と0回を区別する。
 
-`ConvexSat.Compare` は両輪郭が **非退化で厳密に凸な2D閉多角形** であることを先に検査する。凹L字・自己交差・冗長な共線頂点はInvalid。両方の全辺から非ゼロ法線を作り、全頂点の内積の最小・最大を比較する。軸の正規化は不要で、負の倍率では最小・最大を取り直す。1軸でも分離すれば終了し、端点一致によるTouchingは全候補で分離がないことを確認してから返す。非凸形状や一般3DメッシュのSATではない。
+`ConvexSat.Compare` は両輪郭が **非退化で厳密に凸な2D閉多角形** であることを先に検査する。凹L字・自己交差・冗長な共線頂点はInvalid。両方の全辺から非ゼロ法線を作り、全頂点の内積の最小・最大を比較する。題材4の説明用の軸(1,1)と、辺から得る符号・倍率の異なる法線は同じ分離を検出する。軸の正規化は不要で、負の倍率では最小・最大を取り直す。1軸でも分離すれば終了し、端点一致によるTouchingは全候補で分離がないことを確認してから返す。非凸形状や一般3DメッシュのSATではない。
 
 `AabbChecks.Compare` は全軸で有限かつ正の元の幅を要求する。min>max、幅0、非有限座標・幅はInvalid。各軸の候補幅が負ならSeparated、全て非負で0を含めばTouching、全て正なら共有面積・体積を積で求める。正の幅の積が非有限や0になった場合もInvalidとする。`AabbResult.AxisDeltas` の負は離隔の候補差で、実際の負の長さではない。Invalidでは候補幅は空、共有量はnull。
 
 `Inclusive` は接触を含む共通点のBoolean、`PositiveOverlap` は正の共有面積・体積のBooleanである。どちらもInvalidはnullを返し、falseと混同しない。`Try...` メソッドのboolは演算の有効性であり、falseを「図形の外」と解釈せず、成功時だけout値を使う。
 
-`ConvexBoxChecks` は軸平行箱の6面だけを、外向きの単位法線と面上の点から手実装する。全内積が非正という半空間の共通条件を使い、正の値があれば他面で0でもOutside。箱の中身と境界を扱うもので、非凸ソリッド・開いた殻・任意の三角形メッシュの点包含ではない。
+`ConvexBoxChecks.TryHalfspaces` は軸平行箱の6面だけを、外向きの単位法線 `normal` と面上の点 `anchor` から手実装する。面の順序は−X・+X・−Y・+Y・−Z・+Zで、`w` はanchorから判定点への変位。全内積が非正という半空間の共通条件を使い、`Locate` は正の値を0より先に検査し、他面で0でもOutsideとする。箱の中身と境界を扱うもので、非凸ソリッド・開いた殻・任意の三角形メッシュの点包含ではない。
 
 ## 数値比較・誤差と対象外
 
@@ -124,21 +96,10 @@ L字の頂点順は `(0,0),(4,0),(4,1),(1,1),(1,4),(0,4)` 。2DはX右・Y上、
 
 検出できない丸めや桁落ちもあるため、全ての数値的な不確かさをInvalidへ変換できるわけではない。許容差による境界帯、判定保留の状態、誤差評価や頑健な述語、スケール調整は用途に応じた別設計になる。近境界の入力、非有限・退化・非対応入力を、無条件に正常なOutside／Separatedとして扱わない。
 
-## 自動チェックとCI
+## 検証範囲
 
-実際に成功した `Equal` ／ `Numbers` の呼び出しを各1件と数える。配列の全成分比較は1件、反復の各呼び出しは別件。数値比較器が不一致・非有限値を拒否する検査も含め、25／35／30／37／20／31／76の合計254件。実際の `[OK]` 254行、成功要約、終了コード0を照合する。期待値は本文・宿題と独立検算をもとに記載し、分類本体の出力からは生成しない。
+7題材・254件の自動チェックで、三角形とレイの内外・境界、2D AABBとSATの離隔・接触・重なり、3D箱の面・辺・点接触、無効入力の分類を照合する。数値比較器が不一致・非有限値を拒否する検査も含む。期待値は本文・宿題と独立検算をもとに記載し、分類本体の出力からは生成しない。
 
-[Check Geometry Examples](../../../.github/workflows/check-geometry-examples.yml) は、第5回のC#コード（`.cs`）・プロジェクト（`.csproj`）・ソリューション（`.sln`）・ビルド設定（`.props`／`.targets`）、ルートの `global.json`／`Directory.Build.props`／`Directory.Build.targets`、ワークフロー自身の変更を、PR時とmainへのpush時に検証する。`examples/` 内のサブディレクトリも対象で、Markdownだけの変更では起動しない。
-
-Ubuntu 24.04・.NET SDK 10.0.401で `GeometryCheckExamples.sln` をrestoreし、Releaseビルドして `GeometryCheckExamples.csproj` を実行する。プログラムの終了コード0、実際の `[OK]` 254行、完全一致する成功要約の3点を確認する。`set -euo pipefail` により、ログを `tee` で表示・保存している途中の実行失敗も伝播する。チェック内容を変更するときは、件数だけでなく各題材の判定内容もレビューし、このREADMEの件数・出力例とワークフローの `EXPECTED_CHECKS` を同じPRで更新する。
-
-結果は [Actions → Check Geometry Examples](https://github.com/mkunori/geometry-study-group/actions/workflows/check-geometry-examples.yml)、またはPRのChecksから開く。**対象の実行 → GeometryCheckExamples (Release)** の `Restore solution`・`Build solution (Release)`・`Run GeometryCheckExamples and verify all 254 checks` のログを確認する。
-
-正常時には、三角形P／E／OのInside／Boundary／Outside、レイの境界先行・半開規則、2D AABBとSATのSeparated／Touching／Overlapping、3Dの面・辺・点接触、退化・入力不正のInvalidが別々のラベルで表示されることを確認する。最後は `すべての 254 チェックに成功しました。` と `Verified all 254 checks.` が揃う。
-
-失敗時は `FAIL` のラベルから実値・期待値を確認する。例えばT1／T4は点接触なのでTouchingを期待し、Overlappingに誤るとその設問で失敗する。数値比較は成分番号・許容誤差も表示する。件数や成功要約が一致しない場合は `::error::` を確認する。
-
-権限は `contents: read` のみで、チェックアウトの認証情報を保持せず、PAT・Secret・書き込み権限は不要。push・自動コミット・PDF生成を行わない。第1〜4回の専用CIとPDF自動生成から独立したワークフローである。AutoCAD API参考コードは別ディレクトリで管理する別Issue #54の範囲で、このCIではビルド・実行しない。AutoCAD実機・ライセンス・SDK DLLも不要。
-
+T1／T4の点接触はTouchingであり、Overlappingとは区別する。固定入力での分類を検証するもので、汎用CADの厳密述語やAutoCAD APIのビルド・実機動作は検証しない。
 
 [この回のトップへ戻る](../README.md)
