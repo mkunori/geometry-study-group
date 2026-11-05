@@ -7,6 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import test from 'node:test';
 import { decodePDFRawStream, PDFArray, PDFDocument, PDFName } from 'pdf-lib';
 import puppeteer from 'puppeteer-core';
+import { comparablePdf } from './published-pdfs.mjs';
 import { isReturnNavigation, pdfLinkTarget, pdfReferenceText, preparePdfLinks,
   sourceNotice, sourceRepository } from './pdf-links.mjs';
 
@@ -177,4 +178,17 @@ ${sourceNotice}
       math: document.querySelectorAll('.katex').length, images: document.images.length,
       last: document.querySelector('article').lastElementChild.textContent })),
     { notices: 1, math: 1, images: 1, last: sourceNotice });
+    const original = await comparablePdf(await readFile(output));
+    // Check real browser rendering changes, not just synthetic PDF fixtures.
+    for (const kind of ['text', 'math', 'link', 'svg']) {
+      const changed = kind === 'text' ? markdown.replace('途中計算と前提を残す。', '途中計算の説明を変更する。') :
+        kind === 'math' ? markdown.replace('1 & 0', '2 & 0') :
+        kind === 'link' ? markdown.replace('system.numerics.vector3)', 'system.numerics.vector2)') : markdown;
+      await writeFile(file, changed);
+      await writeFile(join(folder, 'fixture.svg'), `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40"><rect width="190" height="30" fill="${kind === 'svg' ? 'blue' : 'orange'}"/></svg>`);
+      const rebuilt = spawnSync(process.execPath, [fileURLToPath(new URL('scripts/build-pdf.mjs', root)), file, output,
+        '--browser-path', process.env.PDF_TEST_BROWSER], { encoding: 'utf8' });
+      assert.equal(rebuilt.status, 0, rebuilt.stdout + rebuilt.stderr);
+      assert.notDeepEqual(await comparablePdf(await readFile(output)), original, `${kind} change must be detected`);
+    }
   });

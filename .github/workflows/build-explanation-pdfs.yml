@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - 'sessions/**/explanation.md'
+      - 'sessions/**/homework/problems.md'
+      - 'sessions/**/homework/solutions.md'
+      - 'sessions/**/examples/README.md'
+      - 'sessions/**/pdf-publish.json'
       - 'sessions/**/images/**'
       - 'scripts/**'
       - 'package.json'
@@ -99,7 +103,7 @@ jobs:
           }
           JS
 
-      - name: Generate published explanation PDFs
+      - name: Generate published material PDFs
         run: npm run pdf:published -- --browser-path "$PDF_BROWSER_PATH"
 
       - name: Commit changed PDFs only

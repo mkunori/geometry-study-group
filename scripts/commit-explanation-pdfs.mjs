@@ -22,6 +22,10 @@ export async function commitPdfs(root) {
   }
   const outputs = (await publishedPdfs(root)).map((target) => target.output);
   for (const output of outputs) await access(new URL(output, root));
+  if (!outputs.length) {
+    console.log('No published PDF targets. No commit needed.');
+    return;
+  }
   git(['add', '--', ...outputs]);
   const staged = git(['diff', '--cached', '--name-only', '-z']).stdout.split('\0').filter(Boolean);
   if (staged.some((path) => !outputs.includes(path))) throw new Error('Refusing to commit a non-PDF path.');
@@ -32,7 +36,7 @@ export async function commitPdfs(root) {
   console.log(`Commit PDFs only:\n${staged.join('\n')}`);
   git(['-c', 'user.name=github-actions[bot]', '-c',
     'user.email=41898282+github-actions[bot]@users.noreply.github.com',
-    'commit', '-m', '詳細解説PDFを自動更新']);
+    'commit', '-m', '配布用PDFを自動更新']);
   try {
     git(['push', 'origin', 'HEAD:refs/heads/main']);
   } catch (error) {

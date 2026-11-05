@@ -71,7 +71,7 @@ AutoCADへの座標入力はWCSの固定値が基本で、Polyline.AddVertexAt�
 | ソリューション・参照 | [sln](../AutoCadGeometrySamples.sln) は1プロジェクトのDebug／Release x64。[csproj](../AutoCadGeometrySamples.csproj) はnet10.0のLibrary、samples/**/*.csに6ファイル、3 DLLすべてPrivate=false。[ローカル設定テンプレート](../AutoCadGeometrySamples.local.props.example) は実パスなし。Import条件・未設定／DLL不存在時のError定義を読み、実行はしていない |
 | 配布物・CI | SDK・DLL・実行ファイルの追加なし。ローカルprops・SDK置き場・DLL等のignoreを確認。既存の数学C#ソリューション／CIからAutoCADへの参照なし。ワークフローの追加・変更・実行なし |
 | 日本語・案内 | 6クラスと62メソッドに日本語XMLコメント。AutoCADトップ→各章・setup・references・本レビュー、各sessionsトップ→対応参考コードの導線を確認。「参考コード／実機未検証」と各章の期待動作・数式・制約を維持 |
-| 数学教材・PDF更新 | 数学教材の本文・SVG・宿題・コンソールC#と既存CIを維持。[PDF対象一覧](../../scripts/pdf-sessions.json) は現行設定で第1〜5回が登録済み。教材の案内とPDFは原本の更新に合わせ、所要時間を追加しない |
+| 数学教材・PDF更新 | 数学教材の本文・SVG・宿題・コンソールC#と既存CIを維持。[PDF対象の検出と有効化](../../docs/pdf-automation.md#公開対象と新しい回の追加) は各回のマーカーで管理し、現行の第1〜5回を対象とする。教材の案内とPDFは原本の更新に合わせ、所要時間を追加しない |
 
 ## 残る不確実性と未実施事項
 
