@@ -32,7 +32,7 @@ npm run pdf:session -- sessions/03-intersection
 
 PDFを別原稿として編集しない。修正はMarkdown・SVGへ行い、共通コマンドで再生成する。
 
-詳細解説PDFは、本文・SVGをmainへ反映した後にGitHub Actionsが再生成し、内容に変更がある場合だけコミットする。練習問題・解答・C#説明PDFを更新するときは、上記の共通コマンドで再生成し、原本と同じPRに含める。対象一覧・手動実行・更新の仕組みは [共通運用文書](../../../docs/pdf-automation.md) を参照。手動生成したPDFをPRに含めることもできる。
+この回は `pdf-publish.json` で自動更新を有効にしている。4原本・参照SVGをmainへ反映すると、GitHub Actionsが公開対象の全PDFを再生成し、全件成功後に内容の変わったPDFだけをコミットする。ローカルで表示確認したPDFを原本と同じPRに含めることもできる。対象一覧・手動実行・更新の仕組みは [共通運用文書](../../../docs/pdf-automation.md) を参照。手動生成したPDFをPRに含めることもできる。
 
 ## 必要環境と再生成
 

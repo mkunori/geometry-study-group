@@ -8,6 +8,7 @@ import { comparablePdf, publishedPdfs } from './published-pdfs.mjs';
 
 export async function buildPublishedPdfs(root, browserPath) {
   const targets = await publishedPdfs(root);
+  console.log(`Published PDF targets: ${targets.length}`);
   await buildPdfTargets(root, targets, browserPath);
 }
 

@@ -1,4 +1,4 @@
-# 配布用PDFの生成と詳細解説PDFの自動更新
+# 配布用PDFの生成と自動更新
 
 ## 各回4種類のPDF
 
@@ -26,9 +26,7 @@ npm run pdf:session -- sessions/01-matrix
 
 各回のREADMEと `output/README.md` から4種類へ直接移動できる。全ページを画像化して、日本語・数式・SVG・表・コード・改ページ・文字切れを確認する。問題と解答の番号・固定値の対応、原本全文の収録、末尾の元データURL1件も確認する。
 
-**現在のActions自動更新は詳細解説PDFのみ。** 練習問題・解答・C#説明PDFを更新する場合は、原本と同じPRで上記コマンドにより再生成し、表示確認したPDFを含める。以下は詳細解説PDFの自動更新手順。
-
-本文原本は各回の `explanation.md`。通常はMarkdownと `images/` のSVGをPRで更新し、mainへマージする。`Build Explanation PDFs` が既存の変換スクリプトでPDFを生成し、変更された `output/explanation.pdf` だけを `github-actions[bot]` としてmainへコミットする。
+自動更新を有効にした各回では、4原本と `images/` のSVGをPRで更新し、mainへマージする。`Build Explanation PDFs` が同じ変換基盤で4種類を生成し、内容に差分のある対象PDFだけを `github-actions[bot]` としてmainへコミットする。ローカルで表示確認したPDFを原本と同じPRに含めることもできる。
 
 PDFはこれまでと同じ場所に保存するため、各回のREADMEから閲覧できる。ActionsのArtifactだけに置く運用にはしない。PDFを手で編集する必要はない。
 
@@ -36,8 +34,9 @@ PDFはこれまでと同じ場所に保存するため、各回のREADMEから�
 
 [ワークフロー](../.github/workflows/build-explanation-pdfs.yml) はmainに次の変更が入ると起動する。
 
-- `sessions/**/explanation.md`、`sessions/**/images/**`
-- `scripts/**`（変換スクリプト、印刷CSS、公開対象一覧、比較・コミット処理、テスト）
+- `sessions/**/explanation.md`、`sessions/**/homework/problems.md`、`sessions/**/homework/solutions.md`
+- `sessions/**/examples/README.md`、`sessions/**/images/**`、`sessions/**/pdf-publish.json`
+- `scripts/**`（変換スクリプト、印刷CSS、対象検出、比較・コミット処理、テスト）
 - `package.json`、`package-lock.json`
 - ワークフロー自身
 
@@ -49,14 +48,27 @@ PDFだけの更新は起動対象に含めない。加えて、標準の `GITHUB
 
 ## 公開対象と新しい回の追加
 
-[scripts/pdf-sessions.json](../scripts/pdf-sessions.json) が公開対象の明示的な一覧。現在は第1〜5回の `01-matrix`・`02-vector`・`03-intersection`・`04-modeling`・`05-geometry-check` を指定している。トップページで第2〜5回が「準備中」であっても、教材ファイルの公開とPDF自動更新は有効。「準備中」は内容の最終レビュー・正式使用の準備状態を意味し、PDF自動更新対象外を意味しない。
+[対象検出処理](../scripts/published-pdfs.mjs) が `sessions/` 直下のディレクトリを名前順で調べる。各回の `pdf-publish.json` が次の内容で、4原本の検査に成功した回だけを有効にする。原本と出力名の対応は [共通定義](../scripts/pdf-materials.mjs) を使い、一括生成と自動更新で揃える。
 
-本文・SVGの制作と表示確認が済んだ回を追加する際は、次の手順を使う。
+```json
+{ "enabled": true }
+```
 
-1. `sessions/<回>/explanation.md` と必要なSVGを完成させる。
-2. 一覧に新しい回のディレクトリ名を追加する（第1〜5回はすでに登録済み）。入力は `sessions/<回>/explanation.md`、出力は `sessions/<回>/output/explanation.pdf` に自動対応する。
-3. ローカルで次のコマンドを実行し、全ページの日本語・数式・図解・リンクを確認する。
-4. PRをmainにマージすると、自動生成・コミットされる。PDFが存在することを確認してから、その回のREADMEと `output/README.md` に閲覧リンクを追加する。ローカルで確認したPDFを同じPRに含めることもできる。
+マーカーがない回、または `{"enabled": false}` の回は対象外。READMEだけが存在する回や、4原本が揃っていても有効化していない回を自動公開しない。現在の第1〜5回はマーカーを配置済みで、計20PDFが対象となる。トップページの「準備中」は内容の最終レビュー・正式使用の準備状態を表し、PDF自動更新の有効／無効とは別に管理する。
+
+- セッション名は英小文字・数字をハイフンで区切る。番号・総回数の前提はなく、`06-curves` や `advanced-topics` も使える。中央の固定一覧やスクリプトの変更は不要。
+- マーカーは `enabled` という真偽値だけを持つJSONにする。不正JSON・未知の項目・文字列の `"true"` はエラーとする。
+- 有効な回の4原本は通常ファイルで、見出しと本文が必要。欠落・空本文・見出しだけの原本、TODO/TBDを含む原本、未作成・作成予定・準備中・下書きというプレースホルダー行はエラーとする。数学・表示・リンクのレビューはPRで行う。
+- 無効なディレクトリ名、シンボリックリンク／ジャンクション、ディレクトリ外を指す経路、重複する出力先は拒否する。原本・マーカー・既存の出力先もパスの各階層を検査する。
+- 有効な回が0件なら生成・コミットせず正常終了する。無効化やマーカー削除によって、保存済みPDFを自動削除することはない。
+
+新しい回を追加する手順：
+
+1. `sessions/<session>/` に4原本・参照SVG・教材への案内を揃える。有効化マーカーはまだ置かない。
+2. `npm run pdf:session -- sessions/<session>` で4種類を生成し、全ページ・原本全文・問題と解答の対応・リンクと末尾URLを確認する。このローカルコマンドは公開マーカーがなくても使える。
+3. `pdf-publish.json` に `{"enabled": true}` を記載し、次の検出・全件生成コマンドとテストを実行する。原本の欠落・未完成を示すエラーがあれば修正する。
+4. PDFが存在することを確認し、その回のREADMEと `output/README.md` に4種類のリンクを追加する。原本・図・マーカー・案内・表示確認したPDFを同じPRでレビューする。
+5. レビュー後にmainへマージすると、対象を再検出して自動生成する。Actionsの生成対象ログ、20冊などその時点の全対象数、更新ファイル、全ページを確認する。同じ内容で再実行し、不要なコミットが生じないことも確認する。
 
 ```sh
 npm ci
@@ -122,13 +134,13 @@ AppArmorの読み込みで失敗した場合はそのステップのログを確
 
 ## ログとエラー時の確認
 
-- `Build:` に処理対象、`Updated:` に更新先、`Unchanged` に比較一致したファイルが出る。最後に生成数と更新数を表示する。
+- `Published PDF targets:` に検出したPDF件数、`Build:` に原本とPDF種別が分かる出力パス、`PDF ready:` に生成結果、`Updated:` に更新先、`Unchanged` に比較一致したファイルが出る。最後に全対象の生成数と更新数を表示する。
 - 差分なしなら `No PDF changes. No commit needed.` と表示して正常終了する。
 - 変換や比較の失敗時は該当ステップと対象Markdownを確認する。TeXエラー、画像の欠落、横幅超過などを直し、再実行する。
 - push拒否時はGitのエラーと、トークン権限・main保護・同時更新を確認する案内が出る。force pushやPATへの切り替えは行わない。原因を解消して最新mainで再実行する。
 - コミット処理は公開対象のPDFパスだけをstageし、既存のstage済み変更やmain以外のブランチを拒否する。ソース・lockfile・未公開の回は自動コミットしない。
 
-ローカルの回帰テストは `npm run test:pdf`。一時PDFと一時Gitリポジトリを使い、差分なし・本文やリンクの変更・生成失敗・PDF限定コミット・push拒否を確認する。実際のリポジトリのmainにはpushしない。
+ローカルの回帰テストは `npm run test:pdf`。一時PDFと一時Gitリポジトリを使い、対象数の増減・未完成原本と無効経路の拒否・各原本単独の変更・メタデータ差分の抑制・後半の回での失敗・4PDFの追加・PDF限定コミット・main制約・push拒否を確認する。実際のリポジトリのmainにはpushしない。
 
 GitHub Actionsの挙動については、[ワークフローの構文](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax) と [GITHUB_TOKENでのトリガー](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow) を参照する。
 
