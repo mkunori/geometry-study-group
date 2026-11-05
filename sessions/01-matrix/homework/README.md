@@ -12,4 +12,6 @@
 | [宿題の問題](problems.md) | 作成済み（基本3問＋発展1問） |
 | [解答・解説](solutions.md) | 作成済み（計算過程・理由・よくある間違い） |
 
+印刷・オフライン閲覧用：[練習問題PDF](../output/problems.pdf) ／ [解答・解説PDF](../output/solutions.pdf)。
+
 [セッションのトップへ戻る](../README.md)

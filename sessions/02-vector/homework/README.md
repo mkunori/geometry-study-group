@@ -16,4 +16,6 @@
 [詳細解説](../explanation.md) の②・③が基本問題1・2、④・⑤が基本問題3、④・⑥が発展問題に対応する。数値例・座標系をそろえ、解答の図は既存の [SVG図解](../images/README.md) を再利用する。
 
 
+印刷・オフライン閲覧用：[練習問題PDF](../output/problems.pdf) ／ [解答・解説PDF](../output/solutions.pdf)。
+
 [セッションのトップへ戻る](../README.md)

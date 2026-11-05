@@ -8,6 +8,10 @@ import { comparablePdf, publishedPdfs } from './published-pdfs.mjs';
 
 export async function buildPublishedPdfs(root, browserPath) {
   const targets = await publishedPdfs(root);
+  await buildPdfTargets(root, targets, browserPath);
+}
+
+export async function buildPdfTargets(root, targets, browserPath) {
   const temporary = await mkdtemp(join(tmpdir(), 'geometry-pdfs-'));
   const updates = [];
   try {

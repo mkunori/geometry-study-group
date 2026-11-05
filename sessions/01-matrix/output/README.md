@@ -1,8 +1,28 @@
-# 詳細解説PDF
+# 配布用PDF（4種類）
 
-[PDFを開く](explanation.pdf) ／ [ダウンロード](explanation.pdf?raw=true)
+[詳細解説PDFを開く](explanation.pdf) ／ [ダウンロード](explanation.pdf?raw=true)
 
 A4縦・ページ番号付き。[詳細解説Markdown](../explanation.md) の章立て・文章・表・数式・SVG11点・末尾の補足を含む全文PDF。本文は選択・検索できる。PDFはリポジトリに保存し、GitHubで直接閲覧・ダウンロードできる。
+
+## 4種類の原本とPDF
+
+| 教材 | Markdown原本 | PDF | ダウンロード |
+| --- | --- | --- | --- |
+| 詳細解説 | [explanation.md](../explanation.md) | [explanation.pdf](explanation.pdf) | [保存](explanation.pdf?raw=true) |
+| 練習問題 | [problems.md](../homework/problems.md) | [problems.pdf](problems.pdf) | [保存](problems.pdf?raw=true) |
+| 解答・解説 | [solutions.md](../homework/solutions.md) | [solutions.pdf](solutions.pdf) | [保存](solutions.pdf?raw=true) |
+| C#実装例の説明 | [examples/README.md](../examples/README.md) | [examples.pdf](examples.pdf) | [保存](examples.pdf?raw=true) |
+
+すべてA4縦・ページ番号付きで、本文を選択・検索できる。各PDFは対応するMarkdownだけから生成する。練習問題に解答を含めず、解答には途中計算・根拠・参照図を収録する。C#実装例の説明は実行環境・Visual Studio／CLIの手順・入力と期待結果・数学との対応・検証と適用範囲を収録し、C#ソース全体は印刷しない。本文・図・表・コードブロックは省略しない。
+
+4種類をまとめて再生成する場合は、リポジトリのルートで次を実行する。
+
+```sh
+npm ci
+npm run pdf:session -- sessions/01-matrix
+```
+
+既存の4つのPDFを更新する。`--browser-path <実行ファイル>` も指定できる。全4種類の生成・比較が成功するまで出力を置き換えず、日時だけの差分なら既存ファイルを維持する。
 
 ## 本文原本と生成物
 
@@ -12,7 +32,7 @@ A4縦・ページ番号付き。[詳細解説Markdown](../explanation.md) の章
 
 更新はMarkdownと参照するSVGに行い、PDFを再生成する。PDFを別の原稿として編集したり、本文を要約した別版を作ったりしない。
 
-通常は本文とSVGをmainへマージした後、GitHub Actionsが公開対象のPDFを自動生成・コミットする。[自動生成・手動実行・新しい回の追加方法](../../../docs/pdf-automation.md) を参照。以下はローカルで表示確認するための手順。
+詳細解説PDFは通常、本文とSVGをmainへマージした後、GitHub Actionsが自動生成・コミットする。練習問題・解答・C#説明PDFを更新するときは、上記の共通コマンドで再生成し、原本と同じPRに含める。[自動生成・手動実行・新しい回の追加方法](../../../docs/pdf-automation.md) を参照。以下はローカルで表示確認するための手順。
 
 ## 必要環境
 

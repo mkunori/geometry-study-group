@@ -7,8 +7,9 @@
   "scripts": {
     "pdf": "node scripts/build-pdf.mjs",
     "pdf:01": "npm run pdf -- sessions/01-matrix/explanation.md sessions/01-matrix/output/explanation.pdf",
+    "pdf:session": "node scripts/session-pdfs.mjs",
     "pdf:published": "node scripts/build-published-pdfs.mjs",
-    "test:pdf": "node --test scripts/pdf-automation.test.mjs scripts/pdf-links.test.mjs"
+    "test:pdf": "node --test scripts/pdf-automation.test.mjs scripts/pdf-links.test.mjs scripts/session-pdfs.test.mjs"
   },
   "devDependencies": {
     "@puppeteer/browsers": "2.13.2",

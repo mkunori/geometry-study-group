@@ -25,4 +25,6 @@
 [詳細解説](../explanation.md) と同じ座標系・媒介変数・数値例を使う。解答の図は既存の [SVG図解](../images/README.md) を再利用する。まず問題を解いてから、途中式と理由を解答に照らし合わせる。
 
 
+印刷・オフライン閲覧用：[練習問題PDF](../output/problems.pdf) ／ [解答・解説PDF](../output/solutions.pdf)。
+
 [セッションのトップへ戻る](../README.md)
