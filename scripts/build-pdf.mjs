@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
-import { delimiter, dirname, extname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { delimiter, dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import GithubSlugger from 'github-slugger';
@@ -9,9 +9,9 @@ import katex from 'katex';
 import MarkdownIt from 'markdown-it';
 import texmath from 'markdown-it-texmath';
 import puppeteer from 'puppeteer-core';
+import { preparePdfLinks } from './pdf-links.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const githubRoot = 'https://github.com/mkunori/geometry-study-group/blob/main/';
 const require = createRequire(import.meta.url);
 
 function findBrowser(explicit) {
@@ -33,19 +33,6 @@ function findBrowser(explicit) {
   const browser = candidates.find((candidate) => existsSync(candidate));
   if (!browser) throw new Error('Install Chrome/Edge, or pass --browser-path <executable>.');
   return browser;
-}
-
-function githubLink(href, source) {
-  const url = new URL(href, source);
-  if (href.startsWith('#') || url.protocol !== 'file:') return href;
-  const path = relative(root, fileURLToPath(url));
-  if (path === '..' || path.startsWith(`..${sep}`) || isAbsolute(path)) {
-    throw new Error(`Link is outside the repository: ${href}`);
-  }
-  const target = new URL(path.split(sep).map(encodeURIComponent).join('/'), githubRoot);
-  target.search = url.search;
-  target.hash = url.hash;
-  return target.href;
 }
 
 function embedFile(file) {
@@ -83,11 +70,6 @@ async function build() {
     tokens[index].attrSet('id', slugger.slug(tokens[index + 1].content));
     return renderer.renderToken(tokens, index, options);
   };
-  const linkOpen = md.renderer.rules.link_open;
-  md.renderer.rules.link_open = (tokens, index, options, env, renderer) => {
-    tokens[index].attrSet('href', githubLink(tokens[index].attrGet('href'), source));
-    return linkOpen ? linkOpen(tokens, index, options, env, renderer) : renderer.renderToken(tokens, index, options);
-  };
   const image = md.renderer.rules.image;
   md.renderer.rules.image = (tokens, index, options, env, renderer) => {
     const url = new URL(tokens[index].attrGet('src'), source);
@@ -109,6 +91,7 @@ async function build() {
     await page.setJavaScriptEnabled(false);
     await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 1 });
     await page.setContent(html, { waitUntil: 'load' });
+    await preparePdfLinks(page, source, pathToFileURL(root));
     await page.emulateMediaType('print');
     const stats = await page.evaluate(async () => {
       await document.fonts.ready;

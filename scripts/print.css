@@ -13,7 +13,7 @@ h1 { font-size: 20pt; margin: 0 0 1em; padding-bottom: .35em; border-bottom: 2px
 h2 { font-size: 15pt; margin: 1.5em 0 .6em; padding-bottom: .2em; border-bottom: 1px solid #d8e1e8; }
 h3 { font-size: 12pt; margin: 1.2em 0 .5em; }
 p { margin: .65em 0; orphans: 3; widows: 3; }
-a { color: #1565a0; text-decoration: underline; }
+a[href] { color: #1565a0; text-decoration: underline; }
 strong { font-weight: 700; }
 ul, ol { margin: .6em 0; padding-left: 1.7em; }
 li { margin: .25em 0; }
@@ -33,4 +33,5 @@ eqn { display: block; }
 pre { padding: .8em; background: #f3f5f7; white-space: pre-wrap; break-inside: avoid; }
 code { font-family: Consolas, monospace; font-size: .9em; }
 blockquote { margin: 1em 0; padding-left: 1em; border-left: 3px solid #cbd5df; }
+.pdf-source { font-size: 9pt; white-space: nowrap; break-inside: avoid; margin-top: 1.2em; }
 @media screen { body { padding: 18mm 17mm; background: #eef1f4; } article { padding: 12mm; background: white; } }

@@ -38,6 +38,30 @@ npm run pdf:published
 
 ブラウザーを明示する場合は `npm run pdf:published -- --browser-path <実行ファイル>` を使う。第1回だけを直接出力する既存の `npm run pdf:01`、任意の回の `npm run pdf -- <input.md> <output.pdf>` も引き続き利用できる。[必要環境と表示確認の手順](../sessions/01-matrix/output/README.md) も参照する。
 
+## 社内配布PDFのリンクと元データ表記
+
+原本Markdownのリンクは維持する。共通の [PDF用リンク処理](../scripts/pdf-links.mjs) が、生成時の本文だけに次のルールを適用する。詳細解説に限らず、問題・解答・C#実装例の説明にも同じ変換コマンドを使える。追加PDFの公開対象への登録は別途行う。
+
+- 別の教材への相対リンクは解除し、表示文字や参照案内は本文に残す。元の画像は従来どおり埋め込む。
+- GitHubとraw.githubusercontent.comへの参照先も解除する。URL自体が表示される場合は、回・教材の種類、Issue／PR番号などの読める参照に置き換える。HTMLリンクや本文・コード中のURL直書きも対象とする。
+- 同一文書の `#見出し` と、同じファイルを明記した見出し参照はPDF内のジャンプとして維持する。外部の数学文献・Microsoft・Autodesk等の出典リンクは維持する。
+- 「この回のトップへ戻る」等の戻る専用リンクは取り除く。本文と同じ段落にあっても、本文・図・他の参照内容は残す。
+
+本文・補足・参考文献がすべて終わった後に、次の1行を各PDFへ1回だけ自動付加する。選択・検索・コピー可能で、URLからリポジトリを開ける。これ以外のGitHub URLはPDF本文・リンク注釈に残さない。Markdownに同じ案内を追記する必要はない。表示確認用HTMLにも、同じPDF用の変換結果が入る。
+
+```text
+資料の元データ（GitHubリポジトリ）： https://github.com/mkunori/geometry-study-group
+```
+
+再生成後は、本文と出典の欠落がないこと、末尾表記が重複しないこと、最後に空ページがないことを確認する。リンクの回帰テストは `npm run test:pdf` に含まれる。実PDFの本文・リンク注釈・しおり・末尾位置まで調べるテストには、使用するブラウザーを `PDF_TEST_BROWSER` で指定する。
+
+```powershell
+$env:PDF_TEST_BROWSER = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
+npm.cmd run test:pdf
+```
+
+ブラウザー未指定の場合は実PDFのテストだけをスキップし、既存の自動更新テストとリンクルールの単体テストを実行する。CIの実行順・サンドボックス設定は変更しない。
+
 ## 生成環境と不要な差分の抑制
 
 - GitHub-hosted `ubuntu-24.04`、Node.js **24.21.0** を指定する。
