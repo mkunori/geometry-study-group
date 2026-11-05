@@ -1,57 +1,11 @@
 # 第3回：交点計算のC#実装例
 
-[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の固定例A〜Eを、7題材・155件の実行時自動チェックで確かめる.NET 10コンソール教材。
-
-`double` のタプルで成分式・交差分類を手実装し、`System.Numerics.Vector2/Vector3` の `float` の結果と比較する。入力はソース内の固定値で、引数や標準入力は使わない。AutoCADライセンス・GUI・追加NuGetパッケージは不要。第1・2回のコードには依存しない。
-
-## 必要環境
-
-- **.NET 10 SDK**。対象フレームワークは `net10.0`。ランタイムだけではビルドできない。
-- Visual Studioでは **Visual Studio 2026（18.0以上、Windows）** と「.NETデスクトップ開発」ワークロード、使用するVisual Studioに対応した.NET 10 SDKを使う。[公式の導入・対応表](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio) を参照。
-- CLIでは.NET 10 SDKを導入したWindows・Linux・macOSのコンソールから実行できる。
-
-## Visual Studioで開いて実行する
-
-1. 「プロジェクトやソリューションを開く」から [IntersectionExamples.sln](IntersectionExamples.sln) を開く。従来形式の `.sln` と `.csproj` が同じディレクトリにある。
-2. ソリューションエクスプローラーのプロジェクトが `IntersectionExamples` 1件であることを確認する。必要なら右クリックで「スタートアッププロジェクトに設定」を選ぶ。
-3. 構成を **Debug**、プラットフォームを **Any CPU** にする。
-4. **Ctrl+Shift+B** でソリューションをビルドする。
-5. **Ctrl+F5** でデバッグなし実行、**F5** でデバッグ実行する。全件成功時、最後に「すべての 155 チェックに成功しました。」と表示される。
-
-### F9／F11で交点の条件を追う
-
-1. [Program.cs](Program.cs) の `Lines2D` にある `double denominator = Cross2(r, s)` の行に **F9** でブレークポイントを置く。
-2. **F5** で停止し、「ローカル」「ウォッチ」で `r=(4,4)`、`s=(4,-4)`、`w=(0,4)` を確認する。
-3. **F11** で [IntersectionMath.cs](IntersectionMath.cs) の `Cross2` に入り、`4*(-4)-4*4=-32` を追う。**Shift+F11** で戻り、**F10** で分子−16・−16を確認する。
-4. `LineLine2` の呼び出しから **F11** で入り、`denominator`、`numeratorT`、`numeratorU`、`t=.5`、`u=.5`、両方から求めた位置 `(2,2)` を追う。メソッド名にカーソルを合わせるとXMLコメントの入力・結果・前提を読める。
-
-`Segments2D` では `SegmentSegment2` に入り、延長線の交点でt=1.5が範囲外になる分岐を追う。同一直線の例では `t0=.5`、`t1=1.5`、`low=.5`、`high=1` と、共有部分の両端 `(2,0)`・`(4,0)` を確認する。零長線分は `Degenerate` で止まり、平行と誤分類しない。
-
-`LineAndPlane` では `LinePlane3` の呼び出しへブレークポイントを移す。F11で `n・d=24`、`n・(A-P)=12`、`t=.5` を追う。方向を `(1,0,0)` にした例では分母0で割らず、分子12なら `None`、0なら `Coincident` を返すことを確認する。
-
-`TwoPlanes` の `PlanePlane3` では、法線の単位化・外積 `v`・自由に選ぶ座標 `free`・2元連立式の `determinant`・通過点 `x` を追う。固定例EではYを0と選び、X=1・Z=2を解く。方向だけでは位置を決められないことに注目する。
-
-コンソール出力を読むにはCtrl+F5を使う。F5で終了前に止める場合は `Main` の成功メッセージへブレークポイントを置く。CLIでは起動元の端末に出力が残るため、待機用の `ReadKey` は不要。
-
-## CLIで実行する
-
-リポジトリのルートから実行する。
-
-```sh
-dotnet build sessions/03-intersection/examples/IntersectionExamples.sln -c Debug
-dotnet run --project sessions/03-intersection/examples/IntersectionExamples.csproj -c Debug --no-build
-dotnet build sessions/03-intersection/examples/IntersectionExamples.sln -c Release
-dotnet run --project sessions/03-intersection/examples/IntersectionExamples.csproj -c Release --no-build
-```
-
-この `examples/` を作業ディレクトリにした場合は `dotnet run` でもビルド・実行できる。全件成功は終了コード0。不一致・非有限な比較値・期待しない分類は `FAIL` と検証ラベルを出して終了コード1になる。数値の失敗では成分番号・実値・期待値・許容誤差も表示する。
+[詳細解説](../explanation.md) と [宿題の問題](../homework/problems.md)・[解答](../homework/solutions.md) の固定例A〜Eで、交点の式と交差分類を復習する。`double` の成分式を手実装し、`System.Numerics.Vector2/Vector3` の `float` の結果と比較する。
 
 ## ファイルと読む順序
 
-| ファイル | 内容 |
+| ファイル | 数学的な役割 |
 | --- | --- |
-| [IntersectionExamples.sln](IntersectionExamples.sln) | Visual Studioで開く入口。第3回専用プロジェクト1件 |
-| [IntersectionExamples.csproj](IntersectionExamples.csproj) | net10.0のコンソール設定。追加パッケージなし |
 | [Program.cs](Program.cs) | 固定入力、手計算の期待値、API比較、残差・分類・範囲のチェック |
 | [IntersectionMath.cs](IntersectionMath.cs) | double成分式、直線・線分・平面の条件と分岐、連立式 |
 | [IntersectionResults.cs](IntersectionResults.cs) | 2D／3Dタプルの型別名、結果の分類、null可能な結果フィールド |
@@ -111,10 +65,10 @@ Kindを確認してから対応するフィールドを使う。`Point=null` を
 
 ## 数式とAPIの対応
 
-- `Cross2` は自作のスカラー成分式。`LineLine2` はw=tr−usからt=cross(w,s)/cross(r,s)、u=cross(w,r)/cross(r,s)を計算し、両方の式から求めた位置の差を検査する。
-- `SegmentSegment2` は一点ならt・u両方の範囲を確認。同一直線なら第2線分の両端を第1線分のtへ射影し、区間の共通範囲を求める。重複両端の順序は第1線分のt順で、X座標の昇順とは限らない。
-- `LinePlane3` はn・(P+td−A)=0から分子n・(A−P)、分母n・dを求める。分母0なら位置の条件へ分岐し、一点を返す前に平面残差を検査する。
-- `PlanePlane3` は両法線を単位化してから外積vを求める。vの最大絶対成分に対応する座標を0と選び、残る2座標を2元連立式で解く。得た通過点を両平面へ代入して検査する。方向は元の法線外積の非ゼロ実数倍で、固定例Eではそのまま(0,1,0)。有限面の境界処理は含まない。
+- `Cross2` は自作のスカラー成分式。固定例Aの `r=(4,4)`、`s=(4,-4)`、`w=(0,4)` では、分母は `4*(-4)-4*4=-32`、分子は両方−16となる。`LineLine2` はw=tr−usからt=cross(w,s)/cross(r,s)、u=cross(w,r)/cross(r,s)を計算し、両方の式から求めた位置の差を検査する。
+- `SegmentSegment2` は一点ならt・u両方の範囲を確認。同一直線なら第2線分の両端を第1線分のtへ射影し、区間の共通範囲を求める。共有区間の例では `t0=.5`、`t1=1.5` と第1線分の `[0,1]` から `low=.5`、`high=1` となり、両端は `(2,0)`・`(4,0)`。重複両端の順序は第1線分のt順で、X座標の昇順とは限らない。
+- `LinePlane3` はn・(P+td−A)=0から分子n・(A−P)、分母n・dを求める。固定例Dでは分子12・分母24から `t=.5` を得る。方向を `(1,0,0)` にした場合は分母0で割らず、分子12なら `None`、0なら `Coincident` へ分岐する。一点を返す前に平面残差を検査する。
+- `PlanePlane3` は両法線を単位化してから外積vを求める。vの最大絶対成分に対応する座標 `free` を0と選び、残る2座標を2元連立式で解く。固定例EではY=0とし、X=1・Z=2を求める。方向だけでは交線の位置は決まらない。得た通過点を両平面へ代入して検査する。方向は元の法線外積の非ゼロ実数倍で、固定例Eではそのまま(0,1,0)。有限面の境界処理は含まない。
 - [Vector3.Cross](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector3.cross?view=net-10.0) と [Vector3.Dot](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector3.dot?view=net-10.0) を成分式と比較する。2DはZ=0へ埋め込んだ外積のZ成分と照合する。Vector2/3の各成分はfloatであり、doubleの手計算とは精度を分ける。
 
 ## しきい値・退化・数値精度
@@ -138,17 +92,8 @@ Kindを確認してから対応するフィールドを使う。`Point=null` を
 
 `1+1e-13` の差はdoubleには残るがfloatへ丸めると消え、外積値が変わる。floatからdoubleへ戻しても失われた差は復元できない。比較は表示前の値で行い、表示は通常G9、微小な分母はG17とする。
 
-## 自動チェックとCI
+## 検証範囲
 
-実行時の155チェックは、数値・残差・分類と値の有無・範囲の各検証呼び出しを1件として数える。題材内の入力反復もそれぞれ数える。7題材の件数8／9／34／10／18／20／56、実際の `[OK]` 155件、最後の成功要約、終了コード0が揃うことを確認する。`Check` は実値と期待値の両方の有限性を確認し、NaN比較やInfinityの差による見逃しを避ける。
-
-[Check Intersection Examples](../../../.github/workflows/check-intersection-examples.yml) は、第3回のC#コード（`.cs`）・プロジェクト（`.csproj`）・ソリューション（`.sln`）・ビルド設定（`.props`／`.targets`）、ルート共通設定の `global.json`／`Directory.Build.*`、ワークフロー自身の変更を、PR時とmainへのpush時に検証する。Markdownだけの変更では起動しない。
-
-Ubuntu 24.04・.NET SDK 10.0.401でソリューションをrestoreし、Releaseビルドして実行する。終了コード0、実際の `[OK]` 155件、期待する成功要約の3点を確認する。途中で失敗した場合も実行コマンドの失敗を伝播する。チェック数を変える場合は題材の内容をレビューし、ワークフローの `EXPECTED_CHECKS` と、このREADMEの件数・出力例を同じPRで更新する。
-
-PRのChecks、または **Actions → Check Intersection Examples → 対象の実行 → IntersectionExamples (Release)** で確認できる。失敗時は `Restore solution`・`Build solution (Release)`・`Run IntersectionExamples and verify all 155 checks` の該当ログを開く。`FAIL` のラベルから式・分類・実値・期待値・許容誤差を確認する。件数や成功要約の不一致は `::error::` で表示する。
-
-CIの権限は `contents: read` のみで、PAT・Secret・書き込み権限は不要。チェックアウトした認証情報を保持せず、ソースやPDFの自動コミットも行わない。第1回43件・第2回73件の専用CI、PDF生成とは独立している。
-
+7題材・155件の自動チェックで、数値・残差・交差分類・結果の値の有無・媒介変数の範囲を確認する。`Check` は実値と期待値の両方の有限性を調べ、NaN比較やInfinityの差による見逃しを避ける。固定例のほか、端点・重複区間・退化・保留の分岐を検算するが、境界の厳密な位相判定を保証するものではない。
 
 [この回のトップへ戻る](../README.md)
