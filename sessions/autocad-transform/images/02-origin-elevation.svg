@@ -23,15 +23,16 @@
   <text x="770.0" y="400.0" font-size="17" fill="#21324b" text-anchor="start">WCS Z</text>
   <line x1="760.000" y1="510.000" x2="661.000" y2="364.250" stroke="#a441a1" stroke-width="4" marker-end="url(#arrow)"/>
   <text x="726" y="426" font-size="24" fill="#a441a1" text-anchor="start">5N</text>
-  <line x1="661.000" y1="364.250" x2="529.000" y2="306.500" stroke="#cf6b15" stroke-width="3" marker-end="url(#arrow)"/>
-  <text x="535" y="408" font-size="21" fill="#cf6b15" text-anchor="start">3Ax</text>
-  <line x1="529.000" y1="306.500" x2="581.800" y2="200.900" stroke="#2264bc" stroke-width="3" marker-end="url(#arrow)"/>
-  <text x="590" y="245" font-size="21" fill="#2264bc" text-anchor="start">2Ay</text>
+  <line x1="661.000" y1="364.250" x2="529.000" y2="306.500" stroke="#bd372c" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="535" y="408" font-size="21" fill="#bd372c" text-anchor="start">3Ax</text>
+  <line x1="529.000" y1="306.500" x2="581.800" y2="200.900" stroke="#23743d" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="590" y="245" font-size="21" fill="#23743d" text-anchor="start">2Ay</text>
   <circle cx="760.000" cy="510.000" r="5" fill="#8053b5"/>
   <text x="770.0" y="515.0" font-size="20" fill="#21324b" text-anchor="start">O</text>
   <circle cx="661.000" cy="364.250" r="5" fill="#8053b5"/>
   <text x="676.0" y="376.25" font-size="20" fill="#21324b" text-anchor="start">C</text>
   <circle cx="581.800" cy="200.900" r="5" fill="#8053b5"/>
   <text x="521.8" y="186.89999999999998" font-size="20" fill="#21324b" text-anchor="start">P=(−3,1.4,5.2)</text>
-  <text x="40" y="590" font-size="20" fill="#21324b" text-anchor="start">斜投影：Nは図形平面に垂直。Cは平面上の点であり、OCS原点ではない。</text>
+  <text x="40" y="530" font-size="20" fill="#21324b" text-anchor="start">斜投影：Nは図形平面に垂直。</text>
+  <text x="40" y="565" font-size="20" fill="#21324b" text-anchor="start">Cは平面上の点であり、OCS原点ではない。</text>
 </svg>

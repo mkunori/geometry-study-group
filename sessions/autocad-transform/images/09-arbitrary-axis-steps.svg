@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">法線からX軸、続いてY軸を作る</title>
+  <desc id="desc">固定例Bの任意軸生成を共通の斜投影と尺度で示す。補助軸H=Wz、H×N=(-3/5,0,0)を正規化してAx=(-1,0,0)、N×Ax=(0,-4/5,3/5)からAyを得る。破線は逆順の外積N×Hを正規化した−Axで、正しいAxと反対。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30.000" y="43.000" font-size="27" fill="#21324b" text-anchor="start">法線からX軸、続いてY軸を作る</text>
+    <text x="35.000" y="87.000" font-size="22" fill="#21324b" text-anchor="start">B：N=(0,3/5,4/5)。Y成分が1/64以上なので補助軸はZ。</text>
+    <rect x="20" y="112" width="310" height="338" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="32.000" y="145.000" font-size="21" fill="#21324b" text-anchor="start">① 補助軸と法線を見る</text>
+    <line x1="200.000" y1="300.000" x2="200.000" y2="215.000" stroke="#60738a" stroke-width="2.6" marker-end="url(#arrow)"/>
+    <text x="210.000" y="209.000" font-size="20" fill="#60738a" text-anchor="start">H=Wz</text>
+    <line x1="200.000" y1="300.000" x2="169.400" y2="254.950" stroke="#2264bc" stroke-width="2.6" marker-end="url(#arrow)"/>
+    <text x="147.400" y="279.950" font-size="20" fill="#2264bc" text-anchor="start">N</text>
+    <circle cx="200.000" cy="300.000" r="4" fill="#21324b"/>
+    <text x="208.000" y="322.000" font-size="19" fill="#21324b" text-anchor="start">O</text>
+    <text x="32.000" y="390.000" font-size="20" fill="#21324b" text-anchor="start">H=(0,0,1)</text>
+    <text x="32.000" y="422.000" font-size="20" fill="#21324b" text-anchor="start">長さ1のNを使う</text>
+    <rect x="350" y="112" width="310" height="338" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="362.000" y="145.000" font-size="21" fill="#21324b" text-anchor="start">② H×NからX軸を作る</text>
+    <line x1="530.000" y1="300.000" x2="462.000" y2="270.250" stroke="#bd372c" stroke-width="2.6" marker-end="url(#arrow)"/>
+    <text x="437.000" y="260.250" font-size="20" fill="#bd372c" text-anchor="start">Ax</text>
+    <line x1="530.000" y1="300.000" x2="598.000" y2="329.750" stroke="#60738a" stroke-width="2.6" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <text x="604.000" y="354.750" font-size="20" fill="#60738a" text-anchor="start">−Ax</text>
+    <circle cx="530.000" cy="300.000" r="4" fill="#21324b"/>
+    <text x="538.000" y="322.000" font-size="19" fill="#21324b" text-anchor="start">O</text>
+    <text x="362.000" y="390.000" font-size="20" fill="#21324b" text-anchor="start">H×N=(−3/5,0,0)</text>
+    <text x="362.000" y="422.000" font-size="20" fill="#21324b" text-anchor="start">長さ3/5で割る → Ax</text>
+    <rect x="680" y="112" width="310" height="338" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="692.000" y="145.000" font-size="21" fill="#21324b" text-anchor="start">③ N×AxからY軸を作る</text>
+    <line x1="860.000" y1="300.000" x2="792.000" y2="270.250" stroke="#bd372c" stroke-width="2.6" marker-end="url(#arrow)"/>
+    <text x="767.000" y="260.250" font-size="20" fill="#bd372c" text-anchor="start">Ax</text>
+    <line x1="860.000" y1="300.000" x2="829.400" y2="254.950" stroke="#2264bc" stroke-width="2.6" marker-end="url(#arrow)"/>
+    <text x="833.400" y="248.950" font-size="20" fill="#2264bc" text-anchor="start">N</text>
+    <line x1="860.000" y1="300.000" x2="900.800" y2="218.400" stroke="#23743d" stroke-width="2.6" marker-end="url(#arrow)"/>
+    <text x="898.800" y="208.400" font-size="20" fill="#23743d" text-anchor="start">Ay</text>
+    <circle cx="860.000" cy="300.000" r="4" fill="#21324b"/>
+    <text x="868.000" y="322.000" font-size="19" fill="#21324b" text-anchor="start">O</text>
+    <text x="692.000" y="390.000" font-size="20" fill="#21324b" text-anchor="start">N×Ax=(0,−4/5,3/5)</text>
+    <text x="692.000" y="422.000" font-size="20" fill="#21324b" text-anchor="start">長さ1 → Ay</text>
+    <text x="35.000" y="490.000" font-size="23" fill="#21324b" text-anchor="start">順序は H×N、次に N×Ax。逆順では向きが反転する。</text>
+    <text x="35.000" y="532.000" font-size="22" fill="#21324b" text-anchor="start">正負Zの近くではHをYに替える。Z×Nが小さくなるからだ。</text>
+    <text x="35.000" y="578.000" font-size="21" fill="#21324b" text-anchor="start">斜投影の矢印は同じ尺度。長さを1にする処理が正規化。</text>
+  </g>
+</svg>

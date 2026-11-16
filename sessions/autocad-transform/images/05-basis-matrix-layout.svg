@@ -11,40 +11,40 @@
     <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">4方式を結ぶ基底行列：数学の列と、配列の行順</text>
     <text x="70" y="100" font-size="24" fill="#21324b" text-anchor="start">数学：基底は列</text>
     <text x="565" y="100" font-size="24" fill="#21324b" text-anchor="start">配列：行ごとに16要素</text>
-    <text x="100" y="145" font-size="22" fill="#2264bc" text-anchor="middle">Ax</text>
-    <text x="195" y="145" font-size="22" fill="#087f81" text-anchor="middle">Ay</text>
-    <text x="290" y="145" font-size="22" fill="#a1439d" text-anchor="middle">N</text>
+    <text x="100" y="145" font-size="22" fill="#bd372c" text-anchor="middle">Ax</text>
+    <text x="195" y="145" font-size="22" fill="#23743d" text-anchor="middle">Ay</text>
+    <text x="290" y="145" font-size="22" fill="#2264bc" text-anchor="middle">N</text>
     <text x="385" y="145" font-size="22" fill="#60738a" text-anchor="middle">移動</text>
     <rect x="55" y="165" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="100" y="197" font-size="20" fill="#2264bc" text-anchor="middle">Ax.x</text>
+    <text x="100" y="197" font-size="20" fill="#bd372c" text-anchor="middle">Ax.x</text>
     <rect x="150" y="165" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="195" y="197" font-size="20" fill="#087f81" text-anchor="middle">Ay.x</text>
+    <text x="195" y="197" font-size="20" fill="#23743d" text-anchor="middle">Ay.x</text>
     <rect x="245" y="165" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="290" y="197" font-size="20" fill="#a1439d" text-anchor="middle">N.x</text>
+    <text x="290" y="197" font-size="20" fill="#2264bc" text-anchor="middle">N.x</text>
     <rect x="340" y="165" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
     <text x="385" y="197" font-size="20" fill="#60738a" text-anchor="middle">0</text>
     <rect x="55" y="218" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="100" y="250" font-size="20" fill="#2264bc" text-anchor="middle">Ax.y</text>
+    <text x="100" y="250" font-size="20" fill="#bd372c" text-anchor="middle">Ax.y</text>
     <rect x="150" y="218" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="195" y="250" font-size="20" fill="#087f81" text-anchor="middle">Ay.y</text>
+    <text x="195" y="250" font-size="20" fill="#23743d" text-anchor="middle">Ay.y</text>
     <rect x="245" y="218" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="290" y="250" font-size="20" fill="#a1439d" text-anchor="middle">N.y</text>
+    <text x="290" y="250" font-size="20" fill="#2264bc" text-anchor="middle">N.y</text>
     <rect x="340" y="218" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
     <text x="385" y="250" font-size="20" fill="#60738a" text-anchor="middle">0</text>
     <rect x="55" y="271" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="100" y="303" font-size="20" fill="#2264bc" text-anchor="middle">Ax.z</text>
+    <text x="100" y="303" font-size="20" fill="#bd372c" text-anchor="middle">Ax.z</text>
     <rect x="150" y="271" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="195" y="303" font-size="20" fill="#087f81" text-anchor="middle">Ay.z</text>
+    <text x="195" y="303" font-size="20" fill="#23743d" text-anchor="middle">Ay.z</text>
     <rect x="245" y="271" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="290" y="303" font-size="20" fill="#a1439d" text-anchor="middle">N.z</text>
+    <text x="290" y="303" font-size="20" fill="#2264bc" text-anchor="middle">N.z</text>
     <rect x="340" y="271" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
     <text x="385" y="303" font-size="20" fill="#60738a" text-anchor="middle">0</text>
     <rect x="55" y="324" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="100" y="356" font-size="20" fill="#2264bc" text-anchor="middle">0</text>
+    <text x="100" y="356" font-size="20" fill="#bd372c" text-anchor="middle">0</text>
     <rect x="150" y="324" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="195" y="356" font-size="20" fill="#087f81" text-anchor="middle">0</text>
+    <text x="195" y="356" font-size="20" fill="#23743d" text-anchor="middle">0</text>
     <rect x="245" y="324" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
-    <text x="290" y="356" font-size="20" fill="#a1439d" text-anchor="middle">0</text>
+    <text x="290" y="356" font-size="20" fill="#2264bc" text-anchor="middle">0</text>
     <rect x="340" y="324" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
     <text x="385" y="356" font-size="20" fill="#60738a" text-anchor="middle">1</text>
     <rect x="560" y="165" width="385" height="49" rx="6" fill="#eef4fc" stroke="#a4b2c4"/>
