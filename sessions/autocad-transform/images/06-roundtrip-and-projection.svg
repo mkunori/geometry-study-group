@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">往復変換は位置を保つ。Zを捨てる操作は射影になる</title>
+  <desc id="desc">固定例Bの平面上P=-3,7/5,26/5と平面外Q=P+2Nを示す。QをOCSの3,2,7へ変えてからWCSへ戻してもQのまま。OCSのZをElevation5へ置換した場合にだけPへ射影される。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">往復変換は位置を保つ。Zを捨てる操作は射影になる</text>
+    <text x="35" y="105" font-size="23" fill="#21324b" text-anchor="start">BのWCS位置（斜投影）</text>
+    <polygon points="374.400,398.700 240.000,339.900 313.920,273.960 394.560,358.380" fill="#d9f0eb" stroke="#087f81" stroke-width="3"/>
+    <line x1="450.000" y1="510.000" x2="374.400" y2="398.700" stroke="#a1439d" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="408" y="440" font-size="20" fill="#a1439d" text-anchor="start">5N</text>
+    <line x1="313.920" y1="273.960" x2="283.680" y2="229.440" stroke="#a1439d" stroke-width="3" marker-end="url(#arrow)"/>
+    <circle cx="313.920" cy="273.960" r="5" fill="#087f81"/>
+    <text x="325.91999999999996" y="297.96000000000004" font-size="21" fill="#087f81" text-anchor="start">P：w=5</text>
+    <circle cx="283.680" cy="229.440" r="5" fill="#c04832"/>
+    <text x="188.67999999999995" y="213.44" font-size="21" fill="#c04832" text-anchor="start">Q：w=7</text>
+    <text x="335" y="240" font-size="20" fill="#a1439d" text-anchor="start">2N</text>
+    <circle cx="450.000" cy="510.000" r="5" fill="#60738a"/>
+    <text x="458" y="525" font-size="20" fill="#21324b" text-anchor="start">O</text>
+    <text x="38" y="540" font-size="22" fill="#21324b" text-anchor="start">N・P=5、N・Q=7</text>
+    <text x="38" y="578" font-size="21" fill="#21324b" text-anchor="start">Qは図形平面上にはない。</text>
+    <rect x="550" y="110" width="385" height="68" rx="6" fill="#eef4fc" stroke="#a4b2c4"/>
+    <text x="570" y="139" font-size="22" fill="#21324b" text-anchor="start">固定WCS点 Q</text>
+    <text x="570" y="166" font-size="21" fill="#21324b" text-anchor="start">(−3,13/5,34/5)</text>
+    <rect x="550" y="245" width="385" height="68" rx="6" fill="#eef4fc" stroke="#a4b2c4"/>
+    <text x="570" y="274" font-size="22" fill="#21324b" text-anchor="start">OCSへ表し直す</text>
+    <text x="570" y="301" font-size="21" fill="#21324b" text-anchor="start">(3,2,7)：高さを保つ</text>
+    <line x1="640.000" y1="181.000" x2="640.000" y2="234.000" stroke="#2264bc" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="660" y="215" font-size="19" fill="#2264bc" text-anchor="start">WorldToPlane</text>
+    <rect x="550" y="380" width="385" height="68" rx="6" fill="#eef4fc" stroke="#a4b2c4"/>
+    <text x="570" y="409" font-size="21" fill="#21324b" text-anchor="start">WCSへ戻す → Qと同じ位置</text>
+    <text x="570" y="436" font-size="21" fill="#21324b" text-anchor="start">(−3,13/5,34/5)</text>
+    <line x1="640.000" y1="316.000" x2="640.000" y2="369.000" stroke="#2264bc" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="660" y="350" font-size="19" fill="#2264bc" text-anchor="start">PlaneToWorld</text>
+    <line x1="940.000" y1="277.000" x2="976.000" y2="277.000" stroke="#c04832" stroke-width="2"/>
+    <line x1="976.000" y1="277.000" x2="976.000" y2="510.000" stroke="#c04832" stroke-width="2"/>
+    <line x1="976.000" y1="510.000" x2="936.000" y2="510.000" stroke="#c04832" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="550" y="482" width="385" height="75" rx="6" fill="#fff1ec" stroke="#c04832"/>
+    <text x="566" y="509" font-size="21" fill="#c04832" text-anchor="start">Zを7から5へ置換 → 射影</text>
+    <text x="566" y="540" font-size="21" fill="#c04832" text-anchor="start">WCSはP=(−3,7/5,26/5)</text>
+    <text x="550" y="598" font-size="20" fill="#21324b" text-anchor="start">座標変換だけでは、点は平面へ移動しない。</text>
+  </g>
+</svg>

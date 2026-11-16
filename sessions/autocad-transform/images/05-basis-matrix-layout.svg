@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">4方式を結ぶ基底行列：数学の列と、配列の行順</title>
+  <desc id="desc">OCSのX軸・Y軸・法線を数学上の第1〜3列に配置し、4×4行列を行ごとに一次元配列へ並べる。第4列は移動0、最下行は0,0,0,1。固定例BでOCSの3,2,5をWCSの-3,7/5,26/5へ写す。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">4方式を結ぶ基底行列：数学の列と、配列の行順</text>
+    <text x="70" y="100" font-size="24" fill="#21324b" text-anchor="start">数学：基底は列</text>
+    <text x="565" y="100" font-size="24" fill="#21324b" text-anchor="start">配列：行ごとに16要素</text>
+    <text x="100" y="145" font-size="22" fill="#2264bc" text-anchor="middle">Ax</text>
+    <text x="195" y="145" font-size="22" fill="#087f81" text-anchor="middle">Ay</text>
+    <text x="290" y="145" font-size="22" fill="#a1439d" text-anchor="middle">N</text>
+    <text x="385" y="145" font-size="22" fill="#60738a" text-anchor="middle">移動</text>
+    <rect x="55" y="165" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="100" y="197" font-size="20" fill="#2264bc" text-anchor="middle">Ax.x</text>
+    <rect x="150" y="165" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="195" y="197" font-size="20" fill="#087f81" text-anchor="middle">Ay.x</text>
+    <rect x="245" y="165" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="290" y="197" font-size="20" fill="#a1439d" text-anchor="middle">N.x</text>
+    <rect x="340" y="165" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="385" y="197" font-size="20" fill="#60738a" text-anchor="middle">0</text>
+    <rect x="55" y="218" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="100" y="250" font-size="20" fill="#2264bc" text-anchor="middle">Ax.y</text>
+    <rect x="150" y="218" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="195" y="250" font-size="20" fill="#087f81" text-anchor="middle">Ay.y</text>
+    <rect x="245" y="218" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="290" y="250" font-size="20" fill="#a1439d" text-anchor="middle">N.y</text>
+    <rect x="340" y="218" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="385" y="250" font-size="20" fill="#60738a" text-anchor="middle">0</text>
+    <rect x="55" y="271" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="100" y="303" font-size="20" fill="#2264bc" text-anchor="middle">Ax.z</text>
+    <rect x="150" y="271" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="195" y="303" font-size="20" fill="#087f81" text-anchor="middle">Ay.z</text>
+    <rect x="245" y="271" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="290" y="303" font-size="20" fill="#a1439d" text-anchor="middle">N.z</text>
+    <rect x="340" y="271" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="385" y="303" font-size="20" fill="#60738a" text-anchor="middle">0</text>
+    <rect x="55" y="324" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="100" y="356" font-size="20" fill="#2264bc" text-anchor="middle">0</text>
+    <rect x="150" y="324" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="195" y="356" font-size="20" fill="#087f81" text-anchor="middle">0</text>
+    <rect x="245" y="324" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="290" y="356" font-size="20" fill="#a1439d" text-anchor="middle">0</text>
+    <rect x="340" y="324" width="90" height="49" rx="6" fill="#f6f8fb" stroke="#a4b2c4"/>
+    <text x="385" y="356" font-size="20" fill="#60738a" text-anchor="middle">1</text>
+    <rect x="560" y="165" width="385" height="49" rx="6" fill="#eef4fc" stroke="#a4b2c4"/>
+    <text x="575" y="197" font-size="20" fill="#21324b" text-anchor="start"> 0〜 3 :  Ax.x, Ay.x, N.x, 0</text>
+    <line x1="443.000" y1="190.000" x2="550.000" y2="190.000" stroke="#8053b5" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="560" y="218" width="385" height="49" rx="6" fill="#eef4fc" stroke="#a4b2c4"/>
+    <text x="575" y="250" font-size="20" fill="#21324b" text-anchor="start"> 4〜 7 :  Ax.y, Ay.y, N.y, 0</text>
+    <line x1="443.000" y1="243.000" x2="550.000" y2="243.000" stroke="#8053b5" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="560" y="271" width="385" height="49" rx="6" fill="#eef4fc" stroke="#a4b2c4"/>
+    <text x="575" y="303" font-size="20" fill="#21324b" text-anchor="start"> 8〜11 :  Ax.z, Ay.z, N.z, 0</text>
+    <line x1="443.000" y1="296.000" x2="550.000" y2="296.000" stroke="#8053b5" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="560" y="324" width="385" height="49" rx="6" fill="#eef4fc" stroke="#a4b2c4"/>
+    <text x="575" y="356" font-size="20" fill="#21324b" text-anchor="start">12〜15 :  0, 0, 0, 1</text>
+    <line x1="443.000" y1="349.000" x2="550.000" y2="349.000" stroke="#8053b5" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="55" y="432" font-size="22" fill="#21324b" text-anchor="start">Bの例（行順）</text>
+    <text x="55" y="470" font-size="21" fill="#21324b" text-anchor="start">[−1,0,0,0,  0,−4/5,3/5,0,  0,3/5,4/5,0,  0,0,0,1]</text>
+    <text x="55" y="523" font-size="24" fill="#21324b" text-anchor="start">入力 (3,2,5,1) → WCS (−3,7/5,26/5,1)</text>
+    <text x="55" y="580" font-size="21" fill="#21324b" text-anchor="start">「列に基底を並べる」ことと、「配列の格納順序」を分けて読む。</text>
+  </g>
+</svg>
