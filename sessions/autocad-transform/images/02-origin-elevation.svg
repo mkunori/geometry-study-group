@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc" style="font-family:Yu Gothic,Meiryo,Noto Sans CJK JP,sans-serif">
+  <title id="title">OCSの原点と、Elevationのある平面を分ける</title>
+  <desc id="desc">OCSとWCSの原点Oは共通。N=(0,3/5,4/5)に沿って5進むと図形平面の点C=(0,3,4)となる。Cから3Axと2Ayを足してPへ進む。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="#ffffff"/>
+  <text x="30" y="42" font-size="27" fill="#21324b" text-anchor="start">OCSの原点と、Elevationのある平面を分ける</text>
+  <text x="40" y="112" font-size="23" fill="#21324b" text-anchor="start">OCS原点 O = WCS原点</text>
+  <text x="40" y="155" font-size="23" fill="#21324b" text-anchor="start">図形平面の基準点 C = 5N</text>
+  <text x="40" y="195" font-size="22" fill="#21324b" text-anchor="start">CのWCS座標は (0,3,4)</text>
+  <text x="40" y="240" font-size="24" fill="#21324b" text-anchor="start">P = C + 3Ax + 2Ay</text>
+  <text x="40" y="285" font-size="23" fill="#21324b" text-anchor="start">N・P = h = 5</text>
+  <text x="40" y="330" font-size="20" fill="#21324b" text-anchor="start">hはWCSのZ成分ではない。</text>
+  <polygon points="669.800,400.275 436.600,298.250 529.000,113.450 762.200,215.475" fill="#087f81" fill-opacity="0.12" stroke="#087f81" stroke-width="3"/>
+  <line x1="760.000" y1="510.000" x2="848.000" y2="548.500" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="852.0" y="573.5" font-size="17" fill="#21324b" text-anchor="start">WCS X</text>
+  <line x1="760.000" y1="510.000" x2="694.000" y2="559.500" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="634.0" y="579.5" font-size="17" fill="#21324b" text-anchor="start">WCS Y</text>
+  <line x1="760.000" y1="510.000" x2="760.000" y2="400.000" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="770.0" y="400.0" font-size="17" fill="#21324b" text-anchor="start">WCS Z</text>
+  <line x1="760.000" y1="510.000" x2="661.000" y2="364.250" stroke="#a441a1" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="726" y="426" font-size="24" fill="#a441a1" text-anchor="start">5N</text>
+  <line x1="661.000" y1="364.250" x2="529.000" y2="306.500" stroke="#cf6b15" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="535" y="408" font-size="21" fill="#cf6b15" text-anchor="start">3Ax</text>
+  <line x1="529.000" y1="306.500" x2="581.800" y2="200.900" stroke="#2264bc" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="590" y="245" font-size="21" fill="#2264bc" text-anchor="start">2Ay</text>
+  <circle cx="760.000" cy="510.000" r="5" fill="#8053b5"/>
+  <text x="770.0" y="515.0" font-size="20" fill="#21324b" text-anchor="start">O</text>
+  <circle cx="661.000" cy="364.250" r="5" fill="#8053b5"/>
+  <text x="676.0" y="376.25" font-size="20" fill="#21324b" text-anchor="start">C</text>
+  <circle cx="581.800" cy="200.900" r="5" fill="#8053b5"/>
+  <text x="521.8" y="186.89999999999998" font-size="20" fill="#21324b" text-anchor="start">P=(−3,1.4,5.2)</text>
+  <text x="40" y="590" font-size="20" fill="#21324b" text-anchor="start">斜投影：Nは図形平面に垂直。Cは平面上の点であり、OCS原点ではない。</text>
+</svg>
