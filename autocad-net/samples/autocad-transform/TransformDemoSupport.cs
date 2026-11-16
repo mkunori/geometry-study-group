@@ -6,7 +6,7 @@ using Autodesk.AutoCAD.Geometry;
 
 namespace AutoCadGeometrySamples;
 
-/// <summary>実践編の表示・新規図形追加だけを共有する。数学の計算はArbitraryAxisMathに分ける。</summary>
+/// <summary>実践編の表示・新規図形追加を共有する。変換方式の比較計算は各コマンド内に置く。</summary>
 internal static class TransformDemoSupport
 {
     /// <summary>成分計算の方向を、同じWCS成分のAutoCADベクトルにする。</summary>
@@ -26,6 +26,23 @@ internal static class TransformDemoSupport
     internal static void Write(Editor editor, string label, ArbitraryAxisMath.Vec v) =>
         editor.WriteMessage(string.Create(CultureInfo.InvariantCulture,
             $"\n{label}: ({v.X:G17}, {v.Y:G17}, {v.Z:G17})"));
+
+    /// <summary>点の座標をG17で出力する。座標系を変換する関数ではない。</summary>
+    internal static void WritePoint(Editor editor, string label, Point3d point) =>
+        Write(editor, label, new ArbitraryAxisMath.Vec(point.X, point.Y, point.Z));
+
+    /// <summary>ToArrayで得た16要素を、行ごとに表示する。積や転置の計算は隠さない。</summary>
+    internal static void WriteMatrix(Editor editor, string label, double[] values)
+    {
+        editor.WriteMessage($"\n{label}（行ごと）");
+        for (int row = 0; row < 4; row++)
+            editor.WriteMessage(string.Create(CultureInfo.InvariantCulture,
+                $"\n[{values[4 * row]:G17}, {values[4 * row + 1]:G17}, {values[4 * row + 2]:G17}, {values[4 * row + 3]:G17}]"));
+    }
+
+    /// <summary>同じ座標系の点どうしの距離残差を表示する。固定入力の小さな値を対象にする。</summary>
+    internal static void WriteResidual(Editor editor, string label, Point3d a, Point3d b) =>
+        Write(editor, label, ArbitraryAxisMath.Length(new(a.X - b.X, a.Y - b.Y, a.Z - b.Z)));
 
     /// <summary>現在図面の通常コマンドから、新規図形だけをモデル空間へ登録・確定する。</summary>
     /// <remarks>Commit前の例外は破棄でロールバック。Commit後の失敗まで変更なしとは断定しない。</remarks>

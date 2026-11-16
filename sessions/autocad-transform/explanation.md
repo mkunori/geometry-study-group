@@ -23,8 +23,8 @@ API仕様は末尾の2026版公式資料で静的に照合した。
 | 7 | その他の変換方法の比較 |
 | 8 | まとめ：異なるコードの処理意図を読み解く |
 
-第1〜3章を連続して読み、APIから得る座標と、その背景の基底を対応させる。
-第4〜8章は題材と問いの骨格を示す。
+第1〜5章を連続して読み、APIから得る座標と、その背景の基底・相互変換を対応させる。
+第6〜8章は題材と問いの骨格を示す。
 
 ## 1. 導入：同じ頂点なのに異なる座標が返る？
 
@@ -471,13 +471,407 @@ Polylineの各APIは第1・2章、PlaneToWorldは第3章のリンクを参照す
 
 ## 4. OCSからWCSへの変換方法の比較
 
-専用API、`PlaneToWorld`、自作基底による行列、基底の線形結合を比較の候補とする。
-同じ固定入力について、座標・基底・行列・途中計算を照合し、等価になる条件を考える。
+### 同じ入力から4つの書き方を読む
+
+第3章では、OCSの3成分を基底の線形結合でWCSへ表せることを確かめた。
+では、普段使っていないAPIでも同じ処理を読めるだろうか？
+固定例A・Bの非対称なPolylineを使い、同じ頂点番号を次の4方式で比較する。
+
+| 方式 | 入力と計算 | 共通する意味 |
+| --- | --- | --- |
+| 1. `GetPoint3dAt` | Polylineから頂点のWCS位置を直接取得 | 保存されたOCS頂点・高さ・法線に対応する位置を読む |
+| 2. `PlaneToWorld` | `GetPoint2dAt`のXYとElevationを組み合わせ、平面→世界の行列を適用 | OCSの3成分をWCS成分へ変換 |
+| 3. 自作基底行列 | 任意軸アルゴリズムの3基底を列に並べたMatrix3dを適用 | 各基底を、各OCS成分の分だけ足す |
+| 4. 線形結合 | uX軸＋vY軸＋h法線を成分で直接計算 | 行列の積を展開したもの |
+
+方式1はPolylineの頂点に対する取得APIであり、任意の点を渡す一般の変換関数ではない。
+方式2〜4は、同じOCSを定める基底・同じ3成分を使った場合に、方式1と同じ位置になることを期待する。
+APIの実機での一致は未検証である。
+
+実演の [`OcsToWcsCommands.cs`](../../autocad-net/samples/autocad-transform/OcsToWcsCommands.cs) は、各方式の結果を別の変数に保持する。
+次は同ファイルの比較部分からの抜粋である。
+
+```csharp
+Point2d ocs2d = source.GetPoint2dAt(index);
+Point3d ocs3d = new(ocs2d.X, ocs2d.Y, elevation);
+Point3d byGetter = source.GetPoint3dAt(index);
+Point3d byPlaneToWorld = ocs3d;
+byPlaneToWorld = byPlaneToWorld.TransformBy(planeToWorld);
+Point3d byBasisMatrix = ocs3d;
+byBasisMatrix = byBasisMatrix.TransformBy(basisMatrix);
+```
+
+後ろ2方式も、元の `ocs3d` から始める。
+一方の変換結果に別の変換を重ねる比較にはしない。
+
+### 基底は列、配列に詰める順は行
+
+OCSのX・Y・Z成分をu・v・wと書く。
+Polylineの図形平面上ではw=hだが、任意のOCS点まで含めた変換ではwを自由な3成分目として扱う。
+OCS原点とWCS原点が共通なので、
+
+$$
+\begin{aligned}
+P_W&=uA_x+vA_y+wN, \\
+R&=\begin{bmatrix}
+(A_x)_x & (A_y)_x & N_x \\
+(A_x)_y & (A_y)_y & N_y \\
+(A_x)_z & (A_y)_z & N_z
+\end{bmatrix},\qquad
+P_W=R\begin{bmatrix}
+u \\
+v \\
+w
+\end{bmatrix}.
+\end{aligned}
+$$
+
+Rの第1列は、入力を `(1,0,0)` にしたときの行き先、つまりOCSのX軸である。
+第2・3列も同様にY軸・法線を表す。
+列ベクトルに左から掛けることと、配列の格納順序は別の話だ。
+
+AutoCADの [`Matrix3d(double[])`](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Matrix3d_double__.html) は配列から行列を作り、[`ToArray()`](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_ToArray.html) は `(行0,列0)…(行0,列3),(行1,列0)…` の順で16要素を返す。
+この行順に対応させてデータを用意し、返された16要素も比較する。
+
+```csharp
+double[] basisValues =
+[
+    frame.XAxis.X, frame.YAxis.X, frame.Normal.X, 0,
+    frame.XAxis.Y, frame.YAxis.Y, frame.Normal.Y, 0,
+    frame.XAxis.Z, frame.YAxis.Z, frame.Normal.Z, 0,
+    0, 0, 0, 1,
+];
+Matrix3d basisMatrix = new(basisValues);
+```
+
+最初の3要素にX軸のX・Y・Zを並べると、基底を行に並べた転置の行列になってしまう。
+数学上の各列と、配列の行順をそれぞれ確認しよう。
+[`Matrix3d` の公式な点・方向の規約](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d.html) では、点の同次成分は1、方向の同次成分は0である。
+
+![OCS基底を列に並べる数学の行列と、Matrix3dへ行ごとに詰める16要素の配列の対応図。列方式と格納順序を区別する](images/05-basis-matrix-layout.svg)
+
+### 第3章の固定値を4方式で照合する
+
+Bの高さは5で、OCS頂点2の3成分は `(3,2,5)` である。
+4方式のWCS期待値は、第3章で導いた $(-3,7/5,26/5)$ と同じになる。
+輪郭全体でも、各頂点が次の位置にそろうことを確認する。
+
+| 頂点 | 共通のOCS座標 | A：N=+Z,h=0のWCS | B：N=(0,3/5,4/5),h=5のWCS |
+| --- | --- | --- | --- |
+| 0 | (0,0,h) | (0,0,0) | (0,3,4) |
+| 1 | (4,0,h) | (4,0,0) | (−4,3,4) |
+| 2 | (3,2,h) | (3,2,0) | (−3,7/5,26/5) |
+| 3 | (0,1,h) | (0,1,0) | (0,11/5,23/5) |
+
+線形結合の成分計算も、別の変数に保持する。
+
+```csharp
+Point3d byCombination = new(
+    ocs3d.X * frame.XAxis.X + ocs3d.Y * frame.YAxis.X + ocs3d.Z * frame.Normal.X,
+    ocs3d.X * frame.XAxis.Y + ocs3d.Y * frame.YAxis.Y + ocs3d.Z * frame.Normal.Y,
+    ocs3d.X * frame.XAxis.Z + ocs3d.Y * frame.YAxis.Z + ocs3d.Z * frame.Normal.Z);
+```
+
+実演は各頂点の4結果・距離残差と、API行列・自作行列の全16要素を出力する。
+図面ではBのPolylineと、4結果から結んだ輪郭を同じ位置に描く。
+線が重なって見えることだけでなく、数値も照合する。
+
+### 原点と高さを二重に加えない
+
+OCS全体からWCSへの同次行列は、次の形で移動列が0になる。
+
+$$
+M=\begin{bmatrix}
+R & 0 \\
+0 & 1
+\end{bmatrix}.
+$$
+
+点の入力は `(u,v,h,1)` で、高さはすでにhNとして加わる。
+さらにC=hNを移動列へ入れると、高さを二重に加えてしまう。
+
+平面上のCを原点にした別のローカル座標系なら、次の行列と入力にする。
+
+$$
+L=\begin{bmatrix}
+R & C \\
+0 & 1
+\end{bmatrix},\qquad
+L\begin{bmatrix}
+u \\
+v \\
+0 \\
+1
+\end{bmatrix}=M\begin{bmatrix}
+u \\
+v \\
+h \\
+1
+\end{bmatrix}.
+$$
+
+同じ平面上の点を表せても、入力の第3成分と原点の規約が異なる。
+OCSの3成分か、Cから測る平面内の座標かをコードから読み取ろう。
+
+方向・変位には原点を足さず、同次成分を0にする。
+平面内の変位はOCSで `(Δu,Δv,0)`、WCSでは $\Delta u A_x+\Delta v A_y$ である。
+今回のMでは移動列が0なので、同じ3成分の点と方向が数値上同じ結果になっても、両者の意味まで同じにはならない。
+
+### Bだけでは分からない、逆向き・転置の誤り
+
+Bの3×3行列は、たまたま転置すると元と同じになる。
+逆行列も同じなので、Bだけで `WorldToPlane` と `PlaneToWorld` の取り違えを検出することはできない。
+単純な+Zの例も単位行列で、やはり違いを隠してしまう。
+
+そこで第3章の斜め法線N=(1/3,2/3,2/3)も比較する。
+任意軸の基底と行列は、
+
+$$
+R_s=\begin{bmatrix}
+-2/\sqrt5 & -2/(3\sqrt5) & 1/3 \\
+1/\sqrt5 & -4/(3\sqrt5) & 2/3 \\
+0 & \sqrt5/3 & 2/3
+\end{bmatrix}.
+$$
+
+頂点2の `(u,v,h)=(3,2,5)` に対し、順方向は各基底の3倍・2倍・5倍を足すので、
+
+$$
+\begin{aligned}
+P_s&=3A_x+2A_y+5N \\
+&=\begin{bmatrix}
+5/3-22/(3\sqrt5) \\
+10/3+1/(3\sqrt5) \\
+(10+2\sqrt5)/3
+\end{bmatrix}.
+\end{aligned}
+$$
+
+| 斜め法線でOCSの(3,2,5)を渡す方法 | 返る3成分の期待値 |
+| --- | --- |
+| 正しい順方向R_s | 約(−1.612899700333,3.482404531833,4.824045318333) |
+| 逆向きR_sの転置を誤って使う | (−4/√5,11/(3√5),17/3)、約(−1.788854382000,1.639783183500,5.666666666667) |
+
+後者は、外積の符号だけの誤りでも単なる丸め誤差でもない。
+同じ入力から独立に計算し、変換の向きと行列要素を確認するための対照例である。
 
 ## 5. WCSからOCSへの変換方法の比較
 
-`WorldToPlane`、逆行列、正規直交基底との内積を比較の候補とする。
-変換の向きと前提を確かめ、往復変換でも結果を比べる構成とする。
+### 内積で、基底に沿う成分を取り出す
+
+順変換が $P_W=uA_x+vA_y+wN$ で、3基底が単位長さ・互いに直交しているとする。
+OCS原点はWCS原点Oと同じなので、P_WをOからの位置ベクトルとして内積を取ると、
+
+$$
+\begin{aligned}
+A_x\cdot P_W
+&=u(A_x\cdot A_x)+v(A_x\cdot A_y)+w(A_x\cdot N) \\
+&=u.
+\end{aligned}
+$$
+
+他の2軸も同様で、
+
+$$
+\begin{bmatrix}
+u \\
+v \\
+w
+\end{bmatrix}=\begin{bmatrix}
+A_x\cdot P_W \\
+A_y\cdot P_W \\
+N\cdot P_W
+\end{bmatrix}=R^T P_W.
+$$
+
+転置の各行がそれぞれの基底との内積を計算する。
+Rの列どうしの内積を並べた $R^T R$ は、対角が1、それ以外が0になるため単位行列である。
+したがって、この正規直交基底では $R^{-1}=R^T$ が成立する。
+
+### 4方式を同じWCS点から比べる
+
+[`WcsToOcsCommands.cs`](../../autocad-net/samples/autocad-transform/WcsToOcsCommands.cs) は、手計算で固定した同じWCS点から次の4方式を計算する。
+
+| 方式 | 計算 | 成立条件・意味 |
+| --- | --- | --- |
+| 1. `WorldToPlane` | 法線からWCS→平面座標の行列を作る | 同じNによるOCSを使う |
+| 2. `Inverse` | `PlaneToWorld`の逆行列を適用 | 正しい順方向行列が可逆であること |
+| 3. 内積 | Oからの位置ベクトルと各単位基底の内積 | 原点が共通、基底が正規直交であること |
+| 4. 転置 | 自作OCS基底の同次行列を転置して適用 | 今回は正規直交かつ移動列0。一般の4×4には拡張しない |
+
+```csharp
+Matrix3d worldToPlane = Matrix3d.WorldToPlane(Vector(frame.Normal));
+Matrix3d planeToWorld = Matrix3d.PlaneToWorld(Vector(frame.Normal));
+Matrix3d inverse = planeToWorld.Inverse();
+Matrix3d transpose = basisMatrix.Transpose();
+```
+
+`basisMatrix` は第4章と同じ配列から別途作った行列で、Vectorは3成分を同じVector3dへ移すだけの補助関数である。
+内積も計算箇所を隠さず、同じ入力点から成分を取り出す。
+
+```csharp
+Vector3d displacement = new(world.X, world.Y, world.Z);
+Point3d byDot = new(
+    displacement.DotProduct(Vector(frame.XAxis)),
+    displacement.DotProduct(Vector(frame.YAxis)),
+    displacement.DotProduct(Vector(frame.Normal)));
+```
+
+ここでPoint3dに入れた値はOCSの座標である。
+Point3dという型だけで座標系が自動判定されるわけではないので、変数名・入力規約と一緒に読む。
+実演ではAPIの3行列、4方式のOCS座標・残差、その後のWCSへの往復結果を出力する。
+
+### 転置を逆行列として使える範囲
+
+長さを2倍にした基底を含む行列 $S=\operatorname{diag}(2,1,1)$ では、逆行列の第1成分は1/2であり、転置の2とは一致しない。
+直交しているだけでは足りず、単位長さも必要である。
+せん断を含む一般の基底でも同じように転置を逆行列とは扱えない。
+
+また、原点Cを持つ一般のローカル配置 $P_W=C+Rq$ の逆変換は、
+
+$$
+q=R^T(P_W-C)
+$$
+
+であり、先にCを引く必要がある。
+同次行列全体の転置ではなく、正規直交な3×3部分の転置を使う。
+
+$$
+\begin{bmatrix}
+R & C \\
+0 & 1
+\end{bmatrix}^{-1}=\begin{bmatrix}
+R^T & -R^T C \\
+0 & 1
+\end{bmatrix}.
+$$
+
+原点の差まで消えるわけではない。
+今回OCS全体のMで転置を使えるのは、正規直交であることに加えて移動列が0だからである。
+
+### 平面外の点を変換しても、射影にはならない
+
+Bの頂点2をPとし、法線方向へ2進んだ別のWCS点をQとする。
+
+$$
+\begin{aligned}
+P&=\begin{bmatrix}
+-3 \\
+7/5 \\
+26/5
+\end{bmatrix}, \\
+Q=P+2N&=\begin{bmatrix}
+-3 \\
+13/5 \\
+34/5
+\end{bmatrix}.
+\end{aligned}
+$$
+
+Pの平面条件はN・P=5だが、QはN・Q=7になる。
+基底と内積を取れば、PのOCS座標は `(3,2,5)`、Qは `(3,2,7)` である。
+X・Yが同じでZが違うのは、N方向だけに移動したためだ。
+
+| 固定WCS点 | 4方式のOCS期待値 | 高さを捨てない往復のWCS期待値 |
+| --- | --- | --- |
+| Aの頂点2：(3,2,0) | (3,2,0) | (3,2,0) |
+| Aの平面外：(3,2,2) | (3,2,2) | (3,2,2) |
+| BのP：(−3,7/5,26/5) | (3,2,5) | Pと同じ |
+| BのQ：(−3,13/5,34/5) | (3,2,7) | Qと同じ |
+| 斜め法線のP_s | (3,2,5) | P_sと同じ |
+| 斜め法線のP_s+2N | (3,2,7) | P_s+2Nと同じ |
+
+順方向の `OCS→WCS→OCS` も、各頂点の `(u,v,h)` に戻ることを照合する。
+逆方向も `WCS→OCS→WCS` とすれば、平面外のQはQのままである。
+座標の表現を変えただけで、点は動いていない。
+
+QのOCSのZを7から5へ置き換えて順変換した場合は、別の操作になる。
+正規直交基底なので、変化量は法線方向の−2Nで、Pへ戻る。
+これは指定した平面への直交射影であり、元のQを復元する往復変換ではない。
+
+![WCSの平面上のPと平面外のQをOCSへ往復しても位置が保たれる一方、QのOCS Zを7からElevation 5へ置き換えるとPへ射影される図](images/06-roundtrip-and-projection.svg)
+
+### Polylineの頂点に戻せる点かを調べる
+
+同じPolylineへ `AddVertexAt` する場合は、OCSのXYだけでなく、求めたZとそのPolylineのElevationが一致するかも調べる。
+Qの `(3,2,7)` からXYだけを抜き出してh=5のPolylineへ渡すと、追加される位置はQではなくPになる。
+図形平面の条件を満たしていない点から、黙ってZを捨ててはいけない。
+
+実演ではBの4つのWCS頂点を固定入力として逆変換し、次の判定を通った点だけで新しいPolylineを作る。
+
+```csharp
+bool finite = double.IsFinite(ocs.X) && double.IsFinite(ocs.Y) && double.IsFinite(ocs.Z);
+if (!finite || Math.Abs(ocs.Z - reconstructed.Elevation) > vertexPlaneTolerance)
+    throw new System.InvalidOperationException("同じ図形平面上の有限な頂点ではありません。");
+reconstructed.AddVertexAt(reconstructed.NumberOfVertices, new Point2d(ocs.X, ocs.Y), 0, 0, 0);
+```
+
+Normal・Elevationは頂点追加前に設定し、WCS点を直接AddVertexAtへ渡さない。
+Qは高さの差が2なので、この判定を満たさず、頂点へ追加しない。
+描画では平面上のPと平面外のQも、別の十字で示す。
+
+### 似ていても違うコードを、数値で見分ける
+
+| 誤りやすい操作 | Bの頂点2に対する結果 | 何を取り違えたか |
+| --- | --- | --- |
+| 正しいOCSの(3,2,5)を変換 | (−3,7/5,26/5) | 比較の基準 |
+| OCSのZを0にしてしまう | (−3,−8/5,6/5) | Elevationを落とした |
+| (3,2,5)を変換後、さらにC=5Nを足す | (−3,22/5,46/5) | 高さを二重加算した |
+| X'=A_y、Y'=−A_xという別の右手基底を使う | (2,3/5,29/5) | 法線が同じでも、同じOCS基底ではない |
+
+いずれもBの固定値から、基底の線形結合で検算できる。
+変換の向きや行と列の入替えは、Bでは見分けられないので第4章の斜め例も使う。
+同じ法線・直交性・右手系を確認することは必要だが、AutoCADが選ぶOCSと同じ基底であることの代わりにはならない。
+
+例えば次のコードはOCSの高さを落としてから変換する誤りである。
+
+```csharp
+Point3d withoutElevation = new(ocs2d.X, ocs2d.Y, 0);
+withoutElevation = withoutElevation.TransformBy(planeToWorld);
+```
+
+OCS値を `WorldToPlane` へ渡す逆向きの誤りも、同じようにコードは書けてしまう。
+`GEOAT_OCS_TO_WCS` は頂点2について、高さの欠落・逆向き・二重加算・別基底の結果を診断例として出力する。
+正しい4方式の結果や描画には混ぜず、Bで見分けられない誤りは斜め例と対比する。
+
+### 許容誤差と、数学的な等価性を分ける
+
+ここまでの期待値は厳密な実数の値である。
+浮動小数点では、単位化・内積・逆行列・丸めによって小さな残差が生じるため、完全一致だけで判断しない。
+例えば各成分a・bの照合では、絶対誤差と相対誤差を組み合わせた次の基準を使える。
+
+$$
+|a-b|\leq\varepsilon_{\mathrm{abs}}
++\varepsilon_{\mathrm{rel}}\max(|a|,|b|).
+$$
+
+今回の小さな固定座標なら、絶対許容誤差1e−10作図単位と相対係数1e−12は照合の一例となる。
+基底・回転行列の成分は無次元であり、長さの残差と同じ単位ではない。
+その場合は、例えば絶対・相対とも1e−12という別の基準で各要素を照合する。
+実演コマンドは座標・行列・距離残差をG17で出力し、数値比較の規約を隠さない。
+
+頂点受入れの `vertexPlaneTolerance=1e-10` は、この固定例での平面までの距離の許容値である。
+Nが単位長さなので、 $|w-h|$ が距離になる。
+許容範囲内でもZを捨てて頂点にすると、その分だけ元の点から位置を調整することになる。
+「ほぼ同じ平面」と、厳密に同じ点・同じ平面という数学的条件を区別する。
+任意の大きさ・単位・原点の入力へこの値をそのまま流用せず、桁落ちや入力精度を検討する。
+任意軸の1/64という分岐定数は別の規則であり、この許容値で分岐を広げない。
+
+## 第4〜5章の公式出典と検証範囲
+
+確認日：2026-11-16。AutoCAD 2026版の公式Managed .NET APIと、第1〜3章のOCS規約を照合した。
+固定入力の期待値・成分計算と、AutoCAD参照DLLでのビルド・実機のAPI結果は区別する。
+
+| 公式資料 | 照合した対象 |
+| --- | --- |
+| [Matrix3d](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d.html) | 左から行列を掛ける列方式、点の同次成分1・方向0、移動列 |
+| [配列コンストラクター](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Matrix3d_double__.html) ／ [ToArray](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_ToArray.html) | 配列からの構築、16要素の行順と照合 |
+| [PlaneToWorld](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_PlaneToWorld_Vector3d.html) ／ [WorldToPlane](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_WorldToPlane_Vector3d.html) | 同じ法線を用いる、平面→世界と世界→平面の向き |
+| [Inverse](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Inverse.html) ／ [Transpose](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Transpose.html) | 戻り値Matrix3d。転置と逆行列が一致する条件は本文の正規直交性から確認 |
+| [DotProduct](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Vector3d_DotProduct_Vector3d.html) | Vector3dの内積、各OCS成分の取り出し |
+
+GetPoint3dAt・GetPoint2dAt・AddVertexAtとTransformByの署名は、第1〜3章と [実演コード側の照合表](../../autocad-net/samples/autocad-transform/README.md#公式資料との静的照合) に従う。
+職場の参照DLLでのビルド・NETLOAD・実機実行は未検証であり、実測済みの結果とは記載しない。
 
 ## 6. 座標系を考慮した移動・回転・逆変換・合成
 
