@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">1/64の境界をまたぐと、平面内の軸が切り替わる</title>
+  <desc id="desc">N=(x,0,sqrt(1-x²))のx=b(1-delta)とbを同じ斜投影で描く。b=1/64,delta=2^-20。直前は補助軸YからAx=(sqrt(1-x²),0,-x),Ay=(0,1,0)。境界と直後は補助軸ZからAx=(0,1,0),Ay=(-sqrt(1-x²),0,x)。法線は近くても軸の向きは不連続に変わり得る。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30.000" y="43.000" font-size="27" fill="#21324b" text-anchor="start">1/64の境界をまたぐと、平面内の軸が切り替わる</text>
+    <text x="35.000" y="88.000" font-size="22" fill="#21324b" text-anchor="start">b=1/64、δ=2⁻²⁰、N=(x,0,√(1−x²))。同じ斜投影で比べる。</text>
+    <rect x="25" y="115" width="465" height="380" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="43.000" y="150.000" font-size="23" fill="#21324b" text-anchor="start">直前：x=b(1−δ)</text>
+    <line x1="265.000" y1="320.000" x2="266.500" y2="200.671" stroke="#2264bc" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="276.500" y="200.671" font-size="22" fill="#2264bc" text-anchor="start">N</text>
+    <line x1="265.000" y1="320.000" x2="360.988" y2="363.870" stroke="#bd372c" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="368.988" y="355.870" font-size="22" fill="#bd372c" text-anchor="start">Ax</text>
+    <line x1="265.000" y1="320.000" x2="193.000" y2="374.000" stroke="#23743d" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="163.000" y="400.000" font-size="22" fill="#23743d" text-anchor="start">Ay</text>
+    <circle cx="265.000" cy="320.000" r="4" fill="#21324b"/>
+    <text x="273.000" y="347.000" font-size="20" fill="#21324b" text-anchor="start">O</text>
+    <text x="43.000" y="425.000" font-size="23" fill="#21324b" text-anchor="start">補助軸：Y</text>
+    <text x="43.000" y="466.000" font-size="23" fill="#21324b" text-anchor="start">Ay=(0,1,0)</text>
+    <rect x="515" y="115" width="465" height="380" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="533.000" y="150.000" font-size="23" fill="#21324b" text-anchor="start">境界：x=b（直後もZ分岐）</text>
+    <line x1="755.000" y1="320.000" x2="756.500" y2="200.671" stroke="#2264bc" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="766.500" y="200.671" font-size="22" fill="#2264bc" text-anchor="start">N</text>
+    <line x1="755.000" y1="320.000" x2="683.000" y2="374.000" stroke="#bd372c" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="657.000" y="403.000" font-size="22" fill="#bd372c" text-anchor="start">Ax</text>
+    <line x1="755.000" y1="320.000" x2="659.012" y2="276.130" stroke="#23743d" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="629.012" y="302.130" font-size="22" fill="#23743d" text-anchor="start">Ay</text>
+    <circle cx="755.000" cy="320.000" r="4" fill="#21324b"/>
+    <text x="763.000" y="347.000" font-size="20" fill="#21324b" text-anchor="start">O</text>
+    <text x="533.000" y="425.000" font-size="23" fill="#21324b" text-anchor="start">補助軸：Z</text>
+    <text x="533.000" y="466.000" font-size="23" fill="#21324b" text-anchor="start">Ax=(0,1,0)</text>
+    <text x="35.000" y="542.000" font-size="23" fill="#21324b" text-anchor="start">法線は近いままでも、選ばれるX・Y軸は大きく変わる。</text>
+    <text x="35.000" y="587.000" font-size="21" fill="#21324b" text-anchor="start">等号はZ分岐。境界を許容誤差で広げず、軸の連続性も仮定しない。</text>
+  </g>
+</svg>

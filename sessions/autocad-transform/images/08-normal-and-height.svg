@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">Normalは向き、Elevationはその向きへ測る高さ</title>
+  <desc id="desc">同じOCS頂点(3,2)と非対称輪郭を使う4例。初期状態N=+Z,h=0ではP=(3,2,0)。Normalだけ変更すると(-3,-8/5,6/5)。高さだけ5にすると(3,2,5)。両方を変える固定例Bは(-3,7/5,26/5)。全パネルを共通の斜投影で描き、OCS原点Oと図形平面上のC=hNを分ける。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30.000" y="43.000" font-size="27" fill="#21324b" text-anchor="start">Normalは向き、Elevationはその向きへ測る高さ</text>
+    <rect x="25" y="75" width="465" height="230" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="38.000" y="105.000" font-size="22" fill="#21324b" text-anchor="start">初期状態 A</text>
+    <text x="38.000" y="138.000" font-size="20" fill="#21324b" text-anchor="start">N=(0,0,1)</text>
+    <text x="38.000" y="169.000" font-size="21" fill="#21324b" text-anchor="start">h=0</text>
+    <polygon points="335.000,225.000 402.200,254.400 360.200,265.950 322.400,234.450" fill="#9b7a00" fill-opacity="0.10" stroke="#9b7a00" stroke-width="2"/>
+    <line x1="335.000" y1="225.000" x2="358.520" y2="235.290" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="335.000" y1="225.000" x2="317.360" y2="238.230" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="335.000" y1="225.000" x2="335.000" y2="195.600" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <circle cx="335.000" cy="225.000" r="4" fill="#21324b"/>
+    <text x="342.000" y="247.000" font-size="18" fill="#21324b" text-anchor="start">O=C</text>
+    <circle cx="360.200" cy="265.950" r="4" fill="#23743d"/>
+    <text x="370.200" y="287.950" font-size="20" fill="#23743d" text-anchor="start">P</text>
+    <text x="38.000" y="279.000" font-size="21" fill="#21324b" text-anchor="start">PのWCS (3,2,0)</text>
+    <rect x="515" y="75" width="465" height="230" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="528.000" y="105.000" font-size="22" fill="#21324b" text-anchor="start">Normalだけを変える</text>
+    <text x="528.000" y="138.000" font-size="20" fill="#21324b" text-anchor="start">N=(0,3/5,4/5)</text>
+    <text x="528.000" y="169.000" font-size="21" fill="#21324b" text-anchor="start">h=0</text>
+    <polygon points="825.000,225.000 757.800,195.600 794.760,162.630 835.080,204.840" fill="#087f81" fill-opacity="0.10" stroke="#087f81" stroke-width="2"/>
+    <line x1="825.000" y1="225.000" x2="848.520" y2="235.290" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="825.000" y1="225.000" x2="807.360" y2="238.230" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="825.000" y1="225.000" x2="825.000" y2="195.600" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <circle cx="825.000" cy="225.000" r="4" fill="#21324b"/>
+    <text x="832.000" y="247.000" font-size="18" fill="#21324b" text-anchor="start">O=C</text>
+    <circle cx="794.760" cy="162.630" r="4" fill="#23743d"/>
+    <text x="804.760" y="154.630" font-size="20" fill="#23743d" text-anchor="start">P</text>
+    <text x="528.000" y="279.000" font-size="21" fill="#21324b" text-anchor="start">PのWCS (−3,−8/5,6/5)</text>
+    <rect x="25" y="320" width="465" height="230" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="38.000" y="350.000" font-size="22" fill="#21324b" text-anchor="start">Elevationだけを変える</text>
+    <text x="38.000" y="383.000" font-size="20" fill="#21324b" text-anchor="start">N=(0,0,1)</text>
+    <text x="38.000" y="414.000" font-size="21" fill="#21324b" text-anchor="start">h=5</text>
+    <polygon points="335.000,365.000 402.200,394.400 360.200,405.950 322.400,374.450" fill="#9b7a00" fill-opacity="0.10" stroke="#9b7a00" stroke-width="2"/>
+    <line x1="335.000" y1="470.000" x2="358.520" y2="480.290" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="335.000" y1="470.000" x2="317.360" y2="483.230" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="335.000" y1="470.000" x2="335.000" y2="440.600" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="335.000" y1="470.000" x2="335.000" y2="365.000" stroke="#a1439d" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="341.000" y="373.000" font-size="19" fill="#a1439d" text-anchor="start">C</text>
+    <circle cx="335.000" cy="470.000" r="4" fill="#21324b"/>
+    <text x="342.000" y="492.000" font-size="18" fill="#21324b" text-anchor="start">O</text>
+    <circle cx="360.200" cy="405.950" r="4" fill="#23743d"/>
+    <text x="370.200" y="397.950" font-size="20" fill="#23743d" text-anchor="start">P</text>
+    <text x="38.000" y="524.000" font-size="21" fill="#21324b" text-anchor="start">PのWCS (3,2,5)</text>
+    <rect x="515" y="320" width="465" height="230" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="528.000" y="350.000" font-size="22" fill="#21324b" text-anchor="start">両方を変える B</text>
+    <text x="528.000" y="383.000" font-size="20" fill="#21324b" text-anchor="start">N=(0,3/5,4/5)</text>
+    <text x="528.000" y="414.000" font-size="21" fill="#21324b" text-anchor="start">h=5</text>
+    <polygon points="787.200,414.350 720.000,384.950 756.960,351.980 797.280,394.190" fill="#087f81" fill-opacity="0.10" stroke="#087f81" stroke-width="2"/>
+    <line x1="825.000" y1="470.000" x2="848.520" y2="480.290" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="825.000" y1="470.000" x2="807.360" y2="483.230" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="825.000" y1="470.000" x2="825.000" y2="440.600" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+    <line x1="825.000" y1="470.000" x2="787.200" y2="414.350" stroke="#a1439d" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="793.200" y="422.350" font-size="19" fill="#a1439d" text-anchor="start">C</text>
+    <circle cx="825.000" cy="470.000" r="4" fill="#21324b"/>
+    <text x="832.000" y="492.000" font-size="18" fill="#21324b" text-anchor="start">O</text>
+    <circle cx="756.960" cy="351.980" r="4" fill="#23743d"/>
+    <text x="766.960" y="343.980" font-size="20" fill="#23743d" text-anchor="start">P</text>
+    <text x="528.000" y="524.000" font-size="21" fill="#21324b" text-anchor="start">PのWCS (−3,7/5,26/5)</text>
+    <text x="35.000" y="588.000" font-size="21" fill="#21324b" text-anchor="start">共通の斜投影。OCS頂点は(3,2)のまま。高さはN方向、原点Oは固定。</text>
+  </g>
+</svg>

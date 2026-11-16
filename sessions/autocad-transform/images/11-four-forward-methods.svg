@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">4つの書き方を、同じ頂点Pへ対応させる</title>
+  <desc id="desc">固定例Bの頂点番号2をGetterで取得する経路と、GetPoint2dAtとElevationを合わせたOCS点(3,2,5)からPlaneToWorld、自作基底行列、3Ax+2Ay+5Nへ分ける経路の模式図。4方式は独立にWCS点(-3,7/5,26/5)を求め、順に重ね掛けする比較ではない。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30.000" y="43.000" font-size="27" fill="#21324b" text-anchor="start">4つの書き方を、同じ頂点Pへ対応させる</text>
+    <text x="35.000" y="88.000" font-size="23" fill="#21324b" text-anchor="start">Bの同じ頂点番号2から、独立に4つの結果を求める。</text>
+    <rect x="35" y="125" width="260" height="105" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="50.000" y="156.000" font-size="22" fill="#21324b" text-anchor="start">Polylineの頂点番号2</text>
+    <text x="50.000" y="189.000" font-size="21" fill="#21324b" text-anchor="start">OCS XY=(3,2)</text>
+    <text x="50.000" y="218.000" font-size="19" fill="#21324b" text-anchor="start">Normal=N、Elevation=5</text>
+    <rect x="35" y="325" width="260" height="95" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="50.000" y="359.000" font-size="24" fill="#21324b" text-anchor="start">OCS点 (3,2,5)</text>
+    <text x="50.000" y="397.000" font-size="21" fill="#21324b" text-anchor="start">XYと高さを合わせる</text>
+    <rect x="360" y="120" width="345" height="84" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="375.000" y="152.000" font-size="22" fill="#21324b" text-anchor="start">① GetPoint3dAt(2)</text>
+    <text x="375.000" y="185.000" font-size="20" fill="#21324b" text-anchor="start">頂点の位置を直接取得</text>
+    <line x1="295.000" y1="164.000" x2="350.000" y2="164.000" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="710.000" y1="162.000" x2="740.000" y2="162.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="740.000" y1="162.000" x2="740.000" y2="310.000" stroke="#60738a" stroke-width="1.6"/>
+    <rect x="360" y="230" width="345" height="84" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="375.000" y="262.000" font-size="22" fill="#21324b" text-anchor="start">② PlaneToWorld(N)</text>
+    <text x="375.000" y="295.000" font-size="20" fill="#21324b" text-anchor="start">OCS点に専用行列を適用</text>
+    <line x1="295.000" y1="372.000" x2="322.000" y2="372.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="322.000" y1="372.000" x2="322.000" y2="272.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="322.000" y1="272.000" x2="350.000" y2="272.000" stroke="#60738a" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <line x1="710.000" y1="272.000" x2="740.000" y2="272.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="740.000" y1="272.000" x2="740.000" y2="310.000" stroke="#60738a" stroke-width="1.6"/>
+    <rect x="360" y="340" width="345" height="84" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="375.000" y="372.000" font-size="22" fill="#21324b" text-anchor="start">③ 自作の基底行列</text>
+    <text x="375.000" y="405.000" font-size="20" fill="#21324b" text-anchor="start">OCS点に列基底の行列を適用</text>
+    <line x1="295.000" y1="372.000" x2="332.000" y2="372.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="332.000" y1="372.000" x2="332.000" y2="382.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="332.000" y1="382.000" x2="350.000" y2="382.000" stroke="#60738a" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <line x1="710.000" y1="382.000" x2="740.000" y2="382.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="740.000" y1="382.000" x2="740.000" y2="310.000" stroke="#60738a" stroke-width="1.6"/>
+    <rect x="360" y="450" width="345" height="84" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="375.000" y="482.000" font-size="22" fill="#21324b" text-anchor="start">④ 各軸を何倍かして足す</text>
+    <text x="375.000" y="515.000" font-size="20" fill="#21324b" text-anchor="start">3Ax + 2Ay + 5N</text>
+    <line x1="295.000" y1="372.000" x2="342.000" y2="372.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="342.000" y1="372.000" x2="342.000" y2="492.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="342.000" y1="492.000" x2="350.000" y2="492.000" stroke="#60738a" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <line x1="710.000" y1="492.000" x2="740.000" y2="492.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="740.000" y1="492.000" x2="740.000" y2="310.000" stroke="#60738a" stroke-width="1.6"/>
+    <line x1="740.000" y1="310.000" x2="763.000" y2="310.000" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="775" y="235" width="205" height="150" rx="8" fill="#edf6ef" stroke="#c7d1df"/>
+    <text x="790.000" y="269.000" font-size="22" fill="#23743d" text-anchor="start">同じWCS位置P</text>
+    <text x="790.000" y="307.000" font-size="21" fill="#21324b" text-anchor="start">(−3,7/5,26/5)</text>
+    <text x="790.000" y="348.000" font-size="18" fill="#21324b" text-anchor="start">4結果を別々に比較</text>
+    <text x="35.000" y="588.000" font-size="22" fill="#21324b" text-anchor="start">①はPolyline専用。②〜④は同じOCSの3成分を変換する。</text>
+  </g>
+</svg>

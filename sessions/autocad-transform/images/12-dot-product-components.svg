@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">逆変換では、各軸方向の成分を内積で取り出す</title>
+  <desc id="desc">原点Oを共有する正規直交なOCSのAx,Ay,Nへ固定例Bの点Pを測る。内積は3,2,5。各パネルでOからP、各軸上の3Ax,2Ay,5Nへの垂線を同じ斜投影で示す。成分を測る際の軸への射影と、Pを図形平面へ移動する操作は区別する。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30.000" y="43.000" font-size="27" fill="#21324b" text-anchor="start">逆変換では、各軸方向の成分を内積で取り出す</text>
+    <text x="35.000" y="88.000" font-size="23" fill="#21324b" text-anchor="start">BのWCS点 P=(−3,7/5,26/5)。各単位軸に沿って測る。</text>
+    <rect x="20" y="115" width="310" height="385" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="34.000" y="150.000" font-size="23" fill="#bd372c" text-anchor="start">Ax方向の成分</text>
+    <line x1="240.000" y1="370.000" x2="91.200" y2="304.900" stroke="#bd372c" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="240.000" y1="370.000" x2="139.560" y2="195.780" stroke="#21324b" stroke-width="1.6"/>
+    <line x1="139.560" y1="195.780" x2="165.600" y2="337.450" stroke="#60738a" stroke-width="1.8" stroke-dasharray="6 5"/>
+    <line x1="240.000" y1="370.000" x2="165.600" y2="337.450" stroke="#bd372c" stroke-width="3" marker-end="url(#arrow)"/>
+    <circle cx="165.600" cy="337.450" r="4" fill="#bd372c"/>
+    <circle cx="139.560" cy="195.780" r="4" fill="#23743d"/>
+    <text x="146.560" y="185.780" font-size="20" fill="#23743d" text-anchor="start">P</text>
+    <circle cx="240.000" cy="370.000" r="4" fill="#21324b"/>
+    <text x="247.000" y="395.000" font-size="19" fill="#21324b" text-anchor="start">O</text>
+    <text x="34.000" y="439.000" font-size="25" fill="#bd372c" text-anchor="start">Ax・P = 3</text>
+    <text x="34.000" y="477.000" font-size="20" fill="#21324b" text-anchor="start">3Ax だけ進んだ成分</text>
+    <rect x="350" y="115" width="310" height="385" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="364.000" y="150.000" font-size="23" fill="#23743d" text-anchor="start">Ay方向の成分</text>
+    <line x1="570.000" y1="370.000" x2="614.640" y2="280.720" stroke="#23743d" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="570.000" y1="370.000" x2="469.560" y2="195.780" stroke="#21324b" stroke-width="1.6"/>
+    <line x1="469.560" y1="195.780" x2="599.760" y2="310.480" stroke="#60738a" stroke-width="1.8" stroke-dasharray="6 5"/>
+    <line x1="570.000" y1="370.000" x2="599.760" y2="310.480" stroke="#23743d" stroke-width="3" marker-end="url(#arrow)"/>
+    <circle cx="599.760" cy="310.480" r="4" fill="#23743d"/>
+    <circle cx="469.560" cy="195.780" r="4" fill="#23743d"/>
+    <text x="476.560" y="185.780" font-size="20" fill="#23743d" text-anchor="start">P</text>
+    <circle cx="570.000" cy="370.000" r="4" fill="#21324b"/>
+    <text x="577.000" y="395.000" font-size="19" fill="#21324b" text-anchor="start">O</text>
+    <text x="364.000" y="439.000" font-size="25" fill="#23743d" text-anchor="start">Ay・P = 2</text>
+    <text x="364.000" y="477.000" font-size="20" fill="#21324b" text-anchor="start">2Ay だけ進んだ成分</text>
+    <rect x="680" y="115" width="310" height="385" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="694.000" y="150.000" font-size="23" fill="#2264bc" text-anchor="start">N方向の成分</text>
+    <line x1="900.000" y1="370.000" x2="833.040" y2="271.420" stroke="#2264bc" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="900.000" y1="370.000" x2="799.560" y2="195.780" stroke="#21324b" stroke-width="1.6"/>
+    <line x1="799.560" y1="195.780" x2="844.200" y2="287.850" stroke="#60738a" stroke-width="1.8" stroke-dasharray="6 5"/>
+    <line x1="900.000" y1="370.000" x2="844.200" y2="287.850" stroke="#2264bc" stroke-width="3" marker-end="url(#arrow)"/>
+    <circle cx="844.200" cy="287.850" r="4" fill="#2264bc"/>
+    <circle cx="799.560" cy="195.780" r="4" fill="#23743d"/>
+    <text x="806.560" y="185.780" font-size="20" fill="#23743d" text-anchor="start">P</text>
+    <circle cx="900.000" cy="370.000" r="4" fill="#21324b"/>
+    <text x="907.000" y="395.000" font-size="19" fill="#21324b" text-anchor="start">O</text>
+    <text x="694.000" y="439.000" font-size="25" fill="#2264bc" text-anchor="start">N・P = 5</text>
+    <text x="694.000" y="477.000" font-size="20" fill="#21324b" text-anchor="start">5N だけ進んだ成分</text>
+    <text x="35.000" y="543.000" font-size="22" fill="#21324b" text-anchor="start">順方向：3Ax+2Ay+5Nを足す。逆方向：3、2、5を取り出す。</text>
+    <text x="35.000" y="588.000" font-size="21" fill="#21324b" text-anchor="start">共通の斜投影。破線は各軸への直交射影で、点P自体を移動しない。</text>
+  </g>
+</svg>

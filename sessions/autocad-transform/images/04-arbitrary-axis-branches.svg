@@ -19,7 +19,7 @@
   <text x="282" y="447" font-size="20" fill="#21324b" text-anchor="end">−b</text>
   <text x="300" y="225" font-size="20" fill="#21324b" text-anchor="middle">内部だけY軸分岐</text>
   <circle cx="300.000" cy="230.000" r="5" fill="#2264bc"/>
-  <text x="310" y="267" font-size="18" fill="#21324b" text-anchor="start">(0,b/2)：Z近傍例</text>
+  <text x="310" y="258" font-size="18" fill="#21324b" text-anchor="start">(0,b/2)：Z近傍例</text>
   <circle cx="440.000" cy="300.000" r="5" fill="#c34c2c"/>
   <text x="448" y="284" font-size="18" fill="#c34c2c" text-anchor="start">(b,0)</text>
   <text x="565" y="135" font-size="25" fill="#21324b" text-anchor="start">b = 1/64</text>

@@ -9,7 +9,7 @@ Visual Studioで完成済みのコードを読み、デバッガーで引数・�
 既存の [AutoCadGeometrySamples.sln](../../../autocad-net/AutoCadGeometrySamples.sln) と [AutoCadGeometrySamples.csproj](../../../autocad-net/AutoCadGeometrySamples.csproj) を利用し、ここにコードや別プロジェクトを複製しない。
 
 題材は座標系 → 任意軸アルゴリズム → OCS/WCS相互変換 → 基本変換・逆変換 → 合成の順に読む構成とする。
-各題材では、目的と固定入力、複数のコード、共通する数学的な意味、期待結果、適用条件と使い分けを照合する。
+詳細解説では、API紹介と図解を先に読み、固定入力・複数のコード・数学的な理由・期待結果・適用条件と使い分けを照合する。
 
 第1〜5章のコードは、次の順に読む。
 

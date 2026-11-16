@@ -13,7 +13,7 @@
   <polygon points="85.000,390.000 293.000,390.000 241.000,286.000 85.000,338.000" fill="#2264bc" fill-opacity="0.12" stroke="#2264bc" stroke-width="3"/>
   <line x1="85.000" y1="390.000" x2="319.000" y2="390.000" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
   <line x1="85.000" y1="390.000" x2="85.000" y2="213.200" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="330" y="400" font-size="22" fill="#21324b" text-anchor="start">u</text>
+  <text x="330" y="435" font-size="22" fill="#21324b" text-anchor="start">u</text>
   <text x="70" y="200" font-size="22" fill="#21324b" text-anchor="start">v</text>
   <circle cx="85.000" cy="390.000" r="5" fill="#8053b5"/>
   <text x="8" y="420" font-size="18" fill="#21324b" text-anchor="start">0: (0, 0)</text>
