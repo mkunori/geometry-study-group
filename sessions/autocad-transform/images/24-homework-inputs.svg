@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc" style="font-family:Yu Gothic,Meiryo,Noto Sans CJK JP,sans-serif">
+<title id="title">練習問題の入力：保存されたXYと図形平面</title>
+<desc id="desc">左はOCSのXYに保存する4頂点とその番号。右はWCSとOCSで共通の原点Oから、単位法線Nの方向へ高さ5だけ進んだ図形平面の基準点Cを示す。右は本文と同じ斜投影で、図形平面の一部を示し、輪郭そのものではない。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 Z" fill="context-stroke"/></marker></defs>
+<rect width="1000" height="620" fill="white"/>
+<rect x="20" y="80" width="465" height="455" rx="12" fill="#f7f9fc" stroke="#ccd6e2"/>
+<rect x="505" y="80" width="475" height="455" rx="12" fill="#f7f9fc" stroke="#ccd6e2"/>
+<text x="30" y="43" font-size="27" fill="#21324b">練習問題の入力：保存されたXYと図形平面</text>
+<text x="40" y="117" font-size="23" fill="#21324b">OCSのXY：頂点番号は0始まり</text>
+<text x="525" y="117" font-size="23" fill="#21324b">法線と高さで図形平面を定める</text>
+<line x1="70.00" y1="430.00" x2="430.00" y2="430.00" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="100.00" y1="465.00" x2="100.00" y2="205.00" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="425" y="466" font-size="20" fill="#21324b">X</text>
+<text x="66" y="192" font-size="20" fill="#21324b">Y</text>
+<polygon points="100,430 380,430 310,290 100,360" fill="#e2e8f0" stroke="#34465e" stroke-width="3"/>
+<circle cx="100.00" cy="430.00" r="5" fill="#21324b"/>
+<circle cx="380.00" cy="430.00" r="5" fill="#21324b"/>
+<circle cx="310.00" cy="290.00" r="5" fill="#21324b"/>
+<circle cx="100.00" cy="360.00" r="5" fill="#21324b"/>
+<text x="115" y="466" font-size="21" fill="#21324b">0 : (0,0)</text>
+<text x="320" y="475" font-size="21" fill="#21324b">1 : (4,0)</text>
+<text x="293" y="263" font-size="21" fill="#21324b">2 : (3,2)</text>
+<text x="122" y="385" font-size="21" fill="#21324b">3 : (0,1)</text>
+<text x="42" y="505" font-size="20" fill="#21324b">直線だけの閉輪郭、幅・bulgeは0</text>
+<text x="525" y="157" font-size="21" fill="#21324b">N = (0, 3/5, 4/5)  ／  h = 5</text>
+<polygon points="826.52,408.26 624.92,320.06 685.40,199.10 887.00,287.30" fill="#087f81" fill-opacity=".12" stroke="#087f81" stroke-width="2"/>
+<line x1="845.00" y1="470.00" x2="902.12" y2="494.99" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="845.00" y1="470.00" x2="802.16" y2="502.13" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="845.00" y1="470.00" x2="845.00" y2="398.60" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="912" y="510" font-size="18" fill="#21324b">X</text>
+<text x="773" y="522" font-size="18" fill="#21324b">Y</text>
+<text x="860" y="401" font-size="18" fill="#21324b">Z</text>
+<text x="870" y="440" font-size="18" fill="#21324b">WCS</text>
+<line x1="845.00" y1="470.00" x2="769.40" y2="358.70" stroke="#a441a1" stroke-width="4" marker-end="url(#arrow)"/>
+<line x1="769.40" y1="358.70" x2="746.72" y2="325.31" stroke="#2366ac" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="845.00" cy="470.00" r="5" fill="#21324b"/>
+<circle cx="769.40" cy="358.70" r="5" fill="#21324b"/>
+<text x="885" y="480" font-size="21" fill="#21324b">O</text>
+<text x="781" y="357" font-size="21" fill="#21324b">C</text>
+<text x="718" y="330" font-size="22" fill="#2366ac">N</text>
+<text x="535" y="437" font-size="21" fill="#a441a1">O → C は hN</text>
+<line x1="683.00" y1="430.00" x2="800.00" y2="409.00" stroke="#a441a1" stroke-width="2"/>
+<text x="670" y="290" font-size="20" fill="#21324b">図形平面の一部</text>
+<text x="525" y="556" font-size="19" fill="#21324b">斜投影：角度・長さを実寸で測らない</text>
+<text x="30" y="598" font-size="22" fill="#21324b">右のOはWCS・OCS共通の原点。Cは図形平面上の基準点。</text>
+</svg>
