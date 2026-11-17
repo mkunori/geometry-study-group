@@ -32,7 +32,10 @@ Windows版AutoCAD 2026で `ABOUT` を実行し、製品名・バージョン・�
 
 ## NETLOADと期待動作を確認する場合
 
-1. 対象AutoCADで専用の空図面を開き、モデルタブを使う。`GEO00_LINE`・`GEO01_TRANSFORM`・`GEO04_PROFILE`・`GEO04_EXTRUDE`・`GEO04_SWEEP` は図面DBを変更するため、業務図面で試さない。全17コマンドの違いは [コマンド一覧](review.md#コマンド名と図面への副作用) を参照する。
+1. 対象AutoCADで専用の空図面を開き、モデルタブを使う。  
+   `GEO00_LINE`・`GEO01_TRANSFORM`・`GEO04_PROFILE`・`GEO04_EXTRUDE`・`GEO04_SWEEP` は図面DBを変更するため、業務図面で試さない。  
+   共通導入・数学基礎編の17コマンドは [コマンド一覧](review.md#コマンド名と図面への副作用)、図形変換の13コマンドは [実践編の実演案内](../../sessions/autocad-transform/examples/README.md) を参照する。  
+   実践編の13コマンドも新規図形を追加する。
 2. 自分のプラグインDLLだけを、組織の運用で承認されたロード用ディレクトリへ配置する。AutoCADの3 DLLやSDKを一緒にコピーしない。
 3. `SECURELOAD` と `TRUSTEDPATHS` を確認し、管理者の方針に沿う信頼済みの場所から読み込む。`SECURELOAD` を0にしたり、ドライブ全体や不特定の書込可能ディレクトリを信頼したりする回避策は使わない。[NETLOADの公式案内](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-Customization/files/GUID-D790D6DA-4592-4C58-910F-42E4AA9EA982.htm) を参照する。
 4. `NETLOAD` で出力した **AutoCadGeometrySamples.dll** を選ぶ。`AcMgd.dll` 等のホスト側DLLを選ばない。
@@ -42,6 +45,10 @@ Windows版AutoCAD 2026で `ABOUT` を実行し、製品名・バージョン・�
 これらは**期待動作のみで、実機での確認結果ではない**。図形を追加するコマンドは、再実行すると同じ場所へ図形が増える。コードは図面を自動保存せず、失敗時にも図面状態を確認する。ロード後のDLL差し替えができない場合はAutoCADを終了してから入れ替え、再起動して読み込む運用を利用者側で検討する。常駐AutoCADや別プロセスをこの教材から自動起動しない。
 
 コマンドが見つからない場合は、ロード時のエラー、選んだDLL、製品更新版と参照DLL、公開クラスの `CommandMethod` 名を確認する。`GEO00_...` 〜 `GEO05_...` も他プラグインとの衝突がないか確認する。
+
+図形変換をデバッガーで追う場合は、[実践編の準備と停止候補](../../sessions/autocad-transform/examples/README.md#visual-studioとautocadで開く準備) に従う。  
+局所変数を読む実演にはDebug・x64を使い、同じビルドのDLL・PDBとソースをそろえる。  
+この手順は実機での確認記録ではない。
 
 ## 図面DBと後始末を読む
 
