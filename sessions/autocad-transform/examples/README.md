@@ -94,4 +94,87 @@ AutoCADを必要とする実演コードを、独立したC#教材やそのCIへ
 
 署名と規約の照合先は [実演コード側の公式資料一覧](../../../autocad-net/samples/autocad-transform/README.md#公式資料との静的照合) を参照する。
 
+## 第6〜8章の実演
+
+第6章は移動・回転・合成・ローカル基準・逆変換を中心に読む。  
+AlignCoordinateSystemによる配置は第6章末の補足、拡大縮小・鏡映・射影は第7章の選択的な補足である。  
+任意中心の回転は、中心をコードから読み取るための比較として第7章の最初に置く。
+
+### 追加ファイルと読む順序
+
+| ファイル | 数学的な役割 |
+| --- | --- |
+| [TranslationCommands.cs](../../../autocad-net/samples/autocad-transform/TranslationCommands.cs) | 成分加算・Add・Displacement、点と方向・Entityの違い |
+| [RotationCommands.cs](../../../autocad-net/samples/autocad-transform/RotationCommands.cs) | sin/cos、Point2d／Point3d、原点／任意中心の回転 |
+| [CompositionCommands.cs](../../../autocad-net/samples/autocad-transform/CompositionCommands.cs) | 逐次変換・積・Pre/Post・逆変換、対称輪郭の診断 |
+| [LocalFrameCommands.cs](../../../autocad-net/samples/autocad-transform/LocalFrameCommands.cs) | Bの平面でWCS／ローカル基準の移動・回転を比較 |
+| [AlignmentCommands.cs](../../../autocad-net/samples/autocad-transform/AlignmentCommands.cs) | 回転＋移動・AlignCoordinateSystem・成分行列・線形結合 |
+| [ScalingCommands.cs](../../../autocad-net/samples/autocad-transform/ScalingCommands.cs) | 中心からの計算・ScaleBy・一様Scaling |
+| [MirroringCommands.cs](../../../autocad-net/samples/autocad-transform/MirroringCommands.cs) | YZ鏡映3方式とY軸の半回転を区別 |
+| [ProjectionCommands.cs](../../../autocad-net/samples/autocad-transform/ProjectionCommands.cs) | 内積・OrthoProject・法線／斜方向のProject |
+| [BasicTransformDrawing.cs](../../../autocad-net/samples/autocad-transform/BasicTransformDrawing.cs) | 固定入力・G17出力・輪郭と比較点の描画のみを共有 |
+
+### コマンド・固定入力・期待値
+
+| コマンド | 固定入力 | 数学上の期待結果 | 新規Line |
+| --- | --- | --- | --- |
+| `GEOAT_TRANSLATION` | WCS頂点2(3,2,0)、d=(10,0,3) | 3方式で(13,2,3)。方向(3,2,1)は不変 | 28本 |
+| `GEOAT_ROTATION` | 頂点2、原点・+Z・+π/2 | 4方式で(−2,3,0) | 35本 |
+| `GEOAT_COMPOSITION` | 同じR、T=(10,0,3) | 方式1〜4のTRは(8,3,3)、方式5のRTは(−2,13,3)。逆変換で元の点へ | 42本 |
+| `GEOAT_LOCAL_FRAME` | C基準(3,2,0)、Bの軸、C=(0,3,4) | 移動：WCS Xへ2は(−1,7/5,26/5)、ローカルXへ2は(−5,7/5,26/5)。回転：WCS原点は(−7/5,−3,26/5)、C・Nは(2,3/5,29/5) | 49本 |
+| `GEOAT_ALIGNMENT` | 標準フレームからC=(10,0,3)、X=+Y、Y=−X、Z=+Z | 4方式で頂点2は(8,3,3)。原点と3軸上の点も照合 | 35本 |
+| `GEOAT_CENTER_ROTATION` | 頂点2、中心C=(1,1,0)、+Z・+π/2 | 5方式で(0,3,0)。Cは固定 | 42本 |
+| `GEOAT_SCALING` | 頂点2、中心C=(1,1,0)、正の一様2倍 | 3方式で(5,3,0)。逆行列で(3,2,0) | 28本 |
+| `GEOAT_MIRRORING` | 頂点2、YZ平面。比較用にY軸の+π回転 | 鏡映3方式は(−3,2,0)。半回転と違いが出るZ点は鏡映で+Z、半回転で−Z | 35本 |
+| `GEOAT_PROJECTION` | Bを2N進めた輪郭。頂点2はQ=(−3,13/5,34/5) | 正射影3方式はP=(−3,7/5,26/5)。斜方向D=(1,0,−1)の2方式は(−1/2,13/5,43/10) | 42本 |
+
+これらは数式による期待値であり、AutoCAD実機の出力記録ではない。
+
+### 第6〜7章のデバッガーで追う箇所
+
+| 読む場所 | デバッガーで照合する変数 |
+| --- | --- |
+| TranslationCommands.Translation | displacement、translation、translatedDirection、一時LineのStartPoint／EndPoint |
+| RotationCommands.Rotation／CenterRotation | angle、cosine／sine、center、rotation、toOrigin、fromOrigin、sandwich |
+| CompositionCommands.Composition | rotation／translation、product、byPre／byPost、reverseOrder、inverse、undoMove／undoRotate、byInverse／byUndoSteps |
+| LocalFrameCommands.LocalFrame | localToWorld、localDisplacement／worldDisplacement、localMove／worldMove／equivalentMove、worldCenter／worldAxis、equivalentRotation |
+| AlignmentCommands.Alignment | centerと3軸、byProduct、byAlign、values、byElements |
+| ScalingCommands.Scaling | center、scale、scaling、scaledと逆変換 |
+| MirroringCommands.Mirroring | plane、mirror、halfTurn。Z軸上の点の符号 |
+| ProjectionCommands.Projection | normal、center、plane、oblique、denominator、parallel、outside。各方式内のdistance／parameter |
+| BasicTransformDrawing.Show | probes、input、first、result、outlines、reference／referenceProbe。同じ入力が各方式へ渡ること |
+
+### 描画・適用条件・未検証事項
+
+すべて引数・選択なしの通常コマンドで、専用の空図面を使う。  
+灰色は比較元、各方式は順に赤・緑・青・黄・マゼンタ・シアンとする。  
+各方式で閉輪郭の4辺と、入力のZ軸上の点を変換した小さな十字3本を描く。  
+同じ操作の線は重なるため、座標・行列16要素・距離のずれもG17で確認する。  
+原点・X/Y/Z軸上の点・頂点2は数値でも照合する。  
+図形の表示位置は比較しやすいようにずらさず、再実行は同じ位置へ重複追加する。
+
+保存・既存図形・UCS・ビュー・ズーム・レイヤー設定は変更しない。  
+現在図面の通常の非Sessionコマンドが対象で、別図面やモデルレスのDocumentLock管理は扱わない。  
+Commit前の例外はTransaction破棄でロールバックするが、Commit後の失敗まで変更なしとは断定しない。  
+Translationの一時LineはEntity.TransformByを読むための例で、DBへは追加しない。
+
+LocalFrameの入力はCから測る(u,v,0)で、OCSの(u,v,5)と混ぜない。  
+灰色の輪郭は配置済みB、灰色の比較点はM(0,0,1)=(0,18/5,24/5)である。  
+方式2・3が同じ移動、方式5・6が同じ回転になる。  
+一様2倍以外の尺度や、鏡映を含む配置へ回転軸の対応を広げない。
+
+射影は最初の3方式が正射影、後ろ2方式が斜方向の射影である。  
+Qを座標変換で表し直すだけの操作とは異なる。  
+平行なD=(1,0,0)はN・D=0と表示するだけで、Projectへ渡さない。  
+分母1e−12のガードは固定した入力用で、方向の長さによらない一般の角度判定ではない。  
+座標照合は絶対1e−10作図単位＋相対1e−12、行列は無次元で絶対・相対1e−12を一例とし、任意の尺度の精度を保証しない。
+
+Managed公式資料のMirrorとProjectには、直線や2D回転の説明が混在する。  
+Planeを渡す署名と2026版のネイティブ幾何資料で照合した範囲は、詳細解説の「第6〜7章の公式出典と検証範囲」に従う。  
+職場の参照DLLによるビルド・NETLOAD・実機実行・表示は未検証である。  
+AutoCADを必要とする実演を、数学基礎編のプロジェクト・自動テスト・既存CIへ追加しない。
+
+[詳細解説](../explanation.md) ／ [実演コード側の仕様照合と管理方針](../../../autocad-net/samples/autocad-transform/README.md)
+
+
 [詳細解説](../explanation.md) ／ [この教材のトップへ戻る](../README.md)

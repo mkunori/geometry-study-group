@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">任意中心の回転：引いて、回して、足す</title>
+  <desc id="desc">中心C=(1,1,0)を固定し、P=(3,2,0)を+Z周り+π/2回す。相対変位(2,1,0)→(-1,2,0)→WCS(0,3,0)。XYの正面図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">任意中心の回転：引いて、回して、足す</text>
+    <text x="35" y="90" font-size="23" fill="#21324b" text-anchor="start">C=(1,1,0)は固定。回すのは、Cから点への変位。</text>
+    <polygon points="210.000,430.000 450.000,430.000 390.000,310.000 210.000,370.000" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <polygon points="330.000,430.000 330.000,190.000 210.000,250.000 270.000,430.000" fill="#bd372c" fill-opacity="0.07" stroke="#bd372c" stroke-width="3"/>
+    <circle cx="270.000" cy="370.000" r="5" fill="#23743d" data-world="1,1,0" data-origin="210,430" data-scale="60" data-projection="xy"/>
+    <text x="282" y="395" font-size="21" fill="#23743d" text-anchor="start">C</text>
+    <circle cx="390.000" cy="310.000" r="5" fill="#60738a" data-world="3,2,0" data-origin="210,430" data-scale="60" data-projection="xy"/>
+    <text x="400" y="300" font-size="21" fill="#60738a" text-anchor="start">P=(3,2,0)</text>
+    <circle cx="210.000" cy="250.000" r="5" fill="#bd372c" data-world="0,3,0" data-origin="210,430" data-scale="60" data-projection="xy"/>
+    <text x="60" y="235" font-size="21" fill="#bd372c" text-anchor="start">P′=(0,3,0)</text>
+    <line x1="270.000" y1="370.000" x2="390.000" y2="310.000" stroke="#60738a" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="270.000" y1="370.000" x2="210.000" y2="250.000" stroke="#bd372c" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="600" y="135" width="345" height="88" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="620" y="167" font-size="23" fill="#21324b" text-anchor="start">① 中心を引く</text>
+    <text x="620" y="203" font-size="24" fill="#21324b" text-anchor="start">(2,1,0)</text>
+    <line x1="770.000" y1="225.000" x2="770.000" y2="253.000" stroke="#a1439d" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="600" y="260" width="345" height="88" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="620" y="292" font-size="23" fill="#21324b" text-anchor="start">② 原点で回す</text>
+    <text x="620" y="328" font-size="24" fill="#21324b" text-anchor="start">(−1,2,0)</text>
+    <line x1="770.000" y1="350.000" x2="770.000" y2="378.000" stroke="#a1439d" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="600" y="385" width="345" height="88" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="620" y="417" font-size="23" fill="#21324b" text-anchor="start">③ 中心を足す</text>
+    <text x="620" y="453" font-size="24" fill="#bd372c" text-anchor="start">(0,3,0)</text>
+    <text x="35" y="550" font-size="24" fill="#21324b" text-anchor="start">T(C) R T(−C)：右端の「中心を引く」が最初。</text>
+    <text x="35" y="590" font-size="21" fill="#21324b" text-anchor="start">+Z側から見たXY平面。原点周りの回転だけなら(−2,3,0)になる。</text>
+  </g>
+</svg>

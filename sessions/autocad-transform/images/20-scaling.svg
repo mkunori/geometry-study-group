@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">一様スケール：基準点からの距離を変える</title>
+  <desc id="desc">WCSのXY平面でC=(1,1,0)から一様2倍。頂点2の(3,2,0)は(5,3,0)、C自身は固定。0倍率では全点が重なって可逆でなくなる。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">一様スケール：基準点からの距離を変える</text>
+    <text x="35" y="90" font-size="23" fill="#21324b" text-anchor="start">中心C=(1,1,0)、倍率s=2。中心からの変位を2倍する。</text>
+    <polygon points="120.000,440.000 320.000,440.000 270.000,340.000 120.000,390.000" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <polygon points="70.000,490.000 470.000,490.000 370.000,290.000 70.000,390.000" fill="#bd372c" fill-opacity="0.07" stroke="#bd372c" stroke-width="3"/>
+    <circle cx="170.000" cy="390.000" r="5" fill="#23743d" data-world="1,1,0" data-origin="120,440" data-scale="50" data-projection="xy"/>
+    <text x="180" y="415" font-size="21" fill="#23743d" text-anchor="start">C</text>
+    <circle cx="270.000" cy="340.000" r="5" fill="#60738a" data-world="3,2,0" data-origin="120,440" data-scale="50" data-projection="xy"/>
+    <text x="280" y="363" font-size="21" fill="#60738a" text-anchor="start">(3,2,0)</text>
+    <circle cx="370.000" cy="290.000" r="5" fill="#bd372c" data-world="5,3,0" data-origin="120,440" data-scale="50" data-projection="xy"/>
+    <text x="382" y="278" font-size="21" fill="#bd372c" text-anchor="start">(5,3,0)</text>
+    <line x1="170.000" y1="390.000" x2="370.000" y2="290.000" stroke="#a1439d" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="590" y="155" width="370" height="275" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="610" y="195" font-size="26" fill="#21324b" text-anchor="start">P′=C+s(P−C)</text>
+    <text x="610" y="250" font-size="24" fill="#21324b" text-anchor="start">s≠0：逆倍率1/s</text>
+    <text x="610" y="302" font-size="22" fill="#21324b" text-anchor="start">s=0：全点がCへ重なる</text>
+    <text x="610" y="372" font-size="22" fill="#21324b" text-anchor="start">API実演は正の一様2倍</text>
+    <text x="35" y="550" font-size="23" fill="#21324b" text-anchor="start">成分計算／ScaleBy／Scaling＋TransformByの3方式。</text>
+    <text x="35" y="590" font-size="21" fill="#21324b" text-anchor="start">XY平面を+Zから見る。非一様スケールのEntity適用は別の条件。</text>
+  </g>
+</svg>
