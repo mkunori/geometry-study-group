@@ -37,7 +37,7 @@ WCS・UCS・OCSの役割、法線からOCS基底を作る任意軸アルゴリ�
 | [実演の順序と確認項目](examples/README.md) |
 | [AutoCAD実演コードの管理先：図形変換](../../autocad-net/samples/autocad-transform/README.md) |
 
-[図解の保管場所](images/README.md) ／ [配布用PDFの生成方針](output/README.md)
+[図解の保管場所](images/README.md) ／ [配布用PDFと生成方法](output/README.md)
 
 実演の対象は、既存ソリューションに合わせたAutoCAD 2026 Update 1.2以降／.NET 10／Visual Studioとする。
 職場の更新版・実行環境との適合、ビルド・NETLOAD・実行は未検証である。
