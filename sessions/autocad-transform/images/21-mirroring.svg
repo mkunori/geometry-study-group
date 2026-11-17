@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
-  <title id="title">鏡映と半回転：平面外の点で見分ける</title>
+  <title id="title">鏡映と半回転：XY平面外の点で見分ける</title>
   <desc id="desc">YZ鏡映は(-x,y,z)、Y軸の半回転は(-x,y,-z)。元のXY輪郭は両方で一致するが、Z軸上の(0,0,1)が+Zのままか-Zかで区別する。正しい3D座標を斜投影した図。</desc>
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
@@ -8,7 +8,7 @@
   </defs>
   <rect width="1000" height="620" fill="white"/>
   <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
-    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">鏡映と半回転：平面外の点で見分ける</text>
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">鏡映と半回転：XY平面外の点で見分ける</text>
     <text x="35" y="90" font-size="22" fill="#21324b" text-anchor="start">鏡はYZ平面。XY上の輪郭だけでは、半回転との違いが隠れる。</text>
     <polygon points="353.000,365.250 221.000,464.250 221.000,299.250 353.000,200.250" fill="#087f81" fill-opacity="0.07" stroke="#087f81" stroke-width="3"/>
     <polygon points="320.000,335.000 496.000,412.000 386.000,442.250 287.000,359.750" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
