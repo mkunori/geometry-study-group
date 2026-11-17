@@ -47,7 +47,9 @@ AutoCADがない場合は、セットアップの前提と参考資料を読み�
 [実演コードの管理方針](samples/autocad-transform/README.md) に沿い、既存のソリューション・プロジェクトで管理する。
 実践編の `GEOAT_COORDINATES`・`GEOAT_ARBITRARY_AXIS` は、同じPolyline頂点のOCS/WCS座標と、10法線の自作・API基底を比較する。ビルド・NETLOAD・実機実行は未検証。
 `GEOAT_OCS_TO_WCS`・`GEOAT_WCS_TO_OCS` は、相互変換の各4方式と往復・平面外の点を比較する。こちらもビルド・NETLOAD・実機実行は未検証。
-既存17コマンドやプロジェクト設定は変更しない。
+第6〜7章には、移動・回転・合成・ローカル基準・配置・拡大縮小・鏡映・射影を比較する9コマンドを追加した。  
+実践編は合計13コマンドで、入力・期待値・副作用は [実演コードの案内](samples/autocad-transform/README.md) を参照する。  
+これらもビルド・NETLOAD・実機実行は未検証であり、既存17コマンドやプロジェクト設定は変更しない。
 
 ## 追加・管理のルール
 

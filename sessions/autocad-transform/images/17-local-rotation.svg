@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">ローカルの回転をWCSで行うには、中心と軸も変換</title>
+  <desc id="desc">Bの同じPを回転。WCS原点を通る+Z軸なら(-7/5,-3,26/5)。C=(0,3,4)を通るNなら(2,3/5,29/5)。後者はローカルの原点周り+Z回転と一致する。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">ローカルの回転をWCSで行うには、中心と軸も変換</text>
+    <text x="35" y="90" font-size="23" fill="#21324b" text-anchor="start">どちらも+π/2。中心と軸を変えると、点の行き先も変わる。</text>
+    <rect x="20" y="115" width="465" height="390" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="36" y="150" font-size="23" fill="#9b7a00" text-anchor="start">WCS：中心O、軸+Z</text>
+    <polygon points="257.000,327.250 145.000,278.250 206.600,223.300 273.800,293.650" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <circle cx="206.600" cy="223.300" r="5" fill="#60738a" data-world="-3,1.4,5.2" data-origin="320,420" data-scale="35" data-projection="oblique"/>
+    <text x="182.6" y="208.29999999999998" font-size="21" fill="#60738a" text-anchor="start">P</text>
+    <circle cx="343.800" cy="173.600" r="5" fill="#9b7a00" data-world="-1.4,-3,5.2" data-origin="320,420" data-scale="35" data-projection="oblique"/>
+    <text x="353.8" y="161.6" font-size="21" fill="#9b7a00" text-anchor="start">回転後</text>
+    <line x1="320.000" y1="420.000" x2="206.600" y2="223.300" stroke="#60738a" stroke-width="1.5" stroke-dasharray="7 5"/>
+    <line x1="320.000" y1="420.000" x2="343.800" y2="173.600" stroke="#9b7a00" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <line x1="320.000" y1="420.000" x2="320.000" y2="350.000" stroke="#2264bc" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="320.000" cy="420.000" r="5" fill="#21324b" data-world="0,0,0" data-origin="320,420" data-scale="35" data-projection="oblique"/>
+    <text x="330.0" y="440.0" font-size="21" fill="#21324b" text-anchor="start">O</text>
+    <text x="36" y="475" font-size="23" fill="#9b7a00" text-anchor="start">(−7/5,−3,26/5)</text>
+    <rect x="510" y="115" width="465" height="390" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="526" y="150" font-size="23" fill="#a1439d" text-anchor="start">ローカル：中心C、軸N</text>
+    <polygon points="747.000,327.250 635.000,278.250 696.600,223.300 763.800,293.650" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <circle cx="696.600" cy="223.300" r="5" fill="#60738a" data-world="-3,1.4,5.2" data-origin="810,420" data-scale="35" data-projection="oblique"/>
+    <text x="672.6" y="208.29999999999998" font-size="21" fill="#60738a" text-anchor="start">P</text>
+    <circle cx="853.400" cy="250.950" r="5" fill="#a1439d" data-world="2,0.6,5.8" data-origin="810,420" data-scale="35" data-projection="oblique"/>
+    <text x="863.4" y="238.95" font-size="21" fill="#a1439d" text-anchor="start">回転後</text>
+    <line x1="747.000" y1="327.250" x2="696.600" y2="223.300" stroke="#60738a" stroke-width="1.5" stroke-dasharray="7 5"/>
+    <line x1="747.000" y1="327.250" x2="853.400" y2="250.950" stroke="#a1439d" stroke-width="2.5" stroke-dasharray="7 5"/>
+    <line x1="747.000" y1="327.250" x2="721.800" y2="290.150" stroke="#2264bc" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <circle cx="747.000" cy="327.250" r="5" fill="#21324b" data-world="0,3,4" data-origin="810,420" data-scale="35" data-projection="oblique"/>
+    <text x="757.0" y="347.25" font-size="21" fill="#21324b" text-anchor="start">C</text>
+    <text x="526" y="475" font-size="23" fill="#a1439d" text-anchor="start">(2,3/5,29/5)</text>
+    <text x="35" y="546" font-size="23" fill="#21324b" text-anchor="start">M KL = K(C,N) M：中心と軸をWCSへ直せば同じ操作。</text>
+    <text x="35" y="588" font-size="21" fill="#21324b" text-anchor="start">共通の斜投影・尺度。右手系の剛体配置で比較する。</text>
+  </g>
+</svg>

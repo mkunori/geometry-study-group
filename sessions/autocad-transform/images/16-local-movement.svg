@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">同じ「Xへ2」でも、どのXかで移動先は変わる</title>
+  <desc id="desc">Bの基底を使うC原点のローカル配置Mを示す。P=(-3,7/5,26/5)。WCS変位(2,0,0)なら(-1,7/5,26/5)、ローカル変位(2,0,0)はWCS変位(-2,0,0)で(-5,7/5,26/5)。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">同じ「Xへ2」でも、どのXかで移動先は変わる</text>
+    <text x="35" y="90" font-size="23" fill="#21324b" text-anchor="start">Bの平面：C=(0,3,4)、ローカルXはWCSの−X向き。</text>
+    <polygon points="329.000,330.750 185.000,267.750 264.200,197.100 350.600,287.550" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <line x1="264.200" y1="197.100" x2="336.200" y2="228.600" stroke="#bd372c" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="264.200" y1="197.100" x2="192.200" y2="165.600" stroke="#23743d" stroke-width="3" marker-end="url(#arrow)"/>
+    <circle cx="264.200" cy="197.100" r="5" fill="#60738a" data-world="-3,1.4,5.2" data-origin="410,450" data-scale="45" data-projection="oblique"/>
+    <text x="256.2" y="177.1" font-size="21" fill="#60738a" text-anchor="start">P</text>
+    <circle cx="336.200" cy="228.600" r="5" fill="#bd372c" data-world="-1,1.4,5.2" data-origin="410,450" data-scale="45" data-projection="oblique"/>
+    <text x="344.2" y="248.6" font-size="21" fill="#bd372c" text-anchor="start">WCS Xへ2</text>
+    <circle cx="192.200" cy="165.600" r="5" fill="#23743d" data-world="-5,1.4,5.2" data-origin="410,450" data-scale="45" data-projection="oblique"/>
+    <text x="62.20000000000002" y="147.59999999999997" font-size="21" fill="#23743d" text-anchor="start">ローカルXへ2</text>
+    <circle cx="329.000" cy="330.750" r="5" fill="#21324b" data-world="0,3,4" data-origin="410,450" data-scale="45" data-projection="oblique"/>
+    <text x="339.0" y="345.75" font-size="21" fill="#21324b" text-anchor="start">C</text>
+    <circle cx="410.000" cy="450.000" r="5" fill="#21324b" data-world="0,0,0" data-origin="410,450" data-scale="45" data-projection="oblique"/>
+    <text x="418.0" y="475.0" font-size="21" fill="#21324b" text-anchor="start">O</text>
+    <line x1="410.000" y1="450.000" x2="329.000" y2="330.750" stroke="#a1439d" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="570" y="150" width="400" height="280" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="590" y="190" font-size="23" fill="#bd372c" text-anchor="start">WCS基準：TW・M</text>
+    <text x="590" y="230" font-size="24" fill="#bd372c" text-anchor="start">(−1,7/5,26/5)</text>
+    <text x="590" y="295" font-size="23" fill="#23743d" text-anchor="start">ローカル基準：M・TL</text>
+    <text x="590" y="335" font-size="24" fill="#23743d" text-anchor="start">(−5,7/5,26/5)</text>
+    <text x="590" y="392" font-size="21" fill="#21324b" text-anchor="start">変位をWCSへ：(−2,0,0)</text>
+    <text x="35" y="550" font-size="22" fill="#21324b" text-anchor="start">Mの入力はCから測る(3,2,0)。OCSの(3,2,5)とは分ける。</text>
+    <text x="35" y="590" font-size="21" fill="#21324b" text-anchor="start">斜投影。図形平面上のCはOCS原点ではない。</text>
+  </g>
+</svg>

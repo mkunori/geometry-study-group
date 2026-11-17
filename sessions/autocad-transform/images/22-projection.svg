@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">正射影と斜方向の射影：同じ平面でも到着点は違う</title>
+  <desc id="desc">Bの平面外Q=(-3,13/5,34/5)から、正射影ではP=(-3,7/5,26/5)へ、D=(1,0,-1)の平行射影ではJ=(-1/2,13/5,43/10)へ動く。3Dの斜投影。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">正射影と斜方向の射影：同じ平面でも到着点は違う</text>
+    <text x="35" y="90" font-size="22" fill="#21324b" text-anchor="start">平面は3y+4z=25。入力Qはどちらの射影でも平面へ動く。</text>
+    <polygon points="358.600,382.800 205.000,315.600 289.480,240.240 381.640,336.720" fill="#087f81" fill-opacity="0.07" stroke="#087f81" stroke-width="3"/>
+    <circle cx="358.600" cy="382.800" r="5" fill="#21324b" data-world="0,3,4" data-origin="445,510" data-scale="48" data-projection="oblique"/>
+    <text x="368.6" y="402.8" font-size="21" fill="#21324b" text-anchor="start">C</text>
+    <line x1="254.920" y1="189.360" x2="289.480" y2="240.240" stroke="#bd372c" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="254.920" y1="189.360" x2="350.920" y2="351.360" stroke="#9b7a00" stroke-width="3" marker-end="url(#arrow)"/>
+    <circle cx="254.920" cy="189.360" r="5" fill="#60738a" data-world="-3,2.6,6.8" data-origin="445,510" data-scale="48" data-projection="oblique"/>
+    <text x="226.92" y="177.36" font-size="21" fill="#60738a" text-anchor="start">Q</text>
+    <circle cx="289.480" cy="240.240" r="5" fill="#bd372c" data-world="-3,1.4,5.2" data-origin="445,510" data-scale="48" data-projection="oblique"/>
+    <text x="159.48000000000002" y="270.24" font-size="21" fill="#bd372c" text-anchor="start">P：正射影</text>
+    <circle cx="350.920" cy="351.360" r="5" fill="#9b7a00" data-world="-0.5,2.6,4.3" data-origin="445,510" data-scale="48" data-projection="oblique"/>
+    <text x="362.92" y="376.36" font-size="21" fill="#9b7a00" text-anchor="start">J：斜方向</text>
+    <rect x="580" y="140" width="390" height="335" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="600" y="180" font-size="23" fill="#21324b" text-anchor="start">Q=(−3,13/5,34/5)</text>
+    <text x="600" y="235" font-size="22" fill="#bd372c" text-anchor="start">法線方向：Q−2N</text>
+    <text x="600" y="273" font-size="23" fill="#bd372c" text-anchor="start">P=(−3,7/5,26/5)</text>
+    <text x="600" y="332" font-size="22" fill="#9b7a00" text-anchor="start">斜方向：Q+(5/2)D</text>
+    <text x="600" y="370" font-size="22" fill="#9b7a00" text-anchor="start">D=(1,0,−1)</text>
+    <text x="600" y="413" font-size="22" fill="#9b7a00" text-anchor="start">J=(−1/2,13/5,43/10)</text>
+    <text x="35" y="550" font-size="22" fill="#21324b" text-anchor="start">WorldToPlaneだけならQは動かない。射影は位置を変える。</text>
+    <text x="35" y="590" font-size="21" fill="#21324b" text-anchor="start">斜投影。法線の長さ1、N・D≠0を確認して計算する。</text>
+  </g>
+</svg>

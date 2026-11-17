@@ -23,8 +23,9 @@ API仕様は末尾の2026版公式資料で静的に照合した。
 | 7 | その他の変換方法の比較 |
 | 8 | まとめ：異なるコードの処理意図を読み解く |
 
-第1〜5章を連続して読み、APIから得る座標と、その背景の基底・相互変換を対応させる。  
-第6〜8章は題材と問いの骨格を示す。
+第1〜5章では、APIから得る座標と、その背景の基底・相互変換を対応させる。  
+続く第6章では、移動・回転・合成・ローカル基準・逆変換を比較する。  
+第7章は任意中心の回転と選択的な補足題材、第8章は全体を通じたコードの読み方をまとめる。
 
 ## 1. 導入：同じ頂点なのに異なる座標が返る？
 
@@ -1003,17 +1004,722 @@ GetPoint3dAt・GetPoint2dAt・AddVertexAtとTransformByの署名は、第1〜3�
 
 ## 6. 座標系を考慮した移動・回転・逆変換・合成
 
-順次変換、行列積、`PreMultiplyBy`、`PostMultiplyBy`、`AlignCoordinateSystem` を比較の候補とする。
-引数や途中の座標を追い、掛ける位置と図形へ作用する順序をどう読み取るか考える。
+ここからは、座標を表し直すだけでなく、点や部材を実際に動かす操作を比べる。  
+まずWCSで移動・回転・合成を読み、その後でローカル基準との違いを確かめよう。  
+前半のOCSと任意軸の規約は、そのまま使う。
 
-## 7. その他の変換方法の比較
+### 固定入力とコードの読み方
 
-任意中心の回転、拡大縮小、鏡映、射影を題材候補とする。
-WCS・OCS・任意軸アルゴリズムを先に扱い、各変換の目的・適用条件・使い分けを比較する構成とする。
+特記しない例では、第1章と同じ非対称な4頂点を、WCSのXY平面に置く。  
+頂点は順に `(0,0,0),(4,0,0),(3,2,0),(0,1,0)` で、注目する頂点2は `(3,2,0)` である。  
+長さは作図単位、角度はラジアンとする。
+
+| 比較対象 | この章で確かめること |
+| --- | --- |
+| 非対称な輪郭 | 軸の入替えや変換順の違いが、輪郭と各頂点へどう現れるか |
+| 原点と各軸上の点 | 移動列と、3本の軸の行き先を分けて読む |
+| 方向ベクトル | 平行移動が方向には加わらないこと |
+| 行列16要素・座標のずれ | 見た目が重なるだけで、同じ変換と判断しないこと |
+
+各方式には元の点のコピーを渡し、戻り値を保持する。  
+`Point3d` や `Matrix3d` の変数を再利用するときも、比較元を上書きしない。  
+本文の数値は数学上の期待値であり、AutoCAD実機での計測値ではない。
+
+### 6.1 平行移動：点に変位を足す
+
+#### API紹介
+
+`Point3d.Add(Vector3d value)` は、点に変位を足した `Point3d` を返す。  
+`Matrix3d.Displacement(Vector3d vector)` は、その変位を表す `Matrix3d` を作る。  
+この例では、点と変位の成分をどちらもWCSで与える。
+
+```csharp
+Vector3d displacement = new(10, 0, 3);
+Matrix3d translation = Matrix3d.Displacement(displacement);
+Point3d byVector = point.Add(displacement);
+Point3d byMatrix = point.TransformBy(translation);
+```
+
+`point` は元のWCS点である。  
+点を動かす向きと距離を、次の図で追ってみよう。
+
+![共通の非対称輪郭をWCSで(10,0,3)だけ移動する図。頂点2は(3,2,0)から(13,2,3)へ移り、方向(3,2,1)には変位を加えない](images/13-translation.svg)
+
+#### 成分加算・ベクトル・行列の対応
+
+元の点に、Xへ10、Yへ0、Zへ3という変位を足す。  
+3つの書き方は、どれも次の計算を表している。
+
+$$
+\begin{aligned}
+P'&=P+d,\\
+\begin{bmatrix}
+x'\\
+y'\\
+z'
+\end{bmatrix}
+&=\begin{bmatrix}
+x+10\\
+y\\
+z+3
+\end{bmatrix}.
+\end{aligned}
+$$
+
+`new Point3d(point.X + 10, point.Y, point.Z + 3)` とも書ける。  
+行列では移動量を第4列へ置くので、同次成分1の点には移動が加わる。
+
+$$
+T=\begin{bmatrix}
+1&0&0&10\\
+0&1&0&0\\
+0&0&1&3\\
+0&0&0&1
+\end{bmatrix}.
+$$
+
+一方、方向の同次成分は0である。  
+`Vector3d(3,2,1)` をTで変換しても `(3,2,1)` のままで、`(13,2,4)` にはならない。  
+方向を「原点からの点」として扱うと、不要な移動が混ざってしまう。
+
+実演は [TranslationCommands.cs](../../autocad-net/samples/autocad-transform/TranslationCommands.cs) の `GEOAT_TRANSLATION`。  
+成分加算・Add・行列の3方式と、点と方向の違いを見る。
+
+### 6.2 回転：同じ角度でも、平面・軸・中心を確認する
+
+#### API紹介
+
+| API | 引数の型と意味 | 戻り値 |
+| --- | --- | --- |
+| `Point2d.RotateBy(double angle, Point2d origin)` | 平面内の角度と回転中心。正方向はX軸からY軸へ | 回転後の `Point2d` |
+| `Point3d.RotateBy` | `double angle, Vector3d vector, Point3d centerPoint`：角度・回転軸の方向・軸が通る点 | 回転後の `Point3d` |
+| `Matrix3d.Rotation` | `double angle, Vector3d axis, Point3d center`：同じ3条件 | 回転を表す `Matrix3d` |
+
+ここでは角度を `Math.PI / 2`（90°）、軸をWCSの+Z、中心をWCS原点にする。  
+2Dの例はWCSのXY成分を使い、Z成分は変えない。  
+任意の傾いたOCSのXYを、そのままWCSのXYだと読む例ではない。
+
+```csharp
+double angle = Math.PI / 2;
+Point2d rotated2d = xy.RotateBy(angle, Point2d.Origin);
+Point3d rotated3d = point.RotateBy(angle, Vector3d.ZAxis, Point3d.Origin);
+Matrix3d rotation = Matrix3d.Rotation(angle, Vector3d.ZAxis, Point3d.Origin);
+Point3d byMatrix = point.TransformBy(rotation);
+```
+
+図は+Z側から原点を見る。  
+この見方では、+π/2は反時計回りになる。
+
+![WCSのXY平面で非対称輪郭を原点周りに+π/2回転する図。頂点2の(3,2,0)は(-2,3,0)、+X軸上の点は+Y軸上へ移る](images/14-origin-rotation.svg)
+
+#### sin/cosとAPIの対応
+
+原点周りの2D回転は、元のX方向とY方向の成分を回して足す計算である。  
+[数学基礎編の回転](../01-matrix/explanation.md) で扱った式に対応する。
+
+$$
+\begin{aligned}
+x'&=x\cos\theta-y\sin\theta,\\
+y'&=x\sin\theta+y\cos\theta,\\
+z'&=z.
+\end{aligned}
+$$
+
++π/2では `cosθ=0, sinθ=1` だから、頂点2は `(-2,3,0)` になる。  
+原点・X・Y・Z軸上の点の行き先も、順に `(0,0,0),(0,1,0),(-1,0,0),(0,0,1)` となる。
+
+`Point2d` には回転軸を渡す引数がない。  
+3Dでは、方向が0ではない軸と、その軸が通る点を指定する必要がある。  
+正方向は軸に対する右手の規則で決まるため、軸を逆向きにすると同じ正角でも回転の向きは逆になる。  
+APIへ0・NaN・無限大の軸を渡す例には広げない。
+
+実演は [RotationCommands.cs](../../autocad-net/samples/autocad-transform/RotationCommands.cs) の `GEOAT_ROTATION`。  
+sin/cos・Point2d・Point3d・行列の4方式を照合する。
+
+### 6.3 合成：行列を掛ける位置と、操作する順序
+
+#### API紹介
+
+行列積 `a * b` は、aとbを掛けた `Matrix3d` を返す。  
+`Matrix3d.PreMultiplyBy(Matrix3d leftSide)` は左から、`PostMultiplyBy(Matrix3d rightSide)` は右から掛ける。  
+両メソッドの戻り値も `Matrix3d` である。  
+名前のPre/Postを、図形へ先に／後に操作する意味だと思い込まないようにしよう。
+
+```csharp
+Matrix3d product = translation * rotation; // T R
+Matrix3d byPre = rotation;
+byPre = byPre.PreMultiplyBy(translation);  // T R
+Matrix3d byPost = translation;
+byPost = byPost.PostMultiplyBy(rotation); // T R
+```
+
+Rは前節の原点周りの+π/2回転、Tは `(10,0,3)` の移動である。  
+図の2経路は、同じ入力から出発している。
+
+![同じ点(3,2,0)を回転してから移動すると(8,3,3)、移動してから回転すると(-2,13,3)になる図。行列TRとRTの右端が最初に作用する](images/15-composition-order.svg)
+
+#### 逐次変換・積・Pre/Postを対応させる
+
+列ベクトルへ行列を左から掛けるので、右端のRが先に作用する。
+
+$$
+P'=T(RP)=(TR)P.
+$$
+
+逐次なら `point.TransformBy(rotation).TransformBy(translation)` と書ける。  
+一つの行列なら、前のコードの3方式はすべてTRになる。
+
+$$
+TR=\begin{bmatrix}
+0&-1&0&10\\
+1&0&0&0\\
+0&0&1&3\\
+0&0&0&1
+\end{bmatrix},
+\qquad
+RT=\begin{bmatrix}
+0&-1&0&0\\
+1&0&0&10\\
+0&0&1&3\\
+0&0&0&1
+\end{bmatrix}.
+$$
+
+| 順序 | 頂点2の途中計算 | WCS期待値 |
+| --- | --- | --- |
+| 回転→移動：TR | (3,2,0) → (−2,3,0) → (8,3,3) | (8,3,3) |
+| 移動→回転：RT | (3,2,0) → (13,2,3) → (−2,13,3) | (−2,13,3) |
+
+`rotation.PostMultiplyBy(translation)` とするとRTになる。  
+`translation.PostMultiplyBy(rotation)` との違いは、呼出し元も含めて読まないと分からない。
+
+実演は [CompositionCommands.cs](../../autocad-net/samples/autocad-transform/CompositionCommands.cs) の `GEOAT_COMPOSITION`。  
+最初の4方式は同じTR、5番目だけは比較用のRTである。  
+0ではない座標のずれは、丸め誤差ではなく、操作の違いを表す場合がある。
+
+### 6.4 ローカル基準かWCS基準か：同じ「Xへ2」でも違う
+
+#### API紹介と短い使用例
+
+ここでは、新しい専用APIではなく、`Displacement` と `TransformBy` の使い分けを見る。  
+ローカル→WCSの配置をM、ローカルでの移動をT_Lとすると、`M * T_L` はローカル側で移動してから配置する行列になる。
+
+```csharp
+Vector3d localDisplacement = new(2, 0, 0);
+Vector3d worldDisplacement = localDisplacement.TransformBy(localToWorld);
+Matrix3d equivalentMove = Matrix3d.Displacement(worldDisplacement);
+```
+
+入力はローカル成分の**方向・変位**、結果はWCS成分の変位である。  
+`Point3d` として変換すると、配置先の原点まで余計に加えてしまう。
+
+![Bの平面の基準点C=(0,3,4)から配置したP=(-3,7/5,26/5)に対し、WCS Xへ2では(-1,7/5,26/5)、ローカルXへ2では(-5,7/5,26/5)へ移動する図](images/16-local-movement.svg)
+
+#### Bの平面にローカル原点Cを置く
+
+第2〜5章のBと同じ軸を使い、今度は原点をCに置く。  
+これは、WCS原点を共有するOCS全体とは別の、平面上のローカル座標系である。  
+入力は `(u,v,0)`、Cは `(0,3,4)` とする。  
+`(u,v,5)` を渡して高さを二重に加えない。
+
+$$
+M=\begin{bmatrix}
+-1&0&0&0\\
+0&-4/5&3/5&3\\
+0&3/5&4/5&4\\
+0&0&0&1
+\end{bmatrix}.
+$$
+
+ローカルの頂点2 `(3,2,0)` は、WCSの `P=(-3,7/5,26/5)` に配置される。  
+ローカルX軸はWCSの−Xを向くので、同じ2でも移動方向が逆になる。
+
+| 指示 | 行列の位置 | Pの移動先 |
+| --- | --- | --- |
+| WCS Xへ2 | T_W M | (−1,7/5,26/5) |
+| ローカルXへ2 | M T_L | (−5,7/5,26/5) |
+| ローカル変位をWCSで表してから移動 | T(Rd_L) M | (−5,7/5,26/5) |
+
+Mの3×3部分をR、移動列をCと書けば、ローカル変位d_LがWCSでRd_Lになるため、
+
+$$
+\begin{aligned}
+M(q+d_L)&=C+Rq+Rd_L,\\
+T(Rd_L)Mq&=C+Rq+Rd_L.
+\end{aligned}
+$$
+
+この例の `d_L=(2,0,0)` は、WCSでは `(-2,0,0)` になる。  
+Mが剛体配置、つまり長さと角度を保つ回転と移動だけなら、変位の長さ2も保たれる。
+
+#### 回転中心と軸も、同じ座標系で指定する
+
+`Matrix3d.Rotation` の引数は、作用させる点と同じ座標系でそろえる。  
+ローカルの原点を通る+Z軸の回転をWCS側で行うなら、中心を `M(0,0,0)=C`、軸の方向を `R(0,0,1)=N` にする。  
+Nを点として変換してCを足してはいけない。
+
+![Bに配置済みの同じPをWCS原点の+Z軸で回す場合と、Cを通る法線Nの軸で回す場合の図。後者がローカル原点周りの回転に対応する](images/17-local-rotation.svg)
+
+ローカル側の+π/2回転K_Lは、`(3,2,0)` を `(-2,3,0)` にする。  
+それをMで配置すれば、次のWCS点になる。
+
+$$
+\begin{aligned}
+M K_L\begin{bmatrix}
+3\\
+2\\
+0\\
+1
+\end{bmatrix}
+&=\begin{bmatrix}
+2\\
+3/5\\
+29/5\\
+1
+\end{bmatrix}.
+\end{aligned}
+$$
+
+| 基準・回転軸・中心 | 作用 | WCS期待値 |
+| --- | --- | --- |
+| WCS：+Z、原点O | K_W M | (−7/5,−3,26/5) |
+| ローカル：+Z、ローカル原点 | M K_L | (2,3/5,29/5) |
+| WCSで指定し直す：N、C | $K_{C,N}M$ | (2,3/5,29/5) |
+
+右手系の剛体配置では、中心と軸をこのように変換すれば後ろ2つは同じ回転になる。  
+拡大縮小・せん断・鏡映を含む一般のMへ、この回転軸と同じ角度の対応をそのまま広げない。  
+一般には $M K_L M^{-1}$ という共役変換を考える必要がある。  
+座標系を変えて同じ操作を表すとき、前後にMと逆行列を挟む、という意味である。
+
+実演は [LocalFrameCommands.cs](../../autocad-net/samples/autocad-transform/LocalFrameCommands.cs) の `GEOAT_LOCAL_FRAME`。  
+移動は方式2と3、回転は方式5と6がそれぞれ一致する。  
+灰色はすでにBへ配置した輪郭であり、比較中にUCS設定を変えているわけではない。
+
+### 6.5 逆変換：最後にした操作から戻す
+
+#### API紹介
+
+`Matrix3d.Inverse()` は、可逆な行列に対して逆行列を `Matrix3d` で返す。  
+ここでは回転と移動の積TRが対象である。  
+入力は配置後のWCS点、出力は配置前の座標になる。
+
+```csharp
+Matrix3d inverse = product.Inverse();
+Point3d byInverse = placed.TransformBy(inverse);
+Point3d byUndoSteps = placed.TransformBy(undoMove).TransformBy(undoRotate);
+```
+
+`undoMove` は `(-10,0,-3)` の移動、`undoRotate` は原点の+Z周りの−π/2回転である。  
+[合成順序の図](images/15-composition-order.svg) の上の経路を、終点から逆にたどってみよう。
+
+$$
+(TR)^{-1}=R^{-1}T^{-1}.
+$$
+
+頂点2は `(8,3,3) → (-2,3,0) → (3,2,0)` と戻る。  
+先に回転を戻してから移動を戻すと、通常は元の点には戻らない。  
+逆行列を取ることと、行列の全要素の符号を反転することも別である。
+
+方向 `(3,2,1)` をTRで変換すると `(-2,3,1)` になる。  
+方向を戻すときは逆回転が働き、逆移動は加わらない。  
+実演では `GEOAT_COMPOSITION` で、原点・3軸上の点・頂点2の往復を照合する。
+
+### 6.6 補足：部材の配置を4方式で読む (発展)
+
+#### API紹介
+
+`Matrix3d.AlignCoordinateSystem` は、from側の原点・3軸を、to側の原点・3軸へ写す `Matrix3d` を返す。  
+原点はそれぞれ `Point3d`、各軸は `Vector3d` で、引数は合計8つである。
+
+| 引数 | 意味 |
+| --- | --- |
+| `fromOrigin, fromXAxis, fromYAxis, fromZAxis` | 移す前のフレーム（原点と3軸） |
+| `toOrigin, toXAxis, toYAxis, toZAxis` | 移した先のフレーム |
+
+この例はfromを標準フレーム、toをWCSで表した配置先にする。  
+UCSの設定そのものを変更するAPIではない。
+
+```csharp
+Matrix3d byAlign = Matrix3d.AlignCoordinateSystem(
+    Point3d.Origin, Vector3d.XAxis, Vector3d.YAxis, Vector3d.ZAxis,
+    center, xAxis, yAxis, zAxis);
+```
+
+![標準フレームの非対称部材をC=(10,0,3)、X軸=(0,1,0)、Y軸=(-1,0,0)、Z軸=(0,0,1)へ配置する図。原点・3軸上の点の行き先と頂点2=(8,3,3)を示す](images/18-alignment.svg)
+
+#### 基底を作り直さず、配置の意味を照合する
+
+ここでは、第6.3節のTRと同じ配置先を使う。  
+Cは `(10,0,3)`、X軸は `(0,1,0)`、Y軸は `(-1,0,0)`、Z軸は `(0,0,1)` とする。  
+ローカルの各成分を、その軸へ進む量として足せばよい。
+
+$$
+P=C+xX+yY+zZ.
+$$
+
+| 方法 | この例での意味 |
+| --- | --- |
+| Rotation＋Displacement | 原点で+π/2回してからCへ移動する |
+| AlignCoordinateSystem | 標準の原点・軸を、配置先の原点・軸へ対応させる |
+| Matrix3dの成分指定 | X・Y・Zを列、Cを移動列に置き、配列には行ごとに詰める |
+| 各軸を何倍かして足す | C+xX+yY+zZを成分ごとに計算する |
+
+頂点2は `C+3X+2Y=(8,3,3)` になる。  
+原点はC、3軸上の点は順に `(10,1,3),(9,0,3),(10,0,4)` へ移る。  
+原点を試すと移動列、各軸上の点との差を試すと基底列を確認できる。
+
+一般のfromとtoについては、両方のフレームを共通のWCS成分で表した行列F・Gを考える。  
+Fの原点と軸をGの原点と軸へ**動かす**行列は $GF^{-1}$ になる。  
+一方、from側の座標で表した同じ位置を、to側の座標へ**表し直す**行列は $G^{-1}F$ である。  
+入力の表し方と目的が異なるので、この2つを取り違えない。  
+ここでは右手系・単位長・直交する3軸に限定し、0の軸・重なる軸・不正なフレームは使わない。  
+長さや角度の違う軸に対するAPIの適用範囲を、確認なしに一般化しない。
+
+実演は [AlignmentCommands.cs](../../autocad-net/samples/autocad-transform/AlignmentCommands.cs) の `GEOAT_ALIGNMENT`。  
+基底の詳しい復習は [数学基礎編の行列](../01-matrix/explanation.md) と本教材の第3〜4章に戻ろう。
+
+## 7. その他の図形変換
+
+任意中心の回転は、回転中心をコードから読み取るための重要な比較である。  
+拡大縮小・鏡映・射影は、必要な題材を選んで実演できる補足として読む。  
+それぞれ、同じ操作を行うコードと、似ているが別の操作になるコードを区別しよう。
+
+### 7.1 任意中心の回転：中心を引いて、回して、戻す
+
+#### API紹介
+
+第6.2節の `Point2d.RotateBy`・`Point3d.RotateBy`・`Matrix3d.Rotation` は、中心を引数で指定できる。  
+ここでは、中心CをWCSの `(1,1,0)`、軸を+Z、角度を+π/2とする。
+
+```csharp
+Point3d center = new(1, 1, 0);
+Point3d byPoint = point.RotateBy(Math.PI / 2, Vector3d.ZAxis, center);
+Matrix3d byCenter = Matrix3d.Rotation(Math.PI / 2, Vector3d.ZAxis, center);
+```
+
+入力の点・中心・軸の成分は、すべてWCSでそろえる。  
+図の中心Cは動かず、点からCへの相対位置だけが回る。
+
+![中心C=(1,1,0)の周りに(3,2,0)を+π/2回す図。中心を引いた(2,1,0)を(-1,2,0)へ回し、Cを足すと(0,3,0)になる](images/19-center-rotation.svg)
+
+#### 中心指定と、3つの操作の合成
+
+点から中心を引き、原点周りに回してから中心を足す。  
+行列で書けば、右端の「中心を引く」操作が最初である。
+
+$$
+\begin{aligned}
+P'&=C+R(P-C),\\
+M_C&=T(C)R T(-C).
+\end{aligned}
+$$
+
+```csharp
+Matrix3d toOrigin = Matrix3d.Displacement(new Vector3d(-center.X, -center.Y, -center.Z));
+Matrix3d fromOrigin = Matrix3d.Displacement(new Vector3d(center.X, center.Y, center.Z));
+Matrix3d originRotation = Matrix3d.Rotation(Math.PI / 2, Vector3d.ZAxis, Point3d.Origin);
+Matrix3d sandwich = fromOrigin * originRotation * toOrigin;
+```
+
+| 手順 | 頂点2の座標 |
+| --- | --- |
+| 中心を引く | (3,2,0)−(1,1,0)=(2,1,0) |
+| 原点で+π/2回す | (−1,2,0) |
+| 中心を足す | (0,3,0) |
+
+C自身なら `P-C=0` なので、変換後もCになる。  
+一方、同じ点を原点周りに回すだけなら `(-2,3,0)` であり、中心指定の結果とは異なる。  
+Z軸以外でも、回転行列Rと中心をそろえれば同じ合成の考え方を使える。
+
+実演は [RotationCommands.cs](../../autocad-net/samples/autocad-transform/RotationCommands.cs) の `GEOAT_CENTER_ROTATION`。  
+中心からのsin/cos、Point2d、Point3d、中心指定の行列、3操作の合成を比べる。
+
+### 7.2 補足：拡大縮小は基準点からの距離を変える (発展)
+
+#### API紹介
+
+`Point3d.ScaleBy(double scaleFactor, Point3d centerPoint)` は、基準点からの一様な拡大縮小を行った `Point3d` を返す。  
+`Matrix3d.Scaling(double scaleAll, Point3d center)` は、一様スケールの `Matrix3d` を返す。  
+どちらも、点と基準点を同じ座標系で表す。
+
+```csharp
+Point3d center = new(1, 1, 0);
+Point3d byPoint = point.ScaleBy(2, center);
+Matrix3d scaling = Matrix3d.Scaling(2, center);
+Point3d byMatrix = point.TransformBy(scaling);
+```
+
+中心Cは回転の例と同じ `(1,1,0)`、倍率は2とする。  
+原点からではなく、Cからの変位を2倍している点に注目しよう。
+
+![C=(1,1,0)を固定して非対称輪郭を一様2倍にする図。頂点2のCからの変位(2,1,0)が(4,2,0)になり、WCS位置は(5,3,0)](images/20-scaling.svg)
+
+$$
+P'=C+s(P-C).
+$$
+
+頂点2では `(1,1,0)+2(2,1,0)=(5,3,0)` となる。  
+成分ごとの計算、ScaleBy、Scaling＋TransformByは、この式を別の形で書いたものである。
+
+数学的にはsが0でなければ逆倍率1/sで戻せる。  
+s=0なら全点がCに重なり、元の点は復元できない。  
+負のsでは方向も反転するが、今回のAPI実演は正の2倍に限定する。  
+0や負の倍率を、すべてのEntityで利用できると断定しない。
+
+`Matrix3d.Scaling` は一様スケールのAPIである。  
+X・Y・Zを別々に拡大する非一様スケールを、一つの倍率だけで指定することはできない。  
+非一様スケールの行列を自作できても、CircleなどのEntityがその変換を受け付けるとは限らない。
+
+実演は [ScalingCommands.cs](../../autocad-net/samples/autocad-transform/ScalingCommands.cs) の `GEOAT_SCALING`。  
+3方式の結果と、逆行列で `(3,2,0)` へ戻ることを確認する。
+
+### 7.3 補足：鏡映は半回転と同じか？ (発展)
+
+#### API紹介
+
+`Point3d.Mirror(Plane plane)` は、平面に対して鏡映した `Point3d` を返す。  
+`Matrix3d.Mirroring(Plane plane)` は、同じ平面の鏡映を表す `Matrix3d` を返す。  
+ここでは直線を指定する別のオーバーロードではなく、Planeを指定するものを使う。
+
+`Plane(Point3d origin, Vector3d normal)` で鏡の平面を作る。  
+originは平面上の点、normalは0ではない法線である。  
+どちらもWCS成分で指定し、Planeは `using` で破棄する。
+
+```csharp
+using Plane plane = new(Point3d.Origin, Vector3d.XAxis);
+Point3d byPoint = point.Mirror(plane);
+Matrix3d mirror = Matrix3d.Mirroring(plane);
+Point3d byMatrix = point.TransformBy(mirror);
+```
+
+これはWCSのYZ平面、つまり `x=0` に対する鏡映になる。  
+図の輪郭に加えて、平面外のZ軸上の点も見てみよう。
+
+![YZ平面の鏡映ではXだけが反転し、Y軸周りの半回転ではXとZが反転する図。XY平面の輪郭は同じ位置に見えても、Z軸上の点で違いが分かる](images/21-mirroring.svg)
+
+$$
+\begin{aligned}
+P_{\mathrm{mirror}}&=(-x,y,z),\\
+P_{\mathrm{halfturn}}&=(-x,y,-z).
+\end{aligned}
+$$
+
+| 入力 | YZ鏡映 | Y軸の+π回転 |
+| --- | --- | --- |
+| 頂点2：(3,2,0) | (−3,2,0) | (−3,2,0) |
+| Z軸上の点：(0,0,1) | (0,0,1) | (0,0,−1) |
+
+Z=0の点だけでは、2つの変換の違いを見分けられない。  
+輪郭が非対称でも、入力が一つの平面に限られることで違いが隠れるのである。
+
+鏡映は空間の左右の向きを反転させる。  
+この例の行列は対角が−1・1・1で、行列式は−1になる。  
+回転は右手系の向きを保ち、行列式は+1である。  
+鏡映を2回行えば元へ戻るが、回転と同じ操作になったわけではない。
+
+実演は [MirroringCommands.cs](../../autocad-net/samples/autocad-transform/MirroringCommands.cs) の `GEOAT_MIRRORING`。  
+符号反転・Mirror・Mirroringは同じ操作で、4番目の半回転だけは診断用の別操作である。
+
+### 7.4 補足：射影は点を平面へ動かす (発展)
+
+#### API紹介
+
+| API | 引数と意味 | 戻り値 |
+| --- | --- | --- |
+| `Point3d.OrthoProject(Plane plane)` | 射影先の平面。法線方向に最短で移す | 平面上の `Point3d` |
+| `Point3d.Project(Plane plane, Vector3d vector)` | 平面と、射影方向 | 方向に沿った平行射影の `Point3d` |
+
+この例では、第5章のBの平面 `N・X=5` に、第5章の平面外の点Qを射影する。  
+平面・入力点・方向は、すべてWCSで表す。  
+Projectへ法線Nを渡す場合は正射影と同じ位置になるが、別の方向を渡せば通常は別の位置になる。
+
+```csharp
+Vector3d normal = new(0, 3.0 / 5, 4.0 / 5);
+using Plane plane = new(new Point3d(0, 3, 4), normal);
+Point3d perpendicular = point.OrthoProject(plane);
+Point3d alongNormal = point.Project(plane, normal);
+Point3d oblique = point.Project(plane, new Vector3d(1, 0, -1));
+```
+
+図では、法線方向と斜め方向の到着点を比べる。  
+OCSへ表し直すだけならQは動かない、という第5章との違いも確かめよう。
+
+![Bの平面外のQ=(-3,13/5,34/5)から法線方向へ正射影するとP=(-3,7/5,26/5)、D=(1,0,-1)の平行射影ではJ=(-1/2,13/5,43/10)になる図](images/22-projection.svg)
+
+#### 内積から、平面へ動かす量を求める
+
+Cは `(0,3,4)`、Nは長さ1の `(0,3/5,4/5)` とする。  
+内積 `N・(Q-C)` は、平面からN方向へ離れた符号付きの距離になる。  
+その距離の分だけNを引けば、正射影の点を得られる。
+
+$$
+Q_{\perp}=Q-\bigl(N\cdot(Q-C)\bigr)N.
+$$
+
+固定点Qでは内積が2なので、`Q−2N=P=(-3,7/5,26/5)` になる。  
+成分での内積、OrthoProject、ProjectへのN指定は、この同じ操作を表す。  
+Nが長さ1でない一般の法線nなら、引く項を `n・n` で割る必要がある。
+
+$$
+Q_{\perp}=Q-\frac{n\cdot(Q-C)}{n\cdot n}n,\qquad n\ne0.
+$$
+
+斜めの方向Dでは、直線 `Q+tD` と平面が交わるtを求める。
+
+$$
+\begin{aligned}
+N\cdot(Q+tD-C)&=0,\\
+t&=\frac{N\cdot(C-Q)}{N\cdot D},\\
+Q_D&=Q+tD.
+\end{aligned}
+$$
+
+`D=(1,0,-1)` なら分母は−4/5、分子は−2で、`t=5/2` になる。  
+したがって `Q_D=(-1/2,13/5,43/10)` である。  
+この点も `3y+4z=25` を満たすが、正射影のPとは違う。  
+Projectの方向は平行な直線を定めるものであり、tが正の半直線だけを調べるレイ判定とは区別する。
+
+#### 特殊入力・逆変換・座標変換との違い
+
+- Dが0では射影方向を定められない。
+- `N・D=0` でQが平面外なら、直線と平面は交わらない。
+- 同じ条件でもQが平面上なら直線全体が平面内にあり、交点が一つには決まらない。
+- `N・D` が0に近いと、計算誤差が大きくなりやすい。実演では平行・ほぼ平行な方向をAPIへ渡さない。
+- NaN・無限大や0の法線を、通常の幾何入力として扱わない。
+
+射影は、異なる点を同じ位置へ重ねることがある。  
+正射影では `P+tN` がすべてPへ移るため、一般の3D点へ戻す逆変換は存在しない。  
+同じ平面上の点は正射影しても動かず、2回射影しても結果は同じである。
+
+`WorldToPlane` は、3成分を保持すれば可逆な座標表現の変換である。  
+`OrthoProject` は、平面外の点そのものを平面へ動かす操作である。  
+型が同じPoint3dでも、処理の目的は同じとは限らない！
+
+実演は [ProjectionCommands.cs](../../autocad-net/samples/autocad-transform/ProjectionCommands.cs) の `GEOAT_PROJECTION`。  
+Bの輪郭を2Nだけ進めた4点を固定入力にする。  
+最初の3方式は正射影、後ろ2方式は斜方向の射影で、各組の中で結果を照合する。  
+平行な `D=(1,0,0)` は内積が0と表示するだけで、Projectへは渡さない。  
+APIが特殊入力にどの例外・結果を返すかは実測していない。
+
+### 7.5 補足：点の計算結果と、Entityの変更を分ける
+
+`Point3d.TransformBy(Matrix3d leftSide)` は、変換後の点を返す。  
+`Entity.TransformBy(Matrix3d transform)` の戻り値は `void` で、Entity自身を変更する。  
+Point3dを計算しただけでは、図面DBの図形は動かない。
+
+```csharp
+using Line temporary = new(Point3d.Origin, new Point3d(3, 2, 0));
+temporary.TransformBy(translation); // 戻り値を代入するAPIではない
+```
+
+`GEOAT_TRANSLATION` では、この一時Lineの始点・終点も読み取る。  
+一時LineはDBへ登録せず破棄し、比較結果の描画には別の新規Lineを使う。
+
+[Entity.TransformByの公式仕様](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Entity_TransformBy_Matrix3d.html) によると、受け付ける変換の制約はEntityの実装で決まる。  
+既存のCircle・Arcなどには、一様な尺度と直交性を保つ変換の制約がある。  
+点には計算できる非一様スケールや、次元を潰す射影行列を、すべてのEntityへ適用できるとは考えない。  
+今回の射影の実演は点を先に計算し、その結果からLineを作る。
+
+### 7.6 補足：丸め誤差と比較条件
+
+第5章の絶対誤差・相対誤差の考え方を、この章にも使う。  
+小さな固定座標では、座標の照合は絶対1e−10作図単位＋相対1e−12を一例とする。  
+無次元の行列要素は、絶対・相対とも1e−12など、座標の距離とは別の基準で見る。  
+sin(π)やcos(π/2)も、浮動小数点では厳密な0にならないことがある。
+
+移動量・回転角・中心・軸・変換順序・入力座標系がそろっている組だけを、同じ結果になる比較として扱う。  
+意図的に異なる操作を並べた組の差まで、許容誤差で消そうとしない。  
+実演のG17表示と行列16要素で、入力・中間値・結果を照合する。
+
+ProjectionCommandsの分母判定1e−12は、固定したN・Dに対する実演のガードである。  
+任意の長さのDへ使う角度判定の規約ではない。  
+一般化するなら方向の長さで尺度をそろえ、入力精度と求める距離の誤差を考慮する。  
+極端に大きい座標、桁落ち、可逆でも数値的に不安定な行列の逆計算を、この固定例で保証しない。
+
+## 第6〜7章の公式出典と検証範囲
+
+確認日：2026-11-17。AutoCAD 2026版のManaged .NET APIの署名・適用条件と、管理元コードを静的に照合した。  
+以下はAPIの実機出力を確認した記録ではない。
+
+公式Managed資料のPoint3d.Mirrorには直線、Projectには2D回転の説明が混在する。  
+この教材では、Planeを受け取る署名と、同じ2026版のネイティブAPI資料の平面鏡映・平行射影の説明を照合した。  
+その記述から、Managed APIの実機での結果や例外の詳細まで確認済みとはしない。
+
+| 2026版公式資料 | 照合対象 |
+| --- | --- |
+| [Matrix3d.Displacement](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Displacement_Vector3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Matrix3d.Rotation](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Rotation_double_Vector3d_Point3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Matrix3d.PreMultiplyBy](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_PreMultiplyBy_Matrix3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Matrix3d.PostMultiplyBy](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_PostMultiplyBy_Matrix3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Matrix3d.AlignCoordinateSystem](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_AlignCoordinateSystem_Point3d_Vector3d_Vector3d_Vector3d_Point3d_Vector3d_Vector3d_Vector3d.html) | 8引数のfrom/toのフレーム |
+| [Point2d.RotateBy](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Point2d_RotateBy_double_Point2d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Point3d.RotateBy](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Point3d_RotateBy_double_Vector3d_Point3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Point3d.Add](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Point3d_Add_Vector3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Point3d.ScaleBy](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Point3d_ScaleBy_double_Point3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Matrix3d.Scaling](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Scaling_double_Point3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Point3d.Mirror](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Point3d_Mirror_Plane.html) | Planeを渡すオーバーロード |
+| [Matrix3d.Mirroring](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Mirroring_Plane.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Point3d.OrthoProject](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Point3d_OrthoProject_Plane.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Point3d.Project](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Point3d_Project_Plane_Vector3d.html) | Plane・Vector3d入力とPoint3d出力 |
+| [Plane.Plane](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Plane_Plane_Point3d_Vector3d.html) | 使用する引数・戻り値の型と操作の意味 |
+| [Entity.TransformBy](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Entity_TransformBy_Matrix3d.html) | void・変更操作・Entity固有の変換制約 |
+| [Line.StartPoint](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Line_StartPoint.html) ／ [EndPoint](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Line_EndPoint.html) | 一時LineのWCS位置をPoint3dで読む |
+| [行列の積](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d___Matrix3d_Matrix3d_operator.html) ／ [回転のガイド](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-DevGuide-Managed/files/GUID-DAF76951-DD0C-413F-86A8-471E2B94C1C0.htm) | 積の左右、ラジアン・軸・基準点 |
+| [ネイティブの鏡映](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-RefGuide/files/OARX-RefGuide-AcGePoint3d__mirror_AcGePlane_.html) ／ [平行射影](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-RefGuide/files/OARX-RefGuide-AcGePoint3d__project_AcGePlane__AcGeVector3d__const.html) ／ [正射影を含むメソッド一覧](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-RefGuide/files/OARX-RefGuide-__MEMBERTYPE_Methods_AcGePoint3d.html) | Managed資料の混在した説明を、2026版の幾何操作と照合 |
+
+Windows版AutoCAD 2026 Update 1.2以降／.NET 10を対象とする。  
+職場の参照DLLによるビルド・NETLOAD・AutoCAD実機実行・図面表示は未検証である。  
+[実演の案内](examples/README.md) にはコマンド・入力・期待結果・変数・副作用をまとめる。
 
 ## 8. まとめ：異なるコードの処理意図を読み解く
 
-API名や書き方が違っても、目的・入力の座標系・数学的な意味・期待結果を対応させて読む。
-コードの短さや見た目の一致だけで判断せず、何を変換し、どの条件で使えるかを説明する。
+APIの名前が違っても、次の5点をそろえて読めば、何をするコードかを追いやすくなる。
+
+| 確認すること | 読むときの問い |
+| --- | --- |
+| 対象 | 点・方向・図形のどれか。戻り値を使うのか、Entity自身が変わるのか |
+| 座標系 | 数値はWCS・OCS・ローカルのどれか。同じ物理位置を表し直すだけか |
+| 基準点・軸 | 原点かCか。Normal・Elevation・回転軸をどの座標系で渡しているか |
+| 作用する順序 | 逐次処理と行列の積が対応しているか。左／右から掛ける意味は何か |
+| 等価になる条件 | 原点共通・正規直交・右手系・同じ中心など、必要な条件がそろっているか |
+
+### 異なるコードが、同じ操作を表す例
+
+| 題材 | 数学的に対応する書き方 |
+| --- | --- |
+| OCS→WCS | GetPoint3dAt、PlaneToWorld、自作基底行列、各軸を何倍かして足す計算 |
+| WCS→OCS | WorldToPlane、Inverse、単位軸との内積、条件を満たす転置 |
+| 回転→移動 | 逐次TransformBy、TR、R.PreMultiplyBy(T)、T.PostMultiplyBy(R) |
+| ローカルの移動 | M T_L と、変位をWCSへ直した T(Rd_L) M |
+| 中心Cの回転 | 中心指定のRotateBy／Rotationと、T(C) R T(−C) |
+
+コードを短く置き換えられるかを考える前に、入力・条件・出力を一組として説明してみよう。  
+手計算で期待する点を一つ決めると、行列のどこを調べるかも見えやすくなる。
+
+### 似たコードでも、別の操作になる例
+
+- OCSのXYにElevationを付ける処理と、得たWCS点へもう一度Cを足す処理。
+- 同じ行列名でも、TRとRT、Pre/Postの呼出し元が違う場合。
+- WCS Xへ動かす処理と、ローカルXへ動かす処理。
+- 原点周りの回転と、C周りの回転。
+- 高さを保持するWorldToPlaneと、平面へ点を移すOrthoProject。
+- YZ平面の鏡映と、Y軸周りの半回転。
+
+### 見た目の一致だけでは足りない
+
+次の正方形は、+π/2回しても外側の輪郭が同じになる。  
+それでも、同じ頂点番号の位置は変わっている。
+
+![原点中心の正方形が+π/2回転しても外形は重なる一方、頂点(1,1,0)は(-1,1,0)へ移る図。同じ輪郭と同じ変換を区別する](images/23-symmetry.svg)
+
+頂点 `(1,1,0)` は `(-1,1,0)` へ移るので、何もしない変換と回転は異なる。  
+`GEOAT_COMPOSITION` では、この頂点の行き先も数値で表示する。
+
+非対称な図形を使っても、XY平面上だけでは鏡映と半回転の違いを見逃すことがある。  
+また、第4章の固定例Bの行列は転置・逆行列がたまたま同じなので、向きを取り違えても違いが隠れる。  
+斜め法線の例、原点・3軸上の点、平面外の点、方向、行列全要素を組み合わせて調べよう。
+
+前半で学んだ「同じ頂点でも座標の表し方は違う」と、後半の「同じ数値でも操作の基準が違う」を区別する。  
+どのAPIでも、対象・座標系・基準点・軸・順序・条件を追えば、見慣れないコードを数学へ結び付けられる。
 
 [この教材のトップへ戻る](README.md)

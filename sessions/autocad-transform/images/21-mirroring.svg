@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">鏡映と半回転：平面外の点で見分ける</title>
+  <desc id="desc">YZ鏡映は(-x,y,z)、Y軸の半回転は(-x,y,-z)。元のXY輪郭は両方で一致するが、Z軸上の(0,0,1)が+Zのままか-Zかで区別する。正しい3D座標を斜投影した図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">鏡映と半回転：平面外の点で見分ける</text>
+    <text x="35" y="90" font-size="22" fill="#21324b" text-anchor="start">鏡はYZ平面。XY上の輪郭だけでは、半回転との違いが隠れる。</text>
+    <polygon points="353.000,365.250 221.000,464.250 221.000,299.250 353.000,200.250" fill="#087f81" fill-opacity="0.07" stroke="#087f81" stroke-width="3"/>
+    <polygon points="320.000,335.000 496.000,412.000 386.000,442.250 287.000,359.750" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <polygon points="320.000,335.000 144.000,258.000 122.000,326.750 287.000,359.750" fill="#bd372c" fill-opacity="0.07" stroke="#bd372c" stroke-width="3"/>
+    <circle cx="386.000" cy="442.250" r="5" fill="#60738a" data-world="3,2,0" data-origin="320,335" data-scale="55" data-projection="oblique"/>
+    <text x="396.0" y="470.25" font-size="21" fill="#60738a" text-anchor="start">(3,2,0)</text>
+    <circle cx="122.000" cy="326.750" r="5" fill="#bd372c" data-world="-3,2,0" data-origin="320,335" data-scale="55" data-projection="oblique"/>
+    <text x="81.99999999999997" y="311.75" font-size="21" fill="#bd372c" text-anchor="start">(−3,2,0)</text>
+    <circle cx="320.000" cy="280.000" r="5" fill="#bd372c" data-world="0,0,1" data-origin="320,335" data-scale="55" data-projection="oblique"/>
+    <text x="332.0" y="272.0" font-size="21" fill="#bd372c" text-anchor="start">鏡映：+Z</text>
+    <circle cx="320.000" cy="390.000" r="5" fill="#9b7a00" data-world="0,0,-1" data-origin="320,335" data-scale="55" data-projection="oblique"/>
+    <text x="332.0" y="413.0" font-size="21" fill="#9b7a00" text-anchor="start">半回転：−Z</text>
+    <line x1="320.000" y1="417.500" x2="320.000" y2="225.000" stroke="#2264bc" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="600" y="155" width="365" height="280" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="620" y="195" font-size="22" fill="#bd372c" text-anchor="start">鏡映：(x,y,z)→(−x,y,z)</text>
+    <text x="620" y="245" font-size="22" fill="#9b7a00" text-anchor="start">半回転：→(−x,y,−z)</text>
+    <text x="620" y="308" font-size="22" fill="#21324b" text-anchor="start">鏡映は左右の向きを反転</text>
+    <text x="620" y="350" font-size="22" fill="#21324b" text-anchor="start">回転は向きを保つ</text>
+    <text x="620" y="401" font-size="22" fill="#21324b" text-anchor="start">Z軸上の点を比べよう</text>
+    <text x="35" y="550" font-size="22" fill="#21324b" text-anchor="start">正しい鏡映は3方式とも同じ。半回転は診断用の別操作。</text>
+    <text x="35" y="590" font-size="21" fill="#21324b" text-anchor="start">斜投影。鏡の平面は有限の領域で模式的に着色。</text>
+  </g>
+</svg>

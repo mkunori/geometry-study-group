@@ -31,7 +31,7 @@ WCS・UCS・OCSの役割、法線からOCS基底を作る任意軸アルゴリ�
 
 | 教材 |
 | --- |
-| [詳細解説：第1〜5章と全体構成](explanation.md) |
+| [詳細解説：全8章](explanation.md) |
 | [演習の方針](homework/README.md) |
 | [実演の目的と構成](examples/README.md) |
 | [AutoCAD実演コードの管理先：図形変換](../../autocad-net/samples/autocad-transform/README.md) |

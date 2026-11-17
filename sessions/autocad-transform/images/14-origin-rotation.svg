@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">原点周りの+π/2回転：X方向がY方向へ</title>
+  <desc id="desc">非対称輪郭をXY平面上で+π/2回す。頂点2は(3,2,0)から(-2,3,0)。+Zから見た図で、角度を反時計回りに示す。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">原点周りの+π/2回転：X方向がY方向へ</text>
+    <polygon points="350.000,360.000 610.000,360.000 545.000,230.000 350.000,295.000" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <polygon points="350.000,360.000 350.000,100.000 220.000,165.000 285.000,360.000" fill="#bd372c" fill-opacity="0.07" stroke="#bd372c" stroke-width="3"/>
+    <line x1="168.000" y1="360.000" x2="649.000" y2="360.000" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="350.000" y1="444.500" x2="350.000" y2="61.000" stroke="#60738a" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="660" y="380" font-size="20" fill="#60738a" text-anchor="start">X</text>
+    <text x="360" y="80" font-size="20" fill="#60738a" text-anchor="start">Y</text>
+    <circle cx="350.000" cy="360.000" r="5" fill="#21324b" data-world="0,0,0" data-origin="350,360" data-scale="65" data-projection="xy"/>
+    <text x="358" y="385" font-size="21" fill="#21324b" text-anchor="start">O</text>
+    <circle cx="545.000" cy="230.000" r="5" fill="#60738a" data-world="3,2,0" data-origin="350,360" data-scale="65" data-projection="xy"/>
+    <text x="557" y="220" font-size="21" fill="#60738a" text-anchor="start">(3,2,0)</text>
+    <circle cx="220.000" cy="165.000" r="5" fill="#bd372c" data-world="-2,3,0" data-origin="350,360" data-scale="65" data-projection="xy"/>
+    <text x="110" y="149" font-size="21" fill="#bd372c" text-anchor="start">(−2,3,0)</text>
+    <path d="M 402,360 A 52,52 0 0 0 350,308" fill="none" stroke="#2264bc" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="410" y="325" font-size="24" fill="#2264bc" text-anchor="start">+π/2</text>
+    <text x="710" y="150" font-size="22" fill="#21324b" text-anchor="start">2D：中心を指定</text>
+    <text x="710" y="200" font-size="22" fill="#21324b" text-anchor="start">3D：中心＋軸を指定</text>
+    <text x="710" y="270" font-size="23" fill="#21324b" text-anchor="start">角度はラジアン</text>
+    <text x="710" y="320" font-size="22" fill="#21324b" text-anchor="start">軸はWCSの+Z</text>
+    <text x="710" y="370" font-size="22" fill="#21324b" text-anchor="start">中心はWCS原点</text>
+    <text x="35" y="550" font-size="23" fill="#21324b" text-anchor="start">WCSのXY平面を+Z側から見る。正角は右手の規則。</text>
+    <text x="35" y="590" font-size="21" fill="#21324b" text-anchor="start">灰色は入力、赤は回転後。Z成分は変わらない。</text>
+  </g>
+</svg>

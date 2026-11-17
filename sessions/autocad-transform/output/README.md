@@ -23,4 +23,4 @@ Node.js 24.x、日本語フォント、Chrome／Edge／Chromiumのいずれか�
 4原本の内容と全PDFの表示確認を終えてから、後続Issueで有効化する。
 生成スクリプト・GitHub Actions・既存教材の公開マーカーは共通のものを維持する。
 
-[本文原本の導入と構成](../explanation.md) ／ [実演の説明](../examples/README.md) ／ [この教材のトップへ戻る](../README.md)
+[詳細解説の本文原本](../explanation.md) ／ [実演の説明](../examples/README.md) ／ [この教材のトップへ戻る](../README.md)

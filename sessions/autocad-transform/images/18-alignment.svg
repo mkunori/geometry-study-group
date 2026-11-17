@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">部材の配置：原点と3軸の行き先をそろえる</title>
+  <desc id="desc">標準フレームをC=(10,0,3)、X=(0,1,0)、Y=(-1,0,0)、Z=(0,0,1)へ写す。頂点2は(8,3,3)。RotationとDisplacement、AlignCoordinateSystem、列基底の行列、成分計算の比較。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">部材の配置：原点と3軸の行き先をそろえる</text>
+    <text x="35" y="90" font-size="22" fill="#21324b" text-anchor="start">fromは標準フレーム。toはWCSで表した配置先のフレーム。</text>
+    <polygon points="160.000,340.000 256.000,382.000 196.000,398.500 142.000,353.500" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <line x1="160.000" y1="340.000" x2="208.000" y2="361.000" stroke="#60738a" stroke-width="1.7" marker-end="url(#arrow)"/>
+    <text x="216.0" y="381.0" font-size="18" fill="#60738a" text-anchor="start">X</text>
+    <line x1="160.000" y1="340.000" x2="124.000" y2="367.000" stroke="#60738a" stroke-width="1.7" marker-end="url(#arrow)"/>
+    <text x="64.0" y="393.0" font-size="18" fill="#60738a" text-anchor="start">Y</text>
+    <line x1="160.000" y1="340.000" x2="160.000" y2="280.000" stroke="#60738a" stroke-width="1.7" marker-end="url(#arrow)"/>
+    <text x="168.0" y="275.0" font-size="18" fill="#60738a" text-anchor="start">Z</text>
+    <circle cx="196.000" cy="398.500" r="5" fill="#60738a" data-world="3,2,0" data-origin="160,340" data-scale="30" data-projection="oblique"/>
+    <text x="206.0" y="426.5" font-size="21" fill="#60738a" text-anchor="start">(3,2,0)</text>
+    <polygon points="840.000,355.000 768.000,409.000 738.000,374.500 816.000,344.500" fill="#bd372c" fill-opacity="0.07" stroke="#bd372c" stroke-width="3"/>
+    <circle cx="738.000" cy="374.500" r="5" fill="#bd372c" data-world="8,3,3" data-origin="600,340" data-scale="30" data-projection="oblique"/>
+    <text x="673.0" y="402.5" font-size="21" fill="#bd372c" text-anchor="start">(8,3,3)</text>
+    <circle cx="840.000" cy="355.000" r="5" fill="#21324b" data-world="10,0,3" data-origin="600,340" data-scale="30" data-projection="oblique"/>
+    <text x="850.0" y="375.0" font-size="21" fill="#21324b" text-anchor="start">C</text>
+    <line x1="840.000" y1="355.000" x2="804.000" y2="382.000" stroke="#bd372c" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="782.0" y="404.0" font-size="21" fill="#bd372c" text-anchor="start">X</text>
+    <line x1="840.000" y1="355.000" x2="792.000" y2="334.000" stroke="#23743d" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="762.0" y="328.0" font-size="21" fill="#23743d" text-anchor="start">Y</text>
+    <line x1="840.000" y1="355.000" x2="840.000" y2="295.000" stroke="#2264bc" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="849.0" y="291.0" font-size="21" fill="#2264bc" text-anchor="start">Z</text>
+    <line x1="350.000" y1="330.000" x2="525.000" y2="330.000" stroke="#a1439d" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="348" y="300" font-size="22" fill="#21324b" text-anchor="start">4つの書き方</text>
+    <text x="540" y="160" font-size="23" fill="#21324b" text-anchor="start">C=(10,0,3)</text>
+    <text x="540" y="200" font-size="22" fill="#21324b" text-anchor="start">X=(0,1,0)、Y=(−1,0,0)</text>
+    <text x="540" y="240" font-size="22" fill="#21324b" text-anchor="start">Z=(0,0,1)</text>
+    <text x="35" y="540" font-size="22" fill="#21324b" text-anchor="start">回転＋移動／AlignCoordinateSystem／行列の成分／C+xX+yY+zZ</text>
+    <text x="35" y="589" font-size="21" fill="#21324b" text-anchor="start">左右は同じ斜投影・尺度。軸はCから描く。UCS設定は変更しない。</text>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">平行移動：点に変位を足す。方向には足さない</title>
+  <desc id="desc">共通のWCS輪郭の全頂点にd=(10,0,3)を足す。頂点2の(3,2,0)は(13,2,3)。3Dの斜投影を用い、方向ベクトルは平行移動で変わらない。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L7,4 L0,8 Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="620" fill="white"/>
+  <g font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif">
+    <text x="30" y="43" font-size="27" fill="#21324b" text-anchor="start">平行移動：点に変位を足す。方向には足さない</text>
+    <text x="35" y="90" font-size="23" fill="#21324b" text-anchor="start">WCSの点へ、同じWCS成分の変位を足す。</text>
+    <polygon points="180.000,330.000 292.000,379.000 222.000,398.250 159.000,345.750" fill="#60738a" fill-opacity="0.07" stroke="#60738a" stroke-width="3"/>
+    <polygon points="460.000,347.500 572.000,396.500 502.000,415.750 439.000,363.250" fill="#bd372c" fill-opacity="0.07" stroke="#bd372c" stroke-width="3"/>
+    <line x1="180.000" y1="330.000" x2="236.000" y2="354.500" stroke="#60738a" stroke-width="1.7" marker-end="url(#arrow)"/>
+    <text x="244.0" y="374.5" font-size="18" fill="#60738a" text-anchor="start">WCS X</text>
+    <line x1="180.000" y1="330.000" x2="138.000" y2="361.500" stroke="#60738a" stroke-width="1.7" marker-end="url(#arrow)"/>
+    <text x="78.0" y="387.5" font-size="18" fill="#60738a" text-anchor="start">WCS Y</text>
+    <line x1="180.000" y1="330.000" x2="180.000" y2="260.000" stroke="#60738a" stroke-width="1.7" marker-end="url(#arrow)"/>
+    <text x="188.0" y="255.0" font-size="18" fill="#60738a" text-anchor="start">WCS Z</text>
+    <circle cx="222.000" cy="398.250" r="5" fill="#60738a" data-world="3,2,0" data-origin="180,330" data-scale="35" data-projection="oblique"/>
+    <text x="122.0" y="434.25" font-size="21" fill="#60738a" text-anchor="start">P=(3,2,0)</text>
+    <circle cx="502.000" cy="415.750" r="5" fill="#bd372c" data-world="13,2,3" data-origin="180,330" data-scale="35" data-projection="oblique"/>
+    <text x="514.0" y="445.75" font-size="21" fill="#bd372c" text-anchor="start">P′=(13,2,3)</text>
+    <line x1="222.000" y1="398.250" x2="502.000" y2="415.750" stroke="#a1439d" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="355" y="320" font-size="22" fill="#a1439d" text-anchor="start">d=(10,0,3)</text>
+    <rect x="650" y="145" width="315" height="265" rx="8" fill="#f6f8fb" stroke="#c7d1df"/>
+    <text x="670" y="185" font-size="24" fill="#21324b" text-anchor="start">成分加算</text>
+    <text x="670" y="225" font-size="23" fill="#21324b" text-anchor="start">Point3d.Add(d)</text>
+    <text x="670" y="265" font-size="23" fill="#21324b" text-anchor="start">Displacement(d)</text>
+    <text x="670" y="307" font-size="23" fill="#21324b" text-anchor="start">＋ TransformBy</text>
+    <text x="670" y="370" font-size="24" fill="#bd372c" text-anchor="start">すべて P+d</text>
+    <text x="35" y="550" font-size="23" fill="#21324b" text-anchor="start">方向(3,2,1)はそのまま。点のようにdを足さない。</text>
+    <text x="35" y="590" font-size="21" fill="#21324b" text-anchor="start">斜投影。灰色は入力、赤は方式1の結果。長さは作図単位。</text>
+  </g>
+</svg>
