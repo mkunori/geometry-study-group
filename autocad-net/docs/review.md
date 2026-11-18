@@ -67,7 +67,7 @@ AutoCADへの座標入力はWCSの固定値が基本で、Polyline.AddVertexAt�
 
 | 確認対象 | 静的確認の結果 |
 | --- | --- |
-| 対象環境 | [2026版の互換表](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-Customization/files/GUID-A6C680F2-DE2E-418A-A182-E4884073338A.htm) と [Visual Studio案内](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-DevGuide-Managed/files/GUID-450FD531-B6F6-4BAE-9A8C-8230AAC48CB4.htm) はUpdate 1.2以降／.NET 10／Visual Studio 2026 version 18.0で一致。初期版〜1.1の.NET 8と区別。2027版だけを根拠とした参照なし |
+| 対象環境 | [2026版の互換表](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-Customization/files/GUID-A6C680F2-DE2E-418A-A182-E4884073338A.htm) と [Visual Studio案内](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-450FD531-B6F6-4BAE-9A8C-8230AAC48CB4.htm) はUpdate 1.2以降／.NET 10／Visual Studio 2026 version 18.0で一致。初期版〜1.1の.NET 8と区別。2027版だけを根拠とした参照なし |
 | ソリューション・参照 | [sln](../AutoCadGeometrySamples.sln) は1プロジェクトのDebug／Release x64。[csproj](../AutoCadGeometrySamples.csproj) はnet10.0のLibrary、samples/**/*.csに6ファイル、3 DLLすべてPrivate=false。[ローカル設定テンプレート](../AutoCadGeometrySamples.local.props.example) は実パスなし。Import条件・未設定／DLL不存在時のError定義を読み、実行はしていない |
 | 配布物・CI | SDK・DLL・実行ファイルの追加なし。ローカルprops・SDK置き場・DLL等のignoreを確認。既存の数学C#ソリューション／CIからAutoCADへの参照なし。ワークフローの追加・変更・実行なし |
 | 日本語・案内 | 6クラスと62メソッドに日本語XMLコメント。AutoCADトップ→各章・setup・references・本レビュー、各sessionsトップ→対応参考コードの導線を確認。「参考コード／実機未検証」と各章の期待動作・数式・制約を維持 |

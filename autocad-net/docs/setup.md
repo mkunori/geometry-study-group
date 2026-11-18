@@ -6,9 +6,9 @@
 
 Windows版AutoCAD 2026で `ABOUT` を実行し、製品名・バージョン・更新情報を確認する。**Update 1.2（2026.1.2）以降**を対象とし、AutoCAD 2026という製品名だけで判断しない。表示内容をAutodeskの製品更新情報と照合する。ライセンス情報やシリアル番号はGitやPRへ貼らない。
 
-[2026版互換表](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-Customization/files/GUID-A6C680F2-DE2E-418A-A182-E4884073338A.htm) はUpdate 1.2以降を.NET 10、初期版〜Update 1.1を.NET 8としている。後者はこの `net10.0` プロジェクトの対象外。関連Toolset等を共存させる場合も、各製品の対応更新版を個別に確認する。AutoCAD LT・Mac版・AutoCAD 2027用の例として扱わない。
+[2026版互換表](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-Customization/files/GUID-A6C680F2-DE2E-418A-A182-E4884073338A.htm) はUpdate 1.2以降を.NET 10、初期版〜Update 1.1を.NET 8としている。後者はこの `net10.0` プロジェクトの対象外。関連Toolset等を共存させる場合も、各製品の対応更新版を個別に確認する。AutoCAD LT・Mac版・AutoCAD 2027用の例として扱わない。
 
-[Visual Studioの2026版案内](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-DevGuide-Managed/files/GUID-450FD531-B6F6-4BAE-9A8C-8230AAC48CB4.htm) では、AutoCAD 2026.1.2以降にVisual Studio 2026 version 18.0と.NET 10を挙げている。2026-11-01の静的確認時点では本教材の想定と一致する。一方、更新前の行にはVisual Studio 2022／.NET 8があるため混同しない。公式の環境案内との一致は、この参考コードのビルド・ロード成功を意味しない。今後資料が変わった場合は差分を明記して再確認する。
+[Visual Studioの2026版案内](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-450FD531-B6F6-4BAE-9A8C-8230AAC48CB4.htm) では、AutoCAD 2026.1.2以降にVisual Studio 2026 version 18.0と.NET 10を挙げている。2026-11-01の静的確認時点では本教材の想定と一致する。一方、更新前の行にはVisual Studio 2022／.NET 8があるため混同しない。公式の環境案内との一致は、この参考コードのビルド・ロード成功を意味しない。今後資料が変わった場合は差分を明記して再確認する。
 
 ## Visual StudioとローカルDLL参照を設定する
 
@@ -26,7 +26,7 @@ Windows版AutoCAD 2026で `ABOUT` を実行し、製品名・バージョン・�
 | `AcDbMgd.dll` | DatabaseServices・Geometry等の図面データ |
 | `AcMgd.dll` | ApplicationServices等のアプリケーション機能 |
 
-[DLL構成とCopy Localの公式案内](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-DevGuide-Managed/files/GUID-8657D153-0120-4881-A3C8-E00ED139E0D3.htm) に沿い、AutoCADが提供するDLLを成果物へ重複コピーしない。SDKの参照用DLLは製品本体の実行用DLLと同じ配布物とは限らず、NETLOAD先へSDK DLLを持ち込まない。
+[DLL構成とCopy Localの公式案内](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-8657D153-0120-4881-A3C8-E00ED139E0D3.htm) に沿い、AutoCADが提供するDLLを成果物へ重複コピーしない。SDKの参照用DLLは製品本体の実行用DLLと同じ配布物とは限らず、NETLOAD先へSDK DLLを持ち込まない。
 
 設定未記入なら `AutoCADManagedDirが未設定です` 、ファイルがなければ各DLL名を含むエラーをビルド定義で出す構成にしている。**このエラー処理も実行未検証**。存在確認だけでは製品年・更新版・DLL互換性を保証しない。参照警告、型解決エラー、読み込み失敗があれば、ローカル設定の読み込み、3 DLLの組、対象更新版、.NET SDK、x64を確認する。別年版への差し替えやセキュリティ無効化で回避しない。
 
@@ -37,7 +37,7 @@ Windows版AutoCAD 2026で `ABOUT` を実行し、製品名・バージョン・�
    共通導入・数学基礎編の17コマンドは [コマンド一覧](review.md#コマンド名と図面への副作用)、図形変換の13コマンドは [実践編の実演案内](../../sessions/autocad-transform/examples/README.md) を参照する。  
    実践編の13コマンドも新規図形を追加する。
 2. 自分のプラグインDLLだけを、組織の運用で承認されたロード用ディレクトリへ配置する。AutoCADの3 DLLやSDKを一緒にコピーしない。
-3. `SECURELOAD` と `TRUSTEDPATHS` を確認し、管理者の方針に沿う信頼済みの場所から読み込む。`SECURELOAD` を0にしたり、ドライブ全体や不特定の書込可能ディレクトリを信頼したりする回避策は使わない。[NETLOADの公式案内](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-Customization/files/GUID-D790D6DA-4592-4C58-910F-42E4AA9EA982.htm) を参照する。
+3. `SECURELOAD` と `TRUSTEDPATHS` を確認し、管理者の方針に沿う信頼済みの場所から読み込む。`SECURELOAD` を0にしたり、ドライブ全体や不特定の書込可能ディレクトリを信頼したりする回避策は使わない。[NETLOADの公式案内](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-Customization/files/GUID-D790D6DA-4592-4C58-910F-42E4AA9EA982.htm) を参照する。
 4. `NETLOAD` で出力した **AutoCadGeometrySamples.dll** を選ぶ。`AcMgd.dll` 等のホスト側DLLを選ばない。
 5. `GEO00_HELLO` の期待は、コマンドラインへの案内表示で、図面変更はない。
 6. `GEO00_LINE` の期待は、モデル空間のWCS (0,0,0)→(4,0,0)のLine 1本と追加メッセージ。長さは4作図単位で、mm等の単位を仮定しない。必要なら画面表示・プロパティで座標を確かめる。UCSの向きによって画面の見え方は変わるが、この例の入力点はWCSの固定値である。
@@ -65,7 +65,7 @@ Windows版AutoCAD 2026で `ABOUT` を実行し、製品名・バージョン・�
 
 Commit前の例外では `using` を抜ける際のTransaction破棄で未確定変更が戻る。AutoCADの例外はメッセージに残すが、Commit後の処理の失敗まで「図面変更なし」と断定しない。その他の例外が伝播する場合も `using` による後始末は行われる。APIと所有権は [公式リファレンス](references.md) のTransaction／Disposeの項で照合できる。
 
-この例はSessionフラグを使わない現在図面の通常コマンドなので、明示的な `DocumentLock` を追加していない。[ドキュメントロックの公式案内](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-DevGuide-Managed/files/GUID-A2CD7540-69C5-4085-BCE8-2A8ACE16BFDD.htm) が区別する、モデルレスUI・別図面・Sessionコマンド等へ流用するときは別のロック設計が必要になる。
+この例はSessionフラグを使わない現在図面の通常コマンドなので、明示的な `DocumentLock` を追加していない。[ドキュメントロックの公式案内](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-A2CD7540-69C5-4085-BCE8-2A8ACE16BFDD.htm) が区別する、モデルレスUI・別図面・Sessionコマンド等へ流用するときは別のロック設計が必要になる。
 
 ## 各章を読む・変更するとき
 

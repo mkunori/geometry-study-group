@@ -7,7 +7,8 @@
 WCS・OCSと任意軸アルゴリズムを必須かつ最優先とし、基底や基本変換の復習を各題材に関連付ける。
 
 対象はWindows版AutoCAD 2026 Update 1.2以降／.NET 10／Visual Studio。  
-API仕様は章ごとの2026版公式資料で静的に照合した。  
+API仕様は章ごとのAutoCAD 2026公式資料で静的に照合した。  
+DXFの座標規約と開発者ガイドは日本語版、個別APIの署名と適用条件は英語のリファレンスで確認できる。  
 以下の数値は数式から得た期待値であり、職場の参照DLLでのビルド・NETLOAD・AutoCAD実機実行は未検証である。
 
 ## 学習の流れ
@@ -136,7 +137,7 @@ $$
 | `startWidth` | `double` | 頂点から始まる区間の始点幅。今回は0 |
 | `endWidth` | `double` | 同じ区間の終点幅。今回は0 |
 
-[`Normal`](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Polyline_Normal.html)・[`Elevation`](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Polyline_Elevation.html)・[`AddVertexAt`](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Polyline_AddVertexAt_int_Point2d_double_double_double.html) の2026版仕様と、[LWPOLYLINEのDXF定義](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-DXF/files/GUID-748FC305-F3F2-4F74-825A-61F04D757A50.htm) を対応させる。  
+[`Normal`](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Polyline_Normal.html)・[`Elevation`](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Polyline_Elevation.html)・[`AddVertexAt`](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Polyline_AddVertexAt_int_Point2d_double_double_double.html) の2026版仕様と、[LWPOLYLINEのDXF定義](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-DXF/files/GUID-748FC305-F3F2-4F74-825A-61F04D757A50.htm) を対応させる。  
 これは通常の `Polyline` の例であり、`Polyline2d`・3D Polyline・任意のEntityの全座標へ一律に流用しない。
 
 実演ではNormalとElevationを先に設定し、各 `Point2d` を追加する。
@@ -172,7 +173,7 @@ UCSの例だけは、説明用に原点をWCSの `(1,0,0)`、X軸を+WCS Y、Y�
 | UCS：ユーザー座標系 | 利用者が作業用に選ぶ原点と直交軸。WCSに対して位置と向きを持つ | OCSとの違いを理解するために扱い、実演では設定を変更しない |
 | OCS：オブジェクト座標系。ECSとも呼ぶ | ここで扱うPolylineでは原点はWCS原点と同じ。Z軸の向きは法線、X・Y軸は任意軸アルゴリズムで決める | 平面上の頂点を2成分と共通の高さで記録する |
 
-[公式DXFのOCS説明](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-DXF/files/GUID-D99F1509-E4E4-47A3-8691-92EA07DC88F5.htm) は、OCSの原点がWCS原点と一致し、X・Y軸を一貫した規則で定めることを示している。  
+[公式DXFのOCS説明](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-DXF/files/GUID-D99F1509-E4E4-47A3-8691-92EA07DC88F5.htm) は、OCSの原点がWCS原点と一致し、X・Y軸を一貫した規則で定めることを示している。  
 一般のローカル座標系なら、原点を任意の位置に置ける。  
 AutoCADのOCSと同じものとして扱わない。  
 UCSを変えたことだけで、既存Polylineの保存されたOCSを「今のUCS」と読み替えることもできない。
@@ -242,7 +243,7 @@ $$
 
 一般のローカル座標変換の平行移動も、方向には加わらない。  
 今回のOCS全体とWCSは原点を共有するが、そのことと「図形平面の高さが0」は区別する。  
-UCSについては [公式の座標系の説明](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-DevGuide-Managed/files/GUID-0EFA65CC-C1AB-4B99-8159-C31602C1A5E8.htm) も参照できる。  
+UCSについては [座標変換の開発者ガイド（日本語）](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-0EFA65CC-C1AB-4B99-8159-C31602C1A5E8.htm) も参照できる。  
 実演の固定入力はOCSまたはWCSと明記して直接与え、現在のUCSから取得しない。
 
 ### 補足：DXFに記録される成分
@@ -305,7 +306,7 @@ $$
 
 ![単位法線のNx・Ny平面で、両成分の絶対値が1/64未満の開いた正方形だけがY軸分岐になり、境界と外側がZ軸分岐になる図](images/04-arbitrary-axis-branches.svg)
 
-[Autodeskの任意軸アルゴリズム](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-DXF/files/GUID-E19E5B42-0CC7-4EBA-B29F-5E1D595149EE.htm) は、単位法線Nから次の規則で基底を作る。  
+[任意軸アルゴリズムのDXF資料（日本語）](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-DXF/files/GUID-E19E5B42-0CC7-4EBA-B29F-5E1D595149EE.htm) は、単位法線Nから次の規則で基底を作る。  
 法線をWCS成分で表し、先に長さを1にする（正規化）。  
 ここからの比較は、正規化した後の成分で行う。
 
@@ -542,10 +543,10 @@ G17の表示も、丸めた表示値から分岐をやり直すためのもの�
 
 | 公式資料 | 照合した対象・適用範囲 |
 | --- | --- |
-| [DXF：OCS](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-DXF/files/GUID-D99F1509-E4E4-47A3-8691-92EA07DC88F5.htm) | OCS原点、法線方向、平面の高さ。任意ローカル座標との区別 |
-| [DXF：任意軸アルゴリズム](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-DXF/files/GUID-E19E5B42-0CC7-4EBA-B29F-5E1D595149EE.htm) | 単位N、両成分の厳密な1/64比較、外積の順序と単位化 |
-| [DXF：LWPOLYLINE](https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-DXF/files/GUID-748FC305-F3F2-4F74-825A-61F04D757A50.htm) | 頂点・Elevation・押し出し方向の区別 |
-| [座標系の説明](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-DevGuide-Managed/files/GUID-0EFA65CC-C1AB-4B99-8159-C31602C1A5E8.htm) | WCS・UCS・OCSの役割。個別APIの座標系は各リファレンスを優先 |
+| [DXF：OCS](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-DXF/files/GUID-D99F1509-E4E4-47A3-8691-92EA07DC88F5.htm) | OCS原点、法線方向、平面の高さ。任意ローカル座標との区別 |
+| [DXF：任意軸アルゴリズム](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-DXF/files/GUID-E19E5B42-0CC7-4EBA-B29F-5E1D595149EE.htm) | 単位N、両成分の厳密な1/64比較、外積の順序と単位化 |
+| [DXF：LWPOLYLINE](https://help.autodesk.com/cloudhelp/2026/JPN/AutoCAD-DXF/files/GUID-748FC305-F3F2-4F74-825A-61F04D757A50.htm) | 頂点・Elevation・押し出し方向の区別 |
+| [座標系の説明](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-0EFA65CC-C1AB-4B99-8159-C31602C1A5E8.htm) | WCS・UCS・OCSの役割。個別APIの座標系は各リファレンスを優先 |
 | [GetNormal()](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Vector3d_GetNormal.html) ／ [GetNormal(Tolerance)](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Vector3d_GetNormal_Tolerance.html) | Global許容差と、短いベクトルが単位化されない条件 |
 
 Polylineの各APIは第1・2章、PlaneToWorldは第3章のリンクを参照する。  
@@ -996,7 +997,9 @@ Nが単位長さなので、 $|w-h|$ が距離になる。
 
 | 公式資料 | 照合した対象 |
 | --- | --- |
-| [Matrix3d](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d.html) | 左から行列を掛ける列方式、点の同次成分1・方向0、移動列 |
+| [座標変換の開発者ガイド（日本語）](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-0EFA65CC-C1AB-4B99-8159-C31602C1A5E8.htm) | WCS・UCS・OCSの役割と、3軸を指定する座標変換の概要 |
+| [図形変換の開発者ガイド（日本語）](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-D4348E23-7ECB-48F6-90B7-FB7EF42DFA8D.htm) | Matrix3dとTransformByによる変換、移動を表す第4列 |
+| [Matrix3d（英語）](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d.html) | 左から行列を掛ける列方式、点の同次成分1・方向0、移動列 |
 | [配列コンストラクター](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Matrix3d_double__.html) ／ [ToArray](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_ToArray.html) | 配列からの構築、16要素の行順と照合 |
 | [PlaneToWorld](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_PlaneToWorld_Vector3d.html) ／ [WorldToPlane](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_WorldToPlane_Vector3d.html) | 同じ法線を用いる、平面→世界と世界→平面の向き |
 | [Inverse](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Inverse.html) ／ [Transpose](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Transpose.html) | 戻り値Matrix3d。転置と逆行列が一致する条件は本文の正規直交性から確認 |
@@ -1650,6 +1653,8 @@ ProjectionCommandsの分母判定1e−12は、固定したN・Dに対する実�
 
 | 2026版公式資料 | 照合対象 |
 | --- | --- |
+| [移動のガイド（日本語）](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-9E9D7A74-4FE7-4E57-B9CB-BA4712B364ED.htm) ／ [尺度変更のガイド（日本語）](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-50D25B16-2FBF-4E81-B934-A26F699F31BC.htm) | 変位ベクトル、基点と一様な尺度係数 |
+| [鏡像化のガイド（日本語）](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-B0565F5A-03CC-426B-9A1D-4280A6187BDA.htm) | MirroringとTransformByの使い方。掲載例はLine3dを使用し、本文の平面鏡映は下のPlane指定の署名で確認 |
 | [Matrix3d.Displacement](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Displacement_Vector3d.html) | 使用する引数・戻り値の型と操作の意味 |
 | [Matrix3d.Rotation](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_Rotation_double_Vector3d_Point3d.html) | 使用する引数・戻り値の型と操作の意味 |
 | [Matrix3d.PreMultiplyBy](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d_PreMultiplyBy_Matrix3d.html) | 使用する引数・戻り値の型と操作の意味 |
@@ -1667,7 +1672,7 @@ ProjectionCommandsの分母判定1e−12は、固定したN・Dに対する実�
 | [Plane.Plane](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Plane_Plane_Point3d_Vector3d.html) | 使用する引数・戻り値の型と操作の意味 |
 | [Entity.TransformBy](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Entity_TransformBy_Matrix3d.html) | void・変更操作・Entity固有の変換制約 |
 | [Line.StartPoint](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Line_StartPoint.html) ／ [EndPoint](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_DatabaseServices_Line_EndPoint.html) | 一時LineのWCS位置をPoint3dで読む |
-| [行列の積](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d___Matrix3d_Matrix3d_operator.html) ／ [回転のガイド](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-DevGuide-Managed/files/GUID-DAF76951-DD0C-413F-86A8-471E2B94C1C0.htm) | 積の左右、ラジアン・軸・基準点 |
+| [行列の積](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-ManagedRefGuide/files/OARX-ManagedRefGuide-Autodesk_AutoCAD_Geometry_Matrix3d___Matrix3d_Matrix3d_operator.html) ／ [回転のガイド（日本語）](https://help.autodesk.com/cloudhelp/2026/JPN/OARX-DevGuide-Managed/files/GUID-DAF76951-DD0C-413F-86A8-471E2B94C1C0.htm) | 積の左右、ラジアン・軸・基準点 |
 | [ネイティブの鏡映](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-RefGuide/files/OARX-RefGuide-AcGePoint3d__mirror_AcGePlane_.html) ／ [平行射影](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-RefGuide/files/OARX-RefGuide-AcGePoint3d__project_AcGePlane__AcGeVector3d__const.html) ／ [正射影を含むメソッド一覧](https://help.autodesk.com/cloudhelp/2026/ENU/OARX-RefGuide/files/OARX-RefGuide-__MEMBERTYPE_Methods_AcGePoint3d.html) | Managed資料の混在した説明を、2026版の幾何操作と照合 |
 
 Windows版AutoCAD 2026 Update 1.2以降／.NET 10を対象とする。  
